@@ -1,6 +1,48 @@
-# Getting Started with Create React App
+# Sigma Internship 2021
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+
+During internship we will learn React library and its features implementing a project that is based on IMDB movies database. The application will allow user searching through the available movies/tv serials, viewing a trip details, storing own favorits/ search history etc.
+
+## Project setup
+
+Before starting working on the project make sure that the following tools are installed:
+* Editor or IDE (WebStorm, VS Code etc.)
+* Git
+* Latest LTS version of NodeJS & NPM
+* Google Chrome browser
+
+##API Description
+The API documentation is located [here](http://www.omdbapi.com/).
+
+## Minimal Requirements
+The application layout must contain:
+1. Header
+2. Main that depends on the current URL
+3. Footer
+Application should look fine both on mobile and desktop
+There must be unit tests in the application with coverage at least 50%
+
+#### Simple landing page
+Some random movie banner from API with some other movies/categories suggestions
+Search field with possibility to extend search to provide more parameters (supported by API or even more)
+
+#### Search results page
+List of movies returned by search with pagination
+The page must support list and grid view (grid must have two types of presentation - small- title and image and big - including rating, small description etc)
+
+#### Movie page
+Should provide all information provided by API in nice and readable manner
+User should be able to add movie to 'favorites' list and review this list later
+User should be able to track 20 latest visited movies
+
+## Constraints
+1. No UI libraries allowed (like Bootstrap, Material UI etc.)
+2. You can use libraries for HTTP calls, maps, fonts, icons etc.
+3. All other libraries must be confirmed with mentors
+
+## Design
+There are no requirements for the application design at all. Be creative!
 
 ## Available Scripts
 
