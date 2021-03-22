@@ -12,7 +12,7 @@ Before starting working on the project make sure that the following tools are in
 * Latest LTS version of NodeJS & NPM
 * Google Chrome browser
 
-##API Description
+## API Description
 The API documentation is located [here](http://www.omdbapi.com/).
 
 ## Minimal Requirements
