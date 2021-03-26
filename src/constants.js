@@ -1,1 +1,1 @@
-const NAME = '';
+const NAME = 'Solomiia';
