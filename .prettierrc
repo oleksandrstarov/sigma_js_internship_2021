@@ -6,6 +6,7 @@
   "useTabs": false,
   "tabWidth": 2,
   "printWidth": 80,
+  "parser": "typescript",
   "jsxBracketSameLine": true,
   "arrowParens": "avoid",
   "quoteProps": "as-needed",
