@@ -10,6 +10,9 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4063f85ea74d1788589c260a7052baabaa5ce677
 reportWebVitals();
