@@ -17,7 +17,7 @@ function App() {
           <Link to="/details-page">Details Page</Link>
         </li>
         <li>
-          <Link to="/searh-results">Search Results</Link>
+          <Link to="/search-results">Search Results</Link>
         </li>
         <li>
           <Link to="/favorites">Favorites</Link>
@@ -26,7 +26,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/details-page" component={DetailsPage} />
-        <Route path="/searh-results" component={SearchResults} />
+        <Route path="/search-results" component={SearchResults} />
         <Route path="/favorites" component={SearchResults} />
       </Switch>
     </Router>
