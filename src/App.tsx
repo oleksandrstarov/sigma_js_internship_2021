@@ -8,7 +8,6 @@ import SearchResults from './components/SearchResults';
 
 
 function App() {
-
     return (
     <Router>
       <ul>
