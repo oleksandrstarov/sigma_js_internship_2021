@@ -1,8 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import DetailsPage from './pages/DetailsPage';
-import MoviesList from './pages/MoviesList';
+import Home from './components/Home';
+import DetailsPage from './components/MovieDetails';
+import MoviesList from './components/MoviesList';
+import Favorites from "./components/Favorites";
+import SearchResults from "./components/SearchResults";
 
 
 function App() {
@@ -14,10 +16,10 @@ function App() {
           <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link to='/movie-details'>Details Page</Link>
+          <Link to='/movie-details'>Movie details</Link>
         </li>
         <li>
-          <Link to='/search-results/:title?:id?'>Search Results</Link>
+          <Link to='/search-results/:title'>Search Results</Link>
         </li>
         <li>
           <Link to='/favorites'>Favorites</Link>
@@ -27,14 +29,19 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route path='/movie-details' component={DetailsPage} />
         <Route path='/favorites'>
-          <MoviesList title="Favorites"/>
+          <Favorites>
+            <MoviesList title="Favorites"/>
+          </Favorites>
         </Route>
-        <Route path='/search-results/:title?:id?'>
-          <MoviesList title="Search Results"/>
+        <Route path='/search-results/:title'>
+          <SearchResults>
+            <MoviesList title="Search Results"/>
+          </SearchResults>
         </Route>
       </Switch>
     </Router>
-  );
+    )
 }
+
 
 export default App;

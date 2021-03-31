@@ -28,6 +28,6 @@
   "include": [
     "src",
     "src/pages/components",
-    "src/pages/DetailsPage.tsx"
+    "src/components/MovieDetails.tsx"
   ]
 }
