@@ -1,7 +1,9 @@
-const Favorites = (props:any) => {
+import MoviesList from './MoviesList';
+
+const Favorites = () => {
     return (
-        <div>
-            {props.children}
+        <div className='favorites-wrapper'>
+            <MoviesList pageTitle="Favorites"/>
         </div>
     )
 }

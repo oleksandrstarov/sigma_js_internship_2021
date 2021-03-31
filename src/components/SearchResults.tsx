@@ -1,8 +1,9 @@
-const SearchResults = (props:any) => {
+import MoviesList from './MoviesList';
+
+const SearchResults = () => {
    return (
-      <div>
-         <h1>Search Results Page</h1>
-          {props.children}
+      <div className='search-wrapper'>
+          <MoviesList pageTitle='Search Results'/>
       </div>
    )
 }
