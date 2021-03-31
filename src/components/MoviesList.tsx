@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { useParams } from "react-router";
+import { ReactNode } from 'react';
+import { useParams } from 'react-router';
 
 const MoviesList = (props:any) => {
     type Query = {

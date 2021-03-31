@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './components/Home';
 import DetailsPage from './components/MovieDetails';
 import MoviesList from './components/MoviesList';
-import Favorites from "./components/Favorites";
-import SearchResults from "./components/SearchResults";
+import Favorites from './components/Favorites';
+import SearchResults from './components/SearchResults';
 
 
 function App() {
@@ -30,12 +30,12 @@ function App() {
         <Route path='/movie-details' component={DetailsPage} />
         <Route path='/favorites'>
           <Favorites>
-            <MoviesList title="Favorites"/>
+            <MoviesList title='Favorites'/>
           </Favorites>
         </Route>
         <Route path='/search-results/:title'>
           <SearchResults>
-            <MoviesList title="Search Results"/>
+            <MoviesList title='Search Results'/>
           </SearchResults>
         </Route>
       </Switch>
