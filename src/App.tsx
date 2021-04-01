@@ -5,7 +5,7 @@ import DetailsPage from './components/MovieDetails';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
 
-import './App.scss';
+import './App.css';
 
 function App() {
     return (

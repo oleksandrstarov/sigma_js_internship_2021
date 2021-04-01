@@ -14,7 +14,6 @@ a {
 
 body {
   background-color: #FAFBFC;
-  height: 200vh;
   font-family: 'Heebo', sans-serif;
 }
 
@@ -26,8 +25,10 @@ input {
   max-width: 2140px;
   padding: 0 15px;
   margin: 0 auto;
+}
 
-  @media screen and(min-width: 993px) {
+@media screen and(min-width: 993px) {
+  .container {
     padding: 0 60px;
   }
 }

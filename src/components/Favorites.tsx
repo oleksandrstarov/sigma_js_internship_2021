@@ -1,9 +1,12 @@
-import MoviesList from './MoviesList';
+import Header from './Header';
 
 const Favorites = () => {
     return (
         <div className='favorites-wrapper'>
-            <MoviesList pageTitle="Favorites"/>
+            <Header/>
+            <div className='movie-list'>
+
+            </div>
         </div>
     )
 }
