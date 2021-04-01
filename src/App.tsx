@@ -7,7 +7,6 @@ import SearchResults from './components/SearchResults';
 
 import './App.scss';
 
-
 function App() {
     return (
       <Router>
@@ -20,6 +19,5 @@ function App() {
       </Router>
     )
 }
-
 
 export default App;

@@ -7,8 +7,19 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #000;
+  text-decoration: unset;
+}
+
 body {
   background-color: #FAFBFC;
+  height: 200vh;
+  font-family: 'Heebo', sans-serif;
+}
+
+input {
+  background-color: #fff;
 }
 
 .container {
