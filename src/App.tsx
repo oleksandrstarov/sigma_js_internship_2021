@@ -6,41 +6,39 @@ import MoviesList from './components/MoviesList';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
 
-
 function App() {
-    return (
+  return (
     <Router>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to='/movie-details'>Movie details</Link>
+          <Link to="/movie-details">Movie details</Link>
         </li>
         <li>
-          <Link to='/search-results/:title'>Search Results</Link>
+          <Link to="/search-results/:title">Search Results</Link>
         </li>
         <li>
-          <Link to='/favorites'>Favorites</Link>
+          <Link to="/favorites">Favorites</Link>
         </li>
       </ul>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/movie-details' component={DetailsPage} />
-        <Route path='/favorites'>
+        <Route exact path="/" component={Home} />
+        <Route path="/movie-details" component={DetailsPage} />
+        <Route path="/favorites">
           <Favorites>
-            <MoviesList title='Favorites'/>
+            <MoviesList title="Favorites" />
           </Favorites>
         </Route>
-        <Route path='/search-results/:title'>
+        <Route path="/search-results/:title">
           <SearchResults>
-            <MoviesList title='Search Results'/>
+            <MoviesList title="Search Results" />
           </SearchResults>
         </Route>
       </Switch>
     </Router>
-    )
+  );
 }
-
 
 export default App;

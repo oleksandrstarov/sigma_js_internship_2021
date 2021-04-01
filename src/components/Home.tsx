@@ -1,11 +1,15 @@
+import apiService from '../api';
 
 const Home = () => {
+  apiService.getSearchList('batman');
 
-   return (
-      <div>
-         <h1>Home Page.</h1>
-      </div>
-   )
-}
+  console.log(apiService.apiResponse);
 
-export default Home
+  return (
+    <div>
+      <h1>Home Page.</h1>
+    </div>
+  );
+};
+
+export default Home;
