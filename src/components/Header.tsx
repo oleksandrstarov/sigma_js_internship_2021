@@ -2,6 +2,8 @@ import Container from './Container';
 import Image from './Image';
 import Input from './Input';
 
+import '../styles/Header.scss'
+
 const image = '/images/logo.svg';
 
 const Header = () => {
@@ -9,7 +11,7 @@ const Header = () => {
         <header>
             <Container>
                 <Image src={image} alt='logo'/>
-                <Input/>
+                <Input type="text"/>
             </Container>
         </header>
     )
