@@ -1,8 +1,13 @@
-const Input = () => {
-    return (
-        <header>
+type Props = {
+    type?: string,
+    className?: string
+}
 
-        </header>
+const Input = (props: Props) => {
+    const { type, className } = props;
+
+    return (
+        <input type={type ? type : 'text'} className={className ? className : ''}/>
     )
 }
 
