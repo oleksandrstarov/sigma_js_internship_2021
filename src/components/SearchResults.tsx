@@ -1,8 +1,19 @@
-const SearchResults = (props:any) => {
+
+// interface Dima {
+//    name: string;
+//    age: number;
+// }
+
+const SearchResults = ({ children }: any) => {
+
+   console.log(children);
+
    return (
       <div>
          <h1>Search Results Page</h1>
-          {props.children}
+         <p>sdf</p>
+
+         {children}
       </div>
    )
 }

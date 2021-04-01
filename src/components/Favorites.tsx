@@ -1,4 +1,4 @@
-const Favorites = (props:any) => {
+const Favorites = (props: any) => {
     return (
         <div>
             {props.children}
