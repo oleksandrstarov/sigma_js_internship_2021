@@ -1,9 +1,9 @@
-import MoviesList from './MoviesList';
-
 const SearchResults = () => {
    return (
       <div className='search-wrapper'>
-          <MoviesList pageTitle='Search Results'/>
+          <div className='movie-list'>
+
+          </div>
       </div>
    )
 }
