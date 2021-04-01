@@ -17,7 +17,7 @@ const MoviesList = (props: Props) => {
     const { pageTitle } = props;
 
     return (
-        <div className="movies-list">
+        <div className='movies-list'>
             <h1>{ pageTitle }</h1>
             <p>title param: { title }</p>
             <p>genre param: { genre }</p>
