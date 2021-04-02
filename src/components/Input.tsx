@@ -1,14 +1,10 @@
-type Props = {
-    type?: string,
-    className?: string
-}
+type InputProps = {
+  type: string;
+  className?: string;
+};
 
-const Input = (props: Props) => {
-    const { type, className } = props;
-
-    return (
-        <input type={type ? type : 'text'} className={className ? className : ''}/>
-    )
-}
+const Input = ({ type, className }: InputProps) => {
+  return <input type={type} className={className} />;
+};
 
 export default Input;

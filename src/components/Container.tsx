@@ -1,17 +1,11 @@
 import { ReactNode } from 'react';
 
-type Props = {
-    children: ReactNode
-}
+type ContainerProps = {
+  children: ReactNode;
+};
 
-const Container = (props: Props) => {
-    const { children } = props;
-
-    return (
-        <div className="container">
-            { children }
-        </div>
-    )
-}
+const Container = ({ children }: ContainerProps) => {
+  return <div className="container">{children}</div>;
+};
 
 export default Container;
