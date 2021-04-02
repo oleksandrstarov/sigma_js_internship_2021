@@ -7,7 +7,6 @@ import SearchResults from './components/SearchResults';
 
 import './App.css';
 
-
 function App() {
     return (
       <Router>
@@ -15,11 +14,10 @@ function App() {
           <Route exact path='/' component={ Home } />
           <Route path='/movie-details/:id' component={ MovieDetails } />
           <Route path='/favorites' component={ Favorites }/>
-          <Route path='/search-results/:title?&:genre?&:minYear?&:maxYear?' component={ SearchResults }/>
+          <Route path='/search-results' component={ SearchResults }/>
         </Switch>
       </Router>
     )
 }
-
 
 export default App;
