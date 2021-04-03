@@ -5,8 +5,12 @@ type LinkProps = {
   children?: ReactNode;
 };
 
-const Link = ({ href, children }: LinkProps) => {
-  return <a href={href}>{children}</a>;
+const Link = ({ href, children }: LinkProps, ...restProps: any) => {
+  return (
+    <a {...restProps} href={href}>
+      {children}
+    </a>
+  );
 };
 
 export default Link;
