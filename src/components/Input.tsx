@@ -3,8 +3,8 @@ type InputProps = {
   className?: string;
 };
 
-const Input = ({ type, className }: InputProps) => {
-  return <input type={type} className={className} />;
+const Input = ({ type, className }: InputProps, ...restProps: any) => {
+  return <input {...restProps} type={type} className={className} />;
 };
 
 export default Input;
