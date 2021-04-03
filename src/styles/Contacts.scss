@@ -1,0 +1,115 @@
+.contacts {
+    background-color: #22272D;
+
+    .contacts-body {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .contacts-icons {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 10px;
+
+        @media (min-width: 411px) {
+            margin-right: 45px;
+        }
+
+        @media (min-width: 992px) {
+            flex-wrap: nowrap;
+            margin-right: 185px;
+        }
+    }
+
+    .contacts-icon-link {
+        flex: 0 1 50%;
+
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 992px) {
+            flex: 0 1 25%;
+
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+
+            &:nth-of-type(1),
+            &:nth-of-type(2) {
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+    .contacts-icon {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.06);
+        }
+
+        @media (min-width: 992px) {
+            width: 41px;
+            height: 41px;
+        }
+    }
+
+    .contacts-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contacts-details-title {
+        font-size: 18px;
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 400;
+        margin-bottom: 16px;
+        color: #FAFBFC;
+
+        @media (min-width: 992px) {
+            font-size: 36px;
+        }
+    }
+
+    .contacts-info {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    .contacts-info-item {
+        font-size: 12px;
+        font-family: 'Heebo', sans-serif;
+        color: #FAFBFC;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            color: #FCAE30;
+        }
+
+        @media (min-width: 768px) {
+            &:nth-of-type(1) {
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            font-size: 16px;
+
+            &:nth-of-type(1) {
+                margin-right: 40px;
+            }
+        }
+    }
+}
