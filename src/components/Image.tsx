@@ -1,11 +1,11 @@
-type ImageProps = {
+type Props = {
   src: string;
-  alt?: string;
-  className?: string;
+  alt: string;
+  [x: string]: {};
 };
 
-const Image = ({ src, alt, className }: ImageProps, ...restProps: any) => {
-  return <img {...restProps} src={src} alt={alt} className={className} />;
+const Image = ({ src, alt = 'img', ...restProps }: Props) => {
+  return <img src={src} alt={alt} {...restProps} />;
 };
 
 export default Image;

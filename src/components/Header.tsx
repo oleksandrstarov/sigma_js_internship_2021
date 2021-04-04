@@ -29,7 +29,7 @@ const Header = () => {
         <a href="/" className="header-logo">
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
-        <input type="text" className="header-search" />
+
         <a href="/favorites" className="header-nav-link">
           <span>Favorites</span>
           <img src={heart} />

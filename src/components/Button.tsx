@@ -1,14 +1,12 @@
-type ButtonProps = {
-  text?: string;
-  className?: string;
+import { ReactChild } from 'react';
+
+type Props = {
+  children: ReactChild;
+  [x: string]: {};
 };
 
-const Button = ({ className, text }: ButtonProps) => {
-  return (
-    <button type="button" className={className}>
-      {text}
-    </button>
-  );
+const Button = ({ children, ...restProps }: Props) => {
+  return <button {...restProps}>{children}</button>;
 };
 
 export default Button;

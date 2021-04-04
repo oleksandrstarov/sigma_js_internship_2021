@@ -1,13 +1,14 @@
-import { ReactNode } from 'react';
+import { ReactChild } from 'react';
 
-type LinkProps = {
+type Props = {
   href: string;
-  children?: ReactNode;
+  children: ReactChild;
+  [x: string]: {};
 };
 
-const Link = ({ href, children }: LinkProps, ...restProps: any) => {
+const Link = ({ href, children, ...restProps }: Props) => {
   return (
-    <a {...restProps} href={href}>
+    <a href={href} {...restProps}>
       {children}
     </a>
   );
