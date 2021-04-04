@@ -1,8 +1,8 @@
-type Props = {
+type InputProps = {
   [x: string]: {};
 };
 
-const Input = ({ ...restProps }: Props) => {
+const Input = ({ ...restProps }: InputProps) => {
   return <input {...restProps} />;
 };
 

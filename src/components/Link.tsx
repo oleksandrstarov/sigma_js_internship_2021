@@ -1,6 +1,6 @@
 import { ReactChild } from 'react';
 
-type Props = {
+type LinkProps = {
   href: string;
 
   children?: ReactChild;
@@ -8,7 +8,7 @@ type Props = {
   [x: string]: any;
 };
 
-const Link = ({ href, children, ...restProps }: Props) => {
+const Link = ({ href, children, ...restProps }: LinkProps) => {
   return (
     <a href={href} {...restProps}>
       {children}
