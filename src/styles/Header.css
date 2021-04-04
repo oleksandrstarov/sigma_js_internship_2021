@@ -84,6 +84,28 @@ header .header-nav-link span {
   display: none;
 }
 
+.search-form {
+  background: #ffffff;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  border-radius: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form input {
+  margin-left: 5px;
+}
+
+.search-form button {
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  border-radius: 35px;
+  width: 35px;
+  height: 35px;
+}
+
+
 @media screen and (min-width: 992px) {
   header .header-nav-link span {
     display: block;
