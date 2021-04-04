@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ThemeToggler from './ThemeToggle';
 
 import '../styles/Header.css';
 
@@ -34,6 +35,7 @@ const Header = () => {
           <span>Favorites</span>
           <img src={heart} />
         </a>
+        <ThemeToggler />
       </div>
     </header>
   );

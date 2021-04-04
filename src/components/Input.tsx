@@ -1,10 +1,11 @@
 type InputProps = {
   type: string;
-  className?: string;
+  className: string;
+  [x: string]: {};
 };
 
-const Input = ({ type, className }: InputProps) => {
-  return <input type={type} className={className} />;
+const Input = ({ type, className, ...restProps }: InputProps) => {
+  return <input type={type} className={className} {...restProps} />;
 };
 
 export default Input;
