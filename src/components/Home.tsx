@@ -2,7 +2,6 @@
 // // import { useEffect, useState } from 'react';
 // import api from '../service/api';
 
-
 // const Home = () => {
 //   // api.getDataByIds(api.getFavoritsIdList());
 //   // let [ra, setRa] = useState(api.apiResponse);
@@ -66,11 +65,7 @@
 // =======
 
 const Home = () => {
-  return (
-
-    <div>123</div>
-
-  );
+  return <div>123</div>;
 };
 
 export default Home;

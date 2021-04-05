@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 type ButtonProps = {
   text?: string;
@@ -11,13 +11,26 @@ type ButtonProps = {
   link?: string;
 };
 
-const Button = ({ classNameButton, classNameContainer, classNameImg, text, buttonImgSrc, original_title, number, link }: ButtonProps) => {
+const Button = ({
+  classNameButton,
+  classNameContainer,
+  classNameImg,
+  text,
+  buttonImgSrc,
+  original_title,
+  number,
+  link
+}: ButtonProps) => {
   return (
     <NavLink to={`${link}:${number} `}>
-      <button type="button" className={classNameButton}>
+      <button type='button' className={classNameButton}>
         <div className={classNameContainer}>
-          <p>  {text}</p>
-          <img src={buttonImgSrc} alt={original_title} className={classNameImg} />
+          <p> {text}</p>
+          <img
+            src={buttonImgSrc}
+            alt={original_title}
+            className={classNameImg}
+          />
         </div>
       </button>
     </NavLink>

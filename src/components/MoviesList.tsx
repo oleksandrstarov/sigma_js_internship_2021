@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { useParams } from 'react-router';
 
-
 type Query = {
   id: string;
   title: string;

@@ -1,7 +1,6 @@
-
 // import from './';
 
-import CardInfo from "./CardInfo"
+import CardInfo from './CardInfo';
 
 const Favorites = () => {
   return (
