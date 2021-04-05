@@ -20,7 +20,7 @@ const SearchComponent: React.FC = () => {
   return (
     <>
       <form onSubmit={submitHandler} className="search-form">
-        <Input
+        <input
           value={input}
           onChange={changeHandler}
           id="search"
@@ -29,9 +29,9 @@ const SearchComponent: React.FC = () => {
           className="header-search"
         />
 
-        <Button type="submit">
-          <Image src={searchIcon} alt="search-icon" />
-        </Button>
+        <button type="submit">
+          <img src={searchIcon} alt="search-icon" />
+        </button>
       </form>
     </>
   );
