@@ -1,12 +1,11 @@
-const SearchResults = () => {
-   return (
-      <div className='search-wrapper'>
-          <h1>Results</h1>
-          <div className="movie-list">
+import MoviesList from './MoviesList';
 
-          </div>
-      </div>
-   )
-}
+const SearchResults = () => {
+  return (
+    <div className="search-wrapper">
+      <MoviesList pageTitle="Search Results" />
+    </div>
+  );
+};
 
 export default SearchResults;
