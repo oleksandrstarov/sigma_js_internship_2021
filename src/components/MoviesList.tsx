@@ -1,24 +1,27 @@
 import { ReactNode } from 'react';
 import { useParams } from 'react-router';
 
-const MoviesList = (props: any) => {
-  type Query = {
-    title: string;
-    id: string;
-  };
 
-  type Props = {
-    title: string;
-    children?: ReactNode;
-  };
+type Query = {
+  id: string;
+  title: string;
+  genre: string;
+};
 
-  const query: Query = useParams();
-  const properties: Props = props;
+type MoviesListProps = {
+  pageTitle: string;
+  children?: ReactNode;
+};
+
+const MoviesList = (props: MoviesListProps) => {
+  const { title, genre }: Query = useParams();
+  const { pageTitle } = props;
 
   return (
-    <div>
-      <h1>{properties.title}</h1>
-      <p>title query: {query.title}</p>
+    <div className="movies-list">
+      <h1>{pageTitle}</h1>
+      <p>title param: {title}</p>
+      <p>genre param: {genre}</p>
     </div>
   );
 };

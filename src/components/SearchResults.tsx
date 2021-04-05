@@ -1,10 +1,10 @@
-const SearchResults = ({ children }: any) => {
-  return (
-    <div>
-      <h1>Search Results Page</h1>
-      <p>sdf</p>
 
-      {children}
+import MoviesList from './MoviesList';
+
+const SearchResults = () => {
+  return (
+    <div className="search-wrapper">
+      <MoviesList pageTitle="Search Results" />
     </div>
   );
 };

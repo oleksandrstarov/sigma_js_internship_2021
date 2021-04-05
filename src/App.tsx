@@ -1,41 +1,25 @@
-import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Home from './components/Home';
-import DetailsPage from './components/MovieDetails';
-import MoviesList from './components/MoviesList';
+import MovieDetails from './components/MovieDetails';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
 
+
+import './App.scss';
+import Header from './components/Header';
+
 function App() {
+
   return (
     <Router>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/movie-details">Movie details</Link>
-        </li>
-        <li>
-          <Link to="/search-results/:title">Search Results</Link>
-        </li>
-        <li>
-          <Link to="/favorites">Favorites</Link>
-        </li>
-      </ul>
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/movie-details" component={DetailsPage} />
-        <Route path="/favorites">
-          <Favorites>
-            <MoviesList title="Favorites" />
-          </Favorites>
-        </Route>
-        <Route path="/search-results/:title">
-          <SearchResults>
-            <MoviesList title="Search Results" />
-          </SearchResults>
-        </Route>
+        <Route path="/movie-details/:id" component={MovieDetails} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/search-results" component={SearchResults} />
       </Switch>
     </Router>
   );
