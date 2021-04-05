@@ -1,5 +1,4 @@
 import Container from './Container';
-import Image from './Image';
 import Link from './Link';
 
 import '../styles/Contacts.scss';
@@ -16,24 +15,20 @@ const Contacts = () => {
         <div className="contacts-body">
           <div className="contacts-icons">
             <Link href="#!" className="contacts-icon-link">
-              <Image
+              <img
                 src={facebookIcon}
                 alt="facebook"
                 className="contacts-icon"
               />
             </Link>
             <Link href="#!" className="contacts-icon-link">
-              <Image src={githubIcon} alt="github" className="contacts-icon" />
+              <img src={githubIcon} alt="github" className="contacts-icon" />
             </Link>
             <Link href="#!" className="contacts-icon-link">
-              <Image
-                src={youtubeIcon}
-                alt="youtube"
-                className="contacts-icon"
-              />
+              <img src={youtubeIcon} alt="youtube" className="contacts-icon" />
             </Link>
             <Link href="#!" className="contacts-icon-link">
-              <Image
+              <img
                 src={telegramIcon}
                 alt="telegram"
                 className="contacts-icon"
@@ -46,7 +41,9 @@ const Contacts = () => {
               <Link className="contacts-info-item" href="tel:+88005553535">
                 Phone: +88005553535
               </Link>
-              <Link className="contacts-info-item" href="mailto:lorem@ipsum.com">
+              <Link
+                className="contacts-info-item"
+                href="mailto:lorem@ipsum.com">
                 Email: lorem@ipsum.com
               </Link>
             </div>
