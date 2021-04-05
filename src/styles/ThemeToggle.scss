@@ -3,71 +3,68 @@
 	height: 0;
 	width: 0;
 	visibility: hidden;
-	}
+}
 
-	.switch-label {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		cursor: pointer;
-		border-radius: 100px;
-		transition: background-color .2s;
-		
-	
+.switch-label {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	border-radius: 100px;
+	transition: background-color 0.2s;
+
+	.switch-button {
+		width: 35px;
+		position: absolute;
+		border-radius: 45px;
+		box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+	}
+	&:active {
 		.switch-button {
-			width: 35px;
-			position: absolute;
-			border-radius: 45px;
-			box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+			width: 40px;
+		}
+	}
+}
+
+// style for desktop
+@media screen and(min-width: 993px) {
+	.switch-checkbox {
+		&:checked {
+			+ {
+				.switch-label {
+					.switch-button {
+						left: calc(100% - 2px);
+						transform: translateX(-100%);
+					}
+				}
+			}
+		}
+	}
+	.switch-label {
+		width: 60px;
+		height: 30px;
+
+		.switch-button {
+			content: "";
+			top: 2px;
+			left: 2px;
+			width: 26px;
+			height: 26px;
+			transition: 0.2s;
 		}
 		&:active {
 			.switch-button {
-				width: 40px;
+				width: 60px;
 			}
 		}
 	}
 
-// style for desktop
-	@media screen and(min-width: 993px) { 
-		.switch-checkbox {
-		  &:checked {
-			  + {
-				  .switch-label {
-					  .switch-button {
-						  left: calc(100% - 2px);
-						  transform: translateX(-100%);
-					  }
-				  }
-			  }
-		  }
-	  }
-	  .switch-label {
-		  width: 60px;
-		  height: 30px;
-	  
-		  .switch-button {
-			  content: '';
-			  top: 2px;
-			  left: 2px;
-			  width: 26px;
-			  height: 26px;
-			  transition: 0.2s;
-		  }
-		  &:active {
-			  .switch-button {
-				  width: 60px;
-			  }
-		  }
-	  }
-	  
-	  .dark {
-		  background: #E5E5E5;
-	  }
-	  
-	  .light {
-		  background: #FCAE30;
-	  }
-		  }
-	  
-	  
+	.dark {
+		background: #e5e5e5;
+	}
+
+	.light {
+		background: #fcae30;
+	}
+}

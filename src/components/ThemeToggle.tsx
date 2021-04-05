@@ -1,35 +1,41 @@
-import { useState } from "react";
+import { useState } from 'react';
 import Image from './Image';
-import Input from './Input';
 import '../styles/ThemeToggle.scss';
 
-const imageSun: string = '/images/sun.svg';
-const imageMoon: string = '/images/moon.svg';
+enum ThemeInfo {
+    LightThemeImg = '/images/sun.svg',
+    DarkThemeImg = '/images/moon.svg',
+    LightStyle = 'light',
+    DarkStyle = 'dark'
+}
 
 const ThemeToggler = () => {
-    const [value, setValue] = useState(true);
+    const [theme, setValue] = useState(true);
 
     const handleToggle = (): void => {
-        setValue(!value)
-    }
-
+        setValue(!theme);
+    };
     return (
         <>
-            <Input
-                checked={value}
+            <input
+                checked={theme}
                 onChange={handleToggle}
                 className="switch-checkbox"
                 id="switch-new"
                 type="checkbox"
             />
             <label
-                className={`switch-label  ${value ? "light" : "dark"}`}
-                htmlFor={`switch-new`}
-            >
-                <Image src={value ? imageSun : imageMoon} alt="icon" className="switch-button" />
+                className={`switch-label ${theme ? ThemeInfo.LightStyle : ThemeInfo.DarkStyle
+                    }`}
+                htmlFor="switch-new">
+                <Image
+                    src={theme ? ThemeInfo.LightThemeImg : ThemeInfo.DarkThemeImg}
+                    alt="icon"
+                    className="switch-button"
+                />
             </label>
         </>
-    )
-}
+    );
+};
 
 export default ThemeToggler;
