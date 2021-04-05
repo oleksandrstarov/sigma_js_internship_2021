@@ -1,0 +1,13 @@
+$black: #000000;
+$white: #ffffff;
+$bg-color-light: #fafbfc;
+$bg-color-dark: #22272d;
+$grey: #c4c4c4;
+$purple: #ff636d;
+$yellow: #fcae30;
+
+@mixin for-desktop {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
