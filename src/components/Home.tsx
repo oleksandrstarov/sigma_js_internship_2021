@@ -1,11 +1,11 @@
-import Layouts from './Layouts';
+import Layout from './Layout';
 import MovieBanner from './MovieBanner';
 
 const Home = () => {
   return (
-    <Layouts>
+    <Layout>
       <MovieBanner />
-    </Layouts>
+    </Layout>
   );
 };
 

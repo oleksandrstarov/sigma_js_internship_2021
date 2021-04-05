@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-type Props = {
+type LinkProps = {
   href: string;
   children?: ReactNode;
   className?: string;
 };
 
-const Link = ({ href, children, className }: Props) => {
+const Link = ({ href, children, className }: LinkProps) => {
   return (
     <a href={href} className={`default-link ${className ? className : ''}`}>
       {children ? children : ''}

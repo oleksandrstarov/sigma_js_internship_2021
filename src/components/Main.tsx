@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 
 import '../App.scss';
 
-interface Props {
+interface MainProps {
   children: ReactNode;
 }
 
-const Main = ({ children }: Props) => {
+const Main = ({ children }: MainProps) => {
   return <main className="main">{children}</main>;
 };
 

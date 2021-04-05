@@ -5,10 +5,10 @@ import Contacts from './Contacts';
 import Footer from './Footer';
 import Main from './Main';
 
-interface Props {
+interface LayoutProps {
   children: ReactNode;
 }
-const Layouts = ({children}: Props) => {
+const Layout = ({children}: LayoutProps) => {
   return (
     <div className="wrapper">
       <Header />
@@ -19,4 +19,4 @@ const Layouts = ({children}: Props) => {
   );
 };
 
-export default Layouts;
+export default Layout;
