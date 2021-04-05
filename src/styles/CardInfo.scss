@@ -1,7 +1,24 @@
+$blue: #1d5c9b;
+$orange:  #FCAE30;
+$white:  #ffff;
+
+%pos-asolute-left0 {
+        position: absolute;
+        left: 0;
+  }
+%stretch {
+        width: 100%;
+        height: 100%;
+  }
+%area-card {
+    max-width: 320px;
+    max-height: 475px;
+  }
+
 .card-info{
-    background-color: rgb(255, 255, 255);
+    background-color: $white;
     border-radius: 10px;
-    max-width: 376px;
+    max-width: 360px;
     width: 100%;
     height: 525px;
     display: flex;
@@ -10,81 +27,94 @@
     padding: 40px 20px 10px;
     margin: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    position: relative; 
-}
-.card-info__title{
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 14px; /* must be 18 */
-    width: 100%;
-}
-.cars-info_container{
     position: relative;
-    max-width: 338px;
-    max-height: 475px;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.card-info__gradient{
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(#ffffff10 56%, #fdfbf9cc 76%);
-    max-width: 338px;
-    max-height: 475px;
-    width: 100%;
-    height: 100%;
-}
-.card-info__img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 338px;
-    max-height: 475px;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-.card-info__button{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    max-width: 338px;
-    height: 52px;
-    width: 100%;
-    font-size: 18px;    
-    font-weight: bold;
-    background-color: #FCAE30;
-    font-size: 24px;
-    color: white;
-}
-.info-card__imdb, .info-card__voters{
-    position: absolute;
-    top: 375px;
-    left: 21px;
-    font-size: 18px;
-    font-family: 'Heebo';
-    /* font-weight: bold; */
-}
-.info-card__voters{
-    left: 121px;
-}
-.card-info__botton-view{
-    display: flex;
-    padding: 0 15px;
-    justify-content: space-between;
-    vertical-align: middle;
-    line-height: 52px;
-    .card-info__button-img{
-        height: 37px;
-        width: 37px;
+    .card-info__title{
+        @extend %pos-asolute-left0;
+        top: 0;
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 18px;
+        @extend %stretch;
+    }
+    
+    .cars-info_container{
+        position: relative;
+        @extend %area-card;
+        @extend %stretch;
+        border-radius: 10px;
+        overflow: hidden;   
+    }
+    .card-info__gradient{
+        @extend %pos-asolute-left0;
+        top: 0;
+        background: linear-gradient(#ffffff10 56%, #fdfbf9cc 76%);
+        @extend %area-card;
+        @extend %stretch;
+    }
+    .card-info__img{
+        @extend %pos-asolute-left0;
+        left: 0;
+        @extend %area-card;
+        @extend %stretch;
+        border-radius: 10px;
+    }
+    .card-info__button{
+        cursor: pointer;
+        @extend %pos-asolute-left0;
+        bottom: 0;
+        max-width: 338px;
+        max-height: 52px;
+        @extend %stretch;
+        font-size: 18px;    
+        font-weight: bold;
+        background-color:  $orange;
+        font-size: 24px;
+        color: $white;
+    }
+    .info-card__imdb, .info-card__voters{
+        position: absolute;
+        top: 375px;
+        left: 21px;
+        font-size: 18px;
+        font-family: 'Heebo';
+    }
+    .info-card__voters{
+        left: 121px;
+    }
+    .card-info__botton-view{
+        display: flex;
+        padding: 0 15px;
+        justify-content: space-between;
         vertical-align: middle;
         line-height: 52px;
-        margin: 6px 0;
+        .card-info__button-img{
+            height: 37px;
+            width: 37px;
+            vertical-align: middle;
+            line-height: 52px;
+            margin: 6px 0;
+        }
     }
 }
+.card-info__tail{
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-width: 676px;
+    width: 100%;
+    .card-info__description{
+        max-width: 250px;
+        margin: 5px;
+        span{
+            cursor: pointer;
+            color: $blue;
+        }
+    }
+    .card-info__title-tail{
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 25px;
+      
+    }
+}
+
+

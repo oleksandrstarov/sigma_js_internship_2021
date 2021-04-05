@@ -1,48 +1,53 @@
 import { useEffect, useState } from "react";
-import { API_KEY } from "src/constants/api";
-import axios from '../axios';
 import api from "src/service/api";
 import '../styles/CardInfo.scss';
-import Image from "./Image";
-// import Button from "./Button";
-import buttonImg from "../assets/image84.png";
+import Button from "./Button";
+import buttonImgSrc from "../assets/image84.png";
+import { NavLink } from "react-router-dom";
 
-
-let CardInfo = (prop: { number: any; }) => {
-
+let CardInfo = ({ tailWide, number }: { number: any, tailWide: boolean }) => {
     let [data, setData] = useState({
         poster_path: '',
         original_title: '',
         title: '',
         vote_average: '',
-        vote_count: ''
+        vote_count: '',
+        overview: ''
     });
-    let { poster_path, original_title, title, vote_average } = data;
+    let {
+        poster_path,
+        original_title,
+        title,
+        vote_average,
+        overview
+    } = data;
     let srcImg = api.changeImgLinks(poster_path, 'w342');
 
     useEffect(() => {
-        api.getDataById(prop.number);
-        async function fetchData() {
-            const request = await axios.get(`${prop.number}?${API_KEY}`);
-            console.log(request.data);
 
-            setData(request.data);
-        }
-        fetchData();
+        api.newFunc(537056).then((res: any) => { setData(res.data) });
 
+    }, [number])
 
-    }, [prop.number])
     return (
-        <div className='card-info'  >
+        <div className={!tailWide ? 'card-info' : 'card-info card-info__tail'}  >
             {/* temporary TitleComponent */}
-            <div className='titleComponent card-info__title'>
-                <h2>{title}</h2>
+            <div className="card-info__wrapper">
+                {!tailWide ? <div className='titleComponent card-info__title'>
+                    <h2>{title}</h2>
+                </div> : <div className='titleComponent card-info__title-tail'>
+                    <h2>{title}</h2>
+                </div>}
+                {!tailWide
+                    ? null
+                    : <div className='card-info__description'>{overview.length >= 250
+                        ? <p> {overview.slice(0, 250)}<NavLink to={`/movie-details/:${number} `}><span >...Read more</span></NavLink></p>
+                        : overview}</div>}
             </div>
             <div className="cars-info_container">
-                <Image src={srcImg} alt={original_title} className={'card-info__img'} />
+                <img src={srcImg} alt={original_title} className={'card-info__img'} />
                 <div className="card-info__gradient" />
                 <div className="info-card__rate">
-
                     <div className="info-card__imdb">
                         IMDB {vote_average}
                     </div>
@@ -50,14 +55,16 @@ let CardInfo = (prop: { number: any; }) => {
                         Voters {vote_average}
                     </div>
                 </div>
-                {/* <Button text={'VIEW DATSILS'} className={'card-info__button'} /> */}
-
-                <button type="button" className={'card-info__button'}>
-                    <div className="card-info__botton-view">
-                        VIEW DATSILS
-                   <Image src={buttonImg} alt={'title'} className={'card-info__button-img'} />
-                    </div>
-                </button>
+                <Button
+                    classNameButton={'card-info__button'}
+                    classNameContainer={"card-info__botton-view"}
+                    classNameImg={'card-info__button-img'}
+                    text={'VIEW DATSILS'}
+                    buttonImgSrc={buttonImgSrc}
+                    original_title={original_title}
+                    number={number}
+                    link={'/movie-details/:'}
+                />
             </div>
         </div>
     )

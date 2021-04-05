@@ -81,7 +81,11 @@ function ApiService(this: any) {
         }
         funk()
     }
+
+
+
     this.getDataById = (id: number) => {
+
         const fetchData = async () => {
             const request = await axios.get(`${id}?${API_KEY}`);
             this.apiResponse = request.data;
@@ -89,6 +93,41 @@ function ApiService(this: any) {
         fetchData();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    this.newFunc = async (id: number) => {
+        const obj = await axios.get(`${id}?${API_KEY}`);
+        return obj
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // this.getDataById = (id: number) => {
     //     let getApiData = async () => {
     //         let url = `${API_URL}/${id}?${API_KEY}`;

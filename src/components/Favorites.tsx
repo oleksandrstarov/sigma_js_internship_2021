@@ -7,7 +7,7 @@ const Favorites = () => {
   return (
     <div className="favorites-wrapper">
       {/* < pageTitle="Favorites" /> */}
-      <CardInfo number={537056} />
+      <CardInfo number={537056} tailWide={false} />
     </div>
   );
 };
