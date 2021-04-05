@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
-import Button from './Button';
-import Image from './Image';
-import Input from './Input';
 
-const SearchComponent: React.FC = () => {
-  const searchIcon = '/images/search-icon.png';
-
-  const [input, setInput] = useState<string>('');
+const loupeIcon = '/images/search-icon.png';
+const SearchField: React.FC = () => {
+  const [inputValue, setInputValue] = useState<string>('');
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
+    setInputValue(event.target.value);
   };
   const submitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    if (input.trim().length) {
-      console.log(input);
+    if (inputValue.trim()) {
+      console.log(inputValue);
     }
   };
   return (
     <>
       <form onSubmit={submitHandler} className="search-form">
         <input
-          value={input}
+          value={inputValue}
           onChange={changeHandler}
           id="search"
           type="search"
@@ -30,10 +26,10 @@ const SearchComponent: React.FC = () => {
         />
 
         <button type="submit">
-          <img src={searchIcon} alt="search-icon" />
+          <img src={loupeIcon} alt="search-icon" />
         </button>
       </form>
     </>
   );
 };
-export default SearchComponent;
+export default SearchField;
