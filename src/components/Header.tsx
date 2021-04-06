@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import '../styles/Header.css';
+import '../styles/Header.scss';
 
 const imageXl = '/images/logo-xl.svg';
 const imageSm = '/images/logo-sm.svg';

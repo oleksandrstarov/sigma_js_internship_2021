@@ -4,12 +4,13 @@ import Home from './components/Home';
 import MovieDetails from './components/MovieDetails';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
-
+import Header from './components/Header';
 import './App.scss';
 
 function App() {
   return (
     <Router>
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movie-details/:id" component={MovieDetails} />
