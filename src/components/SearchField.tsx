@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 
 const loupeIcon = '/images/search-icon.png';
+
 const SearchField: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+
   const submitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (inputValue.trim()) {
       console.log(inputValue);
     }
   };
+
   return (
     <>
       <form onSubmit={submitHandler} className="search-form">
