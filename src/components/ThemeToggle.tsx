@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Image from './Image';
+
 import '../styles/ThemeToggle.scss';
 
 enum Theme {
@@ -13,7 +13,7 @@ const ThemeImage = {
 }
 
 const ThemeToggler = () => {
-  let [theme, setTheme] = useState(Theme.light);
+  const [theme, setTheme] = useState(Theme.light);
 
   const handleToggle = (): void => {
     setTheme(theme === Theme.light ? Theme.dark : Theme.light);
@@ -31,7 +31,7 @@ const ThemeToggler = () => {
       <label
         className={`switch-label ${Theme[theme]}`}
         htmlFor="switch-new">
-        <Image
+        <img
           src={ThemeImage[theme]}
           alt="icon"
           className="switch-button"
