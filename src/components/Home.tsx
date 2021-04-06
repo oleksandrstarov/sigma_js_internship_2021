@@ -1,8 +1,11 @@
+import Layout from './Layout';
+import MovieBanner from './MovieBanner';
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Layout>
+      <MovieBanner />
+    </Layout>
   );
 };
 
