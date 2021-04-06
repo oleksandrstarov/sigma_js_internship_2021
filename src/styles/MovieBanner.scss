@@ -1,0 +1,261 @@
+@import "../styles/variables.scss";
+
+.movie-banner {
+  margin-top: 20px;
+
+  .movie-banner-body {
+    position: relative;
+    max-width: 327px;
+    background-color: $white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 39px 18px 13px 18px;
+    margin: 0 auto;
+
+    @media (min-width: 411px) {
+      max-width: 327px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 650px;
+      display: flex;
+    }
+
+    @media (min-width: 992px) {
+      max-width: 100%;
+      padding: 18px;
+    }
+  }
+
+  .movie-image-container {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .movie-banner-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @media (min-width: 411px) {
+      height: 435px;
+    }
+
+    @media (min-width: 768px) {
+      height: 400px;
+    }
+
+    @media (min-width: 992px) {
+      height: 330px;
+    }
+
+    @media (min-width: 1450px) {
+      height: 450px;
+    }
+
+    @media (min-width: 1650px) {
+      height: 550px;
+    }
+  }
+
+  .movie-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    border-radius: 15px;
+
+    @media (min-width: 768px) {
+      position: relative;
+    }
+  }
+
+  .movie-banner-details {
+    font-family: "Heebo", sans-serif;
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 26px;
+    }
+
+    @media (min-width: 1450px) {
+      margin-left: 46px;
+    }
+  }
+
+  .movie-title,
+  .movie-description,
+  .movie-rating-box,
+  .movie-rating-stars,
+  .movie-btn {
+    position: absolute;
+
+    @media (min-width: 768px) {
+      position: static;
+    }
+  }
+
+  .movie-title {
+    top: 9px;
+    right: 26px;
+    font-size: 18px;
+    line-height: 29px;
+    color: $black;
+    font-family: "Bebas Neue", cursive;
+
+    @media (min-width: 768px) {
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 992px) {
+      font-size: 25px;
+    }
+
+    @media (min-width: 1450px) {
+      font-size: 34px;
+    }
+  }
+
+  .movie-description {
+    bottom: 63px;
+    left: 32px;
+    font-size: 14px;
+    max-width: 217px;
+    line-height: 22px;
+    color: $white;
+
+    @media (min-width: 411px) {
+      max-width: 276px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      color: #000000;
+      max-width: 320px;
+    }
+
+    @media (min-width: 992px) {
+      font-size: 16px;
+      max-width: 380px;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 420px;
+    }
+
+    @media (min-width: 1450px) {
+      max-width: 500px;
+    }
+  }
+
+  .text-overlow {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  .movie-rating-container {
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .movie-rating-box {
+    top: 39px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $bg-color-light;
+    font-size: 14px;
+    background-color: $yellow;
+    padding: 3px 12px;
+    border-top-left-radius: 15px;
+
+    @media (min-width: 768px) {
+      background-color: transparent;
+      color: $black;
+      padding: 0;
+      margin: 0 20px 20px 0;
+    }
+  }
+
+  .movie-rating {
+    @media (min-width: 768px) {
+      font-weight: 600;
+    }
+  }
+
+  .movie-rating-number {
+    font-size: 24px;
+  }
+
+  .movie-rating-stars {
+    top: 55px;
+    right: 38px;
+    cursor: pointer;
+  }
+
+  .movie-btn {
+    bottom: 20px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    background-color: $yellow;
+    padding: 4px 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: $bg-color-light;
+      border: 1px solid $black;
+      color: $yellow;
+    }
+
+    &:hover .movie-btn-title {
+      color: $yellow;
+    }
+
+    @media (min-width: 992px) {
+      padding: 8px 19px;
+    }
+  }
+
+  .movie-btn-title {
+    font-size: 18px;
+    color: $bg-color-light;
+    text-transform: uppercase;
+    margin-right: 6px;
+    transition: all .3s ease-in-out;
+
+    @media (min-width: 992px) {
+      font-weight: 600;
+    }
+  }
+
+  .movie-btn-icon {
+    width: 14px;
+    height: 14px;
+
+    @media (min-width: 992px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

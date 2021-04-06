@@ -1,5 +1,48 @@
+import { useEffect, useState } from 'react';
+
+import Container from './Container';
+import PopularMovie from './PopularMovie';
+
+import '../styles/MovieBanner.scss';
+
+interface MovieProps {
+  overview: string;
+  title: string;
+  poster_path: string;
+  vote_average: number;
+  backdrop_path: string;
+  id: number | string;
+}
+
 const MovieBanner = () => {
-  return <section></section>;
+  const [popularMovies, setPopularMovies] = useState<MovieProps[]>([]);
+  const BASE_URL: string = 'https://api.themoviedb.org/3/movie/';
+  const API_KEY: string = '3f42cb974635f0f6e4deae85cbfd4c53';
+
+  const getPopularMovies = (): void => {
+    // fetch api was used in a testing purposes. It will be replaced with rge axios later on
+    fetch(`${BASE_URL}popular?api_key=${API_KEY}&language=en-US&page=1`)
+      .then(response => response.json())
+      .then(data => {
+        setPopularMovies(data.results);
+      });
+  };
+
+  useEffect(() => {
+    getPopularMovies();
+  }, []);
+
+  const randomMovie = [...popularMovies]
+    .sort(() => Math.random() - Math.random())
+    .find(() => true);
+
+  return (
+    <section className="movie-banner">
+      <Container>
+        {randomMovie && <PopularMovie movie={randomMovie} />}
+      </Container>
+    </section>
+  );
 };
 
 export default MovieBanner;
