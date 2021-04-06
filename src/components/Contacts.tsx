@@ -4,10 +4,10 @@ import Link from './Link';
 import '../styles/Contacts.scss';
 
 const Contacts = () => {
-  const facebookIcon: string = '/images/footerIcons/facebook.svg';
-  const githubIcon: string = '/images/footerIcons/github.svg';
-  const youtubeIcon: string = '/images/footerIcons/youtube.svg';
-  const telegramIcon: string = '/images/footerIcons/telegram.svg';
+  const facebookIcon = '/images/footerIcons/facebook.svg';
+  const githubIcon = '/images/footerIcons/github.svg';
+  const youtubeIcon = '/images/footerIcons/youtube.svg';
+  const telegramIcon = '/images/footerIcons/telegram.svg';
 
   return (
     <section className="contacts">
