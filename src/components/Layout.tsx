@@ -6,17 +6,17 @@ import Footer from './Footer';
 import Main from './Main';
 
 interface LayoutProps {
-    children: ReactNode;
+  children: ReactNode;
 }
-const Layout = ({children}: LayoutProps) => {
-    return (
-        <div className="wrapper">
-            <Header />
-            <Main >{children}</Main>
-            <Contacts />
-            <Footer />
-        </div>
-    );
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <div className="wrapper">
+      <Header />
+      <Main>{children}</Main>
+      <Contacts />
+      <Footer />
+    </div>
+  );
 };
 
 export default Layout;

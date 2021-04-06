@@ -8,9 +8,9 @@ type LinkProps = {
 
 const Link = ({ href, children, className }: LinkProps) => {
   return (
-      <a href={href} className={`default-link ${className ? className : ''}`}>
-        {children ? children : ''}
-      </a>
+    <a href={href} className={`default-link ${className ? className : ''}`}>
+      {children ? children : ''}
+    </a>
   );
 };
 
