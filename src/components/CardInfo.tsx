@@ -18,7 +18,7 @@ let CardInfo = ({ tailWide, number }: { number: any; tailWide: boolean }) => {
     let srcImg = api.changeImgLinks(poster_path, 'w342');
 
     useEffect(() => {
-        api.newFunc(537056).then((res: any) => {
+        api.getDataById(537056).then((res: any) => {
             setData(res.data);
         });
     }, [number]);

@@ -1,12 +1,11 @@
 import {
-  API_SEARCH_URL,
   API_KEY,
-  API_POPULAR_URL,
-  API_URL,
   API_IMG_URL
 } from '../constants/api';
-// import axios from 'axios';
-import axios from '../axios';
+import axios from '../axios/baseUrl';
+import axiosSearch from '../axios/searchUrl';
+import axiosPopular from '../axios/populatUrl';
+import axiosTopRate from '../axios/baseUrl';
 
 function ApiService(this: any) {
   this.storeKey = 'service';
@@ -78,76 +77,39 @@ function ApiService(this: any) {
 
   // API:
   this.getDataByIds = (arr: number[]) => {
-    let funk = () => {
-      let urls = arr.map((id: number) => `${API_URL}/${id}?${API_KEY}`),
-        requests = urls.map(
-          async (url: any) => await axios.get(url).then(res => res.data)
-        );
-      Promise.all(requests).then(res => (this.apiResponse = [...res]));
-    };
-    funk();
+    let urls = arr.map((id: number) => `/${id}?${API_KEY}`),
+      requests = urls.map(
+        async (url: any) => await axios.get(url).then(res => res.data)
+      );
+    return Promise.all(requests)
   };
 
-  this.getDataById = (id: number) => {
-    const fetchData = async () => {
-      const request = await axios.get(`${id}?${API_KEY}`);
-      this.apiResponse = request.data;
-    };
-    fetchData();
-  };
-
-  this.newFunc = async (id: number) => {
+  this.getDataById = async (id: number) => {
     const obj = await axios.get(`${id}?${API_KEY}`);
     return obj;
   };
 
-  // this.getDataById = (id: number) => {
-  //     let getApiData = async () => {
-  //         let url = `${API_URL}/${id}?${API_KEY}`;
-  //         let result = await axios.get(url);
-  //         this.apiResponse = result.data;
-  //     }
-  //     getApiData();
-  //     return this.apiResponse;
-  // }
-  this.getPopularQueryList = () => {
-    const getApiData = async () => {
-      let url = `${API_POPULAR_URL}?${API_KEY}&region=UA`;
-      let result = await axios.get(url);
-      this.apiResponse = result.data.results;
-    };
-    getApiData();
-
-    return this.apiResponse;
+  this.getPopularQueryList = async () => {
+    let obj = await axiosPopular.get(`?${API_KEY}&query`);
+    return obj.data.results;
   };
-  this.getTopRatedList = () => {
-    const getApiData = async () => {
-      let url = `${API_URL}/top_rated?translations&${API_KEY}&region=DE`;
-      let result = await axios.get(url);
-      this.apiResponse = result.data.results;
-    };
-    getApiData();
-    return this.apiResponse;
+
+  this.getTopRatedList = async () => {
+    let obj = await axiosTopRate.get(`/top_rated?translations&${API_KEY}&region=DE`);
+    return obj.data.results;
   };
 
   // method - Seatch ( ??? ):
-  this.getSearchList = (query: string) => {
-    const getApiData = async () => {
-      let url = `${API_SEARCH_URL}?${API_KEY}&query=${query}`;
-      let result = await axios.get(url);
-      this.apiResponse = result.data.results;
-    };
-    getApiData();
-    return this.apiResponse;
+  this.getSearchList = async (query: string) => {
+    let obj = await axiosSearch.get(`?${API_KEY}&query=${query}`);
+    return obj.data.results;
   };
-
   /*
-    question about:
-    To make this method more clever,
-    that return posters links with them size in related of window size.
-    https://image.tmdb.org/t/p/ >>>>> w500/w342/w185/w154 <<<<<  /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg
-    */
-
+  *  question about:
+  *  To make this method more clever,
+  *  that return posters links with them size in related of window size.
+  *  https://image.tmdb.org/t/p/ >>>>> w500/w342/w185/w154 <<<<<  /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg
+  */
   // method - transfom IMG links:
   this.changeImgLinks = (url: string, size: string) => {
     return `${API_IMG_URL}${size}${url}`;
