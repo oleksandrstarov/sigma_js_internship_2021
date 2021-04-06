@@ -4,7 +4,7 @@ import '../styles/Slider.scss';
 
 type SliderProps = {
   className?: string;
-  children?: ReactNode;
+  children: ReactNode;
 };
 
 const slideWidth = 210;
