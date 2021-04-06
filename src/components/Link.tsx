@@ -1,12 +1,19 @@
-import { ReactNode } from 'react';
+import { ReactChild } from 'react';
 
 type LinkProps = {
   href: string;
-  children?: ReactNode;
+
+  children?: ReactChild;
+
+  [x: string]: any;
 };
 
-const Link = ({ href, children }: LinkProps) => {
-  return <a href={href}>{children}</a>;
+const Link = ({ href, children, ...restProps }: LinkProps) => {
+  return (
+    <a href={href} {...restProps}>
+      {children}
+    </a>
+  );
 };
 
 export default Link;
