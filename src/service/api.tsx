@@ -9,7 +9,6 @@ import axiosTopRate from '../axios/baseUrl';
 
 function ApiService(this: any) {
   this.storeKey = 'service';
-  this.apiResponse = [];
   this.store = {
     story: [],
     favorites: [],
@@ -22,6 +21,7 @@ function ApiService(this: any) {
     if (serviceStore !== null) this.store = JSON.parse(serviceStore);
     return this.store;
   };
+
   this.setStore = (data: {} = this.store) => {
     localStorage.setItem(this.storeKey, JSON.stringify(data));
   };
@@ -40,16 +40,19 @@ function ApiService(this: any) {
     if (!favorites.includes(id)) this.store.favorites.push(id);
     this.setStore();
   };
+
   this.getFavoritsIdList = () => {
     let { favorites } = this.getStore();
     this.setStore();
     return favorites;
   };
+
   this.deleteFavoritsId = (id: number) => {
     let { favorites } = this.getStore();
     this.store.favorites = favorites.filter((itemId: number) => itemId !== id);
     this.setStore();
   };
+
   this.clearFavoritsIdList = () => {
     this.store.favorites = [];
     this.setStore();
@@ -61,15 +64,18 @@ function ApiService(this: any) {
     if (!story.includes(id)) this.store.story.push(id);
     this.setStore();
   };
+
   this.getStoryIdList = () => {
     let { story } = this.getStore();
     return story;
   };
+
   this.deleteStoryId = (id: number) => {
     let { story } = this.getStore();
     this.store.story = story.filter((itemId: number) => itemId !== id);
     this.setStore();
   };
+
   this.clearStoryIdList = () => {
     this.store.story = [];
     this.setStore();
@@ -104,12 +110,7 @@ function ApiService(this: any) {
     let obj = await axiosSearch.get(`?${API_KEY}&query=${query}`);
     return obj.data.results;
   };
-  /*
-  *  question about:
-  *  To make this method more clever,
-  *  that return posters links with them size in related of window size.
-  *  https://image.tmdb.org/t/p/ >>>>> w500/w342/w185/w154 <<<<<  /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg
-  */
+
   // method - transfom IMG links:
   this.changeImgLinks = (url: string, size: string) => {
     return `${API_IMG_URL}${size}${url}`;
