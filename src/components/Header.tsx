@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import '../styles/Header.scss';
-import SearchField from './SearchField';
+import '../styles/Header.css';
 
 const imageXl = '/images/logo-xl.svg';
 const imageSm = '/images/logo-sm.svg';
@@ -30,7 +29,7 @@ const Header = () => {
         <a href="/" className="header-logo">
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
-        <SearchField />
+        <input type="text" className="header-search" />
         <a href="/favorites" className="header-nav-link">
           <span>Favorites</span>
           <img src={heart} />
