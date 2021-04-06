@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from 'src/service/api';
 import '../styles/CardInfo.scss';
-import Button from './Button';
+// import Button from './Button';
 import buttonImgSrc from '../assets/image84.png';
 import { NavLink } from 'react-router-dom';
 
@@ -59,16 +59,18 @@ let CardInfo = ({ tailWide, number }: { number: any; tailWide: boolean }) => {
                     <div className='info-card__imdb'>IMDB {vote_average}</div>
                     <div className='info-card__voters'>Voters {vote_average}</div>
                 </div>
-                <Button
-                    classNameButton={'card-info__button'}
-                    classNameContainer={'card-info__botton-view'}
-                    classNameImg={'card-info__button-img'}
-                    text={'VIEW DATSILS'}
-                    buttonImgSrc={buttonImgSrc}
-                    original_title={original_title}
-                    number={number}
-                    link={'/movie-details/:'}
-                />
+                <NavLink to={`/movie-details/:${number}`}>
+                    <button type='button' className={'card-info__button'}>
+                        <div className={'card-info__button-view'}>
+                            <p> {'VIEW DETAILS'}</p>
+                            <img
+                                src={buttonImgSrc}
+                                alt={original_title}
+                                className={'card-info__button-img'}
+                            />
+                        </div>
+                    </button>
+                </NavLink>
             </div>
         </div>
     );
