@@ -1,11 +1,11 @@
-import Breadcrumbs from "./Breadcrumbs";
+import Layout from './Layout';
+import MovieBanner from './MovieBanner';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-        <Breadcrumbs/>
-    </div>
+    <Layout>
+      <MovieBanner />
+    </Layout>
   );
 };
 

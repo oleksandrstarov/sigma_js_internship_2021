@@ -1,6 +1,3 @@
-import {ReactNode} from 'react';
-import Link from "./Link";
-
 type BreadcrumbsProps = {
     className?: string;
 };
