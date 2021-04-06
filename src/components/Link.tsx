@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactChild } from 'react';
 
 type LinkProps = {
   href: string;
