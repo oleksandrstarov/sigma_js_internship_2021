@@ -1,5 +1,7 @@
+@import "../styles/variables.scss";
+
 .footer {
-    background-color: #fcae30;
+    background-color: $yellow;
 
     .footer-body {
         display: flex;

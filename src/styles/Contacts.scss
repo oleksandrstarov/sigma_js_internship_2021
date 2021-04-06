@@ -1,5 +1,7 @@
+@import "../styles/variables.scss";
+
 .contacts {
-    background-color: #22272D;
+    background-color: $bg-color-dark;
 
     .contacts-body {
         display: flex;
@@ -70,7 +72,7 @@
         font-family: 'Bebas Neue', cursive;
         font-weight: 400;
         margin-bottom: 16px;
-        color: #FAFBFC;
+        color: $bg-color-light;
 
         @media (min-width: 992px) {
             font-size: 36px;
@@ -89,12 +91,12 @@
     .contacts-info-item {
         font-size: 12px;
         font-family: 'Heebo', sans-serif;
-        color: #FAFBFC;
+        color: $bg-color-light;
         text-decoration: none;
         transition: all 0.3s ease-in-out;
 
         &:hover {
-            color: #FCAE30;
+            color: $yellow;
         }
 
         @media (min-width: 768px) {
