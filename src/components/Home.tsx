@@ -1,9 +1,7 @@
+import MovieBanner from './MovieBanner';
+
 const Home = () => {
-   return (
-      <div>
-         <h1>Home Page</h1>
-      </div>
-   )
-}
+  return <MovieBanner />;
+};
 
 export default Home;
