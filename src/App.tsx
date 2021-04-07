@@ -4,8 +4,8 @@ import Home from './components/Home';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
 import Layout from './components/Layout';
-import './App.scss';
 import MovieDetails from './components/MovieDetails';
+import './App.scss';
 
 function App() {
   return (
