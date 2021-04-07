@@ -42,7 +42,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
         <h3 className="movie-title">{title}</h3>
         <p
           className={`movie-description ${
-            mobile && window.innerWidth < 767 ? 'text-overlow' : ''
+            window.innerWidth < 767 ? 'text-overlow' : ''
           }`}>
           {overview}
         </p>
