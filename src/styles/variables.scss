@@ -1,0 +1,15 @@
+$black: #000000;
+$white: #ffffff;
+$bg-color-light: #fafbfc;
+$bg-color-dark: #22272d;
+$grey: #c4c4c4;
+$purple: #ff636d;
+$yellow: #fcae30;
+
+$title: 'Bebas Neue', sans-serif;
+
+@mixin for-desktop {
+  @media screen and (min-width: 993px) {
+    @content;
+  }
+}
