@@ -5,7 +5,6 @@ import {
 import axios from '../axios/baseUrl';
 import axiosSearch from '../axios/searchUrl';
 import axiosPopular from '../axios/popularUrl';
-import axiosTopRate from '../axios/baseUrl';
 
 function ApiService(this: any) {
   this.storeKey = 'service';
@@ -101,11 +100,11 @@ function ApiService(this: any) {
   };
 
   this.getTopRatedList = async () => {
-    let obj = await axiosTopRate.get(`/top_rated?translations&${API_KEY}&region=DE`);
+    let obj = await axios.get(`/top_rated?translations&${API_KEY}&region=DE`);
     return obj.data.results;
   };
 
-  // method - Seatch ( ??? ):
+  // method - Seatch:
   this.getSearchList = async (query: string) => {
     let obj = await axiosSearch.get(`?${API_KEY}&query=${query}`);
     return obj.data.results;

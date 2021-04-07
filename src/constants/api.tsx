@@ -1,4 +1,3 @@
-
 export const API_SEARCH_URL = "https://api.themoviedb.org/3/search/movie";
 export const API_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular";
 export const API_URL = "https://api.themoviedb.org/3/movie";

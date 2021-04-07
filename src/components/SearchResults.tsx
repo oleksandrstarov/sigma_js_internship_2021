@@ -1,4 +1,3 @@
-
 import MoviesList from './MoviesList';
 
 const SearchResults = () => {
