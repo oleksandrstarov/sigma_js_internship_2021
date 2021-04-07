@@ -101,7 +101,7 @@ const SmallInfoCard = () => {
                 <p>{data.title}</p>
             </div>
 
-            <div className="smallCardInfo__rate">
+            <div className='smallCardInfo__rate'>
                 <div className='smallCardInfo__rate-imdb'>IMDB <br />{data.vote_average}</div>
                 <div className='smallCardInfo__rate-voters'>Voters <br /> {data.vote_average}</div>
             </div>
@@ -109,12 +109,12 @@ const SmallInfoCard = () => {
             <div className='smallCardInfo__filter'></div>
 
             <img src={`https://image.tmdb.org/t/p/w185${data.poster_path}`} alt='sdfasdf' className='smallCardInfo__img' />
-
-            <button className='smallCardInfo__button'>
-                <p className='smallCardInfo__button-text' >VIEW DETAILS</p>
-                <img src={buttonImgSrc} alt='button Img' className='smallCardInfo__button-img' />
-            </button>
-
+            <link rel='stylesheet' href={`/movie-details/${data.id}`}>
+                <button className='smallCardInfo__button'>
+                    <p className='smallCardInfo__button-text' >VIEW DETAILS</p>
+                    <img src={buttonImgSrc} alt='button Img' className='smallCardInfo__button-img' />
+                </button>
+            </link>
         </div>
     )
 }
