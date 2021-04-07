@@ -17,17 +17,17 @@ const Slider = ({ className, children }: SliderProps) => {
   const [isFirst, setIsFirst] = useState(true);
   const [isLast, setIsLast] = useState(false);
   const [hasHiddenItems, setHasHiddenItems] = useState(true);
-  const [activeSlides, setActiveSlides] = useState(0);
+  const [visibleSlides, setVisibleSlides] = useState(0);
   const isMobile = useDeviceDetect();
 
   const next = () => {
     setTranslate(translate - slideWidth);
-    setActiveSlides(activeSlides + 1);
+    setVisibleSlides(visibleSlides + 1);
   };
 
   const prev = () => {
     setTranslate(translate + slideWidth);
-    setActiveSlides(activeSlides - 1);
+    setVisibleSlides(visibleSlides - 1);
   };
 
   const setSlide = (value: number) => {
@@ -46,12 +46,12 @@ const Slider = ({ className, children }: SliderProps) => {
     const additional = Number(!isMobile);
     const length =
       sliderRef.current.querySelectorAll('.slide').length + additional;
-    progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
+    progressRef.current.style.width = `${(visibleSlides / length) * 100}%`;
   };
 
   useEffect(() => {
-    if (!activeSlides) {
-      setActiveSlides(Math.floor(sliderRef.current.clientWidth / slideWidth));
+    if (!visibleSlides) {
+      setVisibleSlides(Math.floor(sliderRef.current.clientWidth / slideWidth));
       setProgress();
     }
 
@@ -59,7 +59,7 @@ const Slider = ({ className, children }: SliderProps) => {
     checkSlide();
     setHasHiddenItems(listRef.current.clientWidth > sliderRef.current.clientWidth);
     setProgress();
-  }, [translate, activeSlides]);
+  }, [translate, visibleSlides]);
 
   return (
     <div ref={sliderRef} className={`default-slider ${className}`}>
