@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ThemeToggler from './ThemeToggle';
 
 import '../styles/Header.scss';
 import SearchField from './SearchField';
@@ -35,6 +36,7 @@ const Header = () => {
           <span>Favorites</span>
           <img src={heart} />
         </a>
+        <ThemeToggler />
       </div>
     </header>
   );
