@@ -2,16 +2,14 @@ import { ReactChild } from 'react';
 
 type LinkProps = {
   href: string;
-
   children?: ReactChild;
-
-  [x: string]: any;
+  className?: string;
 };
 
-const Link = ({ href, children, ...restProps }: LinkProps) => {
+const Link = ({ href, children, className }: LinkProps) => {
   return (
-    <a href={href} {...restProps}>
-      {children}
+    <a href={href} className={`default-link ${className ? className : ''}`}>
+      {children ? children : ''}
     </a>
   );
 };
