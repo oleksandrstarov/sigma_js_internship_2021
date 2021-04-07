@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import ThemeToggler from './ThemeToggle';
 
-import '../styles/Header.css';
+import '../styles/Header.scss';
+import SearchField from './SearchField';
 
 const imageXl = '/images/logo-xl.svg';
 const imageSm = '/images/logo-sm.svg';
@@ -29,11 +31,12 @@ const Header = () => {
         <a href="/" className="header-logo">
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
-        <input type="text" className="header-search" />
+        <SearchField />
         <a href="/favorites" className="header-nav-link">
           <span>Favorites</span>
           <img src={heart} />
         </a>
+        <ThemeToggler />
       </div>
     </header>
   );
