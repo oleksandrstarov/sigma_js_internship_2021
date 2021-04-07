@@ -2,20 +2,12 @@ import { useEffect, useState } from 'react';
 
 import Container from './Container';
 import PopularMovie from './PopularMovie';
+import { Movie } from '../models/models';
 
 import '../styles/MovieBanner.scss';
 
-interface MovieProps {
-  overview: string;
-  title: string;
-  poster_path: string;
-  vote_average: number;
-  backdrop_path: string;
-  id: number | string;
-}
-
 const MovieBanner = () => {
-  const [popularMovies, setPopularMovies] = useState<MovieProps[]>([]);
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const BASE_URL: string = 'https://api.themoviedb.org/3/movie/';
   const API_KEY: string = '3f42cb974635f0f6e4deae85cbfd4c53';
 
@@ -32,9 +24,8 @@ const MovieBanner = () => {
     getPopularMovies();
   }, []);
 
-  const randomMovie = [...popularMovies]
-    .sort(() => Math.random() - Math.random())
-    .find(() => true);
+  const randomMovie =
+    popularMovies[Math.floor(Math.random() * popularMovies.length)];
 
   return (
     <section className="movie-banner">

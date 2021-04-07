@@ -1,21 +1,11 @@
 import { Link } from 'react-router-dom';
 
 import useDeviceDetect from 'src/hooks/useDeviceDetect';
+import { PopularMovieProps } from "../models/models"
 
 import '../styles/MovieBanner.scss';
 
-interface MovieProps {
-  movie: {
-    overview: string;
-    title: string;
-    poster_path: string;
-    vote_average: number;
-    backdrop_path: string;
-    id: number | string;
-  };
-}
-
-const PopularMovie: React.FC<MovieProps> = ({ movie }) => {
+const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const mobile = useDeviceDetect();
   const {
     overview,
