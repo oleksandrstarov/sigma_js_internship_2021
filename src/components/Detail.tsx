@@ -1,20 +1,25 @@
-import '../styles/Details.scss';
+import '../styles/Detail.scss';
 
-type DetailProps = {
-  title: string;
-  text: string | number | {}[];
-};
+type DetailProps =
+  | {
+      title: string;
+      textContent?: string | number;
+      arrayOfContent: { name: string }[];
+    }
+  | {
+      title: string;
+      textContent: string | number;
+      arrayOfContent?: { name: string }[];
+    };
 
-const Detail = ({ title, text }: DetailProps) => {
+const Detail = ({ title, textContent, arrayOfContent }: DetailProps) => {
   return (
     <div className="detail-body">
       <div className="detail-title">{title}:</div>
       <div>
-        {Array.isArray(text)
-          ? text.map(
-              (value: { [name: string]: string | number }) => value.name + ', '
-            )
-          : text}
+        {arrayOfContent?.map(
+          (item: { name: string | number }) => item.name + ', '
+        ) || textContent}
       </div>
     </div>
   );

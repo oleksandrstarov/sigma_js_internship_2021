@@ -3,13 +3,13 @@
   grid-template-columns: 1fr 1fr;
   font-size:24px;
 }
+
 .detail-title{
   font-weight: bold;
-
 }
+
 @media screen and (max-width:992px){
   .detail-body{
-    
     font-size:18px;
   }
 }
