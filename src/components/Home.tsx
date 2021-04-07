@@ -1,11 +1,7 @@
 import MovieBanner from './MovieBanner';
 
 const Home = () => {
-  return (
-    <>
-      <MovieBanner />
-    </>
-  );
+  return <MovieBanner />;
 };
 
 export default Home;
