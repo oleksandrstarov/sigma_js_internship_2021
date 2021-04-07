@@ -1,0 +1,54 @@
+@import "./variables.scss";
+
+.details-container {
+  background-color: var($bg-color-light);
+  position: absolute;
+  top: 100px;
+  z-index: -1;
+  .movie-img img {
+    width: 376px;
+    height: 518px;
+    border-radius: 10px;
+  }
+
+  .movie-details {
+    h1 {
+      font-family: "Heebo";
+      font-size: 18px;
+      margin: 10px;
+    }
+
+    hr {
+      color: red;
+      width: 3rem;
+      z-index: 100;
+    }
+    .general-info {
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 14px;
+        td {
+          text-align: left;
+          padding: 8px;
+          h4 {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .genres {
+    div {
+      display: inline-block;
+      border: 1px solid #fcae30;
+      background-color: #ffffff;
+      padding: 5px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin: 10px;
+      border-radius: 17px;
+    }
+  }
+}
