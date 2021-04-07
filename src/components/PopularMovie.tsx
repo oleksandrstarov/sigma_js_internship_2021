@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import useDeviceDetect from 'src/hooks/useDeviceDetect';
-import { PopularMovieProps } from "../models/models"
+import { PopularMovieProps } from "../models/index"
 
 import '../styles/MovieBanner.scss';
 

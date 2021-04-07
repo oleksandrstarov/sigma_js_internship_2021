@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Container from './Container';
 import PopularMovie from './PopularMovie';
-import { Movie } from '../models/models';
+import { Movie } from '../models/index';
 
 import '../styles/MovieBanner.scss';
 
