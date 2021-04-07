@@ -2,7 +2,7 @@ import { ReactChild } from 'react';
 
 type LinkProps = {
   href: string;
-  children?: ReactNode;
+  children?: ReactChild;
   className?: string;
 };
 
