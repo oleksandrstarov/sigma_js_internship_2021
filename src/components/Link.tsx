@@ -1,9 +1,9 @@
-// import { ReactChild } from 'react';
+import { ReactChild } from 'react';
 
 type LinkProps = {
   href: string;
 
-  children?: any;
+  children?: ReactChild;
 
   className?: string;
 };
