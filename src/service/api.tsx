@@ -2,9 +2,7 @@ import {
   API_KEY,
   API_IMG_URL
 } from '../constants/api';
-import axios from '../axios/baseUrl';
-import axiosSearch from '../axios/searchUrl';
-import axiosPopular from '../axios/popularUrl';
+import axios from '../axios/url';
 
 const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: boolean }, } = {
 
@@ -85,7 +83,7 @@ const apiServiceFunc = {
   },
 
   getDataByIds(arr: number[]) {
-    const urls = arr.map((id: number) => `/${id}?${API_KEY}`);
+    const urls = arr.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: any) => await axios.get(url).then((res: { data: any; }) => res.data)
     );
@@ -93,22 +91,22 @@ const apiServiceFunc = {
   },
 
   async getDataById(id: number) {
-    const obj = await axios.get(`${id}?${API_KEY}`);
+    const obj = await axios.get(`movie${id}?${API_KEY}`);
     return obj;
   },
 
   async getPopularQueryList() {
-    const obj = await axiosPopular.get(`?${API_KEY}&query`);
+    const obj = await axios.get(`movie/popular?${API_KEY}&query`);
     return obj.data.results;
   },
 
   async getTopRatedList() {
-    const obj = await axios.get(`/top_rated?translations&${API_KEY}&region=DE`);
+    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US`);
     return obj.data.results;
   },
 
   async getSearchList(query: string) {
-    let obj = await axiosSearch.get(`?${API_KEY}&query=${query}`);
+    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
     return obj.data.results;
   },
 
