@@ -44,6 +44,8 @@ User should be able to track 20 latest visited movies
 ## Design
 There are no requirements for the application design at all. Be creative!
 
+The design is located [here](https://www.figma.com/file/GORllsSXkvIKM2FOxBFYAr/Sigma?node-id=20%3A9).
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -86,3 +88,74 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Manual API service
+
+***(retern === ->), All favorite, story and theme every change are save in local Storage***	
+
+**Import:**
+
+	import api from '../service/api';
+    
+**Theme:**
+	api.switchTheme(); 		            If theme was TRUE -> FALSE and in the same way if FALSE -> TRUE 
+
+**Search -> request:**
+
+	 api.getSearchList(...); 		    api.getSearchList('godzilla'); -> [{data}, {data}]## 
+
+	 api.getDataById(...) 			    -> {data}
+
+**Favorite:**
+
+	 api.setFavoritesId(...); 		    api.setFavoritesId(id);
+	
+	 api.deleteFavoritesId(...); 		api.deleteFavoritesId(id); 
+	 
+	 api.getFavoritesIdList(); 		    -> [id, id];
+	 
+	 api.getDataByIds(...); 	        api.getDataByIds( api.getFavoritesIdList() ); -> [{data}, {data}]
+	
+	 api.clearFavoritesIdList(); 		make -> []
+	 
+**Story:**
+
+	 api.setStoryId(...);
+	
+	 api.deleteStoryId(...);
+	 
+	 api.getStoryIdList();
+	 
+	 api.getDataByIds(...); 
+	
+	 api.clearStoryIdList();
+	
+**Popular List:**
+
+	api.getPopularQueryList()
+
+**Top-Rated List:**
+
+    api.getTopRatedList()
+
+**Extra:**
+
+{
+  "poster_sizes": [
+    "w92",
+    "w154",
+    "w185",
+    "w342",
+    "w500",
+    "w780",
+    "original"
+],
+}
+
+**method - transfom IMG links:** 
+
+***url: /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg***
+***size: w500***
+
+    api.changeImgLinks(url, size)       -> img-URL ( https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg )
+
