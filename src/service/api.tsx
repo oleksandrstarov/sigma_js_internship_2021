@@ -4,16 +4,16 @@ import {
 } from '../constants/api';
 import axios from '../axios/url';
 
-const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: boolean }, } = {
+const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: number }, } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: true
+    theme: 1
   },
 }
 
-const apiServiceFunc = {
+const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
     serviceStore !== null
@@ -22,24 +22,27 @@ const apiServiceFunc = {
     return apiService.store;
   },
 
-  setStore(data: {} = {
+  setStore(data: Object = {
     history: [],
     favorites: [],
-    theme: true
+    theme: 1
   }) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
   },
 
   switchTheme() {
     const store = this.getStore();
-    store.theme = !store.theme;
+    store.theme = (store.theme === 1) ? 0 : 1;
     this.setStore(store);
     return store.theme;
   },
 
   setFavoritesId(id: number) {
     const store = this.getStore();
-    if (!store.favorites.includes(id)) store.favorites.push(id);
+    const isThisIdinFavorites = !store.favorites.includes(id);
+    if (isThisIdinFavorites) {
+      store.favorites.push(id)
+    };
     this.setStore(store);
   },
 
@@ -60,24 +63,27 @@ const apiServiceFunc = {
     this.setStore(store);
   },
 
-  setStoryId(id: never) {
+  setHistoryId(id: number) {
     const store = this.getStore();
-    if (!store.history.includes(id)) store.history.push(id);
+    const isThisIdinHistory = !store.history.includes(id);
+    if (isThisIdinHistory) {
+      store.history.push(id)
+    };
     this.setStore(store);
   },
 
-  getStoryIdList() {
+  getHistoryIdList() {
     const { history } = this.getStore();
     return history;
   },
 
-  deleteStoryId(id: number) {
+  deleteHistoryId(id: number) {
     const store = this.getStore();
     store.history = store.history.filter((itemId: number) => itemId !== id);
     this.setStore(store);
   },
 
-  clearStoryIdList() {
+  clearHistoryIdList() {
     apiService.store.history = [];
     this.setStore(apiService.store);
   },
@@ -92,7 +98,7 @@ const apiServiceFunc = {
 
   async getDataById(id: number) {
     const obj = await axios.get(`movie${id}?${API_KEY}`);
-    return obj;
+    return obj.data.results;
   },
 
   async getPopularQueryList() {
@@ -115,7 +121,4 @@ const apiServiceFunc = {
   },
 }
 
-export default apiServiceFunc;
-
-
-
+export default api;
