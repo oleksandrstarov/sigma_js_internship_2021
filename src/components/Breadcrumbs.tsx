@@ -1,13 +1,19 @@
 import '../styles/Breadcrumbs.scss';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
+
+type crumbsType = {
+  name: string,
+  path: string,
+  exact: boolean
+}
 
 type BreadcrumbsProps = {
   dynamic?: boolean;
   className?: string;
-  children: any;
+  crumbs: [ crumb: crumbsType ];
 };
 
-const Breadcrumbs = ({ className, children, dynamic }: BreadcrumbsProps) => {
+const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   const [prevPathName, setPrevPathname] = useState('');
 
   useEffect(() => {
@@ -15,7 +21,7 @@ const Breadcrumbs = ({ className, children, dynamic }: BreadcrumbsProps) => {
   });
 
   const generateLinks = () => {
-    const items = children.map((item: any, index: number) => {
+    const items = crumbs.map((item: any, index: number) => {
       return (
         <a className="breadcrumb" href={item.path} key={index++}>
           {item.name}
