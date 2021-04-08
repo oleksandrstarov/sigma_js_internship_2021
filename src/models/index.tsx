@@ -10,3 +10,8 @@ export interface Movie {
 export interface PopularMovieProps {
   movie: Movie;
 }
+
+export enum Theme {
+  dark,
+  light,
+}

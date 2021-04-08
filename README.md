@@ -13,7 +13,7 @@ Before starting working on the project make sure that the following tools are in
 * Google Chrome browser
 
 ## API Description
-The API documentation is located [here](http://www.omdbapi.com/).
+The API documentation is located [here](https://www.themoviedb.org/).
 
 ## Minimal Requirements
 The application layout must contain:
