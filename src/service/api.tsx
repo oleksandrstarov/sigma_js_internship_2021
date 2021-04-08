@@ -6,115 +6,118 @@ import axios from '../axios/baseUrl';
 import axiosSearch from '../axios/searchUrl';
 import axiosPopular from '../axios/popularUrl';
 
-function ApiService(this: any) {
-  this.storeKey = 'service';
-  this.store = {
-    story: [],
+const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: boolean }, } = {
+
+  storeKey: 'service',
+  store: {
+    history: [],
     favorites: [],
     theme: true
-  };
+  },
+}
+const apiServiceFunc = {
+  getStore() {
+    const serviceStore: any = localStorage.getItem(apiService.storeKey);
+    serviceStore !== null
+      ? apiService.store = JSON.parse(serviceStore)
+      : this.setStore();
+    return apiService.store;
+  },
 
-  // Store:
-  this.getStore = () => {
-    let serviceStore: any = localStorage.getItem(this.storeKey);
-    if (serviceStore !== null) this.store = JSON.parse(serviceStore);
-    return this.store;
-  };
+  setStore(data: {} = {
+    history: [],
+    favorites: [],
+    theme: true
+  }) {
+    localStorage.setItem(apiService.storeKey, JSON.stringify(data));
+  },
 
-  this.setStore = (data: {} = this.store) => {
-    localStorage.setItem(this.storeKey, JSON.stringify(data));
-  };
+  switchTheme() {
+    const store = this.getStore();
+    store.theme = !store.theme;
+    this.setStore(store);
+    return store.theme;
+  },
 
-  // method - Theme:
-  this.switchTheme = () => {
-    let { theme } = this.getStore();
-    this.store.theme = !theme;
-    this.setStore();
-    return this.store.theme;
-  };
+  setFavoritesId(id: number) {
+    const store = this.getStore();
+    if (!store.favorites.includes(id)) store.favorites.push(id);
+    this.setStore(store);
+  },
 
-  // methods - Favorirs:
-  this.setFavoritesId = (id: number) => {
-    let { favorites } = this.getStore();
-    if (!favorites.includes(id)) this.store.favorites.push(id);
-    this.setStore();
-  };
-
-  this.getFavoritsIdList = () => {
-    let { favorites } = this.getStore();
-    this.setStore();
+  getFavoritsIdList() {
+    const { favorites } = this.getStore();
     return favorites;
-  };
+  },
 
-  this.deleteFavoritsId = (id: number) => {
-    let { favorites } = this.getStore();
-    this.store.favorites = favorites.filter((itemId: number) => itemId !== id);
-    this.setStore();
-  };
+  deleteFavoritsId(id: number) {
+    const store = this.getStore();
+    store.favorites = store.favorites.filter((itemId: number) => itemId !== id);
+    this.setStore(store);
+  },
 
-  this.clearFavoritsIdList = () => {
-    this.store.favorites = [];
-    this.setStore();
-  };
+  clearFavoritsIdList() {
+    const store = this.getStore();
+    store.favorites = [];
+    this.setStore(store);
+  },
 
-  // methods - Story:
-  this.setStoryId = (id: number) => {
-    let { story } = this.getStore();
-    if (!story.includes(id)) this.store.story.push(id);
-    this.setStore();
-  };
+  setStoryId(id: never) {
+    const store = this.getStore();
+    if (!store.history.includes(id)) store.history.push(id);
+    this.setStore(store);
+  },
 
-  this.getStoryIdList = () => {
-    let { story } = this.getStore();
-    return story;
-  };
+  getStoryIdList() {
+    const { history } = this.getStore();
+    return history;
+  },
 
-  this.deleteStoryId = (id: number) => {
-    let { story } = this.getStore();
-    this.store.story = story.filter((itemId: number) => itemId !== id);
-    this.setStore();
-  };
+  deleteStoryId(id: number) {
+    const store = this.getStore();
+    store.history = store.history.filter((itemId: number) => itemId !== id);
+    this.setStore(store);
+  },
 
-  this.clearStoryIdList = () => {
-    this.store.story = [];
-    this.setStore();
-  };
+  clearStoryIdList() {
+    apiService.store.history = [];
+    this.setStore(apiService.store);
+  },
 
-  // API:
-  this.getDataByIds = (arr: number[]) => {
-    let urls = arr.map((id: number) => `/${id}?${API_KEY}`),
-      requests = urls.map(
-        async (url: any) => await axios.get(url).then(res => res.data)
-      );
+  getDataByIds(arr: number[]) {
+    const urls = arr.map((id: number) => `/${id}?${API_KEY}`);
+    const requests = urls.map(
+      async (url: any) => await axios.get(url).then((res: { data: any; }) => res.data)
+    );
     return Promise.all(requests)
-  };
+  },
 
-  this.getDataById = async (id: number) => {
+  async getDataById(id: number) {
     const obj = await axios.get(`${id}?${API_KEY}`);
     return obj;
-  };
+  },
 
-  this.getPopularQueryList = async () => {
-    let obj = await axiosPopular.get(`?${API_KEY}&query`);
+  async getPopularQueryList() {
+    const obj = await axiosPopular.get(`?${API_KEY}&query`);
     return obj.data.results;
-  };
+  },
 
-  this.getTopRatedList = async () => {
-    let obj = await axios.get(`/top_rated?translations&${API_KEY}&region=DE`);
+  async getTopRatedList() {
+    const obj = await axios.get(`/top_rated?translations&${API_KEY}&region=DE`);
     return obj.data.results;
-  };
+  },
 
-  // method - Seatch:
-  this.getSearchList = async (query: string) => {
+  async getSearchList(query: string) {
     let obj = await axiosSearch.get(`?${API_KEY}&query=${query}`);
     return obj.data.results;
-  };
+  },
 
-  // method - transfom IMG links:
-  this.changeImgLinks = (url: string, size: string) => {
+  changeImgLinks(url: string, size: string) {
     return `${API_IMG_URL}${size}${url}`;
-  };
+  },
 }
 
-const api = new (ApiService as any)();
-export default api;
+export default apiServiceFunc;
+
+
+
