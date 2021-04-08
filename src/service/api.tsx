@@ -5,7 +5,6 @@ import {
 import axios from '../axios/url';
 
 const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: boolean }, } = {
-
   storeKey: 'service',
   store: {
     history: [],
@@ -13,6 +12,7 @@ const apiService: { storeKey: string, store: { history: number[], favorites: num
     theme: true
   },
 }
+
 const apiServiceFunc = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
