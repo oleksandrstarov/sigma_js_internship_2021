@@ -1,0 +1,38 @@
+@import "../styles/variables.scss";
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+
+  .breadcrumb {
+    color: $black;
+    font-size: 12px;
+    text-transform: capitalize;
+    margin-right: 10px;
+
+    @media screen and(min-width: 992px) {
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 15px;
+    }
+
+    &:after {
+      content: '/';
+      color: $breadcrumbGrey;
+      margin-left: 10px;
+
+      @media screen and(min-width: 992px) {
+        margin-left: 15px;
+      }
+    }
+
+    &:last-child {
+      color: $breadcrumbGrey;
+      pointer-events: none;
+
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
