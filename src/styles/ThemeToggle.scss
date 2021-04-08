@@ -2,9 +2,7 @@
 
 // style for mobile
 .switch-checkbox {
-  height: 0;
-  width: 0;
-  visibility: hidden;
+  display: none;
 }
 
 .switch-label {
@@ -18,7 +16,7 @@
 
   .switch-button {
     width: 35px;
-    position: absolute;
+    position: static;
     border-radius: 45px;
     box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
   }
@@ -54,6 +52,7 @@
       width: 26px;
       height: 26px;
       transition: 0.2s;
+      position: absolute;
     }
     &:active {
       .switch-button {
