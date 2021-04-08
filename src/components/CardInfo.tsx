@@ -25,7 +25,10 @@ let CardInfo = ({ tailWide, number }: { number: number; tailWide: boolean }) => 
   }, [number]);
 
   return (
-    <div className={!tailWide ? 'card-info' : 'card-info card-info__tail'}>
+    <div className={tailWide
+      ? 'card-info card-info__tail'
+      : 'card-info'
+    }>
       {/* temporary TitleComponent */}
       <div className='card-info__wrapper'>
         {!tailWide ? (
