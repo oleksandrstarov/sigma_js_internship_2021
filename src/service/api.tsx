@@ -4,12 +4,17 @@ import {
 } from '../constants/api';
 import axios from '../axios/url';
 
-const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: number }, } = {
+
+enum Theme {
+  dark,
+  light,
+}
+const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: any }, } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: 1
+    theme: Theme.light
   },
 }
 
@@ -32,15 +37,15 @@ const api = {
 
   switchTheme() {
     const store = this.getStore();
-    store.theme = (store.theme === 1) ? 0 : 1;
+    store.theme = (store.theme === Theme.light) ? Theme.dark : Theme.light;
     this.setStore(store);
     return store.theme;
   },
 
   setFavoritesId(id: number) {
     const store = this.getStore();
-    const isThisIdinFavorites = !store.favorites.includes(id);
-    if (isThisIdinFavorites) {
+    const isThereAnId = store.favorites.includes(id);
+    if (isThereAnId) {
       store.favorites.push(id)
     };
     this.setStore(store);
@@ -65,8 +70,8 @@ const api = {
 
   setHistoryId(id: number) {
     const store = this.getStore();
-    const isThisIdinHistory = !store.history.includes(id);
-    if (isThisIdinHistory) {
+    const isThereAnId = store.history.includes(id);
+    if (isThereAnId) {
       store.history.push(id)
     };
     this.setStore(store);
@@ -88,8 +93,8 @@ const api = {
     this.setStore(apiService.store);
   },
 
-  getDataByIds(arr: number[]) {
-    const urls = arr.map((id: number) => `movie/${id}?${API_KEY}`);
+  getDataByIds(ids: number[]) {
+    const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: any) => await axios.get(url).then((res: { data: any; }) => res.data)
     );
