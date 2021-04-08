@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import Home from './components/Home';
 import MovieDetails from './components/MovieDetails';
 import Favorites from './components/Favorites';
 import SearchResults from './components/SearchResults';
 import Header from './components/Header';
-
 import './App.scss';
-
 
 function App() {
   return (

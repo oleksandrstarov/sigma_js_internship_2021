@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import buttonImgSrc from '../assets/image84.png';
 import api from 'src/service/api';
 import '../styles/CardInfo.scss';
-// import Button from './Button';
-import buttonImgSrc from '../assets/image84.png';
-import { NavLink } from 'react-router-dom';
 
-let CardInfo = ({ tailWide, number }: { number: any; tailWide: boolean }) => {
-    let [data, setData] = useState({
+let CardInfo = ({ tailWide, number }: { number: number; tailWide: boolean }) => {
+    const [data, setData] = useState({
         poster_path: '',
         original_title: '',
         title: '',
@@ -14,11 +13,11 @@ let CardInfo = ({ tailWide, number }: { number: any; tailWide: boolean }) => {
         vote_count: '',
         overview: ''
     });
-    let { poster_path, original_title, title, vote_average, overview } = data;
-    let srcImg = api.changeImgLinks(poster_path, 'w342');
+    const { poster_path, original_title, title, vote_average, overview } = data;
+    const srcImg = api.changeImgLinks(poster_path, 'w342');
 
     useEffect(() => {
-        api.getDataById(537056).then((res: any) => {
+        api.getDataById(number).then((res: any) => {
             setData(res.data);
         });
     }, [number]);
