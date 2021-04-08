@@ -8,11 +8,11 @@ import Main from './Main';
 interface LayoutProps {
   children: ReactNode;
 }
-const Layout = ({children}: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="wrapper">
       <Header />
-      <Main >{children}</Main>
+      <Main>{children}</Main>
       <Contacts />
       <Footer />
     </div>

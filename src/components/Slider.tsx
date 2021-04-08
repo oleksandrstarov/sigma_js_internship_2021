@@ -38,7 +38,7 @@ const Slider = ({ className, children }: SliderProps) => {
   const checkSlide = () => {
     const listWidth = listRef.current.clientWidth;
     const sliderWidth = sliderRef.current.clientWidth;
-    setIsLast(translate <= (sliderWidth + (-listWidth) - 60));
+    setIsLast(translate <= sliderWidth + -listWidth - 60);
     setIsFirst(translate >= 0);
   };
 
@@ -57,7 +57,9 @@ const Slider = ({ className, children }: SliderProps) => {
 
     setSlide(translate);
     checkSlide();
-    setHasHiddenItems(listRef.current.clientWidth > sliderRef.current.clientWidth);
+    setHasHiddenItems(
+      listRef.current.clientWidth > sliderRef.current.clientWidth
+    );
     setProgress();
   }, [translate, activeSlides]);
 
