@@ -17,12 +17,7 @@
     "prettier": "^2.2.1",
     "husky": "^6.0.0",
     "node-sass": "^5.0.0",
-<<<<<<< HEAD
-    "axios": "^0.21.1",
-    "prettier": "^2.2.1",
-=======
     "react-router-dom": "^5.2.0",
->>>>>>> 45afd35d4fe293f8ecd0bee8a96e8e271fc734c9
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
