@@ -11,16 +11,16 @@ import './App.scss';
 function App() {
   return (
     <>
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/movie-details/:id" component={MovieDetails} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/search-results" component={SearchResults} />
           </Switch>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     </>
   );
 }
