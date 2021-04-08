@@ -11,6 +11,8 @@
     border-radius: 10px;
     padding: 39px 18px 13px 18px;
     margin: 0 auto;
+    height: 85vh;
+    max-height: 566px;
 
     @media (min-width: 411px) {
       max-width: 327px;
@@ -24,6 +26,9 @@
     @media (min-width: 992px) {
       max-width: 100%;
       padding: 18px;
+      max-height: 482px;
+      display: grid;
+      grid-template-columns: 1.5fr .5fr;
     }
   }
 
@@ -32,37 +37,19 @@
     overflow: hidden;
     cursor: pointer;
     border-radius: 15px;
+    height: 100%;
   }
 
   .movie-banner-image {
-    max-width: 100%;
-    height: auto;
     display: block;
     border-radius: 15px;
     transition: all .3s ease-in-out;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 
     &:hover {
       transform: scale(1.1);
-    }
-
-    @media (min-width: 411px) {
-      height: 435px;
-    }
-
-    @media (min-width: 768px) {
-      height: 400px;
-    }
-
-    @media (min-width: 992px) {
-      height: 330px;
-    }
-
-    @media (min-width: 1450px) {
-      height: 450px;
-    }
-
-    @media (min-width: 1650px) {
-      height: 550px;
     }
   }
 
@@ -88,6 +75,10 @@
       flex-direction: column;
       align-items: flex-start;
       margin-left: 26px;
+    }
+
+    @media screen and(min-width: 992px) {
+      justify-content: center;
     }
 
     @media (min-width: 1450px) {
@@ -149,6 +140,10 @@
     @media (min-width: 992px) {
       font-size: 16px;
       max-width: 380px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+      overflow: hidden;
     }
 
     @media (min-width: 1200px) {
