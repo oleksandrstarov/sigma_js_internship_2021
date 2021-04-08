@@ -7,8 +7,8 @@ import './App.scss';
 function App() {
   return (
     <>
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Switch>
             {routing.map(item => {
               return (
@@ -20,8 +20,8 @@ function App() {
               );
             })}
           </Switch>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     </>
   );
 }
