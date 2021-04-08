@@ -4,11 +4,8 @@ import {
 } from '../constants/api';
 import axios from '../axios/url';
 
+import { Theme } from '../models/index';
 
-enum Theme {
-  dark,
-  light,
-}
 const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: any }, } = {
   storeKey: 'service',
   store: {
