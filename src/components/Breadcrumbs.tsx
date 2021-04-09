@@ -2,10 +2,15 @@ import '../styles/Breadcrumbs.scss';
 import {useEffect, useState} from 'react';
 import routing from "../config/routing";
 
+type CrumbsType = {
+  name: string,
+  path?: string
+}
+
 type BreadcrumbsProps = {
   dynamic?: boolean;
   className?: string;
-  crumbs: any;
+  crumbs: CrumbsType[];
 };
 
 const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
@@ -35,7 +40,6 @@ const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   }
 
   useEffect(() => {
-    console.log(document.referrer.split('/')[3])
     setPrevPath(`/${document.referrer.split('/')[3]}`);
     getPrevPath()
   });
