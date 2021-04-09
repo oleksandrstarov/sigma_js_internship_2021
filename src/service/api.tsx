@@ -99,7 +99,7 @@ const api = {
   },
 
   async getDataById(id: number) {
-    const obj = await axios.get(`movie${id}?${API_KEY}`);
+    const obj = await axios.get(`movie/${id}?${API_KEY}`);
     return obj.data.results;
   },
 
