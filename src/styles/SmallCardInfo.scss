@@ -1,9 +1,6 @@
 @import '../styles/variables.scss';
 
-
-
-
-.smallCardInfo{
+.small-cardInfo{
   position: relative;
   width: 195px;
   height: 289px;
@@ -11,7 +8,7 @@
   border-radius: 10px;
   background-color: $white;
 
-  .smallCardInfo__title{
+  .small-cardInfo__title{
     position: absolute;
     top: 0;
     left: 0;
@@ -26,7 +23,7 @@
     }
   }
 
-  .smallCardInfo__rate{
+  .small-cardInfo__rate{
     position: absolute;
     bottom: 40px;
     left: 20px;
@@ -34,15 +31,15 @@
     justify-content: space-around;
     z-index: 2;
 
-    .smallCardInfo__rate-imdb, .smallCardInfo__rate-voters{
-        font-size: 14px;
-        line-height: 14px;
-        margin-right: 10px;
-        font-weight: bold;
+    .small-cardInfo__rate-imdb, .small-cardInfo__rate-voters{
+      font-size: 14px;
+      line-height: 14px;
+      margin-right: 10px;
+      font-weight: bold;
     }
   }
 
-  .smallCardInfo__filter{
+  .small-cardInfo__filter{
     position: absolute;
     bottom: 20px;
     left: 8.3px;
@@ -63,7 +60,7 @@
     border-radius: inherit;
   }
 
-  .smallCardInfo__button{
+  .small-cardInfo__button{
     position: absolute;
     bottom: 5px;
     left: 8.3px;
@@ -78,7 +75,7 @@
     border-radius: 0 0 10px 10px;
     z-index: 2;
 
-    .smallCardInfo__button-text{
+    .small-cardInfo__button-text{
       vertical-align: middle;
       line-height: 29px;
       vertical-align: middle;
@@ -88,7 +85,7 @@
       color: $white;
     }
 
-    .smallCardInfo__button-img{
+    .small-cardInfo__button-img{
       height: 15px;
       width: 15px;
       margin: 6px 0;
