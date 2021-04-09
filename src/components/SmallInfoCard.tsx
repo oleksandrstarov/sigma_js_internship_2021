@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import api from "src/service/api";
+import api from 'src/service/api';
 
-import buttonImgSrc from "../assets/image95.png";
-import "../styles/SmallCardInfo.scss";
+import buttonImgSrc from '../assets/image95.png';
+import '../styles/SmallCardInfo.scss';
 
-const SmallInfoCard = ({ id: number }) => {
+const SmallInfoCard = () => {
 
   const [data, setData] = useState<{}>();
 
   useEffect(() => {
-    api.getDataById(id).then((res: any) => {
+    api.getDataById(123).then((res: any) => {
       setData(res);
     });
   }, [])
+  console.log(data);
 
   return (
     <div className="small-cardInfo">
@@ -22,7 +23,6 @@ const SmallInfoCard = ({ id: number }) => {
       <div className="title-component small-cardInfo__title">
         <p>{data.title}</p>
       </div>
-
       <div className="small-cardInfo__rate">
         <div className="small-cardInfo__rate-imdb">IMDB <br />{data.vote_average}</div>
         <div className="small-cardInfo__rate-voters">Voters <br /> {data.vote_average}</div>
@@ -38,7 +38,7 @@ const SmallInfoCard = ({ id: number }) => {
           <img src={buttonImgSrc} alt="button Img" className="small-cardInfo__button-img" />
         </button>
       </link>
-    </div>
+    </div >
   )
 }
 

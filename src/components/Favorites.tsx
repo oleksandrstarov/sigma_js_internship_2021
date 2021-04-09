@@ -1,11 +1,9 @@
-// import MoviesList from './MoviesList'
-import SmallInfoCard from './SmallInfoCard'
+import MoviesList from './MoviesList'
 
 const Favorites = () => {
   return (
     <div className='favorites-wrapper'>
-      {/* <MoviesList pageTitle='Favorites' /> */}
-      <SmallInfoCard />
+      <MoviesList pageTitle='Favorites' />
     </div>
   );
 };
