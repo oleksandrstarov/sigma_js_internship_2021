@@ -22,8 +22,8 @@ const SmallInfoCard = () => {
         <p>{data.title}</p>
       </div>
       <div className="small-cardInfo__rate">
-        <div className="small-cardInfo__rate-imdb">IMDB <br />{data.vote_average}</div>
-        <div className="small-cardInfo__rate-voters">Voters <br /> {data.vote_average}</div>
+        <div className="small-cardInfo__rate-imdb">IMDB<br />{data.vote_average}</div>
+        <div className="small-cardInfo__rate-voters">Voters<br />{data.vote_average}</div>
       </div>
       <div className="small-cardInfo__filter"></div>
       <img src={`https://image.tmdb.org/t/p/w185${data.poster_path}`} alt={data.title} className="smallCardInfo__img" />
