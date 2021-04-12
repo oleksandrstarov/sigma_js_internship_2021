@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { API_IMG_URL } from 'src/constants/api';
 
-import useDeviceDetect from 'src/hooks/useDeviceDetect';
+import useDeviceDetect from '../hooks/useDeviceDetect';
 import { PopularMovieProps } from '../models/index';
+import { API_IMG_URL } from '../constants/api';
 
 import '../styles/MovieBanner.scss';
 

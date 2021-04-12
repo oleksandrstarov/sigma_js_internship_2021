@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import Container from './Container';
 import PopularMovie from './PopularMovie';
 import { Movie } from '../models/index';
-import api from 'src/service/api';
+
+import api from '../service/api';
 
 import '../styles/MovieBanner.scss';
 
