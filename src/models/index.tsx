@@ -15,3 +15,8 @@ export enum Theme {
   dark,
   light,
 }
+
+export interface FavoriteMovie {
+  movieId: number;
+}
+
