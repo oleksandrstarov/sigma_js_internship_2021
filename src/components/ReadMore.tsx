@@ -13,7 +13,10 @@ const ReadMore = ({ children }: IProps) => {
   const toggleReadMore = () => {
     setIsReadMore(!isReadMore);
   };
-  return !text ? null : text.length < 250 ? text : (
+  if (!text) {
+    return null;
+  }
+  return text.length < 250 ? text : (
     <p>
       {isReadMore ? text.slice(0, 250) : text}
       <span onClick={toggleReadMore} className="read-or-hide">

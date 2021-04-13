@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 
 import api from 'src/service/api';
 
@@ -6,14 +6,33 @@ import ReadMore from './ReadMore';
 
 import '../styles/MovieDetails.scss';
 
+enum imageWidth {
+  w500
+}
+
 type MovieDetailsProps = {
   match: { params: { id: string } }
 }
 
-const MovieDetails = ({ match }: MovieDetailsProps) => {
+type movieInfo = {
+  poster_path: string;
+  original_title: string;
+  title: string;
+  tagline: string;
+  status: string;
+  release_date: string;
+  budget: string;
+  popularity: string;
+  vote_average: string;
+  runtime: string;
+  genres: Array<any>;
+  production_countries: Array<any>;
+  overview: string;
+};
 
-  const [movieId, setMovieId] = useState<string>(' ');
-  const [movieData, setMovieData] = useState({
+const MovieDetails = ({ match }: MovieDetailsProps) => {
+  const [movieId, setMovieId] = useState<string>('');
+  const [movieData, setMovieData] = useState<movieInfo>({
     poster_path: '',
     original_title: '',
     title: '',
@@ -24,7 +43,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     popularity: '',
     vote_average: '',
     runtime: '',
-    genres: [{ id: null, name: ' ' }],
+    genres: [{ id: null, name: '' }],
     production_countries: [{ name: '' }],
     overview: '',
   })
@@ -45,7 +64,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     overview
   } = movieData;
 
-  const poster = api.changeImgLinks(poster_path, 'w500');
+  const poster = api.changeImgLinks(poster_path, imageWidth[0]);
 
   const getMovieById = (id: number): void => {
     api.getDataById(id).then((res: any) => {
@@ -56,7 +75,17 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     setMovieId(match.params.id);
     getMovieById(Number(movieId));
+    console.log(movieData)
   }, [movieId])
+
+  const renderMovieInfo = (header: string, info: string | number): ReactNode => {
+    return (
+      <tr>
+        <td><h4>{header}: </h4></td>
+        <td><p>{info}</p></td>
+      </tr>
+    )
+  }
 
   return ((
     <div className="details-container">
@@ -82,7 +111,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
       </section>
       <div className="genres">
-        {!genres ? null : genres.map((genre) => <div key={genre.id}>{genre.name[0].toLowerCase() + genre.name.slice(1)}</div>)}
+        {genres && genres.map((genre) => <div key={genre.id}>{genre.name}</div>)}
       </div>
       <div className="hl"></div>
       <div className="description">
@@ -96,13 +125,5 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   )
 }
 
-function renderMovieInfo(header: string, info: any): any {
-  return (
-    <tr>
-      <td><h4>{header}: </h4></td>
-      <td><p>{info}</p></td>
-    </tr>
-  )
-}
 
 export default MovieDetails;
