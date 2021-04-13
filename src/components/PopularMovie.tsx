@@ -46,12 +46,12 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             window.innerWidth < 767 ? 'text-overlow' : ''
           }`}>
           {overview.length >= 250 ? (
-            <p>
+            <span>
               {overview.slice(0, 250)}
               <Link className="movie-read-more" to={`/movie-details/:${id} `}>
                 <span>...Read more</span>
               </Link>
-            </p>
+            </span>
           ) : (
             overview
           )}
