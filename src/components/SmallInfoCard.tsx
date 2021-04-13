@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Title from './Title';
 
-import api from 'src/service/api';
+import api from '../service/api';
 
 import buttonImgSrc from '../assets/image95.png';
 import '../styles/SmallCardInfo.scss';
 
-type CardinfoProps = {
+type CardInfoProps = {
   id: number;
 };
 
-type DataType = {
+type ResponseData = {
   title: string;
   poster_path: string;
   vote_average: string;
@@ -19,9 +19,9 @@ type DataType = {
   id?: number;
 };
 
-const SmallInfoCard = ({ id }: CardinfoProps) => {
+const SmallInfoCard = ({ id }: CardInfoProps) => {
 
-  const [data, setData] = useState<DataType>({
+  const [data, setData] = useState<ResponseData>({
     poster_path: '',
     vote_count: '',
     title: '',
