@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Title from './Title';
 
 import api from 'src/service/api';
 
 import buttonImgSrc from '../assets/image95.png';
 import '../styles/SmallCardInfo.scss';
-
 
 type CardinfoProps = {
   id: number;
@@ -26,7 +26,6 @@ const SmallInfoCard = ({ id }: CardinfoProps) => {
     vote_count: '',
     title: '',
     vote_average: '',
-
   });
 
   useEffect(() => {
@@ -37,9 +36,8 @@ const SmallInfoCard = ({ id }: CardinfoProps) => {
 
   return (
     <div className="small-cardInfo">
-      {/* temporary TitleComponent */}
-      <div className="title-component small-cardInfo__title">
-        <p>{data.title}</p>
+      <div className=" small-cardInfo__title">
+        <Title text={data.title} />
       </div>
       <div className="small-cardInfo__rate">
         <div className="small-cardInfo__rate-voters">Voters<br />{data.vote_count}</div>
