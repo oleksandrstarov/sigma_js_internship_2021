@@ -30,13 +30,8 @@ const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   };
 
   const getPrevPath = () => {
-    const name = routing.find(item => {
-      if(item.path === prevPath || item.path.includes(prevPath)) {
-        return item;
-      }
-    })
-
-    setPrevPathName(name&&name.name || '')
+    const { name } = routing.find(({ path }):boolean => path.includes(prevPath)) || { name: '' };
+    setPrevPathName(name);
   }
 
   useEffect(() => {
@@ -47,7 +42,7 @@ const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   return (
     <div className={`breadcrumbs ${className}`}>
       {(prevPathName && dynamic) && (
-        <a className="breadcrumb" href={`${prevPath}`} key={0}>
+        <a className="breadcrumb" href={prevPath} key={0}>
           {prevPathName}
         </a>
       )}
