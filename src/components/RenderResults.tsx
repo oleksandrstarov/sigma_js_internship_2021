@@ -1,44 +1,35 @@
-import '../styles/RenderResults.scss';
-
-import buttonImgLine from '../assets/lines.png';
-
-import buttonImgGroup from '../assets/Group.png';
-
 import { useState } from 'react';
 
-import useDeviceDetect from 'src/hooks/useDeviceDetect';
+import buttonImgLine from '../assets/lines.png';
+import buttonImgGroup from '../assets/Group.png';
 
-const RenderResults = () => {
+import '../styles/RenderResults.scss';
+import CardInfo from './CardInfo';
 
-    const [tailState, setTailState] = useState(true);
+type ArrListProps = {
+  list: {}[];
+}
 
-    const screenState = useDeviceDetect();
+const RenderResults = ({ list }: ArrListProps) => {
 
-    const handlerTail = () => setTailState(!tailState);
+  const [tailState, setTailState] = useState(true);
 
-    // Here are commented out temporary examples for future components.
-    const createListItems = () => {
-        return tailState
-            ? screenState ? /* <componentExample props={item}/>) */ : /* <componentExample props={item, tailState}/>) */
-            :/* <componentExample props={item, tailState}/>) */;
-    }
+  const handlerTail = () => setTailState(!tailState);
 
-    const listItems = createListItems();
-
-    return (
-        <div className='delivery'>
-
-            <div className='view-toggler' onClick={() => handlerTail()}>
-                {tailState
-                    ? <img src={buttonImgGroup} alt='button-img-group' className='delivery__taggler' />
-                    : <img src={buttonImgLine} alt='button-img-line' className='delivery__taggler' />}
-            </div>
-
-            <div className="delivery__container">
-                {listItems}
-            </div>
-        </div>
-    );
+  return (
+    <div className='delivery'>
+      <div className='view-toggler'>
+        {tailState
+          ? <img src={buttonImgGroup} alt='button-img-group' className='delivery__taggler' onClick={() => handlerTail()} />
+          : <img src={buttonImgLine} alt='button-img-line' className='delivery__taggler' onClick={() => handlerTail()} />}
+      </div>
+      <div className="delivery__container">
+        {list.map((item: any) => {
+          return <CardInfo tailWide={!tailState} number={item.id} />
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default RenderResults;

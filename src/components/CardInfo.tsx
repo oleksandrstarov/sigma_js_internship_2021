@@ -13,14 +13,15 @@ let CardInfo = ({ tailWide, number }: { number: number; tailWide: boolean }) => 
     title: '',
     vote_average: '',
     vote_count: '',
-    overview: ''
+    overview: '',
+
   });
-  const { poster_path, original_title, title, vote_average, overview } = data;
+  const { poster_path, original_title, title, vote_average, overview, vote_count } = data;
   const srcImg = api.changeImgLinks(poster_path, 'w342');
 
   useEffect(() => {
     api.getDataById(number).then((res: any) => {
-      setData(res.data);
+      setData(res);
     });
   }, [number]);
 
@@ -61,7 +62,7 @@ let CardInfo = ({ tailWide, number }: { number: number; tailWide: boolean }) => 
         <div className='card-info__gradient' />
         <div className='info-card__rate'>
           <div className='info-card__imdb'>IMDB {vote_average}</div>
-          <div className='info-card__voters'>Voters {vote_average}</div>
+          <div className='info-card__voters'>Voters {vote_count}</div>
         </div>
         <NavLink to={`/movie-details/:${number}`}>
           <button type='button' className={'card-info__button'}>

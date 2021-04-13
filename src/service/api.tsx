@@ -18,9 +18,10 @@ const apiService: { storeKey: string, store: { history: number[], favorites: num
 const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
-    serviceStore !== null
-      ? apiService.store = JSON.parse(serviceStore)
-      : this.setStore();
+    if (serviceStore !== null) {
+      return JSON.parse(serviceStore);
+    }
+    this.setStore();
     return apiService.store;
   },
 
@@ -42,7 +43,7 @@ const api = {
   setFavoritesId(id: number) {
     const store = this.getStore();
     const isThereAnId = store.favorites.includes(id);
-    if (isThereAnId) {
+    if (!isThereAnId) {
       store.favorites.push(id)
     };
     this.setStore(store);
@@ -100,7 +101,7 @@ const api = {
 
   async getDataById(id: number) {
     const obj = await axios.get(`movie/${id}?${API_KEY}`);
-    return obj.data.results;
+    return obj.data;
   },
 
   async getPopularQueryList() {
