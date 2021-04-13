@@ -20,8 +20,8 @@ const RenderResults = ({ list }: ArrListProps) => {
     <div className='delivery'>
       <div className='view-toggler'>
         {tailState
-          ? <img src={buttonImgGroup} alt='button-img-group' className='delivery__taggler' onClick={() => handlerTail()} />
-          : <img src={buttonImgLine} alt='button-img-line' className='delivery__taggler' onClick={() => handlerTail()} />}
+          ? <img src={buttonImgGroup} alt='button-img-group' className='delivery__toggler' onClick={() => handlerTail()} />
+          : <img src={buttonImgLine} alt='button-img-line' className='delivery__toggler' onClick={() => handlerTail()} />}
       </div>
       <div className="delivery__container">
         {list.map((item: any) => {
