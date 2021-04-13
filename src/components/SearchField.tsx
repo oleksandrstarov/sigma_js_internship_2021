@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const loupeIcon = '/images/search-icon.png';
+const loupeIcon = '/images/search-icon.svg';
 
 const SearchField: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
