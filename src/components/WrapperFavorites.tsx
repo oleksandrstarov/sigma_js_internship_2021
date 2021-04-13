@@ -1,34 +1,35 @@
-import { useEffect, useState } from 'react';
-// import CardInfo from './CardInfo';
+import { useState, useEffect } from 'react';
+
 import Title from './Title';
-// import Slider from './Slider';
-// import PopularMovie from './PopularMovie';
+import Container from './Container';
+import Slider from './Slider';
+import SmallInfoCard from './SmallInfoCard';
 
 import api from 'src/service/api';
 
-
 const WrapperFavorites = () => {
-  let result: any = [];
-
-  const [movies, setMovies] = useState<any | null>(null);
+  const [movieInfo, setMovieInfo] = useState([]);
 
   useEffect(() => {
-    setMovies(localStorage.getItem('favorites'));
-    api.getDataByIds(JSON.parse(movies)).then((res: any) => {
-      res.map((item: Object) => result.push(item))
-    })
+    api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
+      setMovieInfo(res);
+    });
+  }, []);
 
-    // console.log(result);
-  }, [movies])
-
-  return !movies ? null : (
-    <div>
-      <Title text="Favourites" />
-      {/* <Slider>
-        {result.map((item: any) => <PopularMovie movie={item} />)}
-      </Slider> */}
-    </div>
-  )
-}
+  return !movieInfo.length ? null : (
+    <Container>
+      <Title text={'Favorite movies'} />
+      <Slider>
+        {movieInfo.map((movie: any) => {
+          return (
+            <div className="slide" key={movie.id}>
+              <SmallInfoCard id={movie.id} />
+            </div>
+          );
+        })}
+      </Slider>
+    </Container>
+  );
+};
 
 export default WrapperFavorites;
