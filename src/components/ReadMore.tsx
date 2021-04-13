@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { ReactNode } from 'react';
+import { ReactText } from 'react';
 
 import '../styles/ReadMore.scss';
 
 interface IProps {
-  children: ReactNode;
+  children: ReactText;
 }
 
 const ReadMore = ({ children }: IProps) => {
-  const text: any = children;
+  const text = String(children);
   const [isReadMore, setIsReadMore] = useState(true);
   const toggleReadMore = () => {
     setIsReadMore(!isReadMore);
@@ -16,14 +16,14 @@ const ReadMore = ({ children }: IProps) => {
   if (!text) {
     return null;
   }
-  return text.length < 250 ? text : (
+  return <>{text.length < 250 ? text : (
     <p>
       {isReadMore ? text.slice(0, 250) : text}
       <span onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? " ...Read more" : " Show less"}
       </span>
     </p>
-  )
+  )}</>
 };
 
 export default ReadMore;

@@ -6,7 +6,7 @@ import ReadMore from './ReadMore';
 
 import '../styles/MovieDetails.scss';
 
-enum imageWidth {
+enum ImageWidth {
   w500
 }
 
@@ -14,7 +14,7 @@ type MovieDetailsProps = {
   match: { params: { id: string } }
 }
 
-type movieInfo = {
+type MovieInfo = {
   poster_path: string;
   original_title: string;
   title: string;
@@ -25,14 +25,14 @@ type movieInfo = {
   popularity: string;
   vote_average: string;
   runtime: string;
-  genres: Array<any>;
-  production_countries: Array<any>;
+  genres: [{ id: null, name: string }],
+  production_countries: [{ name: string }]
   overview: string;
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
   const [movieId, setMovieId] = useState<string>('');
-  const [movieData, setMovieData] = useState<movieInfo>({
+  const [movieData, setMovieData] = useState<MovieInfo>({
     poster_path: '',
     original_title: '',
     title: '',
@@ -64,7 +64,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     overview
   } = movieData;
 
-  const poster = api.changeImgLinks(poster_path, imageWidth[0]);
+  const poster = api.changeImgLinks(poster_path, ImageWidth[0]);
 
   const getMovieById = (id: number): void => {
     api.getDataById(id).then((res: any) => {
@@ -75,7 +75,6 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     setMovieId(match.params.id);
     getMovieById(Number(movieId));
-    console.log(movieData)
   }, [movieId])
 
   const renderMovieInfo = (header: string, info: string | number): ReactNode => {
@@ -87,7 +86,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     )
   }
 
-  return ((
+  return (
     <div className="details-container">
       <section className="movie-wrapper">
         <div className="movie-img">
@@ -121,7 +120,6 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
       </div>
       <div className="hl"></div>
     </div>
-  )
   )
 }
 
