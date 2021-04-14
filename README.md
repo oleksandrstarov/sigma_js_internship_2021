@@ -159,3 +159,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
     api.changeImgLinks(url, size)       -> img-URL ( https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg )
 
+**Filter method:** 
+
+* api.getSearchFileredList(movieFilter).then(console.log)  -> [{},{}]  (movieFilter = {from: 2010,to: 2012,gener:'Comedy',page: 1})

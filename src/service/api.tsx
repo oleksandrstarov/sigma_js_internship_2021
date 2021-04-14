@@ -1,6 +1,7 @@
 import {
   API_KEY,
-  API_IMG_URL
+  API_IMG_URL,
+  API_GENER_ID
 } from '../constants/api';
 import axios from '../axios/url';
 
@@ -115,6 +116,43 @@ const api = {
 
   async getSearchList(query: string) {
     let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
+    return obj.data.results;
+  },
+
+  async getSearchFileredList(dataFilter:
+    {
+      from: number,
+      to: number,
+      gener: string | null,
+      page: number
+    } = {
+      from: 1900,
+      to: 2020,
+      gener: null,
+      page: 1,
+    }
+  ) {
+
+    function setFilteredData() {
+      const { from, to } = dataFilter
+      if (from < to) {
+        return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
+      } else if (from > to) {
+        return `&primary_release_date.gte=${to}-01-01&primary_release_date.lte=${from}-01-01`
+      }
+      return `&primary_release_date.gte=${from}-01-01`
+    }
+
+    function setGener() {
+      const { gener } = dataFilter;
+      if (gener !== null) {
+        const generId = API_GENER_ID.find(item => item.name === gener);
+        return `&with_genres=${generId?.id}`
+      }
+      return '';
+    }
+
+    let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGener()}&${API_KEY}`);
     return obj.data.results;
   },
 
