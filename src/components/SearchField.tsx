@@ -87,7 +87,7 @@ const SearchField: React.FC = () => {
           onFocus={focusHandler}
           autoComplete="off"
         />
-        {(focus || dropdown || true) && (
+        {(focus || dropdown) && (
           <div
             className="drop-down-filter"
             onMouseEnter={mouseEnterHandler}
