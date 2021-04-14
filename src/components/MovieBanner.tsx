@@ -12,9 +12,9 @@ const MovieBanner = () => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
 
   const getPopularMovies = (): void => {
-     api.getPopularQueryList().then(data => {
-       setPopularMovies(data);
-     });
+    api.getPopularQueryList().then(data => {
+      setPopularMovies(data);
+    });
   };
 
   useEffect(() => {

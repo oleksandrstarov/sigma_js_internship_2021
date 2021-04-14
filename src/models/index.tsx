@@ -13,5 +13,5 @@ export interface PopularMovieProps {
 
 export enum Theme {
   dark,
-  light,
+  light
 }

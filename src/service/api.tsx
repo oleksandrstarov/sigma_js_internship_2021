@@ -1,40 +1,42 @@
-import {
-  API_KEY,
-  API_IMG_URL
-} from '../constants/api';
+import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
 import { Theme } from '../models/index';
 
-const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: any }, } = {
+const apiService: {
+  storeKey: string;
+  store: { history: number[]; favorites: number[]; theme: any };
+} = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
     theme: Theme.light
-  },
-}
+  }
+};
 
 const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
     serviceStore !== null
-      ? apiService.store = JSON.parse(serviceStore)
+      ? (apiService.store = JSON.parse(serviceStore))
       : this.setStore();
     return apiService.store;
   },
 
-  setStore(data: Object = {
-    history: [],
-    favorites: [],
-    theme: 1
-  }) {
+  setStore(
+    data: Object = {
+      history: [],
+      favorites: [],
+      theme: 1
+    }
+  ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
   },
 
   switchTheme() {
     const store = this.getStore();
-    store.theme = (store.theme === Theme.light) ? Theme.dark : Theme.light;
+    store.theme = store.theme === Theme.light ? Theme.dark : Theme.light;
     this.setStore(store);
     return store.theme;
   },
@@ -43,8 +45,8 @@ const api = {
     const store = this.getStore();
     const isThereAnId = store.favorites.includes(id);
     if (isThereAnId) {
-      store.favorites.push(id)
-    };
+      store.favorites.push(id);
+    }
     this.setStore(store);
   },
 
@@ -69,8 +71,8 @@ const api = {
     const store = this.getStore();
     const isThereAnId = store.history.includes(id);
     if (isThereAnId) {
-      store.history.push(id)
-    };
+      store.history.push(id);
+    }
     this.setStore(store);
   },
 
@@ -93,9 +95,10 @@ const api = {
   getDataByIds(ids: number[]) {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
-      async (url: any) => await axios.get(url).then((res: { data: any; }) => res.data)
+      async (url: any) =>
+        await axios.get(url).then((res: { data: any }) => res.data)
     );
-    return Promise.all(requests)
+    return Promise.all(requests);
   },
 
   async getDataById(id: number) {
@@ -109,7 +112,9 @@ const api = {
   },
 
   async getTopRatedList() {
-    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US`);
+    const obj = await axios.get(
+      `movie/top_rated?translations&${API_KEY}&region=US`
+    );
     return obj.data.results;
   },
 
@@ -120,7 +125,7 @@ const api = {
 
   changeImgLinks(url: string, size: string) {
     return `${API_IMG_URL}${size}${url}`;
-  },
-}
+  }
+};
 
 export default api;
