@@ -20,15 +20,18 @@ const WrapperFavorites = () => {
     });
   }, []);
 
-  return (!movieInfo.length ? null : (
+  if (!movieInfo.length) {
+    return null;
+  }
+  return (
     <>
       <Container>
         <Title text={'Favorite movies'} />
         {movieInfo.length && (<Slider>
-          {movieInfo.map((movie: MovieId) => {
+          {movieInfo.map(({ id }: MovieId) => {
             return (
-              <div className="slide" key={movie.id}>
-                <SmallInfoCard id={movie.id} />
+              <div className="slide" key={id}>
+                <SmallInfoCard id={id} />
               </div>
             );
           })}
@@ -36,7 +39,6 @@ const WrapperFavorites = () => {
       </Container>
     </>
   )
-  );
 };
 
 export default WrapperFavorites;
