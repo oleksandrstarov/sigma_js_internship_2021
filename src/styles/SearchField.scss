@@ -1,0 +1,124 @@
+@import './variables';
+
+.search-form {
+  background-color: #ffffff;
+  box-shadow: $main-shadow;
+  border-radius: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-right: 10px;
+  width: 100%;
+  max-width: 365px;
+
+  @media screen and(min-width: 992px) {
+    margin-right: 40px;
+    height: 45px;
+  }
+
+  > input {
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 45px;
+    border-radius: inherit;
+
+    @media screen and(min-width: 992px) {
+      padding-left: 20px;
+
+      &::-webkit-search-cancel-button {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .button-submit {
+    box-shadow: $main-shadow;
+    border-radius: 35px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    overflow: hidden;
+
+    @media screen and(min-width: 992px) {
+      width: 45px;
+      height: 45px;
+    }
+
+    img {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      width: 21px;
+      height: 21px;
+
+      @media screen and(min-width: 992px) {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+
+    @media screen and(min-width: 992px) {
+      cursor: pointer;
+    }
+  }
+
+  .drop-down-filter{
+    position: absolute;
+    border-radius: 10px;
+    width: 100%;
+    height: 150px;
+    background-color: #fff;
+    box-shadow:$main-shadow;
+    top: 50px;
+    // here I will align all childrens in the center
+    *{
+      margin:auto;
+      text-align:center;
+    }
+
+    .dropdown-wrapper{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height:100%;
+
+      .date-select-wrapper{
+        grid-column: span 3 / auto;
+        display:flex;
+        justify-content: space-between;
+        
+        span{
+          width:40%;
+          border: 1px solid ;
+          border-radius: 35px;
+        }
+        button {
+          cursor: pointer;
+          width: 20px;
+        }
+        
+        input {
+          
+          font-size:16px;
+          text-align: center;
+          width: 60%;
+          height: 100%;
+        }
+      }
+        .custom-checkbox{
+          width: 25px;
+          height: 20px;
+        }
+        .custom-select{
+          font-size: 16px;
+        }
+      
+    }
+  }
+   
+}
