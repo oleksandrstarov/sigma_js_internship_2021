@@ -43,8 +43,8 @@ const api = {
 
   setFavoritesId(id: number) {
     const store = this.getStore();
-    const isThereAnId = store.favorites.includes(id);
-    if (!isThereAnId) {
+    const isNewId = store.favorites.includes(id);
+    if (!isNewId) {
       store.favorites.push(id);
     }
     this.setStore(store);
@@ -52,8 +52,8 @@ const api = {
 
   isIdInFavorites(id: number) {
     const store = api.getFavoritsIdList();
-    const isThereAnId = store.includes(id);
-    return !isThereAnId;
+    const isNewId = store.includes(id);
+    return !isNewId;
   },
 
   getFavoritsIdList() {
@@ -75,8 +75,8 @@ const api = {
 
   setHistoryId(id: number) {
     const store = this.getStore();
-    const isThereAnId = store.history.includes(id);
-    if (isThereAnId) {
+    const isNewId = store.history.includes(id);
+    if (!isNewId) {
       store.history.push(id);
     }
     this.setStore(store);
@@ -84,8 +84,8 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-    const isThereAnId = store.includes(id);
-    return !isThereAnId;
+    const isNewId = store.includes(id);
+    return !isNewId;
   },
 
   getHistoryIdList() {

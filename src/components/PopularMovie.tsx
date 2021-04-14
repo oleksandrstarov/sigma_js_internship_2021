@@ -27,7 +27,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
     starRaitingIcon,
     starRaitingIcon
   ];
-
+  
   return (
     <div className="movie-banner-body">
       <div className="movie-image-container">

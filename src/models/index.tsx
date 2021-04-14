@@ -6,7 +6,6 @@ export interface Movie {
   backdrop_path: string;
   id: number | string;
 }
-
 export interface PopularMovieProps {
   movie: Movie;
 }
@@ -16,7 +15,4 @@ export enum Theme {
   light,
 }
 
-export interface FavoriteMovie {
-  movieId: number;
-}
 
