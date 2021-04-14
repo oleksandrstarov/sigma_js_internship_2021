@@ -7,8 +7,12 @@ import SmallInfoCard from './SmallInfoCard';
 
 import api from '../service/api';
 
+type MovieId = {
+  id: number;
+}
+
 const WrapperFavorites = () => {
-  const [movieInfo, setMovieInfo] = useState([]);
+  const [movieInfo, setMovieInfo] = useState<MovieId[]>([]);
 
   useEffect(() => {
     api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
@@ -16,19 +20,22 @@ const WrapperFavorites = () => {
     });
   }, []);
 
-  return !movieInfo.length ? null : (
-    <Container>
-      <Title text={'Favorite movies'} />
-      <Slider>
-        {movieInfo.map((movie: any) => {
-          return (
-            <div className="slide" key={movie.id}>
-              <SmallInfoCard id={movie.id} />
-            </div>
-          );
-        })}
-      </Slider>
-    </Container>
+  return (!movieInfo.length ? null : (
+    <>
+      <Container>
+        <Title text={'Favorite movies'} />
+        {movieInfo.length && (<Slider>
+          {movieInfo.map((movie: MovieId) => {
+            return (
+              <div className="slide" key={movie.id}>
+                <SmallInfoCard id={movie.id} />
+              </div>
+            );
+          })}
+        </Slider>)}
+      </Container>
+    </>
+  )
   );
 };
 
