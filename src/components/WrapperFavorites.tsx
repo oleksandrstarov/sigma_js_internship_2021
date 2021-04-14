@@ -5,7 +5,7 @@ import Container from './Container';
 import Slider from './Slider';
 import SmallInfoCard from './SmallInfoCard';
 
-import api from 'src/service/api';
+import api from '../service/api';
 
 const WrapperFavorites = () => {
   const [movieInfo, setMovieInfo] = useState([]);
