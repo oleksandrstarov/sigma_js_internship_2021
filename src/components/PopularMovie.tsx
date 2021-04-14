@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import useDeviceDetect from 'src/hooks/useDeviceDetect';
-import { PopularMovieProps } from "../models/index"
+import useDeviceDetect from '../hooks/useDeviceDetect';
+import { PopularMovieProps } from '../models/index';
+import { API_IMG_URL } from '../constants/api';
 
 import '../styles/MovieBanner.scss';
 
@@ -18,8 +19,8 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
 
   const btnIcon = '/images/btn-icon.png';
   const starRaitingIcon = '/images/star.svg';
-  const mobileImgPath = `https://image.tmdb.org/t/p/original/${poster_path}`;
-  const desktopImgPath = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
+  const mobileImgPath = `${API_IMG_URL}original/${poster_path}`;
+  const desktopImgPath = `${API_IMG_URL}original/${backdrop_path}`;
   const starRaitingArr: string[] = [
     starRaitingIcon,
     starRaitingIcon,
@@ -44,7 +45,16 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           className={`movie-description ${
             window.innerWidth < 767 ? 'text-overlow' : ''
           }`}>
-          {overview}
+          {overview.length >= 250 ? (
+            <span>
+              {overview.slice(0, 250)}
+              <Link className="movie-read-more" to={`/movie-details/:${id} `}>
+                <span>...Read more</span>
+              </Link>
+            </span>
+          ) : (
+            overview
+          )}
         </p>
         <div className="movie-rating-container">
           <p className="movie-rating-box">
