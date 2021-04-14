@@ -18,9 +18,16 @@ const apiService: {
 const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
+<<<<<<< HEAD
     serviceStore !== null
       ? (apiService.store = JSON.parse(serviceStore))
       : this.setStore();
+=======
+    if (serviceStore !== null) {
+      return JSON.parse(serviceStore);
+    }
+    this.setStore();
+>>>>>>> 0cb7695ad5e2682602403a135bfd3d55089f7b5b
     return apiService.store;
   },
 
@@ -44,7 +51,11 @@ const api = {
   setFavoritesId(id: number) {
     const store = this.getStore();
     const isThereAnId = store.favorites.includes(id);
+<<<<<<< HEAD
     if (isThereAnId) {
+=======
+    if (!isThereAnId) {
+>>>>>>> 0cb7695ad5e2682602403a135bfd3d55089f7b5b
       store.favorites.push(id);
     }
     this.setStore(store);
@@ -103,7 +114,7 @@ const api = {
 
   async getDataById(id: number) {
     const obj = await axios.get(`movie/${id}?${API_KEY}`);
-    return obj.data.results;
+    return obj.data;
   },
 
   async getPopularQueryList() {

@@ -68,7 +68,7 @@ const SearchField: React.FC = () => {
         );
       }
     },
-    [inputValue, history, checkboxes, genreToSearch]
+    [inputValue, history, checkboxes, genreToSearch, dateRange]
   );
 
   const focusHandler = useCallback((event: React.SyntheticEvent) => {

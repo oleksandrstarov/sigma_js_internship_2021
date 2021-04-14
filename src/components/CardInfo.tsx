@@ -6,6 +6,7 @@ import api from 'src/service/api';
 import buttonImgSrc from '../assets/image84.png';
 import '../styles/CardInfo.scss';
 
+<<<<<<< HEAD
 let CardInfo = ({
   tailWide,
   number
@@ -14,6 +15,12 @@ let CardInfo = ({
   tailWide: boolean;
 }) => {
   const [data, setData] = useState({
+=======
+type CardInfoProps = { number: number; tailWide: boolean };
+
+const CardInfo = ({ tailWide, number }: CardInfoProps) => {
+  const [movieData, setMovieData] = useState({
+>>>>>>> 0cb7695ad5e2682602403a135bfd3d55089f7b5b
     poster_path: '',
     original_title: '',
     title: '',
@@ -21,12 +28,21 @@ let CardInfo = ({
     vote_count: '',
     overview: ''
   });
-  const { poster_path, original_title, title, vote_average, overview } = data;
-  const srcImg = api.changeImgLinks(poster_path, 'w342');
+
+  const {
+    poster_path,
+    original_title,
+    title,
+    vote_average,
+    overview,
+    vote_count
+  } = movieData;
+
+  const srcImgLink = api.changeImgLinks(poster_path, 'w342');
 
   useEffect(() => {
     api.getDataById(number).then((res: any) => {
-      setData(res.data);
+      setMovieData(res);
     });
   }, [number]);
 
@@ -60,11 +76,23 @@ let CardInfo = ({
         )}
       </div>
       <div className="cars-info_container">
+<<<<<<< HEAD
         <img src={srcImg} alt={original_title} className={'card-info__img'} />
         <div className="card-info__gradient" />
         <div className="info-card__rate">
           <div className="info-card__imdb">IMDB {vote_average}</div>
           <div className="info-card__voters">Voters {vote_average}</div>
+=======
+        <img
+          src={srcImgLink}
+          alt={original_title}
+          className={'card-info__img'}
+        />
+        <div className="card-info__gradient" />
+        <div className="info-card__rate">
+          <div className="info-card__imdb">IMDB {vote_average}</div>
+          <div className="info-card__voters">Voters {vote_count}</div>
+>>>>>>> 0cb7695ad5e2682602403a135bfd3d55089f7b5b
         </div>
         <NavLink to={`/movie-details/:${number}`}>
           <button type="button" className={'card-info__button'}>
