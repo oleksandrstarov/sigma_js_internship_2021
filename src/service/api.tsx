@@ -103,23 +103,29 @@ const api = {
     return obj.data.results;
   },
 
-  async getPopularQueryList() {
-    const obj = await axios.get(`movie/popular?${API_KEY}&query`);
+  async getPopularQueryList(page: number = 1) {
+    const obj = await axios.get(`movie/popular?${API_KEY}&query&page=${page}`);
     return obj.data.results;
   },
 
-  async getTopRatedList() {
-    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US`);
+  async getTopRatedList(page: number = 1) {
+    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US&page=${page}`);
     return obj.data.results;
   },
 
-  async getSearchList(query: string) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
+  async getSearchList(query: string, page: number = 1) {
+    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
-  changeImgLinks(url: string, size: string) {
+  changeImgLinks(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
+  },
+
+  changeListByPagination(arr: Array<{}>, page: number = 1) {
+    return arr.length < 20
+      ? arr.slice(0, 20)
+      : arr.slice(20 * (page - 1), 20 * page);
   },
 }
 
