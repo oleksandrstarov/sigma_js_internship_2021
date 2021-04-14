@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactNode } from 'react';
 
-import api from 'src/service/api';
+import api from '../service/api';
 
 import ReadMore from './ReadMore';
 
@@ -25,13 +25,12 @@ type MovieInfo = {
   popularity: string;
   vote_average: string;
   runtime: string;
-  genres: [{ id: null, name: string }],
+  genres: [{ id: number | null, name: string }],
   production_countries: [{ name: string }]
   overview: string;
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
-  const [movieId, setMovieId] = useState<string>('');
   const [movieData, setMovieData] = useState<MovieInfo>({
     poster_path: '',
     original_title: '',
@@ -66,16 +65,11 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
 
   const poster = api.changeImgLinks(poster_path, ImageWidth[0]);
 
-  const getMovieById = (id: number): void => {
-    api.getDataById(id).then((res: any) => {
+  useEffect(() => {
+    api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
     })
-  }
-
-  useEffect(() => {
-    setMovieId(match.params.id);
-    getMovieById(Number(movieId));
-  }, [movieId])
+  }, [])
 
   const renderMovieInfo = (header: string, info: string | number): ReactNode => {
     return (
@@ -122,6 +116,5 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     </div>
   )
 }
-
 
 export default MovieDetails;
