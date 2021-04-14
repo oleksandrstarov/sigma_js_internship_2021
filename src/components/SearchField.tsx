@@ -75,17 +75,17 @@ const SearchField: React.FC = () => {
     setFocus(true);
   }, []);
 
-  const blurHandler = (event: React.SyntheticEvent) => {
+  const blurHandler = useCallback((event: React.SyntheticEvent) => {
     setFocus(false);
-  };
+  }, []);
 
-  const mouseEnterHandler = (event: React.SyntheticEvent) => {
+  const mouseEnterHandler = useCallback((event: React.SyntheticEvent) => {
     setDropdown(true);
-  };
+  }, []);
 
-  const mouseLeaveHandler = (event: React.SyntheticEvent) => {
+  const mouseLeaveHandler = useCallback((event: React.SyntheticEvent) => {
     setDropdown(false);
-  };
+  }, []);
 
   const fromDateIncreaseHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -171,7 +171,6 @@ const SearchField: React.FC = () => {
                   />
                   <button onClick={fromDateIncreaseHandler}>+</button>
                 </span>
-
                 <span>
                   <button onClick={toDateDecreaseHandler}>-</button>
                   <input type="number" value={dateRange.toDate} readOnly />
@@ -223,7 +222,6 @@ const SearchField: React.FC = () => {
             </div>
           </div>
         )}
-
         <button className="button-submit" type="submit">
           <img src={loupeIcon} alt="search-icon" />
         </button>
@@ -231,4 +229,5 @@ const SearchField: React.FC = () => {
     </>
   );
 };
+
 export default SearchField;
