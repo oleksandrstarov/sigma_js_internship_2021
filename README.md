@@ -103,13 +103,13 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 **API, Search:**
 
-* api.getSearchList(...); 		    api.getSearchList('godzilla'); -> [{data}, {data}] 
+* api.getSearchList(...); 		    -> [{data}, {data}] 	api.getSearchList('godzilla');
 
-* api.getDataById(...) 			    -> {data}
+* api.getDataById(...) 			    -> {data} 				api.getDataById(id) 	
 
-* api.getPopularQueryList()
+* api.getPopularQueryList()			-> [{data}, {data}] 	page: **( Optional )** api.getPopularQueryList(page)	
 
-* api.getTopRatedList()
+* api.getTopRatedList()				-> [{data}, {data}] 	page: **( Optional )** api.getTopRatedList(page)	
 
 **Favorite:**
 
@@ -125,22 +125,22 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 	 
 **History:**
 
-* api.setStoryId(...);
+* api.setHistoryId(...);
 	
-* api.deleteStoryId(...);
+* api.deleteHistoryId(...);
 	 
-* api.getStoryIdList();
+* api.getHistoryIdList();
 	 
 * api.getDataByIds(...); 
 	
-* api.clearStoryIdList();
+* api.clearHistoryIdList();
 
 **Extra methods:**
 
   url: /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg, 
   size: w500 **( Optional )**, "poster_sizes": ["w92","w154","w185","w342","w500","w780","original"]
 
-* api.changeImgLinks(url, size)           -> img-URL ( https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg )
+* api.changeImgLinks(url, size)           ->  https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg (img-URL )
 
   array: 20 items
   page: **( Optional )**
