@@ -11,6 +11,10 @@
 
 body {
     background-color: $bg-color-light;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #root {
@@ -35,4 +39,11 @@ body {
 
 .main {
   flex: 1 1 auto;
+  overflow: hidden;
+  padding: 140px;
+ 
+
+  @media screen and (min-width: 993px) {
+    padding: 90px;
+  }
 }

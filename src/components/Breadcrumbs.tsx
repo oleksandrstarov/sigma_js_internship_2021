@@ -1,11 +1,11 @@
 import '../styles/Breadcrumbs.scss';
 import { useEffect, useState } from 'react';
-import routing from "../config/routing";
+import routing from '../config/routing';
 
 type CrumbsType = {
-  name: string,
-  path?: string
-}
+  name: string;
+  path?: string;
+};
 
 type BreadcrumbsProps = {
   dynamic?: boolean;
@@ -15,7 +15,7 @@ type BreadcrumbsProps = {
 
 const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   const [prevPath, setPrevPath] = useState('');
-  const [prevPathName, setPrevPathName] = useState('')
+  const [prevPathName, setPrevPathName] = useState('');
 
   const generateLinks = () => {
     const items = crumbs.map((item: any, index: number) => {
@@ -30,18 +30,20 @@ const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
   };
 
   const getPrevPath = () => {
-    const { name } = routing.find(({ path }): boolean => path.includes(prevPath)) || { name: '' };
+    const { name } = routing.find(({ path }): boolean =>
+      path.includes(prevPath)
+    ) || { name: '' };
     setPrevPathName(name);
-  }
+  };
 
   useEffect(() => {
     setPrevPath(`/${document.referrer.split('/')[3]}`);
-    getPrevPath()
+    getPrevPath();
   });
 
   return (
     <div className={`breadcrumbs ${className}`}>
-      {(prevPathName && dynamic) && (
+      {prevPathName && dynamic && (
         <a className="breadcrumb" href={prevPath} key={0}>
           {prevPathName}
         </a>
