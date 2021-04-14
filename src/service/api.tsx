@@ -5,7 +5,7 @@ import {
 } from '../constants/api';
 import axios from '../axios/url';
 
-import { Theme } from '../models/index';
+import { MovieCard, Theme } from '../models/index';
 
 const apiService: {
   storeKey: string;
@@ -163,6 +163,13 @@ const api = {
 
     let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGener()}&${API_KEY}`);
     return obj.data.results;
+  },
+
+  changeImgLindks(arr: MovieCard[], idsList: number[]) {
+    const conformityIds = arr.filter(item => {
+      return idsList.find(itemId => itemId === item.id)
+    });
+    return conformityIds;
   },
 
   changeImgLinks(url: string, size: string) {
