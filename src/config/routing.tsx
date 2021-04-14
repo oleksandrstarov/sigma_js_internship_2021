@@ -17,13 +17,13 @@ export default [
     component: MovieDetails
   },
   {
-    path: '/favorites',
+    path: '/favorites/:page',
     name: 'Favorites',
     exact: false,
     component: Favorites
   },
   {
-    path: '/search-results',
+    path: '/search-results/:title/:page',
     name: 'Search results',
     exact: false,
     component: SearchResults

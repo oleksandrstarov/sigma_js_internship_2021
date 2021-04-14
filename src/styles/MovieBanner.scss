@@ -1,8 +1,6 @@
 @import "../styles/variables.scss";
 
 .movie-banner {
-  margin-top: 20px;
-
   .movie-banner-body {
     position: relative;
     max-width: 327px;
@@ -13,7 +11,7 @@
     margin: 0 auto;
 
     @media (min-width: 411px) {
-      max-width: 327px;
+      max-width: 330px;
     }
 
     @media (min-width: 768px) {
@@ -32,6 +30,11 @@
     overflow: hidden;
     cursor: pointer;
     border-radius: 15px;
+
+    @media (min-width: 1200px) {
+      flex: 1;
+      height: 100%;
+    }
   }
 
   .movie-banner-image {
@@ -46,15 +49,20 @@
     }
 
     @media (min-width: 411px) {
-      height: 435px;
+      height: 440px;
     }
 
     @media (min-width: 768px) {
       height: 400px;
+      object-fit: cover;
     }
 
     @media (min-width: 992px) {
       height: 330px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 100%;
     }
 
     @media (min-width: 1450px) {
@@ -62,7 +70,11 @@
     }
 
     @media (min-width: 1650px) {
-      height: 550px;
+      height: 500px;
+    }
+
+    @media (min-width: 1750px) {
+      height: 600px;
     }
   }
 
@@ -86,12 +98,18 @@
     @media (min-width: 768px) {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: flex-start;
       margin-left: 26px;
     }
 
+    @media (min-width: 1200px) {
+      width: 340px;
+    }
+
     @media (min-width: 1450px) {
       margin-left: 46px;
+      width: 370px;
     }
   }
 
@@ -137,12 +155,12 @@
     color: $white;
 
     @media (min-width: 411px) {
-      max-width: 265px;
+      max-width: 266px;
       margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
-      color: #000000;
+      color: $black;
       max-width: 320px;
     }
 
@@ -257,5 +275,11 @@
       width: 24px;
       height: 24px;
     }
+  }
+
+  .movie-read-more {
+    color: $yellow;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
   }
 }
