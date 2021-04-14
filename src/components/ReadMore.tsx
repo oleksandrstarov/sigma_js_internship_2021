@@ -3,11 +3,11 @@ import { ReactText } from 'react';
 
 import '../styles/ReadMore.scss';
 
-interface IProps {
+type ChildProps = {
   children: ReactText;
 }
 
-const ReadMore = ({ children }: IProps) => {
+const ReadMore = ({ children }: ChildProps) => {
   const text = String(children);
   const [isReadMore, setIsReadMore] = useState(true);
   const toggleReadMore = () => {
