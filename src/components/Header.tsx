@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <header className={isScrolled ? 'active' : ''}>
-      <div className="container test-release">
+      <div className="container test-release2">
         <a href="/" className="header-logo">
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
