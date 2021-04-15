@@ -52,11 +52,11 @@ const SearchField: React.FC = () => {
 
   const [genreToSearch, setGenreToSearch] = useState<string>('none');
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const searchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
-  const submitHandler = useCallback(
+  const submitSearchRequest = useCallback(
     (event: React.SyntheticEvent) => {
       event.preventDefault();
 
@@ -70,70 +70,79 @@ const SearchField: React.FC = () => {
     [inputValue, history, checkboxes, genreToSearch, dateRange]
   );
 
-  const focusHandler = useCallback((event: React.SyntheticEvent) => {
-    setFocus(true);
-  }, []);
+  const onFocusSearchInput = useCallback(
+    (event: React.SyntheticEvent): void => {
+      setFocus(true);
+    },
+    []
+  );
 
-  const blurHandler = useCallback((event: React.SyntheticEvent) => {
+  const onBlurSearchInput = useCallback((event: React.SyntheticEvent): void => {
     setFocus(false);
   }, []);
 
-  const mouseEnterHandler = useCallback((event: React.SyntheticEvent) => {
-    setDropdown(true);
-  }, []);
+  const mouseEnterDropdown = useCallback(
+    (event: React.SyntheticEvent): void => {
+      setDropdown(true);
+    },
+    []
+  );
 
-  const mouseLeaveHandler = useCallback((event: React.SyntheticEvent) => {
-    setDropdown(false);
-  }, []);
+  const mouseLeaveDropdown = useCallback(
+    (event: React.SyntheticEvent): void => {
+      setDropdown(false);
+    },
+    []
+  );
 
-  const fromDateIncreaseHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const fromDateInputIncrease = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       if (dateRange.fromDate >= dateRange.toDate) return;
       setDateRange({ ...dateRange, fromDate: dateRange.fromDate + 1 });
     },
     [dateRange]
   );
 
-  const fromDateDecreaseHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const fromDateInputDecrease = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       if (dateRange.fromDate <= 1980) return;
       setDateRange({ ...dateRange, fromDate: dateRange.fromDate - 1 });
     },
     [dateRange]
   );
 
-  const toDateIncreaseHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const toDateInputIncrease = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       if (dateRange.toDate >= 2022) return;
       setDateRange({ ...dateRange, toDate: dateRange.toDate + 1 });
     },
     [dateRange]
   );
 
-  const toDateDecreaseHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const toDateInputDecrease = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       if (dateRange.toDate <= dateRange.fromDate) return;
       setDateRange({ ...dateRange, toDate: dateRange.toDate - 1 });
     },
     [dateRange]
   );
 
-  const favoritesCheckHandler = useCallback(
-    (event: React.InputHTMLAttributes<HTMLInputElement>) => {
+  const favoritesCheckboxHandler = useCallback(
+    (event: React.InputHTMLAttributes<HTMLInputElement>): void => {
       setCheckboxes({ ...checkboxes, favorites: !checkboxes.favorites });
     },
     [checkboxes]
   );
 
-  const historyCheckHandler = useCallback(
-    (event: React.InputHTMLAttributes<HTMLInputElement>) => {
+  const historyCheckboxHandler = useCallback(
+    (event: React.InputHTMLAttributes<HTMLInputElement>): void => {
       setCheckboxes({ ...checkboxes, history: !checkboxes.history });
     },
     [checkboxes]
   );
 
   const selectGenreHandler = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
+    (event: React.ChangeEvent<HTMLSelectElement>): void => {
       setGenreToSearch(event.target.value);
     },
     []
@@ -141,39 +150,39 @@ const SearchField: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={submitHandler} className="search-form">
+      <form onSubmit={submitSearchRequest} className="search-form">
         <input
-          onBlur={blurHandler}
+          onBlur={onBlurSearchInput}
           value={inputValue}
-          onChange={changeHandler}
+          onChange={searchInputChange}
           id="search"
           type="search"
           placeholder="Search"
           className="header-search"
-          onFocus={focusHandler}
+          onFocus={onFocusSearchInput}
           autoComplete="off"
         />
         {(focus || dropdown) && (
           <div
             className="dropdown-filter"
-            onMouseEnter={mouseEnterHandler}
-            onMouseLeave={mouseLeaveHandler}>
+            onMouseEnter={mouseEnterDropdown}
+            onMouseLeave={mouseLeaveDropdown}>
             <div className="dropdown-wrapper">
               <div className="date-select-wrapper">
                 <span>
-                  <button onClick={fromDateDecreaseHandler}>-</button>
+                  <button onClick={fromDateInputDecrease}>-</button>
                   <input
                     type="number"
                     min="1980"
                     value={dateRange.fromDate}
                     readOnly
                   />
-                  <button onClick={fromDateIncreaseHandler}>+</button>
+                  <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
-                  <button onClick={toDateDecreaseHandler}>-</button>
+                  <button onClick={toDateInputDecrease}>-</button>
                   <input type="number" value={dateRange.toDate} readOnly />
-                  <button onClick={toDateIncreaseHandler}>+</button>
+                  <button onClick={toDateInputIncrease}>+</button>
                 </span>
               </div>
               <label
@@ -181,7 +190,7 @@ const SearchField: React.FC = () => {
                   checkboxes.favorites ? 'active-checkbox' : ''
                 }`}>
                 <input
-                  onChange={favoritesCheckHandler}
+                  onChange={favoritesCheckboxHandler}
                   type="checkbox"
                   className="custom-checkbox"
                   checked={checkboxes.favorites}
@@ -198,7 +207,7 @@ const SearchField: React.FC = () => {
                   checkboxes.history ? 'active-checkbox' : ''
                 }`}>
                 <input
-                  onChange={historyCheckHandler}
+                  onChange={historyCheckboxHandler}
                   type="checkbox"
                   className="custom-checkbox"
                   checked={checkboxes.history}
