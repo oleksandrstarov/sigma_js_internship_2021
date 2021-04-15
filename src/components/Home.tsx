@@ -1,7 +1,13 @@
 import MovieBanner from './MovieBanner';
+import WrapperFavorites from './WrapperFavorites';
 
 const Home = () => {
-  return (<MovieBanner />);
+  return (<><MovieBanner />
+    <div className="padding-top-bottom">
+      <WrapperFavorites />
+    </div>
+  </>);
+
 };
 
 export default Home;
