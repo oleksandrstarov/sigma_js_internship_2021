@@ -33,13 +33,13 @@ const Slider = ({ className, children }: SliderProps) => {
     item.style.transform = `translateX(${value}px)`;
   };
 
-  const setProgress = () => {
-    const length =
-      sliderRef.current.querySelectorAll('.slide').length;
-    progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
-  };
-
   useEffect(() => {
+    const setProgress = () => {
+      const length =
+        sliderRef.current.querySelectorAll('.slide').length;
+      progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
+    };
+
     if (!activeSlides) {
       setActiveSlides(Math.floor(sliderRef.current.clientWidth / slideWidth));
       setProgress();
