@@ -52,8 +52,7 @@ const api = {
 
   isIdInFavorites(id: number) {
     const store = api.getFavoritsIdList();
-    const isNewId = store.includes(id);
-    return !isNewId;
+    return !store.includes(id);
   },
 
   getFavoritsIdList() {
@@ -84,8 +83,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-    const isNewId = store.includes(id);
-    return !isNewId;
+     return !store.includes(id);
   },
 
   getHistoryIdList() {
@@ -107,8 +105,8 @@ const api = {
   getDataByIds(ids: number[]) {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
-      async (url: any) =>
-        await axios.get(url).then((res: { data: any }) => res.data)
+      async (url: string) =>
+        await axios.get(url).then((res: { data: {}[] }) => res.data)
     );
     return Promise.all(requests);
   },

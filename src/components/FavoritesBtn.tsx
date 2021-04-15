@@ -9,26 +9,27 @@ type FavoritesBtnProps = {
 };
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
-  const [isFavorite, setisFavorite] = useState(api.isIdInFavorites(movieId));
-
+  const [isFavorite, setIsFavorite] = useState(api.isIdInFavorites(movieId));
+ 
   const heartUnfilledIcon = '/images/favoriteBtn/heartFilled.svg';
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
-    event.preventDefault();
+  const handleSwitchFavoriteState = (): void => {
     isFavorite ? api.setFavoritesId(movieId) : api.deleteFavoritsId(movieId);
-    setisFavorite(api.isIdInFavorites(movieId));
+    setIsFavorite(api.isIdInFavorites(movieId));
   };
 
   return (
-    <a href="#!" className="favorite-btn" onClick={handleClick}>
+    <button className="favorite-btn" onClick={handleSwitchFavoriteState}>
       <img
         className="favorite-icon"
         src={isFavorite ? heartFilledIcon : heartUnfilledIcon}
         alt="favorite icon"
       />
-    </a>
+    </button>
   );
 };
 
 export default FavoritesBtn;
+
+
