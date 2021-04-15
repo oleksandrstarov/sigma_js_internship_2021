@@ -88,7 +88,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-     return !store.includes(id);
+    return !store.includes(id);
   },
 
   getHistoryIdList() {
@@ -174,7 +174,7 @@ const api = {
     let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
     return obj.data.results;
   },
-  // idsList.includes(item.id)
+
   getFilterMatchesList(arr: MovieCard[], idsList: number[]) {
     const conformityIds = arr.filter(item => {
       return idsList.includes(item.id);
