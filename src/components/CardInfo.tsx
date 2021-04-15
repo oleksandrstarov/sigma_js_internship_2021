@@ -5,6 +5,8 @@ import api from 'src/service/api';
 
 import buttonImgSrc from '../assets/image84.png';
 import '../styles/CardInfo.scss';
+import FavoritesBtn from './FavoritesBtn';
+import StarRating from './StarRating';
 
 type CardInfoProps = { number: number; tailWide: boolean };
 
@@ -15,7 +17,8 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     title: '',
     vote_average: 0,
     vote_count: 0,
-    overview: ''
+    overview: '',
+    id: 0
   });
 
   const {
@@ -24,7 +27,8 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     title,
     vote_average,
     overview,
-    vote_count
+    vote_count,
+    id
   } = movieData;
 
   const srcImgLink = api.changeImgLinks(poster_path, 'w342');
@@ -37,7 +41,6 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
 
   return (
     <div className={tailWide ? 'card-info card-info__tail' : 'card-info'}>
-      {/* temporary TitleComponent */}
       <div className="card-info__wrapper">
         {!tailWide ? (
           <div className="titleComponent card-info__title">
@@ -48,6 +51,15 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
             <h2>{title}</h2>
           </div>
         )}
+
+
+        <div className="info-card-activities">
+          {!tailWide ? null : <FavoritesBtn movieId={id} />}
+          {!tailWide ? null : <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={vote_average} />}
+        </div>
+
+
+
         {!tailWide ? null : (
           <div className="card-info__description">
             {overview.length >= 250 ? (

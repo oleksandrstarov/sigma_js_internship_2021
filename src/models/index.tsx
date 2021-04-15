@@ -5,6 +5,7 @@ export interface Movie {
   vote_average: number;
   backdrop_path: string;
   id: number | string;
+
 }
 export interface MovieCard {
   id: number;
@@ -21,5 +22,6 @@ export interface StarRatingProps {
   numberOfStars: number;
   colorFilled: string;
   colorUnfilled: string;
+  voteAverage: number;
 }
 

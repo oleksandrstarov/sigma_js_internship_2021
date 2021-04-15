@@ -27,21 +27,39 @@ $white:  #ffff;
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px 10px;
-  margin: 10px 10px;
+  margin: 10px 10px 45px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
-  @media screen and(min-width: 1380px) {
-    margin: 10px 40px;
+  @media screen and(min-width: 1080px) {
+    margin: 10px 40px 45px;
   }
-  @media screen and(max-width: 1379px) {
-    margin: 10px 20px;
+  @media screen and(max-width: 1200px) {
+    margin: 10px 20px 45px;
   }
   @media screen and(max-width: 630px) {
-    margin: 10px 0;
+    margin: 10px 0 25px;
   }
   
   .card-info__wrapper{
-    width: 100%
+    position: relative;
+    width: 100%;
+
+    .info-card-activities{
+      position: absolute;
+      bottom: 8px;
+      right: 181px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column-reverse;
+      align-items: baseline;
+    
+    }
+    .info-card-activities .favorite-btn {
+      margin-top: 20px;
+    }
+    .star-wrapper{
+      display: flex;
+    }
   }
 
   .card-info__title{
