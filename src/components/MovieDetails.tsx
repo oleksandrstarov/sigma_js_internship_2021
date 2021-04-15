@@ -63,7 +63,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     overview
   } = movieData;
 
-  const poster = api.changeImgLinks(poster_path, ImageWidth[0]);
+  const poster = api.getFullImgLink(poster_path, ImageWidth[0]);
 
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {

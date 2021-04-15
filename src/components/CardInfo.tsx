@@ -27,7 +27,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     vote_count
   } = movieData;
 
-  const srcImgLink = api.changeImgLinks(poster_path, 'w342');
+  const srcImgLink = api.getFullImgLink(poster_path, 'w342');
 
   useEffect(() => {
     api.getDataById(number).then((res: any) => {

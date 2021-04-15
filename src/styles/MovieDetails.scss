@@ -6,7 +6,8 @@
   background-color: $bg-color-light;
   position: relative;
   top: 100px;
-  z-index: -1;
+  z-index: 3;
+  max-width: 1200px;
   .movie-wrapper {
     margin-top: 20px;
     .movie-img {
