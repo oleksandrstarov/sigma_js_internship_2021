@@ -1,7 +1,7 @@
 import {
   API_KEY,
   API_IMG_URL,
-  API_GENER_ID
+  API_GENRE_ID
 } from '../constants/api';
 import axios from '../axios/url';
 
@@ -132,12 +132,12 @@ const api = {
     {
       from: number,
       to: number,
-      gener: string | null,
+      genre: string | null,
       page: number
     } = {
       from: 1900,
       to: 2020,
-      gener: null,
+      genre: null,
       page: 1,
     }
   ) {
@@ -152,27 +152,27 @@ const api = {
       return `&primary_release_date.gte=${from}-01-01`
     }
 
-    function setGener() {
-      const { gener } = dataFilter;
-      if (gener !== null) {
-        const generId = API_GENER_ID.find(item => item.name === gener);
-        return `&with_genres=${generId?.id}`
+    function setGenre() {
+      const { genre } = dataFilter;
+      if (genre !== null) {
+        const genreId = API_GENRE_ID.find((item: any) => item.name === genre);
+        return `&with_genres=${genreId?.id}`
       }
       return '';
     }
 
-    let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGener()}&${API_KEY}`);
+    let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
     return obj.data.results;
   },
-
-  changeImgLindks(arr: MovieCard[], idsList: number[]) {
+  // idsList.includes(item.id)
+  getFilterMatchesList(arr: MovieCard[], idsList: number[]) {
     const conformityIds = arr.filter(item => {
-      return idsList.find(itemId => itemId === item.id)
+      return idsList.includes(item.id);
     });
     return conformityIds;
   },
 
-  changeImgLinks(url: string, size: string) {
+  getFullImgLink(url: string, size: string) {
     return `${API_IMG_URL}${size}${url}`;
   }
 };
