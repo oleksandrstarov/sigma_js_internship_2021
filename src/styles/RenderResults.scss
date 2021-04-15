@@ -20,6 +20,7 @@
       justify-content:  flex-start;
     }
   }
+  
   .delivery__container-wide{
   display: flex;
   flex-wrap: wrap;
@@ -31,14 +32,9 @@
   justify-content: flex-end;
   padding-right: 60px;
   margin-bottom: 20px;
-    // @media screen and(min-width: 992px) {
-    //   justify-content: space-evenly;
-
-    // }
 
     .delivery__toggler{
       cursor: pointer;
     }
   }
-  
 }
