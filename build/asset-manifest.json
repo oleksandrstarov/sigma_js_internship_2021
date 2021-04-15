@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.e239eed6.chunk.css",
-    "main.js": "./static/js/main.1f769d0e.chunk.js",
+    "main.css": "/static/css/main.e239eed6.chunk.css",
+    "main.js": "/static/js/main.1f769d0e.chunk.js",
     "main.js.map": "/static/js/main.1f769d0e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f391cfb0.js",
     "runtime-main.js.map": "/static/js/runtime-main.f391cfb0.js.map",
