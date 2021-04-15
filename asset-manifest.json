@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/sigma_js_internship_2021/static/css/main.a460f896.chunk.css",
+    "main.js": "/sigma_js_internship_2021/static/js/main.5f7f690e.chunk.js",
+    "main.js.map": "/sigma_js_internship_2021/static/js/main.5f7f690e.chunk.js.map",
+    "runtime-main.js": "/sigma_js_internship_2021/static/js/runtime-main.7acc85df.js",
+    "runtime-main.js.map": "/sigma_js_internship_2021/static/js/runtime-main.7acc85df.js.map",
+    "static/js/2.2bfb32ae.chunk.js": "/sigma_js_internship_2021/static/js/2.2bfb32ae.chunk.js",
+    "static/js/2.2bfb32ae.chunk.js.map": "/sigma_js_internship_2021/static/js/2.2bfb32ae.chunk.js.map",
+    "static/js/3.a90fbf3a.chunk.js": "/sigma_js_internship_2021/static/js/3.a90fbf3a.chunk.js",
+    "static/js/3.a90fbf3a.chunk.js.map": "/sigma_js_internship_2021/static/js/3.a90fbf3a.chunk.js.map",
+    "index.html": "/sigma_js_internship_2021/index.html",
+    "static/css/main.a460f896.chunk.css.map": "/sigma_js_internship_2021/static/css/main.a460f896.chunk.css.map",
+    "static/js/2.2bfb32ae.chunk.js.LICENSE.txt": "/sigma_js_internship_2021/static/js/2.2bfb32ae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7acc85df.js",
+    "static/js/2.2bfb32ae.chunk.js",
+    "static/css/main.a460f896.chunk.css",
+    "static/js/main.5f7f690e.chunk.js"
+  ]
+}
