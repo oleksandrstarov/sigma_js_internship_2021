@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import '../styles/Slider.scss';
 
 type SliderProps = {
@@ -18,7 +17,6 @@ const Slider = ({ className, children }: SliderProps) => {
   const [isLast, setIsLast] = useState(false);
   const [hasHiddenItems, setHasHiddenItems] = useState(true);
   const [activeSlides, setActiveSlides] = useState(0);
-  const isMobile = useDeviceDetect();
 
   const next = () => {
     setTranslate(translate - slideWidth);
@@ -35,28 +33,27 @@ const Slider = ({ className, children }: SliderProps) => {
     item.style.transform = `translateX(${value}px)`;
   };
 
-  const checkSlide = () => {
-    const listWidth = listRef.current.clientWidth;
-    const sliderWidth = sliderRef.current.clientWidth;
-    setIsLast(translate <= sliderWidth + -listWidth - 60);
-    setIsFirst(translate >= 0);
-  };
 
-  const setProgress = () => {
-    const additional = Number(!isMobile);
-    const length =
-      sliderRef.current.querySelectorAll('.slide').length + additional;
-    progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
-  };
 
   useEffect(() => {
+    const setProgress = () => {
+      const length =
+        sliderRef.current.querySelectorAll('.slide').length;
+      progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
+    };
+
     if (!activeSlides) {
       setActiveSlides(Math.floor(sliderRef.current.clientWidth / slideWidth));
       setProgress();
     }
 
     setSlide(translate);
-    checkSlide();
+
+    const listWidth = listRef.current.clientWidth;
+    const sliderWidth = sliderRef.current.clientWidth;
+    setIsLast(translate <= sliderWidth + -listWidth - 60);
+    setIsFirst(translate >= 0);
+
     setHasHiddenItems(
       listRef.current.clientWidth > sliderRef.current.clientWidth
     );
