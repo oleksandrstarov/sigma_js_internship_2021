@@ -1,26 +1,27 @@
-import {
-  API_KEY,
-  API_IMG_URL
-} from '../constants/api';
+import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
 import { Theme } from '../models/index';
 
-const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: any }, } = {
+const apiService: {
+  storeKey: string;
+  store: { history: number[]; favorites: number[]; theme: any };
+} = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
     theme: Theme.light
-  },
-}
+  }
+};
 
 const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
-    serviceStore !== null
-      ? (apiService.store = JSON.parse(serviceStore))
-      : this.setStore();
+    if (serviceStore !== null) {
+      return JSON.parse(serviceStore);
+    }
+    this.setStore();
     return apiService.store;
   },
 
@@ -113,7 +114,7 @@ const api = {
 
   async getDataById(id: number) {
     const obj = await axios.get(`movie/${id}?${API_KEY}`);
-    return obj.data.results;
+    return obj.data;
   },
 
   async getPopularQueryList() {
