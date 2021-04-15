@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import '../styles/Slider.scss';
 
 type SliderProps = {
@@ -18,7 +17,6 @@ const Slider = ({ className, children }: SliderProps) => {
   const [isLast, setIsLast] = useState(false);
   const [hasHiddenItems, setHasHiddenItems] = useState(true);
   const [activeSlides, setActiveSlides] = useState(0);
-  const isMobile = useDeviceDetect();
 
   const next = () => {
     setTranslate(translate - slideWidth);
@@ -43,9 +41,8 @@ const Slider = ({ className, children }: SliderProps) => {
   };
 
   const setProgress = () => {
-    const additional = Number(!isMobile);
     const length =
-      sliderRef.current.querySelectorAll('.slide').length + additional;
+      sliderRef.current.querySelectorAll('.slide').length;
     progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
   };
 
