@@ -18,7 +18,6 @@ const genres = [
   'Crime',
   'Fantasy',
   'Science Fiction',
-
   'Horror',
   'Family'
 ];

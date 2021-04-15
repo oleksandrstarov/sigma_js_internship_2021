@@ -62,7 +62,6 @@
       }
     }
 
-
     @media screen and(min-width: 992px) {
       cursor: pointer;
     }
@@ -87,7 +86,6 @@
 
       @media screen and (min-width:992px) {
         grid-template-columns:repeat(2, 1fr); ;
-        
       }
         
       .date-select-wrapper{
@@ -130,12 +128,9 @@
           width:  60%;
           height: 100%;
         }
-        
-        
       }
         .check-img{
-          width: 20px;
-          
+          width: 20px; 
         }
         .active-checkbox{
           background-color: $yellow;
@@ -163,5 +158,4 @@
           }
     }
   }
-   
 }
