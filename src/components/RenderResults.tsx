@@ -35,7 +35,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           />
         )}
       </div>
-      <div className="delivery__container">
+      <div className={tailState ? "delivery__container" : "delivery__container-wide"}>
         {list.map((item: MovieCard) => {
           return <CardInfo tailWide={!tailState} number={item.id} />;
         })}

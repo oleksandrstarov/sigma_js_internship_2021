@@ -13,23 +13,36 @@ $white:  #ffff;
 }
 
 %area-card {
-  max-width: 320px;
+  max-width: 280px;
   max-height: 475px;
   }
 
 .card-info{
   background-color: $white;
   border-radius: 10px;
-  max-width: 360px;
+  max-width: 320px;
   width: 100%;
-  height: 525px;
+  height: 505px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px 10px;
-  margin: 10px;
+  margin: 10px 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
+  @media screen and(min-width: 1380px) {
+    margin: 10px 40px;
+  }
+  @media screen and(max-width: 1379px) {
+    margin: 10px 20px;
+  }
+  @media screen and(max-width: 630px) {
+    margin: 10px 0;
+  }
+  
+  .card-info__wrapper{
+    width: 100%
+  }
 
   .card-info__title{
   @extend %pos-absolute-left0;
@@ -113,8 +126,8 @@ $white:  #ffff;
   width: 100%;
 
   .card-info__description{
-  max-width: 250px;
-  margin: 5px;
+  max-width: 300px;
+  margin: 5px auto;
 
   span{
     cursor: pointer;

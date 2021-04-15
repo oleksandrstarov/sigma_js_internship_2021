@@ -16,6 +16,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+    @media screen and(min-width: 1380px) {
+      justify-content:  flex-start;
+    }
+  }
+  .delivery__container-wide{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   }
   
   .view-toggler{
@@ -23,6 +31,10 @@
   justify-content: flex-end;
   padding-right: 60px;
   margin-bottom: 20px;
+    // @media screen and(min-width: 992px) {
+    //   justify-content: space-evenly;
+
+    // }
 
     .delivery__toggler{
       cursor: pointer;
