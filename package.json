@@ -1,6 +1,5 @@
 {
   "name": "sigma_js_internship_2021",
-  "homepage": "https://tomerpacific.github.io/sigma_js_internship_2021/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +14,6 @@
     "@types/react-router": "^5.1.13",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
-    "gh-pages": "^3.1.0",
     "husky": "^6.0.0",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
@@ -28,8 +26,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
