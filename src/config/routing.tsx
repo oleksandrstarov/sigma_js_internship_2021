@@ -3,7 +3,7 @@ import MovieDetails from '../components/MovieDetails';
 import Favorites from '../components/Favorites';
 import SearchResults from '../components/SearchResults';
 
-export default [
+const Routes = [
   {
     path: '/',
     name: 'Home',
@@ -29,3 +29,5 @@ export default [
     component: SearchResults
   }
 ];
+
+export default Routes;
