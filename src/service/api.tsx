@@ -108,7 +108,7 @@ const api = {
   },
 
   async getPopularQueryList(page: number = 1) {
-    const obj = await axios.get(`movie/popular?${API_KEY}&query&page=${page}`);
+    const obj = await axios.get(`movie/popular?${API_KEY}&page=${page}`);
     return obj.data.results;
   },
 
@@ -126,10 +126,10 @@ const api = {
     return `${API_IMG_URL}${size}${url}`;
   },
 
-  changeListByPagination(arr: Array<{}>, page: number = 1) {
-    return arr.length < 20
-      ? arr.slice(0, 20)
-      : arr.slice(20 * (page - 1), 20 * page);
+  changeListByPagination(arr: {}[], page: number = 1): {}[] {
+    return arr.length < 6
+      ? arr
+      : arr.slice(6 * (page - 1), 6 * page);
   },
 }
 
