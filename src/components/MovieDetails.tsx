@@ -11,8 +11,8 @@ enum ImageWidth {
 }
 
 type MovieDetailsProps = {
-  match: { params: { id: string } }
-}
+  match: { params: { id: string } };
+};
 
 type MovieInfo = {
   poster_path: string;
@@ -25,8 +25,8 @@ type MovieInfo = {
   popularity: string;
   vote_average: string;
   runtime: string;
-  genres: [{ id: number | null, name: string }],
-  production_countries: [{ name: string }]
+  genres: [{ id: number | null; name: string }];
+  production_countries: [{ name: string }];
   overview: string;
 };
 
@@ -44,8 +44,8 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     runtime: '',
     genres: [{ id: null, name: '' }],
     production_countries: [{ name: '' }],
-    overview: '',
-  })
+    overview: ''
+  });
 
   const {
     poster_path,
@@ -68,17 +68,24 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
-    })
-  }, [])
+    });
+  }, []);
 
-  const renderMovieInfo = (header: string, info: string | number): ReactNode => {
+  const renderMovieInfo = (
+    header: string,
+    info: string | number
+  ): ReactNode => {
     return (
       <tr>
-        <td><h4>{header}: </h4></td>
-        <td><p>{info}</p></td>
+        <td>
+          <h4>{header}: </h4>
+        </td>
+        <td>
+          <p>{info}</p>
+        </td>
       </tr>
-    )
-  }
+    );
+  };
 
   return (
     <div className="details-container">
@@ -90,31 +97,29 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <h1>{title}</h1>
           <div className="general-info">
             <table>
-              {renderMovieInfo("Original title", original_title)}
-              {renderMovieInfo("Tagline", tagline)}
-              {renderMovieInfo("release_date", release_date)}
-              {renderMovieInfo("Status", status)}
-              {renderMovieInfo("Budget", budget)}
-              {renderMovieInfo("Country", production_countries[0].name)}
-              {renderMovieInfo("Duration", runtime)}
-              {renderMovieInfo("IMDB", vote_average)}
-              {renderMovieInfo("Popularity", popularity)}
+              {renderMovieInfo('Original title', original_title)}
+              {renderMovieInfo('Tagline', tagline)}
+              {renderMovieInfo('release_date', release_date)}
+              {renderMovieInfo('Status', status)}
+              {renderMovieInfo('Budget', budget)}
+              {renderMovieInfo('Country', production_countries[0].name)}
+              {renderMovieInfo('Duration', runtime)}
+              {renderMovieInfo('IMDB', vote_average)}
+              {renderMovieInfo('Popularity', popularity)}
             </table>
           </div>
         </div>
       </section>
       <div className="genres">
-        {genres && genres.map((genre) => <div key={genre.id}>{genre.name}</div>)}
+        {genres && genres.map(genre => <div key={genre.id}>{genre.name}</div>)}
       </div>
       <div className="hl"></div>
       <div className="description">
-        <ReadMore>
-          {overview}
-        </ReadMore>
+        <ReadMore>{overview}</ReadMore>
       </div>
       <div className="hl"></div>
     </div>
-  )
-}
+  );
+};
 
 export default MovieDetails;
