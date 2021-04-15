@@ -6,7 +6,6 @@ export interface Movie {
   backdrop_path: string;
   id: number | string;
 }
-
 export interface MovieCard {
   overview: string;
   title: string;
@@ -15,7 +14,6 @@ export interface MovieCard {
   backdrop_path: string;
   id: number;
 }
-
 export interface PopularMovieProps {
   movie: Movie;
 }
@@ -24,3 +22,9 @@ export enum Theme {
   dark,
   light
 }
+export interface StarRatingProps {
+  numberOfStars: number;
+  colorFilled: string;
+  colorUnfilled: string;
+}
+
