@@ -137,9 +137,11 @@
           color: $white;
         }
         .dropdown-item{
+          height: 25px;
           display: flex;
           justify-content: space-between;
-          padding-left:30px;
+          padding-left:25px;
+          padding-right: 2px;
           align-items: center;
           box-shadow: $secondary-shadow;
           border-radius: 35px;
@@ -150,7 +152,14 @@
         }
         select{
           text-align-last: center;
-          padding:0 10px;
+          height: 25px;
+          display: flex;
+          justify-content: space-between;
+          padding-right: 2px;
+          align-items: center;
+          box-shadow: $secondary-shadow;
+          border-radius: 35px;
+          font-size: 16px;
 
           @media screen and (min-width:992px) {
             grid-column:1 / -1;

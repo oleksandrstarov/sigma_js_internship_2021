@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import '../styles/SearchField.scss';
@@ -6,7 +6,6 @@ import '../styles/SearchField.scss';
 const loupeIcon = '/images/search-icon.svg';
 
 const genres = [
-  'none',
   'Comedy',
   'Drama',
   'Romance',
@@ -35,11 +34,11 @@ const SearchField: React.FC = () => {
   const [dropdown, setDropdown] = useState<boolean>(false);
 
   const [dateRange, setDateRange] = useState<{
-    fromDate: number;
-    toDate: number;
+    fromYear: number;
+    toYear: number;
   }>({
-    fromDate: 1980,
-    toDate: 2021
+    fromYear: 1980,
+    toYear: 2021
   });
 
   const [checkboxes, setCheckboxes] = useState<{
@@ -52,114 +51,97 @@ const SearchField: React.FC = () => {
 
   const [genreToSearch, setGenreToSearch] = useState<string>('none');
 
-  const searchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const searchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setInputValue(event.target.value);
   };
 
-  const submitSearchRequest = useCallback(
-    (event: React.SyntheticEvent) => {
-      event.preventDefault();
+  const submitSearchRequest = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    // for proper using of query params need to refactor routing
+    if (inputValue.trim()) {
+      history.push(
+        `/search-results/title=${inputValue}?genre=${genreToSearch}?fromYear=${dateRange.fromYear}?toYear=${dateRange.toYear}?favorites=${checkboxes.favorites}?history=${checkboxes.history}`
+      );
+    }
+  };
 
-      // for proper using of query params need to refactor routing
-      if (inputValue.trim()) {
-        history.push(
-          `/search-results/title=${inputValue}?genre=${genreToSearch}?fromDate=${dateRange.fromDate}?toDate=${dateRange.toDate}?favorites=${checkboxes.favorites}?history=${checkboxes.history}`
-        );
-      }
-    },
-    [inputValue, history, checkboxes, genreToSearch, dateRange]
-  );
+  const searchInputFocus = (event: React.SyntheticEvent): void => {
+    setFocus(true);
+  };
 
-  const onFocusSearchInput = useCallback(
-    (event: React.SyntheticEvent): void => {
-      setFocus(true);
-    },
-    []
-  );
-
-  const onBlurSearchInput = useCallback((event: React.SyntheticEvent): void => {
+  const searchInputBlur = (event: React.SyntheticEvent): void => {
     setFocus(false);
-  }, []);
+  };
 
-  const mouseEnterDropdown = useCallback(
-    (event: React.SyntheticEvent): void => {
-      setDropdown(true);
-    },
-    []
-  );
+  const mouseEnterDropdown = (event: React.SyntheticEvent): void => {
+    setDropdown(true);
+  };
 
-  const mouseLeaveDropdown = useCallback(
-    (event: React.SyntheticEvent): void => {
-      setDropdown(false);
-    },
-    []
-  );
+  const mouseLeaveDropdown = (event: React.SyntheticEvent): void => {
+    setDropdown(false);
+  };
 
-  const fromDateInputIncrease = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      if (dateRange.fromDate >= dateRange.toDate) return;
-      setDateRange({ ...dateRange, fromDate: dateRange.fromDate + 1 });
-    },
-    [dateRange]
-  );
+  const fromDateInputIncrease = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    if (dateRange.fromYear >= dateRange.toYear) return;
+    setDateRange({ ...dateRange, fromYear: dateRange.fromYear + 1 });
+  };
 
-  const fromDateInputDecrease = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      if (dateRange.fromDate <= 1980) return;
-      setDateRange({ ...dateRange, fromDate: dateRange.fromDate - 1 });
-    },
-    [dateRange]
-  );
+  const fromDateInputDecrease = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    const lowerDateLimit = 1980;
+    if (dateRange.fromYear <= lowerDateLimit) return;
+    setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
+  };
 
-  const toDateInputIncrease = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      if (dateRange.toDate >= 2022) return;
-      setDateRange({ ...dateRange, toDate: dateRange.toDate + 1 });
-    },
-    [dateRange]
-  );
+  const toYearInputIncrease = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    const upperDataLimit = new Date().getFullYear();
+    if (dateRange.toYear >= upperDataLimit) return;
+    setDateRange({ ...dateRange, toYear: dateRange.toYear + 1 });
+  };
+  const toYearInputDecrease = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    if (dateRange.toYear <= dateRange.fromYear) return;
+    setDateRange({ ...dateRange, toYear: dateRange.toYear - 1 });
+  };
 
-  const toDateInputDecrease = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      if (dateRange.toDate <= dateRange.fromDate) return;
-      setDateRange({ ...dateRange, toDate: dateRange.toDate - 1 });
-    },
-    [dateRange]
-  );
+  const favoritesCheckboxHandler = (
+    event: React.InputHTMLAttributes<HTMLInputElement>
+  ): void => {
+    setCheckboxes({ ...checkboxes, favorites: !checkboxes.favorites });
+  };
 
-  const favoritesCheckboxHandler = useCallback(
-    (event: React.InputHTMLAttributes<HTMLInputElement>): void => {
-      setCheckboxes({ ...checkboxes, favorites: !checkboxes.favorites });
-    },
-    [checkboxes]
-  );
+  const historyCheckboxHandler = (
+    event: React.InputHTMLAttributes<HTMLInputElement>
+  ): void => {
+    setCheckboxes({ ...checkboxes, history: !checkboxes.history });
+  };
 
-  const historyCheckboxHandler = useCallback(
-    (event: React.InputHTMLAttributes<HTMLInputElement>): void => {
-      setCheckboxes({ ...checkboxes, history: !checkboxes.history });
-    },
-    [checkboxes]
-  );
-
-  const selectGenreHandler = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>): void => {
-      setGenreToSearch(event.target.value);
-    },
-    []
-  );
+  const selectGenreHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setGenreToSearch(event.target.value);
+  };
 
   return (
     <>
       <form onSubmit={submitSearchRequest} className="search-form">
         <input
-          onBlur={onBlurSearchInput}
+          onBlur={searchInputBlur}
           value={inputValue}
           onChange={searchInputChange}
           id="search"
           type="search"
           placeholder="Search"
           className="header-search"
-          onFocus={onFocusSearchInput}
+          onFocus={searchInputFocus}
           autoComplete="off"
         />
         {(focus || dropdown) && (
@@ -174,15 +156,15 @@ const SearchField: React.FC = () => {
                   <input
                     type="number"
                     min="1980"
-                    value={dateRange.fromDate}
+                    value={dateRange.fromYear}
                     readOnly
                   />
                   <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
-                  <button onClick={toDateInputDecrease}>-</button>
-                  <input type="number" value={dateRange.toDate} readOnly />
-                  <button onClick={toDateInputIncrease}>+</button>
+                  <button onClick={toYearInputDecrease}>-</button>
+                  <input type="number" value={dateRange.toYear} readOnly />
+                  <button onClick={toYearInputIncrease}>+</button>
                 </span>
               </div>
               <label
@@ -219,10 +201,8 @@ const SearchField: React.FC = () => {
                   alt=""
                 />
               </label>
-              <select
-                className="dropdown-item"
-                value={genreToSearch}
-                onChange={selectGenreHandler}>
+              <select value={genreToSearch} onChange={selectGenreHandler}>
+                <option value="none">Select genre</option>
                 {genres.map(genre => (
                   <option key={genre}>{genre}</option>
                 ))}
