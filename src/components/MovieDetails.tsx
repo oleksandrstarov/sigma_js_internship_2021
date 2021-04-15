@@ -69,7 +69,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
     })
-  }, [])
+  }, [match.params.id])
 
   const renderMovieInfo = (header: string, info: string | number): ReactNode => {
     return (
@@ -114,7 +114,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
       </div>
       <div className="hl"></div>
     </div>
-  )
-}
+  );
+};
 
 export default MovieDetails;
