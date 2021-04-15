@@ -114,7 +114,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
       </div>
       <div className="hl"></div>
     </div>
-  )
-}
+  );
+};
 
 export default MovieDetails;
