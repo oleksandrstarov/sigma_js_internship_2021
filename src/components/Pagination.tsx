@@ -4,11 +4,10 @@ import '../styles/Pagination.scss';
 type PaginationProps = {
   totalRecords?: number,
   recordsLimit?: number,
-  totalPages?: number,
-  onPageChange?: () => {}
+  totalPages?: number
 }
 
-const Pagination = ({ totalRecords, recordsLimit, onPageChange, totalPages = 0 }:PaginationProps) => {
+const Pagination = ({ totalRecords, recordsLimit, totalPages = 10 }:PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasLeftSpill, setHasLeftSpill] = useState(false);
   const [hasRightSpill, setHasRightSpill] = useState(false);
@@ -16,13 +15,7 @@ const Pagination = ({ totalRecords, recordsLimit, onPageChange, totalPages = 0 }
   const pageNeighbours = 1;
 
   const range = (start:number, end:number) => {
-    const range = [];
-
-    for(let i = start; i <= end; i++) {
-      range.push(<a className="pagination-nav-item" href={`/${i}`} data-target={i} onClick={(e) => {onHandleClick(e)}} key={i}>{i}</a>);
-    }
-
-    return range;
+    return new Array(end - start + 1).fill(null).map((item, index) => (<a className="pagination-nav-item" href={`/${index + start}`} data-target={index + start} onClick={(e) => {onHandleClick(e)}} key={index + start}>{index + start}</a>))
   }
 
   const renderNavigation = () => {
@@ -32,7 +25,7 @@ const Pagination = ({ totalRecords, recordsLimit, onPageChange, totalPages = 0 }
       case (!hasLeftSpill && hasRightSpill):
         if(currentPage > 2) {
           pages = range(currentPage - 2, currentPage + 1);
-        }  else if(currentPage > 1 && currentPage < 3) {
+        }  else if(currentPage === 2) {
           pages = range(currentPage - 1, currentPage + 1);
         } else {
           pages = range(currentPage, currentPage + 1);
