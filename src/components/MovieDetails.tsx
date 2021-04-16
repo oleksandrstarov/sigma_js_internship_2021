@@ -68,8 +68,8 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
-    });
-  }, []);
+    })
+  }, [match.params.id])
 
   const renderMovieInfo = (
     header: string,
