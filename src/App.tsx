@@ -24,9 +24,10 @@ function App() {
       <Router>
         <Layout>
           <Switch>
-            {routing.map(item => {
+            {routing.map((item, i) => {
               return (
                 <Route
+                  key={i}
                   exact={item.exact}
                   path={item.path}
                   component={item.component}
