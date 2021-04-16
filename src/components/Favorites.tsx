@@ -3,7 +3,6 @@ import api from 'src/service/api';
 import RenderResults from './RenderResults';
 
 const Favorites = () => {
-
   const [data, setData] = useState([{
     poster_path: ' ',
     original_title: ' ',
