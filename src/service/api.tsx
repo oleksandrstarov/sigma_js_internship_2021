@@ -52,7 +52,7 @@ const api = {
 
   isIdInFavorites(id: number) {
     const store = api.getFavoritsIdList();
-    return !store.includes(id);
+    return store.includes(id);
   },
 
   getFavoritsIdList() {
@@ -83,7 +83,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-    return !store.includes(id);
+    return store.includes(id);
   },
 
   getHistoryIdList() {
