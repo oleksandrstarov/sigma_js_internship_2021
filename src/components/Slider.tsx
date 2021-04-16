@@ -33,8 +33,6 @@ const Slider = ({ className, children }: SliderProps) => {
     item.style.transform = `translateX(${value}px)`;
   };
 
-
-
   useEffect(() => {
     const setProgress = () => {
       const length =
