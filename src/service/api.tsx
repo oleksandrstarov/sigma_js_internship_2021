@@ -161,8 +161,8 @@ const api = {
     function setGenre() {
       const { genre } = dataFilter;
       if (!genre) {
-        const genreId = API_GENRE_ID.find((item: any) => item.name === genre);
-        return `&with_genres=${genreId?.id}`
+        const genreId = API_GENRE_ID.filter((item: any) => Object.keys(item)[0] === 'comedy');
+        return `&with_genres=${Object.keys(genreId[0])[0]}`
       }
       return '';
     }
