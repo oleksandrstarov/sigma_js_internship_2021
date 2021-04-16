@@ -5,21 +5,21 @@ import '../styles/SearchField.scss';
 
 const loupeIcon = '/images/search-icon.svg';
 
-const genres = [
-  'Comedy',
-  'Drama',
-  'Romance',
-  'Mystery',
-  'Thriller',
-  'Animation',
-  'Action',
-  'Adventure',
-  'Crime',
-  'Fantasy',
-  'Science Fiction',
-  'Horror',
-  'Family'
-];
+enum Genres {
+  Comedy = 'Comedy',
+  Drama = 'Drama',
+  Romance = 'Romance',
+  Mystery = 'Mystery',
+  Thriller = 'Thriller',
+  Animation = 'Animation',
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Crime = 'Crime',
+  Fantasy = 'Fantasy',
+  ScienceFiction = 'Science Fiction',
+  Horror = 'Horror',
+  Family = 'Family'
+}
 
 const checkedImg = '/images/searchFieldIcons/checked.svg';
 const uncheckedImg = '/images/searchFieldIcons/unchecked.svg';
@@ -204,8 +204,10 @@ const SearchField: React.FC = () => {
               </label>
               <select value={genreToSearch} onChange={selectGenreHandler}>
                 <option value="none">Select genre</option>
-                {genres.map(genre => (
-                  <option key={genre}>{genre}</option>
+                {Object.values(Genres).map((genre, i) => (
+                  <option value={genre} key={i}>
+                    {genre}
+                  </option>
                 ))}
               </select>
             </div>
