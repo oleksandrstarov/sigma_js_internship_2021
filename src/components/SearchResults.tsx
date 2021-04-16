@@ -1,6 +1,4 @@
-// import MoviesList from './MoviesList';
 import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router';
 import api from 'src/service/api';
 import RenderResults from './RenderResults';
 type FaforitsApiData = {
@@ -16,7 +14,6 @@ type FaforitsApiData = {
 
 const SearchResults = ({ match }: any) => {
 
-  // const {title} = useParams()
   const [data, setData] = useState<FaforitsApiData[]>([{
     poster_path: '',
     original_title: '',
@@ -30,16 +27,12 @@ const SearchResults = ({ match }: any) => {
 
   useEffect(() => {
     api.getSearchList(match.params.title).then((res: any) => {
-      console.log(res);
       setData(res);
     });
   }, [match.params])
 
-
   return (
     <div className="search-wrapper">
-      {/* <MoviesList pageTitle="Search Results" /> */}
-
       <RenderResults list={data} />
     </div>
   );

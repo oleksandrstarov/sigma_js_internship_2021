@@ -3,22 +3,10 @@ import Layout from './components/Layout';
 import routing from './config/routing';
 
 import './App.scss';
-import { useEffect } from 'react';
+import useReloadOnResize from './hooks/useReloadOnResize';
 
 function App() {
-  useEffect(() => {
-    const documentWidth = document.documentElement.clientWidth;
-    let time: any;
-    window.onresize = function () {
-      if (time)
-        clearTimeout(time);
-      time = setTimeout(function () {
-        if (documentWidth !== document.documentElement.clientWidth) {
-          window.location.reload();
-        }
-      }, 123);
-    };
-  }, [])
+  useReloadOnResize()
   return (
     <>
       <Router>
