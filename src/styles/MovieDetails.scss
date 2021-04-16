@@ -6,9 +6,10 @@
   background-color: $bg-color-light;
   position: relative;
   top: 100px;
-  z-index: -1;
+  z-index: 3;
   .movie-wrapper {
     margin-top: 20px;
+    
     .movie-img {
       img {
         width: 100%;
@@ -72,10 +73,12 @@
   .movie-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+    
     .movie-img {
       margin: auto;
-      width: 400px;
-      height: 500px;
+      max-width: 470px;
+      height: 600px;
+      width: 100%;
       img {
         object-fit: contain;
       }
