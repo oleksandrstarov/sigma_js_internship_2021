@@ -63,7 +63,7 @@ const SearchField: React.FC = () => {
     event.preventDefault();
     if (inputValue.trim()) {
       history.push(
-        `/search-results/${inputValue}/?genre=${genreToSearch}?fromYear=${dateRange.fromYear}?toYear=${dateRange.toYear}?favorites=${checkboxes.favorites}?history=${checkboxes.history}/1`
+        `/search-results/${inputValue}/${genreToSearch}/${dateRange.fromYear}/${dateRange.toYear}/${checkboxes.favorites}/${checkboxes.history}/1`
       );
     }
   };
