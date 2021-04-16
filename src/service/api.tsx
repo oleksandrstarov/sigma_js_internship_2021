@@ -57,7 +57,7 @@ const api = {
 
   isIdInFavorites(id: number) {
     const store = api.getFavoritsIdList();
-    return !store.includes(id);
+    return store.includes(id);
   },
 
   getFavoritsIdList() {
@@ -88,7 +88,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-    return !store.includes(id);
+    return store.includes(id);
   },
 
   getHistoryIdList() {
@@ -164,7 +164,7 @@ const api = {
 
     function setGenre() {
       const { genre } = dataFilter;
-      if (genre !== null) {
+      if (!genre) {
         const genreId = API_GENRE_ID.find((item: any) => item.name === genre);
         return `&with_genres=${genreId?.id}`
       }
