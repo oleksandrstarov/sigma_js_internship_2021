@@ -1,8 +1,7 @@
 import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
-import { Theme } from '../models/index';
-
+import { Theme, MovieCard } from '../models/index';
 const apiService: {
   storeKey: string;
   store: { history: number[]; favorites: number[]; theme: any };
@@ -84,7 +83,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-     return !store.includes(id);
+    return !store.includes(id);
   },
 
   getHistoryIdList() {
@@ -136,7 +135,7 @@ const api = {
     return `${API_IMG_URL}${size}${url}`;
   },
 
-  changeListByPagination(arr: {}[], page: number = 1): {}[] {
+  changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
     return arr.length < 6
       ? arr
       : arr.slice(6 * (page - 1), 6 * page);
