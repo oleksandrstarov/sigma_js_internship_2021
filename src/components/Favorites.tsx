@@ -4,13 +4,13 @@ import RenderResults from './RenderResults';
 
 const Favorites = () => {
   const [data, setData] = useState([{
-    poster_path: ' ',
-    original_title: ' ',
-    title: ' ',
+    poster_path: '',
+    original_title: '',
+    title: '',
     vote_average: 0,
-    vote_count: ' ',
-    overview: ' ',
-    backdrop_path: ' ',
+    vote_count: '',
+    overview: '',
+    backdrop_path: '',
     id: 0,
   }]);
 
@@ -19,7 +19,6 @@ const Favorites = () => {
       setData(res);
     });
   }, [])
-  console.log(data);
 
   return (
     <div className="favorites-wrapper">
