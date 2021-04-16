@@ -34,7 +34,7 @@ const Header = () => {
         <SearchField />
         <a href="/favorites/1" className="header-nav-link">
           <span>Favorites</span>
-          <img src={heart} />
+          <img src={heart} alt="heart img"/>
         </a>
         <ThemeToggler />
       </div>
