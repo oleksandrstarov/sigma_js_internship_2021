@@ -26,7 +26,7 @@ const SearchResults = ({ match }: any) => {
   }]);
 
   useEffect(() => {
-    api.getSearchList(match.params.title).then((res: any) => {
+    api.getSearchList(match.params.page).then((res: any) => {
       setData(res);
     });
   }, [match.params])
