@@ -154,11 +154,7 @@ const api = {
 
     function setFilteredData() {
       const { from, to } = dataFilter
-      if (from < to) {
-        return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
-      } else if (from > to) {
-        return `&primary_release_date.gte=${to}-01-01&primary_release_date.lte=${from}-01-01`
-      }
+      if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
       return `&primary_release_date.gte=${from}-01-01`
     }
 
