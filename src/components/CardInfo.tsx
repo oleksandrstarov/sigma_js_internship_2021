@@ -4,9 +4,10 @@ import { NavLink } from 'react-router-dom';
 import api from 'src/service/api';
 
 import buttonImgSrc from '../assets/image84.png';
-import '../styles/CardInfo.scss';
 import FavoritesBtn from './FavoritesBtn';
 import StarRating from './StarRating';
+
+import '../styles/CardInfo.scss';
 
 type CardInfoProps = { number: number; tailWide: boolean };
 
@@ -52,13 +53,14 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
           </div>
         )}
 
-
         <div className="info-card-activities">
-          {!tailWide ? null : <FavoritesBtn movieId={id} />}
-          {!tailWide ? null : <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={vote_average} />}
+          {!tailWide
+            ? null
+            : <>
+              <FavoritesBtn movieId={id} />
+              <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={vote_average} />
+            </>}
         </div>
-
-
 
         {!tailWide ? null : (
           <div className="card-info__description">

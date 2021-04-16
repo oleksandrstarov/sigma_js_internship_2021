@@ -3,9 +3,10 @@ import { useState } from 'react';
 import buttonImgLine from '../assets/lines.png';
 import buttonImgGroup from '../assets/Group.png';
 
-import '../styles/RenderResults.scss';
 import CardInfo from './CardInfo';
 import { MovieCard } from '../models/index';
+
+import '../styles/RenderResults.scss';
 
 interface RenderResultsArrList {
   list: MovieCard[];
@@ -36,9 +37,9 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
         )}
       </div>
       <div className={tailState ? "delivery__container" : "delivery__container-wide"}>
-        {list.map((item: MovieCard) => {
+        {list.length ? list.map((item: MovieCard) => {
           return <CardInfo tailWide={!tailState} number={item.id} />;
-        })}
+        }) : <div className="oops-favorite"> Oops, it's empty here :(</div>}
       </div>
     </div>
   );

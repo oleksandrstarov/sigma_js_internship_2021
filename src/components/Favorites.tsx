@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import api from 'src/service/api';
 import RenderResults from './RenderResults';
-type FaforitsApiData = {
+
+type FaforitesApiData = {
   poster_path: string;
   original_title: string;
   title: string;
@@ -11,8 +12,9 @@ type FaforitsApiData = {
   backdrop_path: string;
   id: number;
 }
+
 const Favorites = () => {
-  const [data, setData] = useState<FaforitsApiData[]>([{
+  const [favoritesData, setFavoritesData] = useState<FaforitesApiData[]>([{
     poster_path: '',
     original_title: '',
     title: '',
@@ -25,13 +27,13 @@ const Favorites = () => {
 
   useEffect(() => {
     api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
-      setData(res);
+      setFavoritesData(res);
     });
   }, [])
 
   return (
     <div className="favorites-wrapper">
-      <RenderResults list={data} />
+      <RenderResults list={favoritesData} />
     </div>
   );
 };

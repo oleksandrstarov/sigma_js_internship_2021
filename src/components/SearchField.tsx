@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
+import { useHistory } from 'react-router';
+
 const loupeIcon = '/images/search-icon.svg';
 
-const SearchField: React.FC = () => {
+const SearchField = () => {
+
   const [inputValue, setInputValue] = useState<string>('');
 
+  const history = useHistory();
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -12,7 +16,7 @@ const SearchField: React.FC = () => {
   const submitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (inputValue.trim()) {
-      console.log(inputValue);
+      history.push(`/search-results/${inputValue}/1`);
     }
   };
 
