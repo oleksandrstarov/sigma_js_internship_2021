@@ -33,12 +33,14 @@ const SearchField: React.FC = () => {
 
   const [dropdown, setDropdown] = useState<boolean>(false);
 
+  const lowerDateLimit = 1980;
+
   const [dateRange, setDateRange] = useState<{
     fromYear: number;
     toYear: number;
   }>({
-    fromYear: 1980,
-    toYear: 2021
+    fromYear: lowerDateLimit,
+    toYear: new Date().getFullYear()
   });
 
   const [checkboxes, setCheckboxes] = useState<{
@@ -93,7 +95,6 @@ const SearchField: React.FC = () => {
   const fromDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    const lowerDateLimit = 1980;
     if (dateRange.fromYear <= lowerDateLimit) return;
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
   };
