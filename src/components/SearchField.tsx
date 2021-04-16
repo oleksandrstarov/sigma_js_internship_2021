@@ -61,10 +61,9 @@ const SearchField: React.FC = () => {
 
   const submitSearchRequest = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    // for proper using of query params need to refactor routing
     if (inputValue.trim()) {
       history.push(
-        `/search-results/title=${inputValue}?genre=${genreToSearch}?fromYear=${dateRange.fromYear}?toYear=${dateRange.toYear}?favorites=${checkboxes.favorites}?history=${checkboxes.history}`
+        `/search-results/${inputValue}/?genre=${genreToSearch}?fromYear=${dateRange.fromYear}?toYear=${dateRange.toYear}?favorites=${checkboxes.favorites}?history=${checkboxes.history}/1`
       );
     }
   };
@@ -156,7 +155,7 @@ const SearchField: React.FC = () => {
                   <button onClick={fromDateInputDecrease}>-</button>
                   <input
                     type="number"
-                    min="1980"
+                    min={lowerDateLimit}
                     value={dateRange.fromYear}
                     readOnly
                   />
