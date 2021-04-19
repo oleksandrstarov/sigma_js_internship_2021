@@ -23,7 +23,7 @@ const usePreloader = (...props:any):boolean => {
     }
   }
 
-  useEffect( () => {
+  useEffect(() => {
     checkArgs();
     disablePreloader();
   })
