@@ -90,7 +90,9 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
             <Detail title="Budget" textContent={budget} />
             <Detail
               title="Country"
-              textContent={production_countries[0].name}
+              textContent={production_countries
+                .map(({ name }) => name)
+                .join(', ')}
             />
             <Detail title="Duration" textContent={runtime} />
             <Detail title="IMDB" textContent={vote_average} />
