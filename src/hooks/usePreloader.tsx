@@ -7,9 +7,11 @@ const usePreloader = (...props:any):boolean => {
     const isTruth = props.every((item:any):boolean => {
       switch (true) {
         case Array.isArray(item):
-          return Boolean(item.length);
+          return !!item.length;
+        case item instanceof Object:
+          return !!Object.keys(item).length;
         default:
-          return Boolean(item);
+          return item ? true : false;
       }
     })
    setIsLoaded(isTruth)
