@@ -83,11 +83,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-<<<<<<< HEAD
-    return !store.includes(id);
-=======
     return store.includes(id);
->>>>>>> 487042caecb3276120fe3aa1b394ca6b3d631c45
   },
 
   getHistoryIdList() {
