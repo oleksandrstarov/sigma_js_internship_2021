@@ -251,5 +251,3 @@ const SearchField: React.FC = () => {
 };
 
 export default SearchField;
-
-
