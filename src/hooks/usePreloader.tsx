@@ -4,7 +4,7 @@ const usePreloader = (...props:any):boolean => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const checkArgs = () => {
-    const isTruth = props.every((item:any) => {
+    const isTruth = props.every((item:any):boolean => {
       switch (true) {
         case Array.isArray(item):
           return Boolean(item.length);
