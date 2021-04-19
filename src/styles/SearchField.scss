@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 .search-form {
   background-color: $white;
@@ -13,7 +13,7 @@
   width: 100%;
   max-width: 365px;
 
-  @media screen and(min-width: 992px) {
+  @media screen and (min-width: 992px) {
     margin-right: 40px;
     height: 45px;
   }
@@ -25,7 +25,7 @@
     padding-right: 45px;
     border-radius: inherit;
 
-    @media screen and(min-width: 992px) {
+    @media screen and (min-width: 992px) {
       padding-left: 20px;
 
       &::-webkit-search-cancel-button {
@@ -44,7 +44,7 @@
     z-index: 2;
     overflow: hidden;
 
-    @media screen and(min-width: 992px) {
+    @media screen and (min-width: 992px) {
       width: 45px;
       height: 45px;
     }
@@ -56,57 +56,66 @@
       width: 21px;
       height: 21px;
 
-      @media screen and(min-width: 992px) {
+      @media screen and (min-width: 992px) {
         width: 28px;
         height: 28px;
       }
     }
 
-    @media screen and(min-width: 992px) {
+    @media screen and (min-width: 992px) {
       cursor: pointer;
     }
   }
 
-  .dropdown-filter{
+  .dropdown-filter {
     position: absolute;
+    left: -40px;
     border-radius: 10px;
     background-color: $white;
-    box-shadow:$main-shadow;
+    box-shadow: $main-shadow;
     top: 50px;
-    
-    *{
-      text-align:center;
+    width: 240px;
+    margin: 0 auto;
+    margin-bottom: 7px;
+
+    @media (min-width: 411px) {
+      left: 0;
+      width: 100%;
     }
 
-    .dropdown-wrapper{
+    * {
+      text-align: center;
+    }
+
+    .dropdown-wrapper {
       display: grid;
       grid-template-columns: 1fr;
       grid-gap: 15px;
-      padding:15px;
+      padding: 15px;
 
-      @media screen and (min-width:992px) {
-        grid-template-columns:repeat(2, 1fr); ;
+      @media screen and (min-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
       }
-        
-      .date-select-wrapper{
+
+      .date-select-wrapper {
         grid-column: 1 / auto;
-        display:grid;
+        display: grid;
         grid-column-gap: 15px;
         grid-template-columns: 1fr;
         grid-row-gap: 15px;
-      
-        @media screen and (min-width:992px) {
+
+        @media screen and (min-width: 992px) {
           grid-column: span 2 / auto;
-          grid-template-columns:repeat(2, 1fr); ;
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none;
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
         }
 
-        span{
-          display:flex;
+        span {
+          display: flex;
           justify-content: space-between;
           box-shadow: $secondary-shadow;
           border-radius: 35px;
@@ -114,57 +123,78 @@
 
         button {
           font-weight: bold;
-          color:$yellow;
+          color: $yellow;
           border-radius: 50%;
-          border:3px solid $yellow;
+          border: 3px solid $yellow;
           cursor: pointer;
-          width:25px;
+          width: 25px;
           height: 25px;
         }
 
         input {
-          font-size:16px;
+          font-size: 16px;
           text-align: center;
-          width:  60%;
+          width: 60%;
           height: 100%;
         }
       }
-        .check-img{
-          width: 20px; 
-        }
-        .active-checkbox{
-          background-color: $yellow;
-          color: $white;
-        }
-        .dropdown-item{
-          height: 25px;
-          display: flex;
-          justify-content: space-between;
-          padding-left:25px;
-          padding-right: 2px;
-          align-items: center;
-          box-shadow: $secondary-shadow;
-          border-radius: 35px;
-          font-size: 16px;
-        }
-        .custom-checkbox{
-          display: none;
-        }
-        select{
-          text-align-last: center;
-          height: 25px;
-          display: flex;
-          justify-content: space-between;
-          padding-right: 2px;
-          align-items: center;
-          box-shadow: $secondary-shadow;
-          border-radius: 35px;
-          font-size: 16px;
 
-          @media screen and (min-width:992px) {
-            grid-column:1 / -1;
-            }
-          }
+      .check-img {
+        width: 20px;
+      }
+
+      .active-checkbox {
+        background-color: $yellow;
+        color: $white;
+      }
+
+      .dropdown-item {
+        height: 25px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 25px;
+        padding-right: 2px;
+        align-items: center;
+        box-shadow: $secondary-shadow;
+        border-radius: 35px;
+        font-size: 16px;
+      }
+
+      .custom-checkbox {
+        display: none;
+      }
+
+      select {
+        text-align-last: center;
+        height: 25px;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 2px;
+        align-items: center;
+        box-shadow: $secondary-shadow;
+        border-radius: 35px;
+        font-size: 16px;
+
+        @media screen and (min-width: 992px) {
+          grid-column: 1 / -1;
+        }
+      }
     }
+  }
+
+  .search-field-message-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-field-message {
+    background-color: $alertMessageBg;
+    color: $alertMessageText;
+    width: 100%;
+    padding: 10px 2px;
+    border-radius: 10px;
+    margin-top: 7px;
   }
 }

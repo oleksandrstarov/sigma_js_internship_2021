@@ -31,7 +31,7 @@ const SearchField: React.FC = () => {
 
   const [focus, setFocus] = useState<boolean>(false);
 
-  const [dropdown, setDropdown] = useState<boolean>(false);
+  const [dropdown, setDropdown] = useState<boolean>(false); // false
 
   const lowerDateLimit = 1980;
 
@@ -52,6 +52,10 @@ const SearchField: React.FC = () => {
   });
 
   const [genreToSearch, setGenreToSearch] = useState<string>('none');
+
+  const [isYearIncrease, setIsYearIncrease] = useState<boolean>(false);
+
+  const [isYearDecrease, setIsYearDecrease] = useState<boolean>(false);
 
   const searchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -87,14 +91,22 @@ const SearchField: React.FC = () => {
   const fromDateInputIncrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.fromYear >= dateRange.toYear) return;
+    if (dateRange.fromYear >= dateRange.toYear) {
+      setIsYearDecrease(true);
+      return;
+    }
+    setIsYearDecrease(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear + 1 });
   };
 
   const fromDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.fromYear <= lowerDateLimit) return;
+    if (dateRange.fromYear <= lowerDateLimit) {
+      setIsYearDecrease(true);
+      return;
+    }
+    setIsYearDecrease(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
   };
 
@@ -102,13 +114,21 @@ const SearchField: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     const upperDataLimit = new Date().getFullYear();
-    if (dateRange.toYear >= upperDataLimit) return;
+    if (dateRange.toYear >= upperDataLimit) {
+      setIsYearIncrease(true);
+      return;
+    }
+    setIsYearIncrease(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear + 1 });
   };
   const toYearInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.toYear <= dateRange.fromYear) return;
+    if (dateRange.toYear <= dateRange.fromYear) {
+      setIsYearIncrease(true);
+      return;
+    }
+    setIsYearIncrease(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear - 1 });
   };
 
@@ -159,11 +179,13 @@ const SearchField: React.FC = () => {
                     value={dateRange.fromYear}
                     readOnly
                   />
+
                   <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
                   <button onClick={toYearInputDecrease}>-</button>
                   <input type="number" value={dateRange.toYear} readOnly />
+
                   <button onClick={toYearInputIncrease}>+</button>
                 </span>
               </div>
@@ -210,6 +232,16 @@ const SearchField: React.FC = () => {
                 ))}
               </select>
             </div>
+            <div className="search-field-message-wrapper">
+              {isYearDecrease && (
+                <p className="search-field-message">The lowest possible year</p>
+              )}
+              {isYearIncrease && (
+                <p className="search-field-message">
+                  A movie hasn't been released
+                </p>
+              )}
+            </div>
           </div>
         )}
         <button className="button-submit" type="submit">
@@ -221,3 +253,5 @@ const SearchField: React.FC = () => {
 };
 
 export default SearchField;
+
+
