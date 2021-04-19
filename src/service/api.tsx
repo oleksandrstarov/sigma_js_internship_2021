@@ -131,7 +131,7 @@ const api = {
   },
 
   async getSearchList(query: string, page: number = 1) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
+    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
@@ -164,7 +164,7 @@ const api = {
       return '';
     }
 
-    let obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
+    const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
     return obj.data.results;
   },
 
