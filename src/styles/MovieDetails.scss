@@ -8,41 +8,25 @@
   top: 100px;
   z-index: 3;
   .movie-wrapper {
-    margin-top: 20px;
-    
     .movie-img {
       img {
-        width: 100%;
+        
+        object-fit:fill;
         height: 100%;
         border-radius: 10px;
       }
     }
     .movie-details {
+      
       h1 {
         font-family: $title;
         font-size: 26px;
         font-weight: bolder;
         margin-bottom: 5px;
       }
-
-      .general-info {
-        table {
-          border-collapse: collapse;
-          width: 100%;
-          td {
-            text-align: left;
-            padding: 8px;
-            h4 {
-              font-size: 20px;
-              font-family: $title-cursive;
-            }
-            p {
-              font-family: $main-font;
-              font-size: 16px;
-            }
-          }
-        }
-      }
+    .general-info{
+      margin-top: 20px;
+    }
     }
   }
 
