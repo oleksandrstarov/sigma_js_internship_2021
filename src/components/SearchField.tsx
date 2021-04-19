@@ -31,7 +31,7 @@ const SearchField: React.FC = () => {
 
   const [focus, setFocus] = useState<boolean>(false);
 
-  const [dropdown, setDropdown] = useState<boolean>(false); // false
+  const [dropdown, setDropdown] = useState<boolean>(false);
 
   const lowerDateLimit = 1980;
 
@@ -179,13 +179,11 @@ const SearchField: React.FC = () => {
                     value={dateRange.fromYear}
                     readOnly
                   />
-
                   <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
                   <button onClick={toYearInputDecrease}>-</button>
                   <input type="number" value={dateRange.toYear} readOnly />
-
                   <button onClick={toYearInputIncrease}>+</button>
                 </span>
               </div>
