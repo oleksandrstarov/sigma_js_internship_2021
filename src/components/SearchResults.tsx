@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from 'src/service/api';
 import RenderResults from './RenderResults';
+
 type FaforitsApiData = {
   poster_path: string;
   original_title: string;
@@ -32,9 +33,11 @@ const SearchResults = ({ match }: any) => {
   }, [match.params])
 
   return (
-    <div className="search-wrapper">
-      <RenderResults list={data} />
-    </div>
+    <>
+      <div className="search-wrapper">
+        <RenderResults list={data} />
+      </div>
+    </>
   );
 };
 

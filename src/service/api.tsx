@@ -42,7 +42,7 @@ const api = {
     return store.theme;
   },
 
-  setFavoritesId(id: number) {
+  setFavoritesId(id: number | null) {
     const store = this.getStore();
     const isNewId = store.favorites.includes(id);
     if (!isNewId) {
@@ -51,7 +51,7 @@ const api = {
     this.setStore(store);
   },
 
-  isIdInFavorites(id: number) {
+  isIdInFavorites(id: number | null) {
     const store = api.getFavoritsIdList();
     return !store.includes(id);
   },
@@ -61,7 +61,7 @@ const api = {
     return favorites;
   },
 
-  deleteFavoritsId(id: number) {
+  deleteFavoritsId(id: number | null) {
     const store = this.getStore();
     store.favorites = store.favorites.filter((itemId: number) => itemId !== id);
     this.setStore(store);
@@ -84,7 +84,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-     return !store.includes(id);
+    return !store.includes(id);
   },
 
   getHistoryIdList() {

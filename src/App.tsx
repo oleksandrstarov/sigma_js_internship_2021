@@ -3,10 +3,8 @@ import Layout from './components/Layout';
 import routing from './config/routing';
 
 import './App.scss';
-import useReloadOnResize from './hooks/useReloadOnResize';
 
 function App() {
-  useReloadOnResize()
   return (
     <>
       <Router>

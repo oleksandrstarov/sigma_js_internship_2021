@@ -10,16 +10,25 @@ import StarRating from './StarRating';
 import '../styles/CardInfo.scss';
 
 type CardInfoProps = { number: number; tailWide: boolean };
+type CardInfoApiData = {
+  poster_path: string;
+  original_title: string;
+  title: string;
+  vote_average: number;
+  overview: string;
+  vote_count: number | null;
+  id: number | null;
+};
 
 const CardInfo = ({ tailWide, number }: CardInfoProps) => {
-  const [movieData, setMovieData] = useState({
+  const [movieData, setMovieData] = useState<CardInfoApiData>({
     poster_path: '',
     original_title: '',
     title: '',
     vote_average: 0,
-    vote_count: 0,
+    vote_count: null,
     overview: '',
-    id: 0
+    id: null
   });
 
   const {

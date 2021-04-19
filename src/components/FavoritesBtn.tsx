@@ -5,7 +5,7 @@ import api from '../service/api';
 import '../styles/FavoritesBtn.scss';
 
 type FavoritesBtnProps = {
-  movieId: number;
+  movieId: number | null;
 };
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
