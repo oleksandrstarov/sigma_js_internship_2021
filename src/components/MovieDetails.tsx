@@ -5,6 +5,7 @@ import api from '../service/api';
 import ReadMore from './ReadMore';
 
 import '../styles/MovieDetails.scss';
+
 import Detail from './Detail';
 import Title from './Title';
 
