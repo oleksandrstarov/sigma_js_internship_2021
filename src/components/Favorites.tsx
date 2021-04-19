@@ -1,9 +1,19 @@
-import MoviesList from './MoviesList';
+import { useEffect, useState } from 'react';
+import api from 'src/service/api';
+import RenderResults from './RenderResults';
 
 const Favorites = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
+      setData(res);
+    });
+  }, [])
+
   return (
     <div className="favorites-wrapper">
-      <MoviesList pageTitle="Favorites" />
+      <RenderResults list={data} />
     </div>
   );
 };
