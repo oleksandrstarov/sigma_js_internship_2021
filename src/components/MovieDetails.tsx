@@ -83,7 +83,6 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <Title text={title} />
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
-
             <Detail title="Tagline" textContent={tagline} />
             <Detail title="release_date" textContent={release_date} />
             <Detail title="Status" textContent={status} />
