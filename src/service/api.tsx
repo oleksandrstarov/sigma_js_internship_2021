@@ -5,8 +5,7 @@ import {
 } from '../constants/api';
 import axios from '../axios/url';
 
-import { MovieCard, Theme } from '../models/index';
-
+import { Theme, MovieCard } from '../models/index';
 const apiService: {
   storeKey: string;
   store: { history: number[]; favorites: number[]; theme: any };
@@ -121,20 +120,18 @@ const api = {
     return obj.data;
   },
 
-  async getPopularQueryList() {
-    const obj = await axios.get(`movie/popular?${API_KEY}&query`);
+  async getPopularQueryList(page: number = 1) {
+    const obj = await axios.get(`movie/popular?${API_KEY}&page=${page}`);
     return obj.data.results;
   },
 
-  async getTopRatedList() {
-    const obj = await axios.get(
-      `movie/top_rated?translations&${API_KEY}&region=US`
-    );
+  async getTopRatedList(page: number = 1) {
+    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US&page=${page}`);
     return obj.data.results;
   },
 
-  async getSearchList(query: string) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
+  async getSearchList(query: string, page: number = 1) {
+    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
@@ -178,9 +175,16 @@ const api = {
     return conformityIds;
   },
 
-  getFullImgLink(url: string, size: string) {
+
+  getFullImgLink(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
-  }
-};
+  },
+
+  changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
+    return arr.length < 6
+      ? arr
+      : arr.slice(6 * (page - 1), 6 * page);
+  },
+}
 
 export default api;

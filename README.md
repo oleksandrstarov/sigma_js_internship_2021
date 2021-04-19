@@ -95,69 +95,60 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 **Import:**
 
-	import api from '../service/api';
+  import api from '../service/api';
     
 **Theme:**
-	api.switchTheme(); 		            If theme was TRUE -> FALSE and in the same way if FALSE -> TRUE 
 
-**Search -> request:**
+* api.switchTheme(); 		        If theme was TRUE -> FALSE and in the same way if FALSE -> TRUE 
 
-	 api.getSearchList(...); 		    api.getSearchList('godzilla'); -> [{data}, {data}]## 
+**API, Search:**
 
-	 api.getDataById(...) 			    -> {data}
+* api.getSearchList(...); 		    -> [{data}, {data}] 	api.getSearchList('godzilla');
+
+* api.getDataById(...) 			    -> {data} 				api.getDataById(id) 	
+
+* api.getPopularQueryList()			-> [{data}, {data}] 	page: **( Optional )** api.getPopularQueryList(page)	
+
+* api.getTopRatedList()				-> [{data}, {data}] 	page: **( Optional )** api.getTopRatedList(page)	
 
 **Favorite:**
 
-	 api.setFavoritesId(...); 		    api.setFavoritesId(id);
+* api.setFavoritesId(...); 		    api.setFavoritesId(id);
 	
-	 api.deleteFavoritesId(...); 		api.deleteFavoritesId(id); 
+* api.deleteFavoritesId(...); 		api.deleteFavoritesId(id); 
 	 
-	 api.getFavoritesIdList(); 		    -> [id, id];
+* api.getFavoritesIdList(); 		-> [id, id];
 	 
-	 api.getDataByIds(...); 	        api.getDataByIds( api.getFavoritesIdList() ); -> [{data}, {data}]
+* api.getDataByIds(...); 	        api.getDataByIds( api.getFavoritesIdList() ); -> [{data}, {data}]
 	
-	 api.clearFavoritesIdList(); 		make -> []
+* api.clearFavoritesIdList(); 		make -> []
 	 
-**Story:**
+**History:**
 
-	 api.setStoryId(...);
+* api.setHistoryId(...);
 	
-	 api.deleteStoryId(...);
+* api.deleteHistoryId(...);
 	 
-	 api.getStoryIdList();
+* api.getHistoryIdList();
 	 
-	 api.getDataByIds(...); 
+* api.getDataByIds(...); 
 	
-	 api.clearStoryIdList();
+* api.clearHistoryIdList();
+
+**Extra methods:**
+
+  url: /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg, 
+  size: w500 **( Optional )**, "poster_sizes": ["w92","w154","w185","w342","w500","w780","original"]
+
+* api.changeImgLinks(url, size)           ->  https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg (img-URL )
+
+  array: 20 items
+  page: **( Optional )**
+
+* api.changeListByPagination(array, page) -> [{data}, {data}], If arr more than 20 item, then out to use this method with pages
 	
-**Popular List:**
-
-	api.getPopularQueryList()
-
-**Top-Rated List:**
-
-    api.getTopRatedList()
-
 **Extra:**
 
-{
-  "poster_sizes": [
-    "w92",
-    "w154",
-    "w185",
-    "w342",
-    "w500",
-    "w780",
-    "original"
-],
-}
-
-**method - transfom IMG links:** 
-
-***url: /fRGxZuo7jJUWQsVg9PREb98Aclp.jpg***
-***size: w500***
-
-    api.changeImgLinks(url, size)       -> img-URL ( https://image.tmdb.org/t/p/w500/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg )
 
 **Filter method:** 
 
