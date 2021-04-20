@@ -6,7 +6,6 @@ import { ThemeContextProvider } from './components/ThemeContext';
 import './App.scss';
 
 function App() {
-
   return (
     <>
       <Router>
