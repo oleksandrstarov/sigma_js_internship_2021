@@ -9,8 +9,6 @@ import { MovieCard } from '../models/index';
 
 interface RenderResultsArrList {
   list: MovieCard[];
-  original_title: string;
-  vote_count: number;
 }
 
 const RenderResults = ({ list }: RenderResultsArrList) => {
