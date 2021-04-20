@@ -25,7 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     api.getPopularQueryList().then(res => setMovies(res.slice(0, 10)));
-    api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res); console.log(res) });
+    api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });
   }, []);
 
   return (
@@ -36,7 +36,7 @@ const Home = () => {
       </div>
       <Container>
         {history && <div className="wrapper-space">
-          {history.length ? <Title text={'Last seens'} /> : null}
+          {history.length ? <Title text={"Last seens"} /> : null}
           {history.length ? (<Slider>
             {history.map((movie: MoviesType) => {
               return (

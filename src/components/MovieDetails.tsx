@@ -102,7 +102,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
       </section>
       <div className="wrapper-space">
         <div className="genres">
-          {genres && genres.map(genre => <div key={genre.id}>{genre.name}</div>)}
+          {genres?.map(genre => <div key={genre.id}>{genre.name}</div>)}
         </div>
       </div>
       <div className="hl"></div>

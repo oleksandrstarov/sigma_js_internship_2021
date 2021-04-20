@@ -1,10 +1,10 @@
 import { useState } from 'react';
-
-import buttonImgLine from '../assets/lines.png';
-import buttonImgGroup from '../assets/Group.png';
+import { MovieCard } from '../models/index';
 
 import CardInfo from './CardInfo';
-import { MovieCard } from '../models/index';
+
+import buttonImgGroup from '../assets/Group.png';
+import buttonImgLine from '../assets/lines.png';
 
 import '../styles/RenderResults.scss';
 
@@ -39,7 +39,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
       <div className={tailState ? "delivery__container" : "delivery__container-wide"}>
         {list.length ? list.map((item: MovieCard) => {
           return <CardInfo tailWide={!tailState} number={item.id} />;
-        }) : <div className="oops-favorite"> Oops, it's empty here :(</div>}
+        }) : <div className="oops-favorite"> Oops... <br /> It's still empty here ッ</div>}
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import api from 'src/service/api';
+import { RouteComponentProps } from 'react-router-dom';
+
 import RenderResults from './RenderResults';
+
+import api from 'src/service/api';
 
 type FaforitsApiData = {
   poster_path: string;
@@ -13,31 +16,24 @@ type FaforitsApiData = {
   id: number;
 }
 
-const SearchResults = ({ match }: any) => {
+interface SearchResultsMatchParams {
+  title: string;
+}
 
-  const [data, setData] = useState<FaforitsApiData[]>([{
-    poster_path: '',
-    original_title: '',
-    title: '',
-    vote_average: 0,
-    vote_count: '',
-    overview: '',
-    backdrop_path: '',
-    id: 0,
-  }]);
+const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
+
+  const [data, setData] = useState<FaforitsApiData[]>();
 
   useEffect(() => {
-    api.getSearchList(match.params.page).then((res: any) => {
+    api.getSearchList(match.params.title).then((res: FaforitsApiData[]) => {
       setData(res);
     });
   }, [match.params])
 
   return (
-    <>
-      <div className="search-wrapper">
-        <RenderResults list={data} />
-      </div>
-    </>
+    <div className="search-wrapper">
+      {data ? <RenderResults list={data} /> : null}
+    </div>
   );
 };
 
