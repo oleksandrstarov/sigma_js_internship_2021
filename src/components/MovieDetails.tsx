@@ -1,10 +1,14 @@
 import { useState, useEffect, ReactNode } from 'react';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import api from '../service/api';
 
 import ReadMore from './ReadMore';
 
 import '../styles/MovieDetails.scss';
+
 
 enum ImageWidth {
   w500
@@ -31,6 +35,8 @@ type MovieInfo = {
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
   const [movieData, setMovieData] = useState<MovieInfo>({
     poster_path: '',
     original_title: '',
@@ -88,7 +94,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   };
 
   return (
-    <div className="details-container">
+    <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
       <section className="movie-wrapper">
         <div className="movie-img">
           <img src={poster} alt="poster" />

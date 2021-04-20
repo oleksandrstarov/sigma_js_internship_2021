@@ -56,6 +56,7 @@
       display: inline-block;
       border: 1px solid $yellow;
       background-color: $white;
+      color: $black;
       padding: 5px;
       padding-left: 8px;
       padding-right: 8px;
@@ -67,6 +68,11 @@
   .description {
     padding: 5px;
   }
+}
+
+.dark-theme {
+  background-color: $bg-color-dark;
+  color: $white;
 }
 
 @include for-desktop {
