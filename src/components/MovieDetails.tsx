@@ -1,10 +1,13 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 
 import api from '../service/api';
 
 import ReadMore from './ReadMore';
 
 import '../styles/MovieDetails.scss';
+
+import Detail from './Detail';
+import Title from './Title';
 
 enum ImageWidth {
   w500
@@ -68,24 +71,8 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
-    })
-  }, [match.params.id])
-
-  const renderMovieInfo = (
-    header: string,
-    info: string | number
-  ): ReactNode => {
-    return (
-      <tr>
-        <td>
-          <h4>{header}: </h4>
-        </td>
-        <td>
-          <p>{info}</p>
-        </td>
-      </tr>
-    );
-  };
+    });
+  }, [match.params.id]);
 
   return (
     <div className="details-container">
@@ -94,19 +81,22 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <h1>{title}</h1>
+          <Title text={title} />
           <div className="general-info">
-            <table>
-              {renderMovieInfo('Original title', original_title)}
-              {renderMovieInfo('Tagline', tagline)}
-              {renderMovieInfo('release_date', release_date)}
-              {renderMovieInfo('Status', status)}
-              {renderMovieInfo('Budget', budget)}
-              {renderMovieInfo('Country', production_countries[0].name)}
-              {renderMovieInfo('Duration', runtime)}
-              {renderMovieInfo('IMDB', vote_average)}
-              {renderMovieInfo('Popularity', popularity)}
-            </table>
+            <Detail title="Original title" textContent={original_title} />
+            <Detail title="Tagline" textContent={tagline} />
+            <Detail title="release_date" textContent={release_date} />
+            <Detail title="Status" textContent={status} />
+            <Detail title="Budget" textContent={budget} />
+            <Detail
+              title="Country"
+              textContent={production_countries
+                .map(({ name }) => name)
+                .join(', ')}
+            />
+            <Detail title="Duration" textContent={runtime} />
+            <Detail title="IMDB" textContent={vote_average} />
+            <Detail title="Popularity" textContent={popularity} />
           </div>
         </div>
       </section>

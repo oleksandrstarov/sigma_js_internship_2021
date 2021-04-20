@@ -13,8 +13,8 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     poster_path: '',
     original_title: '',
     title: '',
-    vote_average: '',
-    vote_count: '',
+    vote_average: 0,
+    vote_count: 0,
     overview: ''
   });
 
@@ -54,7 +54,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
               <p>
                 {' '}
                 {overview.slice(0, 250)}
-                <NavLink to={`/movie-details/:${number} `}>
+                <NavLink to={`/movie-details/${number} `}>
                   <span>...Read more</span>
                 </NavLink>
               </p>
@@ -75,7 +75,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
           <div className="info-card__imdb">IMDB {vote_average}</div>
           <div className="info-card__voters">Voters {vote_count}</div>
         </div>
-        <NavLink to={`/movie-details/:${number}`}>
+        <NavLink to={`/movie-details/${number}`}>
           <button type="button" className={'card-info__button'}>
             <div className={'card-info__button-view'}>
               <p> {'VIEW DETAILS'}</p>
