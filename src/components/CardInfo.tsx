@@ -21,27 +21,7 @@ type CardInfoApiData = {
 };
 
 const CardInfo = ({ tailWide, number }: CardInfoProps) => {
-  const [movieData, setMovieData] = useState<CardInfoApiData>({
-    poster_path: '',
-    original_title: '',
-    title: '',
-    vote_average: 0,
-    vote_count: 0,
-    overview: '',
-    id: 0
-  });
-
-  const {
-    poster_path,
-    original_title,
-    title,
-    vote_average,
-    overview,
-    vote_count,
-    id
-  } = movieData;
-
-  const srcImgLink = api.changeImgLinks(poster_path, 'w342');
+  const [movieData, setMovieData] = useState<CardInfoApiData>();
 
   useEffect(() => {
     api.getDataById(number).then((res: any) => {
@@ -49,16 +29,16 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     });
   }, [number]);
 
-  return (
+  return <>{movieData ? (
     <div className={tailWide ? 'card-info card-info__tail' : 'card-info'}>
       <div className="card-info__wrapper">
         {!tailWide ? (
           <div className="titleComponent card-info__title">
-            <h2>{title}</h2>
+            <h2>{movieData.title}</h2>
           </div>
         ) : (
           <div className="titleComponent card-info__title-tail">
-            <h2>{title}</h2>
+            <h2>{movieData.title}</h2>
           </div>
         )}
 
@@ -66,37 +46,37 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
           {!tailWide
             ? null
             : <>
-              <FavoritesBtn movieId={id} />
-              <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={vote_average} />
+              <FavoritesBtn movieId={movieData.id} />
+              <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={movieData.vote_average} />
             </>}
         </div>
 
         {!tailWide ? null : (
           <div className="card-info__description">
-            {overview.length >= 250 ? (
+            {movieData.overview.length >= 250 ? (
               <p>
-                {' '}
-                {overview.slice(0, 250)}
+                {''}
+                {movieData.overview.slice(0, 250)}
                 <NavLink to={`/movie-details/${number} `}>
                   <span>...Read more</span>
                 </NavLink>
               </p>
             ) : (
-              overview
+              movieData.overview
             )}
           </div>
         )}
       </div>
       <div className="cars-info_container">
         <img
-          src={srcImgLink}
-          alt={original_title}
+          src={api.changeImgLinks(movieData.poster_path)}
+          alt={movieData.original_title}
           className={'card-info__img'}
         />
         <div className="card-info__gradient" />
         <div className="info-card__rate">
-          <div className="info-card__imdb">IMDB {vote_average}</div>
-          <div className="info-card__voters">Voters {vote_count}</div>
+          <div className="info-card__imdb">IMDB {movieData.vote_average}</div>
+          <div className="info-card__voters">Voters {movieData.vote_count}</div>
         </div>
         <NavLink to={`/movie-details/${number}`}>
           <button type="button" className={'card-info__button'}>
@@ -104,7 +84,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
               <p> {'VIEW DETAILS'}</p>
               <img
                 src={buttonImgSrc}
-                alt={original_title}
+                alt={movieData.original_title}
                 className={'card-info__button-img'}
               />
             </div>
@@ -112,6 +92,6 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
         </NavLink>
       </div>
     </div>
-  );
+  ) : null}</>;
 };
 export default CardInfo;
