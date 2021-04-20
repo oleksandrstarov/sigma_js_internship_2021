@@ -137,13 +137,13 @@ const api = {
 
   async getSearchFileredList(dataFilter:
     {
-      from: number,
-      to: number,
+      from: number | null,
+      to: number | null,
       genre: string | null,
       page: number
     } = {
-      from: 1900,
-      to: 2020,
+      from: null,
+      to: null,
       genre: null,
       page: 1,
     }
@@ -169,12 +169,9 @@ const api = {
   },
 
   getFilterMatchesList(arr: MovieCard[], idsList: number[]) {
-    const conformityIds = arr.filter(item => {
-      return idsList.includes(item.id);
-    });
+    const conformityIds = arr.filter(item => idsList.includes(item.id));
     return conformityIds;
   },
-
 
   getFullImgLink(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
