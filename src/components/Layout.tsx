@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
 
   return (
-    <div className={`wrapper ${theme ? '' : "dark-theme"}`}>
+    <div className={`wrapper ${theme ? '' : 'dark-theme'}`}>
       <Header />
       <Main>{children}</Main>
       <WrapperFavorites />

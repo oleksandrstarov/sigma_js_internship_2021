@@ -21,13 +21,13 @@ const MovieBanner = () => {
     getPopularMovies();
   }, []);
 
-  const randomMovieFunc =
+  const randomMovie =
     popularMovies[Math.floor(Math.random() * popularMovies.length)];
 
   return (
     <section className="movie-banner">
       <Container>
-        {randomMovieFunc && <PopularMovie movie={randomMovieFunc} />}
+        {randomMovie && <PopularMovie movie={randomMovie} />}
       </Container>
     </section>
   );
