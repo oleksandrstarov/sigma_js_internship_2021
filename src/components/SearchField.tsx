@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import { useHistory } from 'react-router';
 
 import '../styles/SearchField.scss';
@@ -51,11 +51,9 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<string>('none');
+  const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
 
-  const [isYearIncrease, setIsYearIncrease] = useState<boolean>(false);
-
-  const [isYearDecrease, setIsYearDecrease] = useState<boolean>(false);
+  const [isDataValid, setIsDataValid] = useState<boolean>(false);
 
   const searchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -92,43 +90,36 @@ const SearchField: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     if (dateRange.fromYear >= dateRange.toYear) {
-      setIsYearDecrease(true);
+      setIsDataValid(true);
+      setTimeout(() => setIsDataValid(false), 2000);
       return;
     }
-    setIsYearDecrease(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear + 1 });
   };
 
   const fromDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.fromYear <= lowerDateLimit) {
-      setIsYearDecrease(true);
-      return;
-    }
-    setIsYearDecrease(false);
+    setIsDataValid(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
   };
 
-  const toYearInputIncrease = (
+  const toDateInputIncrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     const upperDataLimit = new Date().getFullYear();
-    if (dateRange.toYear >= upperDataLimit) {
-      setIsYearIncrease(true);
-      return;
-    }
-    setIsYearIncrease(false);
+    if (dateRange.toYear >= upperDataLimit) return;
+    setIsDataValid(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear + 1 });
   };
-  const toYearInputDecrease = (
+  const toDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     if (dateRange.toYear <= dateRange.fromYear) {
-      setIsYearIncrease(true);
+      setIsDataValid(true);
+      setTimeout(() => setIsDataValid(false), 2000);
       return;
     }
-    setIsYearIncrease(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear - 1 });
   };
 
@@ -147,7 +138,7 @@ const SearchField: React.FC = () => {
   const selectGenreHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    setGenreToSearch(event.target.value);
+    setGenreToSearch(event.target.value as Genres);
   };
 
   return (
@@ -182,9 +173,9 @@ const SearchField: React.FC = () => {
                   <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
-                  <button onClick={toYearInputDecrease}>-</button>
+                  <button onClick={toDateInputDecrease}>-</button>
                   <input type="number" value={dateRange.toYear} readOnly />
-                  <button onClick={toYearInputIncrease}>+</button>
+                  <button onClick={toDateInputIncrease}>+</button>
                 </span>
               </div>
               <label
@@ -223,22 +214,15 @@ const SearchField: React.FC = () => {
               </label>
               <select value={genreToSearch} onChange={selectGenreHandler}>
                 <option value="none">Select genre</option>
-                {Object.values(Genres).map((genre, i) => (
-                  <option value={genre} key={i}>
-                    {genre}
+                {Object.entries(Genres).map(([key, value]) => (
+                  <option value={key} key={key}>
+                    {value}
                   </option>
                 ))}
               </select>
             </div>
             <div className="search-field-message-wrapper">
-              {isYearDecrease && (
-                <p className="search-field-message">The lowest possible year</p>
-              )}
-              {isYearIncrease && (
-                <p className="search-field-message">
-                  A movie hasn't been released
-                </p>
-              )}
+              {isDataValid && <p className="search-field-message">You are trying to choose invalid date range</p>}
             </div>
           </div>
         )}
