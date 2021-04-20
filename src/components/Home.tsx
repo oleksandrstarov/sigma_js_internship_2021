@@ -15,18 +15,15 @@ const Home = () => {
 
   useEffect(() => {
     api.getPopularQueryList().then(results => setMovies(results.slice(0, 10)));
-  }, []);
-
-  useEffect(() => {
     api.getDataByIds(api.getHistoryIdList()).then(results => setHistry(results));
   }, []);
+
   return (
     <>
       <MovieBanner />
       <div className="wrapper-space">
         <WrapperFavorites />
       </div>
-
       <Container>
         <div className="wrapper-space">
           {history.length ? <Title text={'Last seens'} /> : null}
@@ -55,7 +52,6 @@ const Home = () => {
       </Container>
     </>
   );
-
 };
 
 export default Home;

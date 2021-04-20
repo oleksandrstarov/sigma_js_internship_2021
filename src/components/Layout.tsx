@@ -8,6 +8,7 @@ import Main from './Main';
 interface LayoutProps {
   children: ReactNode;
 }
+
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="wrapper">

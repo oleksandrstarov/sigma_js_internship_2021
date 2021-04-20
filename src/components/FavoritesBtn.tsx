@@ -5,7 +5,7 @@ import api from '../service/api';
 import '../styles/FavoritesBtn.scss';
 
 type FavoritesBtnProps = {
-  movieId: number | null;
+  movieId: number;
 };
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
@@ -15,7 +15,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
   const handleSwitchFavoriteState = (): void => {
-    isFavorite ? api.setFavoritesId(movieId) : api.deleteFavoritsId(movieId);
+    !isFavorite ? api.setFavoritesId(movieId) : api.deleteFavoritsId(movieId);
     setIsFavorite(api.isIdInFavorites(movieId));
   };
 
@@ -23,7 +23,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
     <button className="favorite-btn" onClick={handleSwitchFavoriteState}>
       <img
         className="favorite-icon"
-        src={isFavorite ? heartFilledIcon : heartUnfilledIcon}
+        src={!isFavorite ? heartFilledIcon : heartUnfilledIcon}
         alt="favorite icon"
       />
     </button>

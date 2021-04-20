@@ -16,8 +16,8 @@ type CardInfoApiData = {
   title: string;
   vote_average: number;
   overview: string;
-  vote_count: number | null;
-  id: number | null;
+  vote_count: number;
+  id: number;
 };
 
 const CardInfo = ({ tailWide, number }: CardInfoProps) => {
@@ -26,9 +26,9 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     original_title: '',
     title: '',
     vote_average: 0,
-    vote_count: null,
+    vote_count: 0,
     overview: '',
-    id: null
+    id: 0
   });
 
   const {
