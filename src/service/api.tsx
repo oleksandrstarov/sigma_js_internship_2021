@@ -2,6 +2,7 @@ import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
 import { Theme, MovieCard } from '../models/index';
+import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
   store: { history: number[]; favorites: number[]; theme: any };
@@ -106,7 +107,7 @@ const api = {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: string) =>
-        await axios.get(url).then((res: { data: {}[] }) => res.data)
+        await axios.get(url).then((res: { data: MoviesType }) => res.data)
     );
     return Promise.all(requests);
   },

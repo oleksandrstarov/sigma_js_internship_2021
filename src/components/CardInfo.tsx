@@ -43,19 +43,16 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
         )}
 
         <div className="info-card-activities">
-          {!tailWide
-            ? null
-            : <>
-              <FavoritesBtn movieId={movieData.id} />
-              <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={movieData.vote_average} />
-            </>}
+          {tailWide && <>
+            <FavoritesBtn movieId={movieData.id} />
+            <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={movieData.vote_average} />
+          </>}
         </div>
 
-        {!tailWide ? null : (
+        {tailWide && (
           <div className="card-info__description">
             {movieData.overview.length >= 250 ? (
               <p>
-                {''}
                 {movieData.overview.slice(0, 250)}
                 <NavLink to={`/movie-details/${number} `}>
                   <span>...Read more</span>
