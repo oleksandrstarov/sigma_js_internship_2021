@@ -2,8 +2,6 @@ import { mount, ReactWrapper } from 'enzyme';
 
 import Detail from './Detail';
 
-jest.mock('', () => () => 'PopularMovie');
-
 describe('Detail', () => {
   let wrapper: ReactWrapper;
 
