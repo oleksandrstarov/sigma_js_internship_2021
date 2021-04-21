@@ -14,15 +14,11 @@ const ThemeImage = {
 const ThemeToggler = () => {
   const { handleTheme, theme }: ThemeContextType = useContext(ThemeContext)
 
-  const handleToggle = (): void => {
-    handleTheme();
-  };
-
   return (
     <>
       <input
         checked={!!theme}
-        onChange={handleToggle}
+        onChange={() => handleTheme()}
         className="switch-checkbox"
         id="switch-new"
         type="checkbox"

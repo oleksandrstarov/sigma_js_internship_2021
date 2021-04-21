@@ -86,7 +86,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <Title text={title} />
+          <Title text={title} className={`${theme ? '' : 'dark-theme'}`} />
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />
