@@ -25,7 +25,7 @@ describe('Detail', () => {
     expect(wrapper).toBeDefined();
   });
 
-  it('should render not render without textContent prop', () => {
+  it('should not render without textContent prop', () => {
     wrapper.setProps({ title: 'test', textContent: null });
 
     expect(wrapper.isEmptyRender()).toBe(true);
