@@ -9,7 +9,6 @@ const historyImg = '/images/history.png';
 const focusImg = '/images/focus.png';
 
 const SettingsBar = () => {
-
     return (
         <div className="settings-bar-wrapper">
             <div className="bar-items-container">
