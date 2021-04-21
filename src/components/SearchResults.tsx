@@ -29,10 +29,11 @@ const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>)
       setData(res);
     });
   }, [match.params])
+  console.log(data);
 
   return (
     <div className="search-wrapper">
-      {data ? <RenderResults list={data} /> : null}
+      {!!data && <RenderResults list={data} />}
     </div>
   );
 };

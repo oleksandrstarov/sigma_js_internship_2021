@@ -37,9 +37,8 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
         )}
       </div>
       <div className={tailState ? "delivery__container" : "delivery__container-wide"}>
-        {list.length ? list.map((item: MovieCard) => {
-          return <CardInfo tailWide={!tailState} number={item.id} />;
-        }) : <div className="oops-favorite"> Oops... <br /> It's still empty here ッ</div>}
+        {!!list.length && list.map((item: MovieCard) => <CardInfo tailWide={!tailState} number={item.id} />)}
+        {!list.length && <div className="oops-favorite"> Oops... <br /> It's still empty here ッ</div>}
       </div>
     </div>
   );

@@ -5,13 +5,13 @@ import { Theme, MovieCard } from '../models/index';
 import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any };
+  store: { history: number[]; favorites: number[]; theme: any; };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
+    theme: Theme.light,
   }
 };
 
@@ -29,7 +29,7 @@ const api = {
     data: Object = {
       history: [],
       favorites: [],
-      theme: 1
+      theme: 1,
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
