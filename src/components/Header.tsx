@@ -3,10 +3,12 @@ import ThemeToggler from './ThemeToggle';
 
 import '../styles/Header.scss';
 import SearchField from './SearchField';
+import SettingsBtn from './SettingsBtn';
 
 const imageXl = '/images/logo-xl.svg';
 const imageSm = '/images/logo-sm.svg';
 const heart = '/images/heart.svg';
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +23,6 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
-
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -34,8 +35,9 @@ const Header = () => {
         <SearchField />
         <a href="/favorites/1" className="header-nav-link">
           <span>Favorites</span>
-          <img src={heart} alt="heart img"/>
+          <img src={heart} alt="heart img" />
         </a>
+        <SettingsBtn />
         <ThemeToggler />
       </div>
     </header>

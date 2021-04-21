@@ -77,6 +77,7 @@ header {
     img {
       transform: translateY(2px);
     }
+    
 
     span {
       display: none;
@@ -87,4 +88,73 @@ header {
       }
     }
   }
+  .settings-wrapper{
+    position: relative;
+
+    .settings-button{
+      position: relative;
+      cursor: pointer;
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.23);
+      // margin-right: 10px;
+      min-width: 35px;
+
+      .settings-img-button{
+        transform: translateY(1px);
+        height: 24px;
+        width: 24px;
+        transform: rotate(0deg);
+        transition: 1s;
+      }
+      .settings-img-button-active{
+        transform: translateY(1px);
+        height: 24px;
+        width: 24px;
+        transform: rotate(45deg);
+        transition: 1s;
+      }
+
+      @media screen and(min-width: 992px) {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 8px 22px 9px;
+        border-radius: 21px;
+        box-shadow: 0 0 23px rgba(0, 0, 0, 0.15);
+        margin-right: 40px;
+        height: 45px;
+      }
+    }
+    .settings-bar{
+      transform: translate(-200px, 1000px );
+      position: absolute;
+      height: 200px;
+      width: 300px;
+      opacity: 0;
+      z-index: 10;
+      display: none;
+    }
+
+    .settings-bar-active{
+      transform: translate(-200px, 20px);
+      border: 1px solid orange;
+      transition: all .5s ease-out;
+      background-color: white;
+      border-radius: 20px;
+      padding: 8px ;
+      position: absolute;
+      height: 257px;
+      width: 235px;
+      opacity: 1;
+      z-index: 10;
+      display: block;
+    }
+  }
+  
 }
