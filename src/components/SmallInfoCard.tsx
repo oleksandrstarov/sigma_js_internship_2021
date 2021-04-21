@@ -31,7 +31,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
     api.getDataById(id).then(res => {
       setData(res);
     });
-  }, []);
+  }, [id]);
 
   return (
     <div className="small-cardInfo">

@@ -6,12 +6,11 @@
   background-color: $bg-color-light;
   position: relative;
   top: 100px;
-  z-index: -1;
+  z-index: 3;
   .movie-wrapper {
-    margin-top: 20px;
     .movie-img {
       img {
-        width: 100%;
+        object-fit:fill;
         height: 100%;
         border-radius: 10px;
       }
@@ -23,25 +22,9 @@
         font-weight: bolder;
         margin-bottom: 5px;
       }
-
-      .general-info {
-        table {
-          border-collapse: collapse;
-          width: 100%;
-          td {
-            text-align: left;
-            padding: 8px;
-            h4 {
-              font-size: 20px;
-              font-family: $title-cursive;
-            }
-            p {
-              font-family: $main-font;
-              font-size: 16px;
-            }
-          }
-        }
-      }
+    .general-info{
+      margin-top: 20px;
+    }
     }
   }
 
@@ -72,10 +55,12 @@
   .movie-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+    
     .movie-img {
       margin: auto;
-      width: 400px;
-      height: 500px;
+      max-width: 470px;
+      height: 600px;
+      width: 100%;
       img {
         object-fit: contain;
       }
