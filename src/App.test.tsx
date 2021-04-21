@@ -20,6 +20,6 @@ describe('App', () => {
   });
 
   it('should render Layout', () => {
-    expect(wrapper.find(Layout)).toBeTruthy();
+    expect(wrapper.find(Layout).exists()).toBeTruthy();
   });
 });
