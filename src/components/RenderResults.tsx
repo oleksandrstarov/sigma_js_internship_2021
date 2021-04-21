@@ -8,6 +8,7 @@ import CardInfo from './CardInfo';
 import { MovieCard } from '../models/index';
 
 import useDeviceDetect from 'src/hooks/useDeviceDetect';
+import SmallInfoCard from './SmallInfoCard';
 
 interface RenderResultsArrList {
   list: MovieCard[];
@@ -39,10 +40,19 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
       </div>
       <div className="delivery__container">
         {list.map((item: MovieCard) => {
-          if (mobileView) {
+          if (!mobileView) {
 
             return <CardInfo tailWide={!tailState} number={item.id} />;
+          } else {
+
+            if (tailState) {
+              return <CardInfo tailWide={false} number={item.id} />;
+            }
+
+            return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
+
           }
+
 
         })}
       </div>
