@@ -1,0 +1,18 @@
+@import "../styles/variables.scss";
+
+.favorite-btn {
+  cursor: pointer;
+
+  .favorite-icon {
+    width: 35px;
+    height: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @include for-desktop {
+    .favorite-icon {
+      width: 44px;
+      height: 40px;
+    }
+  }
+}

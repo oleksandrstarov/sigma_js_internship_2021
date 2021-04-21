@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import { ThemeContext, ThemeContextType } from './ThemeContext';
+
 import { Link } from 'react-router-dom';
 import Title from './Title';
 
@@ -20,6 +23,7 @@ type ResponseData = {
 };
 
 const SmallInfoCard = ({ id }: CardInfoProps) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
   const [data, setData] = useState<ResponseData>({
     poster_path: '',
     vote_count: '',
@@ -31,10 +35,10 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
     api.getDataById(id).then(res => {
       setData(res);
     });
-  }, []);
+  }, [id]);
 
   return (
-    <div className="small-cardInfo">
+    <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
       <div className=" small-cardInfo__title">
         <Title text={data.title} />
       </div>

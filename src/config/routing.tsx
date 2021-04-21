@@ -3,7 +3,7 @@ import MovieDetails from '../components/MovieDetails';
 import Favorites from '../components/Favorites';
 import SearchResults from '../components/SearchResults';
 
-export default [
+const Routes = [
   {
     path: '/',
     name: 'Home',
@@ -23,9 +23,12 @@ export default [
     component: Favorites
   },
   {
-    path: '/search-results/:title/:page',
+    path:
+      '/search-results/:title?/:genre?/:fromYear?/:toYear?/:favorites?/:favorites?/:page',
     name: 'Search results',
     exact: false,
     component: SearchResults
   }
 ];
+
+export default Routes;
