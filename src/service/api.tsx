@@ -159,7 +159,7 @@ const api = {
     function setGenre() {
       const { genre } = dataFilter;
       if (!!genre) {
-        return `&with_genres=${API_GENRE_ID[Genres.genre]}`
+        return `&with_genres=${API_GENRE_ID[genre as Genres]}`
       }
       return '';
     }
