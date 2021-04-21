@@ -17,6 +17,12 @@ export enum Theme {
   dark,
   light
 }
+
+export enum HistoryBur {
+  unsubscribe,
+  subscribe
+}
+
 export interface StarRatingProps {
   numberOfStars: number;
   colorFilled: string;
