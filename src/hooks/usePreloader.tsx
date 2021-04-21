@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 
 const usePreloader = (isLoaded: boolean) => {
-  const checkData = (): void => {
-    const preloader = document.querySelector('.preloader');
-
-    if(isLoaded && preloader) {
-      preloader.remove();
-    }
-  }
-
   useEffect(() => {
-    checkData();
+    (function () {
+      const preloader = document.querySelector('.preloader');
+
+      if(isLoaded && preloader) {
+        preloader.style.display = 'none';
+      } else if(preloader) {
+        preloader.style.display = 'flex';
+      }
+    })()
   })
 }
 

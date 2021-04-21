@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+
+import { ThemeContext, ThemeContextType } from './ThemeContext';
+
+import { Theme } from '../models';
 
 import '../styles/ThemeToggle.scss';
-
-enum Theme {
-  dark,
-  light
-}
 
 const ThemeImage = {
   [Theme.dark]: '/images/moon.svg',
@@ -13,17 +12,13 @@ const ThemeImage = {
 };
 
 const ThemeToggler = () => {
-  const [theme, setTheme] = useState(Theme.light);
-
-  const handleToggle = (): void => {
-    setTheme(theme === Theme.light ? Theme.dark : Theme.light);
-  };
+  const { handleTheme, theme }: ThemeContextType = useContext(ThemeContext)
 
   return (
     <>
       <input
         checked={!!theme}
-        onChange={handleToggle}
+        onChange={() => handleTheme()}
         className="switch-checkbox"
         id="switch-new"
         type="checkbox"
