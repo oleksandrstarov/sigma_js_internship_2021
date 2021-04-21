@@ -52,11 +52,16 @@ const Slider = ({ className, children }: SliderProps) => {
     setIsLast(translate <= sliderWidth + -listWidth - 60);
     setIsFirst(translate >= 0);
 
+    console.log(listWidth, sliderWidth)
+
     setHasHiddenItems(
-      listRef.current.clientWidth > sliderRef.current.clientWidth
+      listWidth > sliderWidth
     );
     setProgress();
   }, [translate, activeSlides]);
+
+  console.log(children)
+  console.log(window.innerWidth)
 
   return (
     <div ref={sliderRef} className={`default-slider ${className}`}>
