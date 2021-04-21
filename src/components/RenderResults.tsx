@@ -7,6 +7,8 @@ import '../styles/RenderResults.scss';
 import CardInfo from './CardInfo';
 import { MovieCard } from '../models/index';
 
+import useDeviceDetect from 'src/hooks/useDeviceDetect';
+
 interface RenderResultsArrList {
   list: MovieCard[];
 }
@@ -15,7 +17,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
   const [tailState, setTailState] = useState(true);
 
   const handlerTail = () => setTailState(!tailState);
-
+  const mobileView = useDeviceDetect()
   return (
     <div className="delivery">
       <div className="view-toggler">
@@ -37,7 +39,11 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
       </div>
       <div className="delivery__container">
         {list.map((item: MovieCard) => {
-          return <CardInfo tailWide={!tailState} number={item.id} />;
+          if (mobileView) {
+
+            return <CardInfo tailWide={!tailState} number={item.id} />;
+          }
+
         })}
       </div>
     </div>
