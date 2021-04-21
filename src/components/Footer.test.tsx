@@ -1,18 +1,15 @@
-import { mount, ReactWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
+
 import Container from './Container';
 import Footer from './Footer';
 
 jest.mock('./Container', () => () => <>Container</>);
 
 describe('should be rendered without crashing', () => {
-  let wrapper: ReactWrapper;
+  let wrapper = shallow(<Footer />);
 
-  beforeEach(() => {
-    wrapper = mount(<Footer />);
-  });
-
-  afterEach(() => {
-    wrapper?.unmount();
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   it('should render Footer Component without crashing', () => {
