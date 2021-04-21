@@ -4,6 +4,7 @@ import {
   API_GENRE_ID
 } from '../constants/api';
 import axios from '../axios/url';
+import { Genres } from '../models'
 
 import { Theme, MovieCard } from '../models/index';
 const apiService: {
@@ -137,32 +138,33 @@ const api = {
 
   async getSearchFileredList(dataFilter:
     {
-      from: number | null,
-      to: number | null,
-      genre: string | null,
+      from?: number,
+      to?: number,
+      genre?: string,
       page: number
     } = {
-      from: null,
-      to: null,
-      genre: null,
       page: 1,
     }
   ) {
 
     function setFilteredData() {
       const { from, to } = dataFilter
-      if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
-      return `&primary_release_date.gte=${from}-01-01`
+      if (!!from) {
+        if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
+        return `&primary_release_date.gte=${from}-01-01`
+      }
+      return '';
     }
 
     function setGenre() {
       const { genre } = dataFilter;
-      if (!genre) {
-        const genreId = API_GENRE_ID.filter((item: any) => Object.keys(item)[0] === 'comedy');
-        return `&with_genres=${Object.keys(genreId[0])[0]}`
+      if (!!genre) {
+        return `&with_genres=${API_GENRE_ID[Genres.genre]}`
       }
       return '';
     }
+
+    //https://api.themoviedb.org/3/discover/movie?sort_by=popularity.asc&page=1&primary_release_date.gte=2020-01-01&api_key=157c2ade7d0b335008ae899a157d8967
 
     const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
     return obj.data.results;

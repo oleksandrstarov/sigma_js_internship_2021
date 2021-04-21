@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import { Genres } from '../models'
 
 import '../styles/SearchField.scss';
 
 const loupeIcon = '/images/search-icon.svg';
-
-enum Genres {
-  Comedy = 'Comedy',
-  Drama = 'Drama',
-  Romance = 'Romance',
-  Mystery = 'Mystery',
-  Thriller = 'Thriller',
-  Animation = 'Animation',
-  Action = 'Action',
-  Adventure = 'Adventure',
-  Crime = 'Crime',
-  Fantasy = 'Fantasy',
-  ScienceFiction = 'Science Fiction',
-  Horror = 'Horror',
-  Family = 'Family'
-}
-
 const checkedImg = '/images/searchFieldIcons/checked.svg';
 const uncheckedImg = '/images/searchFieldIcons/unchecked.svg';
 
@@ -168,9 +152,8 @@ const SearchField: React.FC = () => {
                 </span>
               </div>
               <label
-                className={`dropdown-item ${
-                  checkboxes.favorites ? 'active-checkbox' : ''
-                }`}>
+                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
+                  }`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -185,9 +168,8 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${
-                  checkboxes.history ? 'active-checkbox' : ''
-                }`}>
+                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
+                  }`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"
