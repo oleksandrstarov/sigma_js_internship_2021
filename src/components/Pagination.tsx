@@ -106,7 +106,7 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
       checkSpills();
       switchPage(currentPage);
     }
-  })
+  }, [totalPages, switchPage, setActiveLink, currentPage, checkSpills])
 
   return (
     <div ref={paginationWrapper} className="pagination-container">

@@ -13,99 +13,135 @@ $white:  #ffff;
 }
 
 %area-card {
-  max-width: 320px;
+  max-width: 280px;
   max-height: 475px;
   }
 
 .card-info{
   background-color: $white;
   border-radius: 10px;
-  max-width: 360px;
+  max-width: 320px;
   width: 100%;
-  height: 525px;
+  height: 505px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px 20px 10px;
-  margin: 10px;
+  margin: 10px 10px 45px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
 
+  @media screen and(min-width: 1080px) {
+    margin: 10px 40px 45px;
+  }
+
+  @media screen and(max-width: 1200px) {
+    margin: 10px 20px 45px;
+  }
+  
+  @media screen and(max-width: 630px) {
+    margin: 10px 0 25px;
+  }
+  
+  .card-info__wrapper{
+    position: relative;
+    width: 100%;
+
+    .info-card-activities{
+      position: absolute;
+      bottom: 8px;
+      right: 181px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column-reverse;
+      align-items: baseline;
+    }
+
+    .info-card-activities .favorite-btn {
+      margin-top: 20px;
+    }
+    
+    .star-wrapper{
+      display: flex;
+    }
+  }
+
   .card-info__title{
-  @extend %pos-absolute-left0;
-  top: 0;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size: 18px;
-  @extend %stretch;
+    @extend %pos-absolute-left0;
+    top: -36px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 18px;
+    @extend %stretch;
   }
   
   .cars-info_container{
-  position: relative;
-  @extend %area-card;
-  @extend %stretch;
-  border-radius: 10px;
-  overflow: hidden;   
+    position: relative;
+    @extend %area-card;
+    @extend %stretch;
+    border-radius: 10px;
+    overflow: hidden;   
   }
 
   .card-info__gradient{
-  @extend %pos-absolute-left0;
-  top: 0;
-  background: linear-gradient(#ffffff10 56%, #fdfbf9cc 76%);
-  @extend %area-card;
-  @extend %stretch;
+    @extend %pos-absolute-left0;
+    top: 0;
+    background: linear-gradient(#ffffff10 56%, #fdfbf9cc 76%);
+    @extend %area-card;
+    @extend %stretch;
   }
 
   .card-info__img{
-  @extend %pos-absolute-left0;
-  left: 0;
-  @extend %area-card;
-  @extend %stretch;
-  border-radius: 10px;
+    @extend %pos-absolute-left0;
+    left: 0;
+    @extend %area-card;
+    @extend %stretch;
+    border-radius: 10px;
   }
 
   .card-info__button{
-  cursor: pointer;
-  @extend %pos-absolute-left0;
-  bottom: 0;
-  max-width: 338px;
-  max-height: 52px;
-  @extend %stretch;
-  font-size: 18px;  
-  font-weight: bold;
-  background-color:  $orange;
-  font-size: 24px;
-  color: $white;
+    cursor: pointer;
+    @extend %pos-absolute-left0;
+    bottom: 0;
+    max-width: 338px;
+    max-height: 52px;
+    @extend %stretch;
+    font-size: 18px;  
+    font-weight: bold;
+    background-color:  $orange;
+    font-size: 24px;
+    color: $white;
   }
 
-  .info-card__imdb, .info-card__voters{
-  position: absolute;
-  top: 375px;
-  left: 21px;
-  font-size: 18px;
-  font-family: 'Heebo';
-  }
+    .info-card__imdb, .info-card__voters{
+      position: absolute;
+      top: 375px;
+      left: 21px;
+      font-size: 18px;
+      font-family: 'Heebo';
+    }
 
-  .info-card__voters{
-  left: 121px;
-  }
+    .info-card__voters{
+      left: 121px;
+    }
 
-  .card-info__button-view{
-  display: flex;
-  padding: 0 15px;
-  justify-content: space-between;
-  vertical-align: middle;
-  line-height: 52px;
+    .card-info__button-view{
+      display: flex;
+      padding: 0 15px;
+      justify-content: space-between;
+      vertical-align: middle;
+      line-height: 52px;
 
-  .card-info__button-img{
-    height: 37px;
-    width: 37px;
-    vertical-align: middle;
-    line-height: 52px;
-    margin: 6px 0;
-  }
+    .card-info__button-img{
+      height: 37px;
+      width: 37px;
+      vertical-align: middle;
+      line-height: 52px;
+      margin: 6px 0;
+    }
   }
 }
+
 .card-info__tail{
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -113,19 +149,19 @@ $white:  #ffff;
   width: 100%;
 
   .card-info__description{
-  max-width: 250px;
-  margin: 5px;
+    max-width: 300px;
+    margin: 5px auto;
 
-  span{
-    cursor: pointer;
-    color: $blue;
-  }
+    span{
+      cursor: pointer;
+      color: $blue;
+    }
   }
 
   .card-info__title-tail{
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 25px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 25px;
   }
 }
 
