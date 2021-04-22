@@ -1,6 +1,4 @@
-$blue: #1d5c9b;
-$orange:  #FCAE30;
-$white:  #ffff;
+@import "./variables.scss";
 
 %pos-absolute-left0 {
   position: absolute;
@@ -108,7 +106,7 @@ $white:  #ffff;
     @extend %stretch;
     font-size: 18px;  
     font-weight: bold;
-    background-color:  $orange;
+    background-color:  $yellow;
     font-size: 24px;
     color: $white;
   }
@@ -140,6 +138,11 @@ $white:  #ffff;
       margin: 6px 0;
     }
   }
+}
+
+.dark {
+  background-color: $grey;
+  color: $bg-color-dark;
 }
 
 .card-info__tail{

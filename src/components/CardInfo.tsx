@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import api from 'src/service/api';
 
 import buttonImgSrc from '../assets/image84.png';
@@ -21,6 +24,7 @@ type CardInfoApiData = {
 };
 
 const CardInfo = ({ tailWide, number }: CardInfoProps) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
   const [movieData, setMovieData] = useState<CardInfoApiData>();
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
   }, [number]);
 
   return <>{movieData ? (
-    <div className={tailWide ? 'card-info card-info__tail' : 'card-info'}>
+    <div className={`card-info ${tailWide ? 'card-info__tail' : ''} ${theme ? '' : 'dark'}`}>
       <div className="card-info__wrapper">
         {!tailWide ? (
           <div className="titleComponent card-info__title">

@@ -2,6 +2,9 @@ import { useState } from 'react';
 
 import { FaStar } from 'react-icons/fa';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import '../styles/StarRating.scss';
 
 interface StarRatingProps {
@@ -19,6 +22,12 @@ const StarRating: React.FC<StarRatingProps> = ({
 }) => {
   const [starRating, setStarRating] = useState<number>(Math.round(voteAverage / 2));
   const [iconHover, setIconHover] = useState<number>(0);
+
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
+  if (!theme) {
+    colorUnfilled = '#ffffff';
+  }
 
   return (
     <div className="star-rating">

@@ -38,26 +38,8 @@ type MovieInfo = {
 const MovieDetails = ({ match }: MovieDetailsProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
 
-<<<<<<< HEAD
-  const [movieData, setMovieData] = useState<MovieInfo>({
-    poster_path: '',
-    original_title: '',
-    title: '',
-    tagline: '',
-    status: '',
-    release_date: '',
-    budget: '',
-    popularity: '',
-    vote_average: '',
-    runtime: '',
-    genres: [{ id: null, name: '' }],
-    production_countries: [{ name: '' }],
-    overview: ''
-  });
-=======
   const [movieData, setMovieData] = useState<MovieInfo | null>(null);
   const [poster, setPoster] = useState<string>('');
->>>>>>> 0ffe06e3d0c3bdb3c72191b093962fe9685a2aa5
 
   const {
     original_title,
@@ -94,11 +76,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-<<<<<<< HEAD
-          <Title text={title} className={`${theme ? '' : 'dark-theme'}`} />
-=======
           <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
->>>>>>> 0ffe06e3d0c3bdb3c72191b093962fe9685a2aa5
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />

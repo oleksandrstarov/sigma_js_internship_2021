@@ -1,3 +1,6 @@
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import '../styles/Title.scss';
 
 type TitleProps = {
@@ -6,7 +9,9 @@ type TitleProps = {
 };
 
 const Title = ({ text, className }: TitleProps) => {
-  return <h1 className={`default-title ${className}`}>{text}</h1>;
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
+  return <h1 className={`default-title ${className} ${theme ? '' : 'dark-title'}`}>{text}</h1>;
 };
 
 export default Title;
