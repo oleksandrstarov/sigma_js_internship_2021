@@ -51,7 +51,9 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<string>('none');
+  const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
+
+  const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
   const searchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -87,28 +89,37 @@ const SearchField: React.FC = () => {
   const fromDateInputIncrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.fromYear >= dateRange.toYear) return;
+    if (dateRange.fromYear >= dateRange.toYear) {
+      setIsDateInvalid(true);
+      setTimeout(() => setIsDateInvalid(false), 2000);
+      return;
+    }
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear + 1 });
   };
 
   const fromDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.fromYear <= lowerDateLimit) return;
+    setIsDateInvalid(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
   };
 
-  const toYearInputIncrease = (
+  const toDateInputIncrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     const upperDataLimit = new Date().getFullYear();
     if (dateRange.toYear >= upperDataLimit) return;
+    setIsDateInvalid(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear + 1 });
   };
-  const toYearInputDecrease = (
+  const toDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    if (dateRange.toYear <= dateRange.fromYear) return;
+    if (dateRange.toYear <= dateRange.fromYear) {
+      setIsDateInvalid(true);
+      setTimeout(() => setIsDateInvalid(false), 2000);
+      return;
+    }
     setDateRange({ ...dateRange, toYear: dateRange.toYear - 1 });
   };
 
@@ -127,7 +138,7 @@ const SearchField: React.FC = () => {
   const selectGenreHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    setGenreToSearch(event.target.value);
+    setGenreToSearch(event.target.value as Genres);
   };
 
   return (
@@ -162,9 +173,9 @@ const SearchField: React.FC = () => {
                   <button onClick={fromDateInputIncrease}>+</button>
                 </span>
                 <span>
-                  <button onClick={toYearInputDecrease}>-</button>
+                  <button onClick={toDateInputDecrease}>-</button>
                   <input type="number" value={dateRange.toYear} readOnly />
-                  <button onClick={toYearInputIncrease}>+</button>
+                  <button onClick={toDateInputIncrease}>+</button>
                 </span>
               </div>
               <label
@@ -201,12 +212,19 @@ const SearchField: React.FC = () => {
               </label>
               <select value={genreToSearch} onChange={selectGenreHandler}>
                 <option value="none">Select genre</option>
-                {Object.values(Genres).map((genre, i) => (
-                  <option value={genre} key={i}>
-                    {genre}
+                {Object.entries(Genres).map(([key, value]) => (
+                  <option value={key} key={key}>
+                    {value}
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="search-field-message-wrapper">
+              {isDateInvalid && (
+                <p className="search-field-message">
+                  You are trying to choose invalid date range
+                </p>
+              )}
             </div>
           </div>
         )}
