@@ -6,16 +6,26 @@
   width: 100%;
 
   .delivery__toggler{
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 0 3px rgba(0,0,0,0.1);
-  margin: 10px;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    margin: 10px;
   }
 
   .delivery__container{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
+    @media screen and(min-width: 1080px) {
+      justify-content:  flex-start;
+    }
+  }
+  
+  .delivery__container-wide{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
   
   .view-toggler{
@@ -28,7 +38,14 @@
       cursor: pointer;
     }
   }
-  
+}
+
+.oops-favorite{
+  text-align: center;
+  margin: 0 auto;
+  font-family: $main-font;
+  font-size: $font-size-24-title-mobile;
+  font-weight: bold;
 }
 .small-card-wrapper{
   margin: 15px;
