@@ -35,6 +35,7 @@
     position: absolute;
     bottom: 40px;
     left: 20px;
+    color: $black;
     display: flex;
     justify-content: space-around;
     z-index: 2;
@@ -122,4 +123,8 @@
       margin: 6px 0;
     }
   }
+}
+
+.dark {
+  background-color: $grey;
 }
