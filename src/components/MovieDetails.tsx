@@ -11,6 +11,7 @@ import '../styles/MovieDetails.scss';
 
 import Detail from './Detail';
 import Title from './Title';
+import GenreRedirection from './GenreRedirection';
 
 enum ImageWidth {
   w500
@@ -106,7 +107,10 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
       </section>
       <div className="genres">
-        {genres && genres.map(genre => <div key={genre.id}>{genre.name}</div>)}
+        {genres && genres.map(genre => <div key={genre.id}>
+          {/* {genre.name} */}
+          <GenreRedirection genreId={genre.id} genre={genre.name} />
+        </div>)}
       </div>
       <div className="hl"></div>
       <div className="description">

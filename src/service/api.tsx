@@ -131,6 +131,11 @@ const api = {
     return obj.data.results;
   },
 
+  async getMoviesByGenre(id: number) {
+    const obj = await axios.get(`/discover/movie/?${API_KEY}&with_genres=${id}`);
+    return obj.data.results;
+  },
+
   changeImgLinks(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
   },
