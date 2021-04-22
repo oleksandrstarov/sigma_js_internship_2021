@@ -14,8 +14,15 @@ describe('Layout', () => {
     }
   });
 
-  it('should render dropdown menu on click', () => {
-    wrapper.find('#search').simulate('click');
-    console.log(wrapper.find('.dropdown-filter').html);
+  it('should render and hide dropdown menu', () => {
+    const input = wrapper.find('#search');
+
+    input.simulate('focus');
+
+    const dropdown = wrapper.find('.dropdown-filter');
+
+    expect(dropdown).toBeDefined();
+
+    input.simulate('blur');
   });
 });
