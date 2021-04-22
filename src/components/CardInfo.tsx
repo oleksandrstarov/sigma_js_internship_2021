@@ -64,7 +64,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
       </div>
       <div className="cars-info_container">
         <img
-          src={api.getFullImgLink(movieData.poster_path)}
+          src={api.getFullImgLink(movieData.poster_path, 'w500')}
           alt={movieData.original_title}
           className={'card-info__img'}
         />
