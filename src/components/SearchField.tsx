@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import '../styles/SearchField.scss';
@@ -222,7 +222,11 @@ const SearchField: React.FC = () => {
               </select>
             </div>
             <div className="search-field-message-wrapper">
-              {isDateInvalid && <p className="search-field-message">You are trying to choose invalid date range</p>}
+              {isDateInvalid && (
+                <p className="search-field-message">
+                  You are trying to choose invalid date range
+                </p>
+              )}
             </div>
           </div>
         )}
