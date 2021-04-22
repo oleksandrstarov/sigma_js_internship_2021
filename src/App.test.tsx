@@ -1,8 +1,25 @@
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import { mount, ReactWrapper } from 'enzyme';
+import Layout from './components/Layout';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const createdByEl = screen.getByText(/Created by students of sigma software/i);
-  expect(createdByEl).toBeInTheDocument();
+jest.mock('./components/Layout', () => () => <>Layout</>);
+
+describe('App', () => {
+  let wrapper: ReactWrapper;
+
+  beforeEach(() => {
+    wrapper = mount(<App />);
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
+  it('should render App', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('should render Layout', () => {
+    expect(wrapper.find(Layout).exists()).toBeTruthy();
+  });
 });

@@ -1,17 +1,17 @@
 import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
-import { Theme } from '../models/index';
-
+import { Theme, MovieCard } from '../models/index';
+import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any };
+  store: { history: number[]; favorites: number[]; theme: any; };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
+    theme: Theme.light,
   }
 };
 
@@ -29,7 +29,7 @@ const api = {
     data: Object = {
       history: [],
       favorites: [],
-      theme: 1
+      theme: 1,
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
@@ -53,7 +53,7 @@ const api = {
 
   isIdInFavorites(id: number) {
     const store = api.getFavoritsIdList();
-    return !store.includes(id);
+    return store.includes(id);
   },
 
   getFavoritsIdList() {
@@ -84,7 +84,7 @@ const api = {
 
   isIdInHistory(id: number) {
     const store = api.getHistoryIdList();
-     return !store.includes(id);
+    return store.includes(id);
   },
 
   getHistoryIdList() {
@@ -107,7 +107,7 @@ const api = {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: string) =>
-        await axios.get(url).then((res: { data: {}[] }) => res.data)
+        await axios.get(url).then((res: { data: MoviesType }) => res.data)
     );
     return Promise.all(requests);
   },
@@ -117,26 +117,30 @@ const api = {
     return obj.data;
   },
 
-  async getPopularQueryList() {
-    const obj = await axios.get(`movie/popular?${API_KEY}&query`);
+  async getPopularQueryList(page: number = 1) {
+    const obj = await axios.get(`movie/popular?${API_KEY}&page=${page}`);
     return obj.data.results;
   },
 
-  async getTopRatedList() {
-    const obj = await axios.get(
-      `movie/top_rated?translations&${API_KEY}&region=US`
-    );
+  async getTopRatedList(page: number = 1) {
+    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US&page=${page}`);
     return obj.data.results;
   },
 
-  async getSearchList(query: string) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
+  async getSearchList(query: string, page: number = 1) {
+    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
-  changeImgLinks(url: string, size: string) {
+  changeImgLinks(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
-  }
-};
+  },
+
+  changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
+    return arr.length < 6
+      ? arr
+      : arr.slice(6 * (page - 1), 6 * page);
+  },
+}
 
 export default api;

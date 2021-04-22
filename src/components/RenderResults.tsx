@@ -1,22 +1,22 @@
 import { useState } from 'react';
+import useDeviceDetect from '../hooks/useDeviceDetect';
+import { MovieCard } from '../models/index';
+import SmallInfoCard from './SmallInfoCard';
+import CardInfo from './CardInfo';
 
-import buttonImgLine from '../assets/lines.png';
 import buttonImgGroup from '../assets/Group.png';
+import buttonImgLine from '../assets/lines.png';
 
 import '../styles/RenderResults.scss';
-import CardInfo from './CardInfo';
-import { MovieCard } from '../models/index';
 
 interface RenderResultsArrList {
   list: MovieCard[];
-  original_title: string;
-  vote_count: number;
 }
 
 const RenderResults = ({ list }: RenderResultsArrList) => {
   const [tailState, setTailState] = useState(true);
-
   const handlerTail = () => setTailState(!tailState);
+  const isMobileView = useDeviceDetect();
 
   return (
     <div className="delivery">
@@ -39,7 +39,14 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
       </div>
       <div className="delivery__container">
         {list.map((item: MovieCard) => {
-          return <CardInfo tailWide={!tailState} number={item.id} />;
+          if (!isMobileView) {
+            return <CardInfo tailWide={!tailState} number={item.id} />;
+          } else {
+            if (tailState) {
+              return <CardInfo tailWide={false} number={item.id} />;
+            }
+            return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
+          }
         })}
       </div>
     </div>

@@ -15,6 +15,10 @@ body {
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+
+    .dark-theme {
+        background-color: $bg-color-dark;
+    }
 }
 
 #root {
@@ -37,13 +41,16 @@ body {
     }
 }
 
+.wrapper-space {
+    margin: 30px 0;
+}
+
 .main {
   flex: 1 1 auto;
   overflow: hidden;
-  padding: 140px;
- 
+  padding: 90px 0 90px 0;
 
   @media screen and (min-width: 993px) {
-    padding: 90px;
+    padding: 140px 0 140px 0;
   }
 }
