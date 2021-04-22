@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import api from '../service/api';
 
 import ReadMore from './ReadMore';
@@ -34,6 +37,8 @@ type MovieInfo = {
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
   const [movieData, setMovieData] = useState<MovieInfo>({
     poster_path: '',
     original_title: '',
@@ -75,13 +80,13 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   }, [match.params.id]);
 
   return (
-    <div className="details-container">
+    <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
       <section className="movie-wrapper">
         <div className="movie-img">
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <Title text={title} />
+          <Title text={title} className={`${theme ? '' : 'dark-theme'}`} />
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />
