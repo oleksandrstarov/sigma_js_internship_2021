@@ -18,9 +18,9 @@ export enum Theme {
   light
 }
 
-export enum HistoryBar {
-  unsubscribe,
-  subscribe
+export enum FeatureStatus {
+  disabled,
+  enabled
 }
 
 export interface StarRatingProps {
