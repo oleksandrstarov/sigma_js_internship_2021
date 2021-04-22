@@ -1,5 +1,5 @@
-import '../styles/Preloader.scss';
 import React, {useEffect, useRef} from "react";
+import '../styles/Preloader.scss';
 
 type PreloaderProps = {
   isLoaded: boolean
