@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import useDeviceDetect from '../hooks/useDeviceDetect';
 import { MovieCard } from '../models/index';
-
+import SmallInfoCard from './SmallInfoCard';
 import CardInfo from './CardInfo';
 
 import buttonImgGroup from '../assets/Group.png';
@@ -14,8 +15,8 @@ interface RenderResultsArrList {
 
 const RenderResults = ({ list }: RenderResultsArrList) => {
   const [tailState, setTailState] = useState(true);
-
   const handlerTail = () => setTailState(!tailState);
+  const isMobileView = useDeviceDetect();
 
   return (
     <div className="delivery">
@@ -36,9 +37,17 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           />
         )}
       </div>
-      <div className={tailState ? "delivery__container" : "delivery__container-wide"}>
-        {!!list.length && list.map((item: MovieCard) => <CardInfo tailWide={!tailState} number={item.id} />)}
-        {!list.length && <div className="oops-favorite"> Oops... <br /> It's still empty here ッ</div>}
+      <div className="delivery__container">
+        {list.map((item: MovieCard) => {
+          if (!isMobileView) {
+            return <CardInfo tailWide={!tailState} number={item.id} />;
+          } else {
+            if (tailState) {
+              return <CardInfo tailWide={false} number={item.id} />;
+            }
+            return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
+          }
+        })}
       </div>
     </div>
   );

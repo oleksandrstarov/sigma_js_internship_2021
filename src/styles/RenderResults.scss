@@ -16,10 +16,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
-    @media screen and(min-width: 1080px) {
-      justify-content:  flex-start;
-    }
   }
   
   .delivery__container-wide{
@@ -46,4 +42,7 @@
   font-family: $main-font;
   font-size: $font-size-24-title-mobile;
   font-weight: bold;
+}
+.small-card-wrapper{
+  margin: 15px;
 }
