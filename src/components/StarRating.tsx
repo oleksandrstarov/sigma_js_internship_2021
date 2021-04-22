@@ -1,17 +1,54 @@
 import { useState } from 'react';
-
 import { FaStar } from 'react-icons/fa';
-import { StarRatingProps } from '../models/index';
+
+import api from 'src/service/api';
+import ratingData from '../service/rating';
 
 import '../styles/StarRating.scss';
+
+type StarRatingProps = {
+  numberOfStars: number;
+  colorFilled: string;
+  colorUnfilled: string;
+  movieId: number;
+  voteAverage: number;
+  rerenderFavoritesIcon: () => void;
+};
+
+const MAX_RATE = 5;
 
 const StarRating: React.FC<StarRatingProps> = ({
   numberOfStars,
   colorFilled,
-  colorUnfilled
+  colorUnfilled,
+  movieId,
+  voteAverage,
+  rerenderFavoritesIcon
 }) => {
-  const [starRating, setStarRating] = useState<number>(0);
+  const [starRating, setStarRating] = useState<number>(getMovieRatingValue());
   const [iconHover, setIconHover] = useState<number>(0);
+
+  console.log(starRating);
+
+  function getMovieRatingValue(): number {
+    if (!ratingData.getMovieRatingFromStorage().length)
+      return Math.round(voteAverage / 2);
+    if (!ratingData.getMovieRatingById(movieId))
+      return Math.round(voteAverage / 2);
+    return ratingData.getMovieRatingById(movieId).movieRate;
+  }
+
+  const handleMovieRatingState = (iconRatingValue: number) => {
+    ratingData.setMovieRatingObj({
+      id: movieId,
+      movieRate: iconRatingValue
+    });
+    if (iconRatingValue === MAX_RATE) {
+      api.setFavoritesId(movieId);
+      rerenderFavoritesIcon();
+    }
+    setStarRating(getMovieRatingValue());
+  };
 
   return (
     <div className="star-rating">
@@ -23,15 +60,14 @@ const StarRating: React.FC<StarRatingProps> = ({
               className="input-radio"
               type="radio"
               name="rating"
-              value={iconRatingValue}
-              onClick={() => {
-                setStarRating(iconRatingValue);
-              }}
+              onClick={() => handleMovieRatingState(iconRatingValue)}
             />
             <FaStar
               className="star-rating-icon"
               color={
-                iconRatingValue <= (iconHover || starRating) ? colorFilled : colorUnfilled
+                iconRatingValue <= (iconHover || starRating)
+                  ? colorFilled
+                  : colorUnfilled
               }
               size={22}
               onMouseEnter={() => setIconHover(iconRatingValue)}

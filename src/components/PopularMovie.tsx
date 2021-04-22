@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom';
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import { PopularMovieProps } from '../models/index';
 import { API_IMG_URL } from '../constants/api';
+import StarRating from './StarRating';
+import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieBanner.scss';
+import { useContext } from 'react';
+//import api from 'src/service/api';
+import {
+  MovieRatingContext,
+  MovieRatingContextType
+} from './MovieRatingContext';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const mobile = useDeviceDetect();
@@ -18,17 +26,33 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   } = movie;
 
   const btnIcon = '/images/btn-icon.png';
-  const starRaitingIcon = '/images/star.svg';
+  //const starRaitingIcon = '/images/star.svg';
   const mobileImgPath = `${API_IMG_URL}original/${poster_path}`;
   const desktopImgPath = `${API_IMG_URL}original/${backdrop_path}`;
-  const starRaitingArr: string[] = [
-    starRaitingIcon,
-    starRaitingIcon,
-    starRaitingIcon,
-    starRaitingIcon,
-    starRaitingIcon
-  ];
-  
+  // const starRaitingArr: string[] = [
+  //   starRaitingIcon,
+  //   starRaitingIcon,
+  //   starRaitingIcon,
+  //   starRaitingIcon,
+  //   starRaitingIcon
+  // ];
+
+  const {
+    handleIconState,
+    isMovieIdInFavorites
+  }: MovieRatingContextType = useContext(MovieRatingContext);
+  // const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(false);
+
+  //  const handleSomething = () => {
+  //    setIsMovieIdInFavorites(!isMovieIdInFavorites);
+  //  };
+  // const [handle, setHandle] = useState(api.isIdInFavorites(Number(id)));
+
+  // const handleSomething = () => {
+  //   setHandle(!handle);
+  // };
+  // console.log(handle)
+
   return (
     <div className="movie-banner-body">
       <div className="movie-image-container">
@@ -64,15 +88,29 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             </span>
           </p>
           <div className="movie-rating-stars">
-            {starRaitingArr.map((icon, index) => (
+            {/* {starRaitingArr.map((icon, index) => (
               <img src={icon} key={index} alt="icon star" />
-            ))}
+            ))} */}
+            {
+              <StarRating
+                numberOfStars={5}
+                colorFilled={'#ff636d'}
+                colorUnfilled={'#c4c4c4'}
+                movieId={Number(id)}
+                voteAverage={vote_average}
+                rerenderFavoritesIcon={() => handleIconState()}
+              />
+            }
           </div>
         </div>
         <Link to={{ pathname: `movie-details/${id}` }} className="movie-btn">
           <span className="movie-btn-title">View details</span>
           <img src={btnIcon} alt="btn icon" className="movie-btn-icon" />
         </Link>
+        <FavoritesBtn
+          movieId={Number(id)}
+          isMovieIdInFavorites={isMovieIdInFavorites}
+        />
       </div>
     </div>
   );
