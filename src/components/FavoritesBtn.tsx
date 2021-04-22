@@ -23,7 +23,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
     <button className="favorite-btn" onClick={handleSwitchFavoriteState}>
       <img
         className="favorite-icon"
-        src={!isFavorite ? heartFilledIcon : heartUnfilledIcon}
+        src={isFavorite ? heartFilledIcon : heartUnfilledIcon}
         alt="favorite icon"
       />
     </button>
