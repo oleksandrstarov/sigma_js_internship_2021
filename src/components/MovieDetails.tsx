@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { useContext } from 'react';
+
 import api from '../service/api';
 
 import ReadMore from './ReadMore';
@@ -34,24 +37,12 @@ type MovieInfo = {
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
-  const [movieData, setMovieData] = useState<MovieInfo>({
-    poster_path: '',
-    original_title: '',
-    title: '',
-    tagline: '',
-    status: '',
-    release_date: '',
-    budget: '',
-    popularity: '',
-    vote_average: '',
-    runtime: '',
-    genres: [{ id: null, name: '' }],
-    production_countries: [{ name: '' }],
-    overview: ''
-  });
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
+  const [movieData, setMovieData] = useState<MovieInfo | null>(null);
+  const [poster, setPoster] = useState<string>('');
 
   const {
-    poster_path,
     original_title,
     title,
     tagline,
@@ -64,9 +55,13 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     genres,
     production_countries,
     overview
-  } = movieData;
+  } = movieData || {};
 
-  const poster = api.changeImgLinks(poster_path, ImageWidth[0]);
+  useEffect(() => {
+    if (movieData?.poster_path) {
+      setPoster(api.changeImgLinks(movieData.poster_path, ImageWidth[0]));
+    }
+  }, [movieData])
 
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
@@ -75,13 +70,13 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   }, [match.params.id]);
 
   return (
-    <div className="details-container">
+    <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
       <section className="movie-wrapper">
         <div className="movie-img">
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <Title text={title} />
+          <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />
@@ -90,8 +85,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
             <Detail title="Budget" textContent={budget} />
             <Detail
               title="Country"
-              textContent={production_countries
-                .map(({ name }) => name)
+              textContent={production_countries?.map(({ name }) => name)
                 .join(', ')}
             />
             <Detail title="Duration" textContent={runtime} />
@@ -105,7 +99,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
       </div>
       <div className="hl"></div>
       <div className="description">
-        <ReadMore>{overview}</ReadMore>
+        <ReadMore>{overview ?? ''}</ReadMore>
       </div>
       <div className="hl"></div>
     </div>
