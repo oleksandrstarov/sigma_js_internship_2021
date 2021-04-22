@@ -7,12 +7,12 @@ import StarRating from './StarRating';
 import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieBanner.scss';
-import { useContext } from 'react';
+//import { useContext } from 'react';
 //import api from 'src/service/api';
-import {
-  MovieRatingContext,
-  MovieRatingContextType
-} from './MovieRatingContext';
+// import {
+//   MovieRatingContext,
+//   MovieRatingContextType
+// } from './MovieRatingContext';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const mobile = useDeviceDetect();
@@ -37,10 +37,10 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   //   starRaitingIcon
   // ];
 
-  const {
-    handleIconState,
-    isMovieIdInFavorites
-  }: MovieRatingContextType = useContext(MovieRatingContext);
+  // const {
+    
+  //   isMovieIdInFavorites
+  // }: MovieRatingContextType = useContext(MovieRatingContext);
   // const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(false);
 
   //  const handleSomething = () => {
@@ -98,7 +98,6 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
                 colorUnfilled={'#c4c4c4'}
                 movieId={Number(id)}
                 voteAverage={vote_average}
-                rerenderFavoritesIcon={() => handleIconState()}
               />
             }
           </div>
@@ -109,7 +108,6 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
         </Link>
         <FavoritesBtn
           movieId={Number(id)}
-          isMovieIdInFavorites={isMovieIdInFavorites}
         />
       </div>
     </div>
