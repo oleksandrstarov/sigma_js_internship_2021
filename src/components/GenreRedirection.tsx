@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import api from '../service/api';
+type GenreProps = {
+  genreId: number | null,
+  genre: string
+}
 
-const GenreRedirection = ({ genreId, genre }: any) => {
-  const [movies, setMovies] = useState<any>();
+const GenreRedirection = ({ genreId, genre }: GenreProps) => {
+  const history = useHistory();
 
-  const getMoviesByGenre = (id: number) => {
-    api.getMoviesByGenre(id).then((res: any) => {
-      setMovies(res);
-    });
+  const getMoviesByGenre = (id: number | null) => {
+    if (id) {
+      history.push(`/search-results/a/${id}/1060/2021/false/false/1`);
+    }
   }
-  console.log(movies);
+
   return (
-    <button onClick={() => getMoviesByGenre(Number(genreId))}>{genre}</button>
+    <button onClick={() => getMoviesByGenre(genreId)}>{genre}</button>
   )
 }
 
