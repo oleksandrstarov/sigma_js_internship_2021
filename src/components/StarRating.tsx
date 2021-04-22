@@ -1,9 +1,15 @@
 import { useState } from 'react';
 
 import { FaStar } from 'react-icons/fa';
-import { StarRatingProps } from '../models/index';
 
 import '../styles/StarRating.scss';
+
+interface StarRatingProps {
+  numberOfStars: number;
+  colorFilled: string;
+  colorUnfilled: string;
+  voteAverage: number;
+}
 
 const StarRating: React.FC<StarRatingProps> = ({
   numberOfStars,
