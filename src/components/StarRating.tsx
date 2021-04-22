@@ -1,16 +1,23 @@
 import { useState } from 'react';
 
 import { FaStar } from 'react-icons/fa';
-import { StarRatingProps } from '../models/index';
 
 import '../styles/StarRating.scss';
+
+interface StarRatingProps {
+  numberOfStars: number;
+  colorFilled: string;
+  colorUnfilled: string;
+  voteAverage: number;
+}
 
 const StarRating: React.FC<StarRatingProps> = ({
   numberOfStars,
   colorFilled,
-  colorUnfilled
+  colorUnfilled,
+  voteAverage
 }) => {
-  const [starRating, setStarRating] = useState<number>(0);
+  const [starRating, setStarRating] = useState<number>(Math.round(voteAverage / 2));
   const [iconHover, setIconHover] = useState<number>(0);
 
   return (
@@ -33,7 +40,7 @@ const StarRating: React.FC<StarRatingProps> = ({
               color={
                 iconRatingValue <= (iconHover || starRating) ? colorFilled : colorUnfilled
               }
-              size={22}
+              size={30}
               onMouseEnter={() => setIconHover(iconRatingValue)}
               onMouseLeave={() => setIconHover(0)}
             />
