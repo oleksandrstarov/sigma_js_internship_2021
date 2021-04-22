@@ -16,10 +16,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-
-    @media screen and(min-width: 1080px) {
-      justify-content:  flex-start;
-    }
   }
   
   .delivery__container-wide{
