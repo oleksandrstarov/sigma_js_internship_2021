@@ -7,15 +7,16 @@ import axios from '../axios/url';
 import { Genres } from '../models'
 
 import { Theme, MovieCard } from '../models/index';
+import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any };
+  store: { history: number[]; favorites: number[]; theme: any; };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
+    theme: Theme.light,
   }
 };
 
@@ -33,7 +34,7 @@ const api = {
     data: Object = {
       history: [],
       favorites: [],
-      theme: 1
+      theme: 1,
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
@@ -111,7 +112,7 @@ const api = {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: string) =>
-        await axios.get(url).then((res: { data: {}[] }) => res.data)
+        await axios.get(url).then((res: { data: MoviesType }) => res.data)
     );
     return Promise.all(requests);
   },
