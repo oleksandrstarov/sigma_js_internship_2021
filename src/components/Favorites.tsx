@@ -3,7 +3,7 @@ import api from 'src/service/api';
 import RenderResults from './RenderResults';
 
 const Favorites = () => {
-  const [data, setData] = useState([]);
+  const [favoritesData, setData] = useState([]);
 
   useEffect(() => {
     api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
@@ -13,7 +13,7 @@ const Favorites = () => {
 
   return (
     <div className="favorites-wrapper">
-      <RenderResults list={data} />
+      <RenderResults list={favoritesData} />
     </div>
   );
 };

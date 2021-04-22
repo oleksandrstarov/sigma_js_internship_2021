@@ -105,8 +105,10 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           </div>
         </div>
       </section>
-      <div className="genres">
-        {genres && genres.map(genre => <div key={genre.id}>{genre.name}</div>)}
+      <div className="wrapper-space">
+        <div className="genres">
+          {genres?.map(genre => <div key={genre.id}>{genre.name}</div>)}
+        </div>
       </div>
       <div className="hl"></div>
       <div className="description">
