@@ -27,7 +27,7 @@ describe('Layout', () => {
     expect(children).toBeDefined();
   });
 
-  it('should render header, WrapperFavorites', () => {
+  it('should render Header, WrapperFavorites and Contacts', () => {
     expect(wrapper.find(Header)).toBeDefined();
     expect(wrapper.find(WrapperFavorites)).toBeDefined();
     expect(wrapper.find(Contacts)).toBeDefined();
