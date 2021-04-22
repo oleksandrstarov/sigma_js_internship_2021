@@ -164,14 +164,12 @@ const api = {
       return '';
     }
 
-    //https://api.themoviedb.org/3/discover/movie?sort_by=popularity.asc&page=1&primary_release_date.gte=2020-01-01&api_key=157c2ade7d0b335008ae899a157d8967
-
     const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
-    return obj.data.results;
+    return obj.data;
   },
 
-  getFilterMatchesList(arr: MovieCard[], idsList: number[]) {
-    const conformityIds = arr.filter(item => idsList.includes(item.id));
+  getFilterMatchesList(arr: MovieCard[], idsList: number[]): MovieCard[] {
+    const conformityIds = arr.filter((item: MovieCard) => idsList.includes(item.id));
     return conformityIds;
   },
 
