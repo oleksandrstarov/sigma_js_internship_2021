@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 header {
   padding: 7px 0;
   position: fixed;
@@ -88,6 +90,7 @@ header {
       }
     }
   }
+  
   .settings-wrapper{
     position: relative;
 
@@ -97,12 +100,11 @@ header {
       height: 35px;
       width: 35px;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: $white;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 3px rgba(0, 0, 0, 0.23);
-      // margin-right: 10px;
       min-width: 35px;
 
       .settings-img-button{

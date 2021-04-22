@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-
 import '../styles/Header.scss';
 import '../styles/SettingsBar.scss';
 
