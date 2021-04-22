@@ -1,4 +1,6 @@
-import { ReactNode } from 'react';
+import { useContext, ReactNode } from 'react';
+
+import { ThemeContext, ThemeContextType } from './ThemeContext'
 
 import Header from './Header';
 import Contacts from './Contacts';
@@ -10,8 +12,10 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${theme ? '' : 'dark-theme'}`}>
       <Header />
       <Main>{children}</Main>
       <Contacts />
