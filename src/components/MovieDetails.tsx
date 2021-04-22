@@ -6,11 +6,10 @@ import { useContext } from 'react';
 import api from '../service/api';
 
 import ReadMore from './ReadMore';
-
-import '../styles/MovieDetails.scss';
-
 import Detail from './Detail';
 import Title from './Title';
+
+import '../styles/MovieDetails.scss';
 
 enum ImageWidth {
   w500
@@ -56,6 +55,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     production_countries,
     overview
   } = movieData || {};
+
 
   useEffect(() => {
     if (movieData?.poster_path) {
