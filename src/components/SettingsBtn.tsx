@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+// import { useState, useRef } from 'react';
 
 import useOutsideClick from 'src/hooks/useOutsideClick ';
 import '../styles/Header.scss';
