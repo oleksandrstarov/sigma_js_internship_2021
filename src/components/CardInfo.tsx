@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ThemeContext, ThemeContextType } from './ThemeContext'
-import { useContext } from 'react';
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import api from 'src/service/api';
 

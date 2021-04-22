@@ -1,4 +1,4 @@
-import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 import { useContext } from 'react';
 
 import '../styles/Title.scss';

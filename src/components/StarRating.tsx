@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { FaStar } from 'react-icons/fa';
 
-import { ThemeContext, ThemeContextType } from './ThemeContext'
-import { useContext } from 'react';
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import '../styles/StarRating.scss';
 

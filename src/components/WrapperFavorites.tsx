@@ -26,7 +26,7 @@ const WrapperFavorites = () => {
   return (
     <>
       <Container>
-        <Title text={'Favorite movies'} />
+        <Title text="Favorite movies" />
         {movieInfo.length && (<Slider>
           {movieInfo.map(({ id }: MovieId) => {
             return (
