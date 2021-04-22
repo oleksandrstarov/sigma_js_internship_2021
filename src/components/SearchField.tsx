@@ -53,7 +53,7 @@ const SearchField: React.FC = () => {
 
   const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
 
-  const [isDataValid, setIsDataValid] = useState<boolean>(false);
+  const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
   const searchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -90,8 +90,8 @@ const SearchField: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     if (dateRange.fromYear >= dateRange.toYear) {
-      setIsDataValid(true);
-      setTimeout(() => setIsDataValid(false), 2000);
+      setIsDateInvalid(true);
+      setTimeout(() => setIsDateInvalid(false), 2000);
       return;
     }
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear + 1 });
@@ -100,7 +100,7 @@ const SearchField: React.FC = () => {
   const fromDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    setIsDataValid(false);
+    setIsDateInvalid(false);
     setDateRange({ ...dateRange, fromYear: dateRange.fromYear - 1 });
   };
 
@@ -109,15 +109,15 @@ const SearchField: React.FC = () => {
   ): void => {
     const upperDataLimit = new Date().getFullYear();
     if (dateRange.toYear >= upperDataLimit) return;
-    setIsDataValid(false);
+    setIsDateInvalid(false);
     setDateRange({ ...dateRange, toYear: dateRange.toYear + 1 });
   };
   const toDateInputDecrease = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     if (dateRange.toYear <= dateRange.fromYear) {
-      setIsDataValid(true);
-      setTimeout(() => setIsDataValid(false), 2000);
+      setIsDateInvalid(true);
+      setTimeout(() => setIsDateInvalid(false), 2000);
       return;
     }
     setDateRange({ ...dateRange, toYear: dateRange.toYear - 1 });
@@ -222,7 +222,7 @@ const SearchField: React.FC = () => {
               </select>
             </div>
             <div className="search-field-message-wrapper">
-              {isDataValid && <p className="search-field-message">You are trying to choose invalid date range</p>}
+              {isDateInvalid && <p className="search-field-message">You are trying to choose invalid date range</p>}
             </div>
           </div>
         )}
