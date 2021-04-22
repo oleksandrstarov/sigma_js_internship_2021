@@ -21,7 +21,6 @@ interface SearchResultsMatchParams {
 }
 
 const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
-
   const [data, setData] = useState<FaforitsApiData[]>();
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>)
       setData(res);
     });
   }, [match.params])
-  console.log(data);
 
   return (
     <div className="search-wrapper">

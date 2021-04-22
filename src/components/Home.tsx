@@ -36,16 +36,16 @@ const Home = () => {
       </div>
       <Container>
         {history && <div className="wrapper-space">
-          {history.length ? <Title text={"Last seens"} /> : null}
-          {history.length ? (<Slider>
-            {history.map((movie: MoviesType) => {
-              return (
-                <div className="slide" key={movie.poster_path}>
-                  <SmallInfoCard id={movie.id} />
-                </div>
-              );
-            })}
-          </Slider>) : null}
+          {history.length ? <><Title text={"Last seens"} />
+          (<Slider>
+              {history.map((movie: MoviesType) => {
+                return (
+                  <div className="slide" key={movie.poster_path}>
+                    <SmallInfoCard id={movie.id} />
+                  </div>
+                );
+              })}
+            </Slider>) </> : null}
         </div>}
         <div className="wrapper-space">
           <Title text={'Popular movies'} />

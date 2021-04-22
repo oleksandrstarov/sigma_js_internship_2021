@@ -41,14 +41,12 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
             <h2>{movieData.title}</h2>
           </div>
         )}
-
         <div className="info-card-activities">
           {tailWide && <>
             <FavoritesBtn movieId={movieData.id} />
             <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={movieData.vote_average} />
           </>}
         </div>
-
         {tailWide && (
           <div className="card-info__description">
             {movieData.overview.length >= 250 ? (
