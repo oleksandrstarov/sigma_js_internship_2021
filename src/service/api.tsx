@@ -129,7 +129,7 @@ const api = {
 
   async getSearchList(query: string, page: number = 1) {
     let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
-    return obj.data.results;
+    return obj.data;
   },
 
   changeImgLinks(url: string, size: string = 'w500') {
