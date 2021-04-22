@@ -173,14 +173,14 @@ const api = {
     return conformityIds;
   },
 
-  getFullImgLink(url: string, size: string = 'w500') {
-    return `${API_IMG_URL}${size}${url}`;
-  },
-
   changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
     return arr.length < 6
       ? arr
       : arr.slice(6 * (page - 1), 6 * page);
+  },
+
+  getFullImgLink(url: string, size: string = 'w500') {
+    return `${API_IMG_URL}${size}${url}`;
   },
 }
 
