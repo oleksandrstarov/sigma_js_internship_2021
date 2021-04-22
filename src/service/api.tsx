@@ -1,18 +1,18 @@
 import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
-import { Theme, MovieCard, HistoryBur } from '../models/index';
+import { Theme, MovieCard, HistoryBar } from '../models/index';
 
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any; historyBur: any };
+  store: { history: number[]; favorites: number[]; theme: number; historyBar: number };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
     theme: Theme.light,
-    historyBur: HistoryBur.subscribe
+    historyBar: HistoryBar.subscribe
   }
 };
 
@@ -31,7 +31,7 @@ const api = {
       history: [],
       favorites: [],
       theme: 1,
-      historyBur: HistoryBur.subscribe
+      historyBar: HistoryBar.subscribe
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
@@ -39,7 +39,7 @@ const api = {
 
   switchHistoryBur() {
     const store = this.getStore();
-    store.historyBur = store.historyBur === HistoryBur.subscribe ? HistoryBur.unsubscribe : HistoryBur.subscribe;
+    store.historyBur = store.historyBur === HistoryBar.subscribe ? HistoryBar.unsubscribe : HistoryBar.subscribe;
     this.setStore(store);
     return store.historyBur;
   },

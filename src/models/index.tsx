@@ -18,7 +18,7 @@ export enum Theme {
   light
 }
 
-export enum HistoryBur {
+export enum HistoryBar {
   unsubscribe,
   subscribe
 }
