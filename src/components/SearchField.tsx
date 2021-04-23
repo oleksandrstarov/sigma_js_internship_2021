@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Genres } from '../models'
+import { Genres } from '../models';
 
 import '../styles/SearchField.scss';
 
@@ -35,7 +35,9 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
+  const [genreToSearch, setGenreToSearch] = useState<
+    Genres | 'none' | undefined
+  >('none');
 
   const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
@@ -46,10 +48,11 @@ const SearchField: React.FC = () => {
   };
 
   const submitSearchRequest = (event: React.SyntheticEvent) => {
+    setDropdown(false);
     event.preventDefault();
     if (inputValue.trim()) {
       history.push(
-        `/search-results/${inputValue}/${genreToSearch}/${dateRange.fromYear}/${dateRange.toYear}/${checkboxes.favorites}/${checkboxes.history}/1`
+        `/search-results?title=${inputValue}&genre=${genreToSearch}&fromYear=${dateRange.fromYear}&toYear=${dateRange.toYear}&favorites=${checkboxes.favorites}&history=${checkboxes.history}&page=1`
       );
     }
   };
@@ -163,8 +166,9 @@ const SearchField: React.FC = () => {
                 </span>
               </div>
               <label
-                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.favorites ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -179,8 +183,9 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.history ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"
@@ -197,7 +202,7 @@ const SearchField: React.FC = () => {
               <select value={genreToSearch} onChange={selectGenreHandler}>
                 <option value="none">Select genre</option>
                 {Object.entries(Genres).map(([key, value]) => (
-                  <option value={key} key={key}>
+                  <option value={value} key={key}>
                     {value}
                   </option>
                 ))}

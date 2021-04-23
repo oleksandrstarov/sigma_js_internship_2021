@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useLocation } from 'react-router-dom';
 
 import RenderResults from './RenderResults';
 
 import api from 'src/service/api';
 
-type FaforitsApiData = {
+type FavoritesApiData = {
   poster_path: string;
   original_title: string;
   title: string;
@@ -14,20 +14,43 @@ type FaforitsApiData = {
   overview: string;
   backdrop_path: string;
   id: number;
-}
-
+};
 interface SearchResultsMatchParams {
   title: string;
+  fromYear: string;
+  toYear: string;
+  genre: string;
 }
 
-const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
-  const [data, setData] = useState<FaforitsApiData[]>();
+const SearchResults = ({
+  location
+}: RouteComponentProps<SearchResultsMatchParams>) => {
+  const [data, setData] = useState<FavoritesApiData[]>();
+
+  const { search } = useLocation();
+
+  const urlObj = new URLSearchParams(search);
+
+  const params = Object.fromEntries(urlObj.entries());
 
   useEffect(() => {
-    api.getSearchList(match.params.title).then((res: FaforitsApiData[]) => {
-      setData(res);
-    });
-  }, [match.params])
+    if (params.title === 'by-genre') {
+      api
+        .getFileredList({
+          from: Number(params.fromYear),
+          to: Number(params.toYear),
+          genre: params.genre || '',
+          page: 1
+        })
+        .then(({ results }) => {
+          setData(results);
+        });
+    } else {
+      api.getSearchList(params.title).then(res => {
+        setData(res);
+      });
+    }
+  }, [params.title, params.toYear, params.fromYear, params.genre]);
 
   return (
     <div className="search-wrapper">
