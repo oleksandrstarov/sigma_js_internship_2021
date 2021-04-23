@@ -6,7 +6,6 @@ type PaginationProps = {
   switchPage: (index: number) => void
 }
 
-
 const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasLeftSpill, setHasLeftSpill] = useState(false);
@@ -36,6 +35,9 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
         break;
       case (hasLeftSpill && !hasRightSpill):
         pages = range(currentPage - 1, totalPages);
+        break;
+      case (!hasRightSpill && !hasLeftSpill):
+        pages = range(1, totalPages)
         break;
     }
 
