@@ -150,3 +150,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 **Extra:**
 
 
+**Filter method:** 
+
+* api.getSearchFileredList(movieFilter).then(console.log)  -> [{},{}]  (movieFilter = {from: 2010,to: 2012,gener:'Comedy',page: 1})
+
+* api.changeImgLindks(arr, idsList) -> [{},{}] conformity of ids in filtered request

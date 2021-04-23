@@ -1,16 +1,22 @@
-import { API_KEY, API_IMG_URL } from '../constants/api';
+import {
+  API_KEY,
+  API_IMG_URL,
+  API_GENRE_ID
+} from '../constants/api';
 import axios from '../axios/url';
+import { Genres } from '../models'
 
 import { Theme, MovieCard } from '../models/index';
+import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any };
+  store: { history: number[]; favorites: number[]; theme: any; };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
+    theme: Theme.light,
   }
 };
 
@@ -28,7 +34,7 @@ const api = {
     data: Object = {
       history: [],
       favorites: [],
-      theme: 1
+      theme: 1,
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
@@ -106,7 +112,7 @@ const api = {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
       async (url: string) =>
-        await axios.get(url).then((res: { data: {}[] }) => res.data)
+        await axios.get(url).then((res: { data: MoviesType }) => res.data)
     );
     return Promise.all(requests);
   },
@@ -127,18 +133,55 @@ const api = {
   },
 
   async getSearchList(query: string, page: number = 1) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
+    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
-  changeImgLinks(url: string, size: string = 'w500') {
-    return `${API_IMG_URL}${size}${url}`;
+  async getFilteredList(dataFilter:
+    {
+      from?: number,
+      to?: number,
+      genre?: string,
+      page: number
+    } = {
+      page: 1,
+    }
+  ) {
+
+    function setFilteredData() {
+      const { from, to } = dataFilter
+      if (!!from) {
+        if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
+        return `&primary_release_date.gte=${from}-01-01`
+      }
+      return '';
+    }
+
+    function setGenre() {
+      const { genre } = dataFilter;
+      if (!!genre) {
+        return `&with_genres=${API_GENRE_ID[genre as Genres]}`
+      }
+      return '';
+    }
+
+    const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
+    return obj.data;
+  },
+
+  getFilterMatchesList(arr: MovieCard[], idsList: number[]): MovieCard[] {
+    const conformityIds = arr.filter((item: MovieCard) => idsList.includes(item.id));
+    return conformityIds;
   },
 
   changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
     return arr.length < 6
       ? arr
       : arr.slice(6 * (page - 1), 6 * page);
+  },
+
+  getFullImgLink(url: string, size: string = 'w500') {
+    return `${API_IMG_URL}${size}${url}`;
   },
 }
 

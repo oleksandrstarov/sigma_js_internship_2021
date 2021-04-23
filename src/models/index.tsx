@@ -6,9 +6,11 @@ export interface Movie {
   backdrop_path: string;
   id: number | string;
 }
+
 export interface MovieCard {
   id: number;
 }
+
 export interface PopularMovieProps {
   movie: Movie;
 }
@@ -19,3 +21,18 @@ export enum Theme {
 }
 
 
+export enum Genres {
+  Comedy = 'Comedy',
+  Drama = 'Drama',
+  Romance = 'Romance',
+  Mystery = 'Mystery',
+  Thriller = 'Thriller',
+  Animation = 'Animation',
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Crime = 'Crime',
+  Fantasy = 'Fantasy',
+  ScienceFiction = 'Science Fiction',
+  Horror = 'Horror',
+  Family = 'Family'
+}
