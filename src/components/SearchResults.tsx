@@ -5,7 +5,7 @@ import RenderResults from './RenderResults';
 
 import api from 'src/service/api';
 
-type FaforitsApiData = {
+type FavoritesApiData = {
   poster_path: string;
   original_title: string;
   title: string;
@@ -21,10 +21,10 @@ interface SearchResultsMatchParams {
 }
 
 const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
-  const [data, setData] = useState<FaforitsApiData[]>();
+  const [data, setData] = useState<FavoritesApiData[]>();
 
   useEffect(() => {
-    api.getSearchList(match.params.title).then((res: FaforitsApiData[]) => {
+    api.getSearchList(match.params.title).then((res: FavoritesApiData[]) => {
       setData(res);
     });
   }, [match.params])
