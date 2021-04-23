@@ -54,8 +54,4 @@ describe('Star Rating', () => {
       expect(wrapper.props().colorUnfilled).toBeTruthy();
     });
   });
-
-  describe('should be added to a localstorage', () => {
-   
-  });
 });
