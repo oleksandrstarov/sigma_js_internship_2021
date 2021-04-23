@@ -18,9 +18,11 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
     isFavoritesIconChanged,
     handleIconState
   }: MovieRatingContextType = useContext(MovieRatingContext);
- 
-  const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(api.isIdInFavorites(movieId));
- 
+
+  const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(
+    api.isIdInFavorites(movieId)
+  );
+
   const heartUnfilledIcon = '/images/favoriteBtn/heartFilled.svg';
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
@@ -51,3 +53,4 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
 };
 
 export default FavoritesBtn;
+
