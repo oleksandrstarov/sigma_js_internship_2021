@@ -20,7 +20,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
 
   return (
     <div className="delivery">
-      <div className="view-toggler">
+      <div className="view-toggler ">
         {tailState ? (
           <img
             src={buttonImgGroup}
@@ -32,7 +32,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           <img
             src={buttonImgLine}
             alt="button-img-line"
-            className="delivery__toggler"
+            className="delivery__toggler rotate-btn"
             onClick={() => handlerTail()}
           />
         )}
