@@ -1,4 +1,4 @@
-import { Genres } from '../models'
+import { Genres } from '../models';
 
 export const API_KEY = 'api_key=157c2ade7d0b335008ae899a157d8967';
 export const API_URL = 'https://api.themoviedb.org/3/';
@@ -18,4 +18,5 @@ export const API_GENRE_ID = {
     [Genres.ScienceFiction]: 28,
     [Genres.Horror]: 27,
     [Genres.Family]: 10751,
+    [Genres.Western]: 37,
 }
