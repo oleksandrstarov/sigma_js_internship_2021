@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RouteComponentProps, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import RenderResults from './RenderResults';
 
@@ -15,16 +15,8 @@ type FavoritesApiData = {
   backdrop_path: string;
   id: number;
 };
-interface SearchResultsMatchParams {
-  title: string;
-  fromYear: string;
-  toYear: string;
-  genre: string;
-}
 
-const SearchResults = ({
-  location
-}: RouteComponentProps<SearchResultsMatchParams>) => {
+const SearchResults = () => {
   const [data, setData] = useState<FavoritesApiData[]>();
 
   const { search } = useLocation();
@@ -36,7 +28,7 @@ const SearchResults = ({
   useEffect(() => {
     if (params.title === 'by-genre') {
       api
-        .getFileredList({
+        .getFilteredList({
           from: Number(params.fromYear),
           to: Number(params.toYear),
           genre: params.genre || '',

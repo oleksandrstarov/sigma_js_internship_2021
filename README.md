@@ -1,5 +1,7 @@
 # Sigma Internship 2021
 
+https://chillzone-sigma.herokuapp.com/
+
 ## Overview
 
 During internship we will learn React library and its features implementing a project that is based on IMDB movies database. The application will allow user searching through the available movies/tv serials, viewing a trip details, storing own favorits/ search history etc.
