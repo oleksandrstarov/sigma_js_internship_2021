@@ -56,10 +56,9 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     overview
   } = movieData || {};
 
-
   useEffect(() => {
     if (movieData?.poster_path) {
-      setPoster(api.changeImgLinks(movieData.poster_path, ImageWidth[0]));
+      setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
     }
   }, [movieData])
 

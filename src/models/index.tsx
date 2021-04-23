@@ -31,3 +31,18 @@ export interface StarRatingProps {
   colorUnfilled: string;
 }
 
+export enum Genres {
+  Comedy = 'Comedy',
+  Drama = 'Drama',
+  Romance = 'Romance',
+  Mystery = 'Mystery',
+  Thriller = 'Thriller',
+  Animation = 'Animation',
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Crime = 'Crime',
+  Fantasy = 'Fantasy',
+  ScienceFiction = 'Science Fiction',
+  Horror = 'Horror',
+  Family = 'Family'
+}
