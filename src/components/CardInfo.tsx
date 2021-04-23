@@ -30,7 +30,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
   }, [number]);
 
   return <>{movieData ? (
-    <div className={tailWide ? 'card-info card-info__tail' : 'card-info'}>
+    <div className={tailWide ? 'card-info big-card card-info__tail' : 'card-info'}>
       <div className="card-info__wrapper">
         {!tailWide ? (
           <div className="titleComponent card-info__title">

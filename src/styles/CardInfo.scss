@@ -26,7 +26,7 @@ $white:  #ffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 20px 10px;
+  padding: 30px 15px 15px;
   margin: 10px 10px 45px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
@@ -50,15 +50,17 @@ $white:  #ffff;
     .info-card-activities{
       position: absolute;
       bottom: 8px;
-      right: 181px;
+      right: 35px;
       display: flex;
       justify-content: flex-end;
-      flex-direction: column-reverse;
-      align-items: baseline;
+      // flex-direction: column-reverse;
+      // align-items: baseline;
+      align-items: flex-end;
+
     }
 
     .info-card-activities .favorite-btn {
-      margin-top: 20px;
+      margin-right: 20px;
     }
     
     .star-wrapper{
@@ -145,11 +147,12 @@ $white:  #ffff;
 .card-info__tail{
   flex-direction: row-reverse;
   justify-content: space-between;
-  max-width: 676px;
+  max-width: 580px;
   width: 100%;
 
   .card-info__description{
-    max-width: 300px;
+    transform: translateY(-15px);
+    max-width: 260px;
     margin: 5px auto;
 
     span{
@@ -164,5 +167,11 @@ $white:  #ffff;
     margin-bottom: 25px;
   }
 }
+
+.big-card{
+  width: 580pxpx;
+  margin: 10px;
+}
+
 
 
