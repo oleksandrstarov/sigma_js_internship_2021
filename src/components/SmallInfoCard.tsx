@@ -52,7 +52,8 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
       <div className="small-cardInfo__filter"></div>
       <div className="small-cardInfo__img-wrapper">
         <img
-          src={`https://image.tmdb.org/t/p/w185${data.poster_path}`}
+
+          src={api.getFullImgLink(data.poster_path, 'w185')}
           alt={data.title}
           className="small-cardInfo__img"
         />
