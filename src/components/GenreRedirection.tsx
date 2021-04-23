@@ -6,7 +6,7 @@ type GenreProps = {
 
 const GenreRedirection = ({ genre }: GenreProps) => {
   return (
-    <Link to={`/search-results/by-genre/${genre}/1060/2021/false/false/1`}>{genre}</Link>
+    <Link to={`/search-results?title=by-genre&genre=${genre}&page=1`}>{genre}</Link>
   )
 }
 

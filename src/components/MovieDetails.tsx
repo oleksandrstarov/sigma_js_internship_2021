@@ -95,7 +95,7 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
       </section>
       <div className="genres">
-        {!!genres?.length && genres.map(genre => <div key={genre.id}>
+        {genres?.map(genre => <div key={genre.id}>
           <GenreRedirection genre={genre.name} />
         </div>)}
       </div>
