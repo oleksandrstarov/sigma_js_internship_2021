@@ -41,9 +41,9 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
             <h2>{movieData.title}</h2>
           </div>
         )}
-        <div className="info-card-activities-mobile">
+        {!tailWide && <div className="info-card-activities-mobile">
           <FavoritesBtn movieId={movieData.id} />
-        </div>
+        </div>}
         <div className="info-card-activities">
           {tailWide && <>
             <FavoritesBtn movieId={movieData.id} />
