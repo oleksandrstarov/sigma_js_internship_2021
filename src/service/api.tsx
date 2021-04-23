@@ -1,7 +1,7 @@
 import { API_KEY, API_IMG_URL } from '../constants/api';
 import axios from '../axios/url';
 
-import { Theme, MovieCard } from '../models/index';
+import { Theme } from '../models/index';
 import { MoviesType } from '../components/Home'
 const apiService: {
   storeKey: string;
@@ -139,13 +139,7 @@ const api = {
 
   changeImgLinks(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
-  },
-
-  changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
-    return arr.length < 6
-      ? arr
-      : arr.slice(6 * (page - 1), 6 * page);
-  },
+  }
 }
 
 export default api;
