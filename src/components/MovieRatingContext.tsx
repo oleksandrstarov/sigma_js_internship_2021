@@ -21,7 +21,6 @@ export const MovieRatingProvider = ({
 
   const handleIconState = (value: boolean) => {
     setIsFavoritesIconChanged(value);
-    console.log(isFavoritesIconChanged + " Context");
   };
   return (
     <MovieRatingContext.Provider
