@@ -18,6 +18,16 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
   const handlerTail = () => setTailState(!tailState);
   const isMobileView = useDeviceDetect();
 
+  if (!list.length) {
+    return (
+      <div className="delivery">
+        <div className="delivery__container">
+          <h3>Oops no results here ;)</h3>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="delivery">
       <div className="view-toggler ">
@@ -38,7 +48,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
         )}
       </div>
       <div className="delivery__container">
-        {list.map((item: MovieCard) => {
+        {list?.map((item: MovieCard) => {
           if (!isMobileView) {
             return <CardInfo tailWide={!tailState} number={item.id} />;
           } else {
