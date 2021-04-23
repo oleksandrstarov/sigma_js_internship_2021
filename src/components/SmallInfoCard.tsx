@@ -24,12 +24,7 @@ type ResponseData = {
 
 const SmallInfoCard = ({ id }: CardInfoProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
-  const [data, setData] = useState<ResponseData>({
-    poster_path: '',
-    vote_count: '',
-    title: '',
-    vote_average: ''
-  });
+  const [data, setData] = useState<ResponseData>();
 
   useEffect(() => {
     api.getDataById(id).then(res => {
@@ -37,7 +32,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
     });
   }, [id]);
 
-  return (
+  return <>{data && (
     <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
       <div className=" small-cardInfo__title">
         <Title text={data.title} />
@@ -73,7 +68,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
         </button>
       </Link>
     </div>
-  );
+  )}</>;
 };
 
 export default SmallInfoCard;
