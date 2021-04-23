@@ -57,10 +57,9 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     overview
   } = movieData || {};
 
-
   useEffect(() => {
     if (movieData?.poster_path) {
-      setPoster(api.changeImgLinks(movieData.poster_path, ImageWidth[0]));
+      setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
     }
   }, [movieData])
 
@@ -96,8 +95,8 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
       </section>
       <div className="genres">
-        {genres && genres.map(genre => <div key={genre.id}>
-          <GenreRedirection genreId={genre.id} genre={genre.name} />
+        {!!genres?.length && genres.map(genre => <div key={genre.id}>
+          <GenreRedirection genre={genre.name} />
         </div>)}
       </div>
       <div className="hl"></div>

@@ -38,7 +38,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
         )}
       </div>
       <div className="delivery__container">
-        {list.map((item: MovieCard) => {
+        {!!list.length ? list.map((item: MovieCard) => {
           if (!isMobileView) {
             return <CardInfo tailWide={!tailState} number={item.id} />;
           } else {
@@ -47,7 +47,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
             }
             return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
           }
-        })}
+        }) : "Opps no results found ;)"}
       </div>
     </div>
   );

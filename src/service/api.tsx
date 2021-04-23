@@ -1,5 +1,10 @@
-import { API_KEY, API_IMG_URL } from '../constants/api';
+import {
+  API_KEY,
+  API_IMG_URL,
+  API_GENRE_ID
+} from '../constants/api';
 import axios from '../axios/url';
+import { Genres } from '../models'
 
 import { Theme, MovieCard } from '../models/index';
 import { MoviesType } from '../components/Home'
@@ -128,23 +133,55 @@ const api = {
   },
 
   async getSearchList(query: string, page: number = 1) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
+    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
-  // async getMoviesByGenre(id: number) {
-  //   const obj = await axios.get(`/discover/movie/?${API_KEY}&with_genres=${id}`);
-  //   return obj.data.results;
-  // },
+  async getFileredList(dataFilter:
+    {
+      from?: number,
+      to?: number,
+      genre?: string,
+      page: number
+    } = {
+      page: 1,
+    }
+  ) {
 
-  changeImgLinks(url: string, size: string = 'w500') {
-    return `${API_IMG_URL}${size}${url}`;
+    function setFilteredData() {
+      const { from, to } = dataFilter
+      if (!!from) {
+        if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
+        return `&primary_release_date.gte=${from}-01-01`
+      }
+      return '';
+    }
+
+    function setGenre() {
+      const { genre } = dataFilter;
+      if (!!genre) {
+        return `&with_genres=${API_GENRE_ID[genre as Genres]}`
+      }
+      return '';
+    }
+
+    const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
+    return obj.data;
+  },
+
+  getFilterMatchesList(arr: MovieCard[], idsList: number[]): MovieCard[] {
+    const conformityIds = arr.filter((item: MovieCard) => idsList.includes(item.id));
+    return conformityIds;
   },
 
   changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
     return arr.length < 6
       ? arr
       : arr.slice(6 * (page - 1), 6 * page);
+  },
+
+  getFullImgLink(url: string, size: string = 'w500') {
+    return `${API_IMG_URL}${size}${url}`;
   },
 }
 
