@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import { Genres } from '../models'
 
 import '../styles/SearchField.scss';
 
 const loupeIcon = '/images/search-icon.svg';
-
-enum Genres {
-  Comedy = 'Comedy',
-  Drama = 'Drama',
-  Romance = 'Romance',
-  Mystery = 'Mystery',
-  Thriller = 'Thriller',
-  Animation = 'Animation',
-  Action = 'Action',
-  Adventure = 'Adventure',
-  Crime = 'Crime',
-  Fantasy = 'Fantasy',
-  ScienceFiction = 'Science Fiction',
-  Horror = 'Horror',
-  Family = 'Family'
-}
-
 const checkedImg = '/images/searchFieldIcons/checked.svg';
 const uncheckedImg = '/images/searchFieldIcons/unchecked.svg';
 
