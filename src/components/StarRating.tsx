@@ -34,8 +34,6 @@ const StarRating: React.FC<StarRatingProps> = ({
     MovieRatingContext
   );
 
-  console.log(starRating);
-
   function getMovieRatingValue(): number {
     if (!ratingData.getMovieRatingFromStorage().length)
       return Math.round(voteAverage / 2);

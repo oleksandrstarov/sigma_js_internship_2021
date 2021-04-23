@@ -5,7 +5,7 @@ const ratingDataInLocalStorage: { storageKey: string; rating: Array<{}> } = {
 
 const ratingData = {
   getMovieRatingFromStorage() {
-    const movieRatingStorage: any = localStorage.getItem(
+    const movieRatingStorage: string | null = localStorage.getItem(
       ratingDataInLocalStorage.storageKey
     );
     if (!movieRatingStorage) {
@@ -46,4 +46,3 @@ const ratingData = {
 };
 
 export default ratingData;
-

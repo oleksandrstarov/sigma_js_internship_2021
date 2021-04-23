@@ -15,26 +15,24 @@ type FavoritesBtnProps = {
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const {
-    isMovieIdInFavorites,
+    isFavoritesIconChanged,
     handleIconState
   }: MovieRatingContextType = useContext(MovieRatingContext);
-  console.log(isMovieIdInFavorites + " Favorites");
-  const [isFavorite, setIsFavorite] = useState(api.isIdInFavorites(movieId));
+ 
+  const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(api.isIdInFavorites(movieId));
  
   const heartUnfilledIcon = '/images/favoriteBtn/heartFilled.svg';
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
   const handleSwitchFavoriteState = (): void => {
-    if (isFavorite) {
+    if (isMovieIdInFavorites) {
       api.deleteFavoritsId(movieId);
       handleIconState(false);
     } else {
       api.setFavoritesId(movieId);
       handleIconState(true);
     }
-    // isFavorite ? api.deleteFavoritsId(movieId) : api.setFavoritesId(movieId);
-    setIsFavorite(!isFavorite);
-    //setHandle(!handle);
+    setIsMovieIdInFavorites(!isMovieIdInFavorites);
   };
 
   return (
@@ -42,7 +40,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
       <img
         className="favorite-icon"
         src={
-          isFavorite || isMovieIdInFavorites
+          isMovieIdInFavorites || isFavoritesIconChanged
             ? heartUnfilledIcon
             : heartFilledIcon
         }
