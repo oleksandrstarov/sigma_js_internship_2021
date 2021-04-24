@@ -6,6 +6,7 @@ import { API_IMG_URL } from '../constants/api';
 
 import '../styles/MovieBanner.scss';
 import StarRating from './StarRating';
+import FavoritesBtn from './FavoritesBtn';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const mobile = useDeviceDetect();
@@ -37,8 +38,9 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           <h3 className="movie-title">{title}</h3>
         </div>
         <p
-          className={`movie-description ${window.innerWidth < 767 ? 'text-overlow' : ''
-            }`}>
+          className={`movie-description ${
+            window.innerWidth < 767 ? 'text-overlow' : ''
+          }`}>
           {overview.length >= 250 ? (
             <span>
               {overview.slice(0, 250)}
@@ -58,13 +60,19 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             </span>
           </p>
           <div className="movie-rating-stars">
-            <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={vote_average} />
+            <StarRating
+              numberOfStars={5}
+              colorFilled={'#ff636d'}
+              colorUnfilled={'#c4c4c4'}
+              voteAverage={vote_average}
+            />
           </div>
         </div>
         <Link to={{ pathname: `movie-details/${id}` }} className="movie-btn">
           <span className="movie-btn-title">View details</span>
           <img src={btnIcon} alt="btn icon" className="movie-btn-icon" />
         </Link>
+        <FavoritesBtn movieId={Number(id)} />
       </div>
     </div>
   );

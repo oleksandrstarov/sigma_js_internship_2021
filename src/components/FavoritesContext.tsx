@@ -1,9 +1,10 @@
-import { Children, createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
-//import api from "../service/api"
+import api from '../service/api';
 
 export type FavoritesContextType = {
-  handleFavoritesState: () => number | string;
+  handleFavoritesState: () => void;
+  favoritesState: [];
 };
 
 type FavoritesContextProviderType = {
@@ -11,17 +12,24 @@ type FavoritesContextProviderType = {
 };
 
 export const FavoritesContext = createContext<FavoritesContextType>({
-  handleFavoritesState: () => {}
+  handleFavoritesState: () => {},
+  favoritesState: []
 });
 
 export const FavoritesContextProvider = ({
   children
 }: FavoritesContextProviderType) => {
-  const handleFavoritesState = (movieId: number | string) => {
-    console.log(movieId);
+  const [favoritesState, setFavoritesState] = useState(
+    api.getFavoritsIdList()
+  );
+  console.log(api.getFavoritsIdList());
+
+  const handleFavoritesState = () => {
+   // setFavoritesState(api.getFavoritsIdList());
+    setFavoritesState(api.getFavoritsIdList());
   };
   return (
-    <FavoritesContext.Provider value={{ handleFavoritesState }}>
+    <FavoritesContext.Provider value={{ handleFavoritesState, favoritesState }}>
       {children}
     </FavoritesContext.Provider>
   );
