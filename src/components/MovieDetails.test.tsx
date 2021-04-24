@@ -30,11 +30,12 @@ const match = {
 jest.mock('./Detail', () => () => 'Detail');
 
 jest.mock('../service/api', () => ({
-  changeImgLinks: jest.fn(() => "test"),
+  getFullImgLink: jest.fn(() => "test"),
   getDataById: () => Promise.resolve(movieMockData)
 }));
 
 jest.mock('./ReadMore', () => () => <>ReadMore</>);
+jest.mock('./GenreRedirection', () => () => <>GenreRedirection</>);
 
 describe('MovieDetails', () => {
   let wrapper: ReactWrapper;
@@ -62,7 +63,7 @@ describe('MovieDetails', () => {
 
   it('should call poster api with movie poster_path', () => {
     wrapper.update();
-    const spyFunc = api.changeImgLinks;
+    const spyFunc = api.getFullImgLink;
     expect(spyFunc).toHaveBeenCalledTimes(1);
     expect(spyFunc).toHaveBeenCalledWith("/uDhnTtSxU5a8DtZdbbin3aZmkmU.jpg", "w500");
   });
