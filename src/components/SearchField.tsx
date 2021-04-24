@@ -48,7 +48,7 @@ const SearchField: React.FC = () => {
   const submitSearchRequest = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const query = new URLSearchParams({
+    const queryString = new URLSearchParams({
       title: inputValue,
       genre: genreToSearch,
       fromYear: dateRange.fromYear.toString(),
@@ -61,7 +61,7 @@ const SearchField: React.FC = () => {
     if (inputValue.trim()) {
       history.push({
         pathname: '/search-results',
-        search: query.toString()
+        search: queryString.toString()
       });
     }
   };
