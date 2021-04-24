@@ -8,74 +8,74 @@
 
   .bar-items-container {
 
-    .bar-item {
-      
-      .bar-item-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 10px 0 ;
+  .bar-item {
+    
+    .bar-item-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 ;
 
-        .bar-item-btn {
-          border: 1px solid orange;
-          border-radius: 20px;
-          padding: 5px 10px;
-          max-width: 166px;
-          display: flex;
-          align-items: center;
+    .bar-item-btn {
+      border: 1px solid orange;
+      border-radius: 20px;
+      padding: 5px 10px;
+      max-width: 166px;
+      display: flex;
+      align-items: center;
 
-          .bar-title {
-            margin-right: 15px;
-          }
-
-          .bar-img {
-            height: 23px;
-            width: 23px;
-          }
-        }
-
-        .bar-counter {
-          height: 28px;
-          width: 28px;
-          border-radius: 50%;
-          background-color: $purple;
-          text-align: center;
-          line-height: 28px;
-          vertical-align: middle;
-
-          span {
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-          }
-        }
+      .bar-title {
+      margin-right: 15px;
       }
 
-      .bar-items-tools {
-
-        .bar-item-tool {
-          display: flex;
-          margin: 6px 0;
-          align-items:baseline;
-          cursor: pointer;
-
-          &:hover {
-            text-decoration: underline;
-            color: $purple;
-          }
-
-          .bar-img {
-            height: 20px;
-            width: 20px;
-            margin-right: 13px;
-          }
-          .bar-clean-btn {
-  
-            .bar-tool-title {
-            }
-          }
-        }
+      .bar-img {
+      height: 23px;
+      width: 23px;
       }
     }
+
+    .bar-counter {
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+      background-color: $purple;
+      text-align: center;
+      line-height: 28px;
+      vertical-align: middle;
+
+      span {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      }
+    }
+    }
+
+    .bar-items-tools {
+
+    .bar-item-tool {
+      display: flex;
+      margin: 6px 0;
+      align-items:baseline;
+      cursor: pointer;
+
+      &:hover {
+      text-decoration: underline;
+      color: $purple;
+      }
+
+      .bar-img {
+      height: 20px;
+      width: 20px;
+      margin-right: 13px;
+      }
+      .bar-clean-btn {
+  
+      .bar-tool-title {
+      }
+      }
+    }
+    }
+  }
   }
 }
