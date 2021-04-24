@@ -11,14 +11,14 @@ import { MoviesType } from '../components/Home'
 
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: number; FeatureStatus: number };
+  store: { history: number[]; favorites: number[]; theme: number; historyBar: number };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
     theme: Theme.light,
-    FeatureStatus: FeatureStatus.enabled
+    historyBar: FeatureStatus.enabled
   }
 }
 
@@ -37,7 +37,7 @@ const api = {
       history: [],
       favorites: [],
       theme: 1,
-      FeatureStatus: FeatureStatus.enabled
+      historyBar: FeatureStatus.enabled
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
@@ -45,9 +45,9 @@ const api = {
 
   switchHistoryBar() {
     const store = this.getStore();
-    store.FeatureStatus = store.FeatureStatus === FeatureStatus.enabled ? FeatureStatus.disabled : FeatureStatus.enabled;
+    store.historyBar = store.historyBar === FeatureStatus.enabled ? FeatureStatus.disabled : FeatureStatus.enabled;
     this.setStore(store);
-    return store.FeatureStatus;
+    return store.historyBar;
   },
 
   switchTheme() {
