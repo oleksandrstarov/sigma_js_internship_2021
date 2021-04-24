@@ -35,7 +35,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
   return <>{data && (
     <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
       <Link to={`/movie-details/${data.id}`}>
-        <div className=" small-cardInfo__title">
+        <div className="small-cardInfo__title">
           <Title text={data.title} />
         </div>
       </Link>

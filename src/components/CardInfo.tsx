@@ -10,6 +10,7 @@ import StarRating from './StarRating';
 import '../styles/CardInfo.scss';
 
 type CardInfoProps = { number: number; tailWide: boolean };
+
 type CardInfoApiData = {
   poster_path: string;
   original_title: string;
@@ -68,7 +69,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
           alt={movieData.original_title}
           className={'card-info__img'}
         />
-        <NavLink to={`/movie-details/${number} `}>
+        <NavLink to={`/movie-details/${number}`}>
           <div className="card-info__gradient" />
         </NavLink>
         <div className="info-card__rate">
@@ -91,4 +92,5 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     </div>
   ) : null}</>;
 };
+
 export default CardInfo;
