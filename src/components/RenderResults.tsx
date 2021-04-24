@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import { MovieCard } from '../models/index';
-import SmallInfoCard from './SmallInfoCard';
 import CardInfo from './CardInfo';
+import SmallInfoCard from './SmallInfoCard';
+import useDeviceDetect from '../hooks/useDeviceDetect';
 
 import buttonImgGroup from '../assets/Group.png';
 import buttonImgLine from '../assets/lines.png';
@@ -42,7 +42,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           <img
             src={buttonImgLine}
             alt="button-img-line"
-            className="delivery__toggler"
+            className="delivery__toggler rotate-btn"
             onClick={() => handlerTail()}
           />
         )}
