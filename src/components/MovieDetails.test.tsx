@@ -35,6 +35,7 @@ jest.mock('../service/api', () => ({
 }));
 
 jest.mock('./ReadMore', () => () => <>ReadMore</>);
+jest.mock('./GenreRedirection', () => () => <>GenreRedirection</>);
 
 describe('MovieDetails', () => {
   let wrapper: ReactWrapper;

@@ -34,9 +34,11 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
 
   return <>{data && (
     <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
-      <div className=" small-cardInfo__title">
-        <Title text={data.title} />
-      </div>
+      <Link to={`/movie-details/${data.id}`}>
+        <div className="small-cardInfo__title">
+          <Title text={data.title} />
+        </div>
+      </Link>
       <div className="small-cardInfo__rate">
         <div className="small-cardInfo__rate-voters">
           Voters
