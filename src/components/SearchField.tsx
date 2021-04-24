@@ -35,9 +35,7 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<
-    Genres | 'none' | undefined
-  >('none');
+  const [genreToSearch, setGenreToSearch] = useState<Genres | 'none'>('none');
 
   const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
@@ -47,13 +45,24 @@ const SearchField: React.FC = () => {
     setInputValue(event.target.value);
   };
 
-  const submitSearchRequest = (event: React.SyntheticEvent) => {
-    setDropdown(false);
+  const submitSearchRequest = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const query = new URLSearchParams({
+      title: inputValue,
+      genre: genreToSearch,
+      fromYear: dateRange.fromYear.toString(),
+      toYear: dateRange.toYear.toString(),
+      favorites: checkboxes.favorites.toString(),
+      history: checkboxes.history.toString(),
+      page: '1'
+    });
+
     if (inputValue.trim()) {
-      history.push(
-        `/search-results?title=${inputValue}&genre=${genreToSearch}&fromYear=${dateRange.fromYear}&toYear=${dateRange.toYear}&favorites=${checkboxes.favorites}&history=${checkboxes.history}&page=1`
-      );
+      history.push({
+        pathname: '/search-results',
+        search: query.toString()
+      });
     }
   };
 
@@ -125,6 +134,7 @@ const SearchField: React.FC = () => {
   const selectGenreHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
+    setInputValue('by-genre');
     setGenreToSearch(event.target.value as Genres);
   };
 
