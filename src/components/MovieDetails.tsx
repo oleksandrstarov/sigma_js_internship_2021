@@ -8,6 +8,7 @@ import api from '../service/api';
 import ReadMore from './ReadMore';
 import Detail from './Detail';
 import Title from './Title';
+import GenreRedirection from './GenreRedirection';
 
 import '../styles/MovieDetails.scss';
 
@@ -93,16 +94,16 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           </div>
         </div>
       </section>
-      <div className="wrapper-space">
-        <div className="genres">
-          {genres?.map(genre => <div key={genre.id}>{genre.name}</div>)}
-        </div>
+      <div className="genres">
+        {genres?.map(genre => <div key={genre.id}>
+          <GenreRedirection genre={genre.name} />
+        </div>)}
       </div>
-      <div className="hl"></div>
+      <div className="hl"/>
       <div className="description">
         <ReadMore>{overview ?? ''}</ReadMore>
       </div>
-      <div className="hl"></div>
+      <div className="hl"/>
     </div>
   );
 };

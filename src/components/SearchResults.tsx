@@ -18,6 +18,7 @@ type FaforitsApiData = {
 
 interface SearchResultsMatchParams {
   title: string;
+
 }
 
 const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {

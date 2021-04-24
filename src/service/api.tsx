@@ -147,7 +147,7 @@ const api = {
     return obj.data.results;
   },
 
-  async getFileredList(dataFilter:
+  async getFilteredList(dataFilter:
     {
       from?: number,
       to?: number,
