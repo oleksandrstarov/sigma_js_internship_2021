@@ -5,7 +5,7 @@ import RenderResults from './RenderResults';
 
 import api from 'src/service/api';
 
-type FaforitsApiData = {
+type FavoritesApiData = {
   poster_path: string;
   original_title: string;
   title: string;
