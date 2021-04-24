@@ -1,26 +1,14 @@
-import { useEffect, useState } from 'react';
-
 import Container from './Container';
 import PopularMovie from './PopularMovie';
 import { Movie } from '../models/index';
 
-import api from '../service/api';
-
 import '../styles/MovieBanner.scss';
 
-const MovieBanner = () => {
-  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+type PopularMovies = {
+  popularMovies: Array<Movie>;
+};
 
-  const getPopularMovies = (): void => {
-    api.getPopularQueryList().then(data => {
-      setPopularMovies(data);
-    });
-  };
-
-  useEffect(() => {
-    getPopularMovies();
-  }, []);
-
+const MovieBanner = ({ popularMovies }: PopularMovies) => {
   const randomMovie =
     popularMovies[Math.floor(Math.random() * popularMovies.length)];
 
