@@ -40,38 +40,29 @@ const Home = () => {
         <WrapperFavorites />
       </div>
       <Container>
-        {history && (
-          <div className="wrapper-space">
-            {history.length ? (
-              <>
-                <Title text={'Last seens'} />(
-                <Slider>
-                  {history.map((movie: MoviesType) => {
-                    return (
-                      <div className="slide" key={movie.poster_path}>
-                        <SmallInfoCard id={movie.id} />
-                      </div>
-                    );
-                  })}
-                </Slider>
-                ){' '}
-              </>
-            ) : null}
-          </div>
-        )}
-        <div className="wrapper-space">
-          <Title text={'Popular movies'} />
-          {movies.length ? (
+        {history && <div className="wrapper-space">
+          {history.length ? <><Title text={"Last seens"} />
             <Slider>
-              {movies.map((movie: MoviesType) => {
+              {history.map((movie: MoviesType) => {
                 return (
                   <div className="slide" key={movie.poster_path}>
                     <SmallInfoCard id={movie.id} />
                   </div>
                 );
               })}
-            </Slider>
-          ) : null}
+            </Slider> </> : null}
+        </div>}
+        <div className="wrapper-space">
+          <Title text={'Popular movies'} />
+          {movies.length ? <Slider>
+            {movies.map((movie: MoviesType) => {
+              return (
+                <div className="slide" key={movie.poster_path}>
+                  <SmallInfoCard id={movie.id} />
+                </div>
+              );
+            })}
+          </Slider> : null}
         </div>
       </Container>
     </>

@@ -73,6 +73,10 @@
       border-radius: inherit;
       transition: transform .2s ease-in-out;
     }
+    img{
+      z-index: 1;
+      cursor: pointer;
+    }
 }
   
   .small-cardInfo__button{
