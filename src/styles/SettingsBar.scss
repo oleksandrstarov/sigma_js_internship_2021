@@ -1,22 +1,22 @@
 @import "../styles/variables.scss";
 
-.link{
+.link {
   cursor:alias;
 }
 
-.settings-bar-wrapper{
+.settings-bar-wrapper {
 
-  .bar-items-container{
+  .bar-items-container {
 
-    .bar-item{
+    .bar-item {
       
-      .bar-item-wrapper{
+      .bar-item-wrapper {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 10px 0 ;
 
-        .bar-item-btn{
+        .bar-item-btn {
           border: 1px solid orange;
           border-radius: 20px;
           padding: 5px 10px;
@@ -24,17 +24,17 @@
           display: flex;
           align-items: center;
 
-          .bar-title{
+          .bar-title {
             margin-right: 15px;
           }
 
-          .bar-img{
+          .bar-img {
             height: 23px;
             width: 23px;
           }
         }
 
-        .bar-counter{
+        .bar-counter {
           height: 28px;
           width: 28px;
           border-radius: 50%;
@@ -43,7 +43,7 @@
           line-height: 28px;
           vertical-align: middle;
 
-          span{
+          span {
             font-size: 16px;
             font-weight: bold;
             color: white;
@@ -51,28 +51,27 @@
         }
       }
 
-      .bar-items-tools{
+      .bar-items-tools {
 
-        .bar-item-tool{
+        .bar-item-tool {
           display: flex;
           margin: 6px 0;
           align-items:baseline;
           cursor: pointer;
 
-          &:hover{
+          &:hover {
             text-decoration: underline;
             color: $purple;
           }
 
-          .bar-img{
+          .bar-img {
             height: 20px;
             width: 20px;
             margin-right: 13px;
           }
-          .bar-clean-btn{
+          .bar-clean-btn {
   
-            .bar-tool-title{
-              
+            .bar-tool-title {
             }
           }
         }
