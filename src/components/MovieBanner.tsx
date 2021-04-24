@@ -3,15 +3,21 @@ import PopularMovie from './PopularMovie';
 import { Movie } from '../models/index';
 
 import '../styles/MovieBanner.scss';
+import { useEffect, useState } from 'react';
 
 type PopularMovies = {
   popularMovies: Array<Movie>;
 };
 
 const MovieBanner = ({ popularMovies }: PopularMovies) => {
-  const randomMovie =
-    popularMovies[Math.floor(Math.random() * popularMovies.length)];
-
+  const [randomMovie, setRandomMovie] = useState<Movie | null>(null);
+  
+  useEffect(() => {
+    setRandomMovie(
+      popularMovies[Math.floor(Math.random() * popularMovies.length)]
+    );
+  }, [popularMovies]);
+  
   return (
     <section className="movie-banner">
       <Container>
