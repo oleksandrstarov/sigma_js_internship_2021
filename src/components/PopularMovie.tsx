@@ -24,11 +24,13 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   return (
     <div className="movie-banner-body">
       <div className="movie-image-container">
-        <img
-          src={mobile ? mobileImgPath : desktopImgPath}
-          className="movie-banner-image"
-          alt={movie.title}
-        />
+        <Link className="movie-read-more" to={`/movie-details/${id}`}>
+          <img
+            src={mobile ? mobileImgPath : desktopImgPath}
+            className="movie-banner-image"
+            alt={movie.title}
+          />
+        </Link>
         <div className="movie-image-overlay"></div>
       </div>
       <div className="movie-banner-details">

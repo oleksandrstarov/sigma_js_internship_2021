@@ -10,6 +10,7 @@ import StarRating from './StarRating';
 import '../styles/CardInfo.scss';
 
 type CardInfoProps = { number: number; tailWide: boolean };
+
 type CardInfoApiData = {
   poster_path: string;
   original_title: string;
@@ -78,7 +79,9 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
               alt={movieData.original_title}
               className={'card-info__img'}
             />
-            <div className="card-info__gradient" />
+            <NavLink to={`/movie-details/${number}`}>
+              <div className="card-info__gradient" />
+            </NavLink>
             <div className="info-card__rate">
               <div className="info-card__imdb">
                 IMDB {movieData.vote_average}
@@ -105,4 +108,5 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     </>
   );
 };
+
 export default CardInfo;

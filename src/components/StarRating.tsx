@@ -28,6 +28,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   voteAverage
 }) => {
   const [starRating, setStarRating] = useState<number>(getMovieRatingValue());
+  console.log(starRating);
   const [iconHover, setIconHover] = useState<number>(0);
 
   const { handleIconState }: MovieRatingContextType = useContext(
@@ -51,7 +52,7 @@ const StarRating: React.FC<StarRatingProps> = ({
       api.setFavoritesId(movieId);
       handleIconState(true);
     }
-    setStarRating(getMovieRatingValue());
+    setStarRating(iconRatingValue);
   };
 
   return (
