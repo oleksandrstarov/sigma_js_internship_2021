@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import { MovieCard } from '../models/index';
-import SmallInfoCard from './SmallInfoCard';
 import CardInfo from './CardInfo';
+import SmallInfoCard from './SmallInfoCard';
+import useDeviceDetect from '../hooks/useDeviceDetect';
 
 import buttonImgGroup from '../assets/Group.png';
 import buttonImgLine from '../assets/lines.png';
@@ -20,7 +20,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
 
   return (
     <div className="delivery">
-      <div className="view-toggler ">
+      <div className="view-toggler">
         {tailState ? (
           <img
             src={buttonImgGroup}
