@@ -24,7 +24,7 @@ const Routes = [
     component: Favorites
   },
   {
-    path: '/LastSeen/:page',
+    path: '/last-seen/:page',
     name: 'LastSeen',
     exact: false,
     component: LastSeen
