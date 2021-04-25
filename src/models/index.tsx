@@ -23,6 +23,7 @@ export interface StarRatingProps {
   numberOfStars: number;
   colorFilled: string;
   colorUnfilled: string;
+  movieId: number;
 }
 
 export enum Genres {

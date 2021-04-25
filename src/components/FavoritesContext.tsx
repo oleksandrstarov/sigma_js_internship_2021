@@ -3,9 +3,9 @@ import { createContext, ReactNode, useState } from 'react';
 import api from '../service/api';
 
 export type FavoritesContextType = {
-  handleFavoritesState: (movieId: number) => void;
-  removeMovie: (movieId: number) => void
-  favoritesState: [];
+  addFavoriteMovie: (movieId: number) => void;
+  removeFavoriteMovie: (movieId: number) => void;
+  favoritesMoviesState: [];
 };
 
 type FavoritesContextProviderType = {
@@ -13,25 +13,26 @@ type FavoritesContextProviderType = {
 };
 
 export const FavoritesContext = createContext<FavoritesContextType>({
-  handleFavoritesState: () => {},
-  removeMovie: () => {},
-  favoritesState: []
+  addFavoriteMovie: () => {},
+  removeFavoriteMovie: () => {},
+  favoritesMoviesState: []
 });
 
 export const FavoritesContextProvider = ({
   children
 }: FavoritesContextProviderType) => {
-  const [favoritesState, setFavoritesState] = useState(api.getFavoritsIdList());
+  const [favoritesMoviesState, setFavoritesMoviesState] = useState(
+    api.getFavoritsIdList()
+  );
 
-  const handleFavoritesState = (movieId: number) => { // add movieId to favorites
-    // setFavoritesState(api.getFavoritsIdList());
+  const addFavoriteMovie = (movieId: number) => { // add movieId to favorites
     api.setFavoritesId(movieId)
-    setFavoritesState(api.getFavoritsIdList());
+    setFavoritesMoviesState(api.getFavoritsIdList());
   };
   
-  const removeMovie = (movieId: number) => {
+  const removeFavoriteMovie = (movieId: number) => {
     api.deleteFavoritsId(movieId);
-    setFavoritesState(api.getFavoritsIdList());
+    setFavoritesMoviesState(api.getFavoritsIdList());
   }
 
 
@@ -39,7 +40,8 @@ export const FavoritesContextProvider = ({
   //   handleFavoritesState();
   // }, []);
   return (
-    <FavoritesContext.Provider value={{ handleFavoritesState, favoritesState, removeMovie }}>
+    <FavoritesContext.Provider
+      value={{ addFavoriteMovie, favoritesMoviesState, removeFavoriteMovie }}>
       {children}
     </FavoritesContext.Provider>
   );
