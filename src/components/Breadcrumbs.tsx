@@ -1,29 +1,56 @@
 import '../styles/Breadcrumbs.scss';
-import { withRouter, useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import routing from '../config/routing';
 
-type BreadcrumbsProps = {
-  className?: string
+type CrumbsType = {
+  name: string;
+  path?: string;
 };
 
-const Breadcrumbs = ({ className }: BreadcrumbsProps) => {
-  const history = useHistory();
-  const pathname = window.location.pathname;
-  const pathnames = pathname?.split('/').filter(item => item);
+type BreadcrumbsProps = {
+  dynamic?: boolean;
+  className?: string;
+  crumbs: CrumbsType[];
+};
 
-  const onHandleClick = (link:string):void => {
-    history.push(link);
-  }
+const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
+  const [prevPath, setPrevPath] = useState('');
+  const [prevPathName, setPrevPathName] = useState('');
+
+  const generateLinks = () => {
+    const items = crumbs.map((item: any, index: number) => {
+      return (
+        <a className="breadcrumb" href={item.path} key={index++}>
+          {item.name}
+        </a>
+      );
+    });
+
+    return items;
+  };
+
+  const getPrevPath = () => {
+    const { name } = routing.find(({ path }): boolean =>
+      path.includes(prevPath)
+    ) || { name: '' };
+    setPrevPathName(name);
+  };
+
+  useEffect(() => {
+    setPrevPath(`/${document.referrer.split('/')[3]}`);
+    getPrevPath();
+  });
 
   return (
     <div className={`breadcrumbs ${className}`}>
-      <a href="" className="breadcrumb" onClick={() => onHandleClick('/')}>Home</a>
-      { pathnames && pathnames.map((name, index) => {
-        const routeTo  = `${pathnames.slice(0, index + 1).join('/')}`
-        return <a href="" className="breadcrumb" onClick={() => onHandleClick(routeTo)}>${name}</a>
-      }) }
+      {prevPathName && dynamic && (
+        <a className="breadcrumb" href={prevPath} key={0}>
+          {prevPathName}
+        </a>
+      )}
+      {generateLinks()}
     </div>
   );
 };
 
-// @ts-ignore
-export default withRouter(Breadcrumbs);
+export default Breadcrumbs;
