@@ -30,7 +30,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
 
   return (
     <div className="delivery">
-      <div className="view-toggler ">
+      <div className="view-toggler">
         {tailState ? (
           <img
             src={buttonImgGroup}
