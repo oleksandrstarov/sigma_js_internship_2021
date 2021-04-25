@@ -44,22 +44,6 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     return pages;
   }
 
-  const checkSpills = ():void => {
-    setHasLeftSpill(currentPage > (pageNeighbours + 2));
-    setHasRightSpill((totalPages - currentPage) > 2);
-  }
-
-  const setActiveLink = (index:number):void => {
-    const activeItem = paginationWrapper.current.querySelector('.active');
-
-    if(activeItem) {
-      activeItem.classList.remove('active');
-    }
-
-    paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
-    setButtonState();
-  }
-
   const setButtonState = ():void => {
     const activeItem = paginationWrapper.current.querySelector('.active');
     const index = activeItem.getAttribute('data-target') - 1;
@@ -102,6 +86,22 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }, [])
 
   useEffect(() => {
+    const setActiveLink = (index:number):void => {
+      const activeItem = paginationWrapper.current.querySelector('.active');
+
+      if(activeItem) {
+        activeItem.classList.remove('active');
+      }
+
+      paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
+      setButtonState();
+    }
+
+    const checkSpills = ():void => {
+      setHasLeftSpill(currentPage > (pageNeighbours + 2));
+      setHasRightSpill((totalPages - currentPage) > 2);
+    }
+
     if(totalPages && switchPage) {
       setCurrentPage(getPageParam());
       setActiveLink(currentPage);
