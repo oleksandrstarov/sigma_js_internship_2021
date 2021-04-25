@@ -6,7 +6,6 @@ type PaginationProps = {
   switchPage: (index: number) => void
 }
 
-
 const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasLeftSpill, setHasLeftSpill] = useState(false);
@@ -37,44 +36,12 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
       case (hasLeftSpill && !hasRightSpill):
         pages = range(currentPage - 1, totalPages);
         break;
+      case (!hasRightSpill && !hasLeftSpill):
+        pages = range(1, totalPages)
+        break;
     }
 
     return pages;
-  }
-
-  const checkSpills = ():void => {
-    setHasLeftSpill(currentPage > (pageNeighbours + 2));
-    setHasRightSpill((totalPages - currentPage) > 2);
-  }
-
-  const setActiveLink = (index:number):void => {
-    const activeItem = paginationWrapper.current.querySelector('.active');
-
-    if(activeItem) {
-      activeItem.classList.remove('active');
-    }
-
-    paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
-    setButtonState();
-  }
-
-  const setButtonState = ():void => {
-    const activeItem = paginationWrapper.current.querySelector('.active');
-    const index = activeItem.getAttribute('data-target') - 1;
-    const prevButton = paginationWrapper.current.querySelector('.prev-arrow');
-    const nextButton = paginationWrapper.current.querySelector('.next-arrow');
-
-    if(index === 0) {
-      prevButton.classList.add('disabled');
-    } else {
-      prevButton.classList.remove('disabled')
-    }
-
-    if(index + 1 >= totalPages) {
-      nextButton.classList.add('disabled');
-    } else {
-      nextButton.classList.remove('disabled')
-    }
   }
 
   const getPageParam = ():number => {
@@ -100,13 +67,48 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }, [])
 
   useEffect(() => {
+    const setButtonState = ():void => {
+      const activeItem = paginationWrapper.current.querySelector('.active');
+      const index = activeItem.getAttribute('data-target') - 1;
+      const prevButton = paginationWrapper.current.querySelector('.prev-arrow');
+      const nextButton = paginationWrapper.current.querySelector('.next-arrow');
+
+      if(index === 0) {
+        prevButton.classList.add('disabled');
+      } else {
+        prevButton.classList.remove('disabled')
+      }
+
+      if(index + 1 >= totalPages) {
+        nextButton.classList.add('disabled');
+      } else {
+        nextButton.classList.remove('disabled')
+      }
+    }
+
+    const setActiveLink = (index:number):void => {
+      const activeItem = paginationWrapper.current.querySelector('.active');
+
+      if(activeItem) {
+        activeItem.classList.remove('active');
+      }
+
+      paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
+      setButtonState();
+    }
+
+    const checkSpills = ():void => {
+      setHasLeftSpill(currentPage > (pageNeighbours + 2));
+      setHasRightSpill((totalPages - currentPage) > 2);
+    }
+
     if(totalPages && switchPage) {
       setCurrentPage(getPageParam());
       setActiveLink(currentPage);
       checkSpills();
       switchPage(currentPage);
     }
-  })
+  }, [totalPages, switchPage, currentPage])
 
   return (
     <div ref={paginationWrapper} className="pagination-container">

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import { MovieCard } from '../models/index';
-import SmallInfoCard from './SmallInfoCard';
 import CardInfo from './CardInfo';
+import SmallInfoCard from './SmallInfoCard';
+import useDeviceDetect from '../hooks/useDeviceDetect';
 
 import buttonImgGroup from '../assets/Group.png';
 import buttonImgLine from '../assets/lines.png';
@@ -18,6 +18,16 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
   const handlerTail = () => setTailState(!tailState);
   const isMobileView = useDeviceDetect();
 
+  if (!list.length) {
+    return (
+      <div className="delivery">
+        <div className="delivery__container">
+          <h3>Oops no results here ;)</h3>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="delivery">
       <div className="view-toggler">
@@ -32,13 +42,13 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           <img
             src={buttonImgLine}
             alt="button-img-line"
-            className="delivery__toggler"
+            className="delivery__toggler rotate-btn"
             onClick={() => handlerTail()}
           />
         )}
       </div>
       <div className="delivery__container">
-        {list.map((item: MovieCard) => {
+        {list?.map((item: MovieCard) => {
           if (!isMobileView) {
             return <CardInfo tailWide={!tailState} number={item.id} />;
           } else {
