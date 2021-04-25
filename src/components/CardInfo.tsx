@@ -48,7 +48,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
         <div className="info-card-activities">
           {tailWide && <>
             <FavoritesBtn movieId={movieData.id} />
-            <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={'#c4c4c4'} voteAverage={movieData.vote_average} />
+            <StarRating numberOfStars={5} colorFilled={'#ff636d'} colorUnfilled={theme ? '#c4c4c4' : '#ffffff'} voteAverage={movieData.vote_average} />
           </>}
         </div>
         {tailWide && (
