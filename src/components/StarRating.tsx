@@ -28,13 +28,12 @@ const StarRating: React.FC<StarRatingProps> = ({
   voteAverage
 }) => {
   const [starRating, setStarRating] = useState<number>(getMovieRatingValue());
-  console.log(starRating);
   const [iconHover, setIconHover] = useState<number>(0);
 
   const { handleIconState }: MovieRatingContextType = useContext(
     MovieRatingContext
   );
-
+ 
   function getMovieRatingValue(): number {
     if (!ratingData.getMovieRatingFromStorage().length)
       return Math.round(voteAverage / 2);
@@ -52,7 +51,7 @@ const StarRating: React.FC<StarRatingProps> = ({
       api.setFavoritesId(movieId);
       handleIconState(true);
     }
-    setStarRating(iconRatingValue);
+    setStarRating(getMovieRatingValue());
   };
 
   return (
