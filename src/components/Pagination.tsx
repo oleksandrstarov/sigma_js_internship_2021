@@ -6,7 +6,6 @@ type PaginationProps = {
   switchPage: (index: number) => void
 }
 
-
 const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasLeftSpill, setHasLeftSpill] = useState(false);
@@ -37,25 +36,12 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
       case (hasLeftSpill && !hasRightSpill):
         pages = range(currentPage - 1, totalPages);
         break;
+      case (!hasRightSpill && !hasLeftSpill):
+        pages = range(1, totalPages)
+        break;
     }
 
     return pages;
-  }
-
-  const checkSpills = ():void => {
-    setHasLeftSpill(currentPage > (pageNeighbours + 2));
-    setHasRightSpill((totalPages - currentPage) > 2);
-  }
-
-  const setActiveLink = (index:number):void => {
-    const activeItem = paginationWrapper.current.querySelector('.active');
-
-    if(activeItem) {
-      activeItem.classList.remove('active');
-    }
-
-    paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
-    setButtonState();
   }
 
   const setButtonState = ():void => {
@@ -100,13 +86,29 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }, [])
 
   useEffect(() => {
+    const setActiveLink = (index:number):void => {
+      const activeItem = paginationWrapper.current.querySelector('.active');
+
+      if(activeItem) {
+        activeItem.classList.remove('active');
+      }
+
+      paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
+      setButtonState();
+    }
+
+    const checkSpills = ():void => {
+      setHasLeftSpill(currentPage > (pageNeighbours + 2));
+      setHasRightSpill((totalPages - currentPage) > 2);
+    }
+
     if(totalPages && switchPage) {
       setCurrentPage(getPageParam());
       setActiveLink(currentPage);
       checkSpills();
       switchPage(currentPage);
     }
-  })
+  }, [totalPages, switchPage, setActiveLink, currentPage, checkSpills])
 
   return (
     <div ref={paginationWrapper} className="pagination-container">
