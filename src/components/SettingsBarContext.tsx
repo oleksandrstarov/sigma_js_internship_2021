@@ -42,7 +42,6 @@ export const HistoryBarProvider = ({ children }: HistoryBarProviderType) => {
     setHistoryContextState(api.getHistoryIdList().length)
   }
 
-
   return (
     <HistoryBarContext.Provider value={{
       handleSetBar, handleUpdateFavotites, handleUpdateHistory,
