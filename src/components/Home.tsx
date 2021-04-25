@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import WrapperFavorites from './WrapperFavorites';
-import SmallInfoCard from './SmallInfoCard';
-import MovieBanner from './MovieBanner';
-import Container from './Container';
-import Slider from './Slider';
-import Title from './Title';
+import WrapperFavorites from "./WrapperFavorites";
+import SmallInfoCard from "./SmallInfoCard";
+import MovieBanner from "./MovieBanner";
+import Container from "./Container";
+import Slider from "./Slider";
+import Title from "./Title";
 
-import api from 'src/service/api';
+import api from "src/service/api";
 
 export type MoviesType = {
   vote_count: number;
@@ -17,7 +17,7 @@ export type MoviesType = {
   overview: string;
   title: string;
   id: number;
-}
+};
 
 const Home = () => {
   const [movies, setMovies] = useState<[]>([]);
@@ -25,7 +25,9 @@ const Home = () => {
 
   useEffect(() => {
     api.getPopularQueryList().then(res => setMovies(res.slice(0, 10)));
-    api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });
+    api.getDataByIds(api.getHistoryIdList()).then(res => {
+      setHistory(res);
+    });
   }, []);
 
   return (
@@ -35,29 +37,37 @@ const Home = () => {
         <WrapperFavorites />
       </div>
       <Container>
-        {history && <div className="wrapper-space">
-          {history.length ? <><Title text={"Last seens"} />
+        {history && (
+          <div className="wrapper-space">
+            {history.length ? (
+              <>
+                <Title text={"Last seens"} />
+                <Slider>
+                  {history.map((movie: MoviesType) => {
+                    return (
+                      <div className="slide" key={movie.poster_path}>
+                        <SmallInfoCard id={movie.id} />
+                      </div>
+                    );
+                  })}
+                </Slider>{" "}
+              </>
+            ) : null}
+          </div>
+        )}
+        <div className="wrapper-space">
+          <Title text={"Popular movies"} />
+          {movies.length ? (
             <Slider>
-              {history.map((movie: MoviesType) => {
+              {movies.map((movie: MoviesType) => {
                 return (
                   <div className="slide" key={movie.poster_path}>
                     <SmallInfoCard id={movie.id} />
                   </div>
                 );
               })}
-            </Slider> </> : null}
-        </div>}
-        <div className="wrapper-space">
-          <Title text={'Popular movies'} />
-          {movies.length ? <Slider>
-            {movies.map((movie: MoviesType) => {
-              return (
-                <div className="slide" key={movie.poster_path}>
-                  <SmallInfoCard id={movie.id} />
-                </div>
-              );
-            })}
-          </Slider> : null}
+            </Slider>
+          ) : null}
         </div>
       </Container>
     </>

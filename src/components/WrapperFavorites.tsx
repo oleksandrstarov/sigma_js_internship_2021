@@ -11,7 +11,7 @@ import api from '../service/api';
 
 type MovieId = {
   id: number;
-}
+};
 
 const WrapperFavorites = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
@@ -29,19 +29,24 @@ const WrapperFavorites = () => {
   return (
     <>
       <Container>
-        <Title text={'Favorite movies'} className={`${theme ? '' : 'dark-theme'}`} />
-        {movieInfo.length && (<Slider>
-          {movieInfo.map(({ id }: MovieId) => {
-            return (
-              <div className="slide" key={id}>
-                <SmallInfoCard id={id} />
-              </div>
-            );
-          })}
-        </Slider>)}
+        <Title
+          text={'Favorite movies'}
+          className={`${theme ? '' : 'dark-theme'}`}
+        />
+        {movieInfo.length && (
+          <Slider>
+            {movieInfo.map(({ id }: MovieId) => {
+              return (
+                <div className="slide" key={id}>
+                  <SmallInfoCard id={id} />
+                </div>
+              );
+            })}
+          </Slider>
+        )}
       </Container>
     </>
-  )
+  );
 };
 
 export default WrapperFavorites;

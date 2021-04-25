@@ -31,5 +31,3 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
 };
 
 export default FavoritesBtn;
-
-

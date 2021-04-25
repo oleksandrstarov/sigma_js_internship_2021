@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Genres } from '../models'
+import { Genres } from '../models';
 
 import '../styles/SearchField.scss';
 
@@ -163,8 +163,9 @@ const SearchField: React.FC = () => {
                 </span>
               </div>
               <label
-                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.favorites ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -179,8 +180,9 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.history ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"

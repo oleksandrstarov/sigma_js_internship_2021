@@ -17,7 +17,9 @@ const StarRating: React.FC<StarRatingProps> = ({
   colorUnfilled,
   voteAverage
 }) => {
-  const [starRating, setStarRating] = useState<number>(Math.round(voteAverage / 2));
+  const [starRating, setStarRating] = useState<number>(
+    Math.round(voteAverage / 2)
+  );
   const [iconHover, setIconHover] = useState<number>(0);
 
   return (
@@ -38,7 +40,9 @@ const StarRating: React.FC<StarRatingProps> = ({
             <FaStar
               className="star-rating-icon"
               color={
-                iconRatingValue <= (iconHover || starRating) ? colorFilled : colorUnfilled
+                iconRatingValue <= (iconHover || starRating)
+                  ? colorFilled
+                  : colorUnfilled
               }
               size={30}
               onMouseEnter={() => setIconHover(iconRatingValue)}

@@ -14,21 +14,22 @@ type FaforitsApiData = {
   overview: string;
   backdrop_path: string;
   id: number;
-}
+};
 
 interface SearchResultsMatchParams {
   title: string;
-
 }
 
-const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
+const SearchResults = ({
+  match
+}: RouteComponentProps<SearchResultsMatchParams>) => {
   const [data, setData] = useState<FaforitsApiData[]>();
 
   useEffect(() => {
     api.getSearchList(match.params.title).then((res: FaforitsApiData[]) => {
       setData(res);
     });
-  }, [match.params])
+  }, [match.params]);
 
   return (
     <div className="search-wrapper">

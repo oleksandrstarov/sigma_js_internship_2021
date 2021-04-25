@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { MovieCard } from '../models/index';
-import CardInfo from './CardInfo';
-import SmallInfoCard from './SmallInfoCard';
-import useDeviceDetect from '../hooks/useDeviceDetect';
+import { useState } from "react";
+import { MovieCard } from "../models/index";
+import CardInfo from "./CardInfo";
+import SmallInfoCard from "./SmallInfoCard";
+import useDeviceDetect from "../hooks/useDeviceDetect";
 
-import buttonImgGroup from '../assets/Group.png';
-import buttonImgLine from '../assets/lines.png';
+import buttonImgGroup from "../assets/Group.png";
+import buttonImgLine from "../assets/lines.png";
 
 import '../styles/RenderResults.scss';
 
@@ -25,7 +25,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           <h3>Oops no results here ;)</h3>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -55,7 +55,11 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
             if (tailState) {
               return <CardInfo tailWide={false} number={item.id} />;
             }
-            return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
+            return (
+              <div className="small-card-wrapper">
+                <SmallInfoCard id={item.id} />
+              </div>
+            );
           }
         })}
       </div>

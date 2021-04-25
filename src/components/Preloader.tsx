@@ -1,28 +1,34 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from 'react';
 import '../styles/Preloader.scss';
 
 type PreloaderProps = {
-  isLoaded: boolean
-}
+  isLoaded: boolean;
+};
 
-const Preloader = ({isLoaded}: PreloaderProps) => {
-  const preloaderRef = useRef<HTMLDivElement|undefined|null>();
+const Preloader = ({ isLoaded }: PreloaderProps) => {
+  const preloaderRef = useRef<HTMLDivElement | undefined | null>();
 
-  const removeLoader = ():void => {
+  const removeLoader = (): void => {
     preloaderRef?.current?.remove();
-  }
+  };
 
-  useEffect(():void => {
-    if(isLoaded && preloaderRef) {
+  useEffect((): void => {
+    if (isLoaded && preloaderRef) {
       removeLoader();
     }
-  }, [isLoaded])
+  }, [isLoaded]);
 
   return (
-    <div ref={preloaderRef as React.RefObject<HTMLDivElement>} className="preloader">
-      <img className="preloader-icon" src="/images/spinner.svg" alt="preloader"/>
+    <div
+      ref={preloaderRef as React.RefObject<HTMLDivElement>}
+      className="preloader">
+      <img
+        className="preloader-icon"
+        src="/images/spinner.svg"
+        alt="preloader"
+      />
     </div>
-  )
-}
+  );
+};
 
 export default Preloader;
