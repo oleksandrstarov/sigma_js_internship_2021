@@ -24,12 +24,7 @@ type ResponseData = {
 
 const SmallInfoCard = ({ id }: CardInfoProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
-  const [data, setData] = useState<ResponseData>({
-    poster_path: '',
-    vote_count: '',
-    title: '',
-    vote_average: ''
-  });
+  const [data, setData] = useState<ResponseData>();
 
   useEffect(() => {
     api.getDataById(id).then(res => {
@@ -37,11 +32,13 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
     });
   }, [id]);
 
-  return (
+  return <>{data && (
     <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
-      <div className=" small-cardInfo__title">
-        <Title text={data.title} />
-      </div>
+      <Link to={`/movie-details/${data.id}`}>
+        <div className="small-cardInfo__title">
+          <Title text={data.title} />
+        </div>
+      </Link>
       <div className="small-cardInfo__rate">
         <div className="small-cardInfo__rate-voters">
           Voters
@@ -57,7 +54,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
       <div className="small-cardInfo__filter"></div>
       <div className="small-cardInfo__img-wrapper">
         <img
-          src={`https://image.tmdb.org/t/p/w185${data.poster_path}`}
+          src={api.getFullImgLink(data.poster_path, 'w185')}
           alt={data.title}
           className="small-cardInfo__img"
         />
@@ -73,7 +70,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
         </button>
       </Link>
     </div>
-  );
+  )}</>;
 };
 
 export default SmallInfoCard;
