@@ -18,14 +18,12 @@ const WrapperFavorites = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const { favoritesState }: FavoritesContextType = useContext(FavoritesContext);
   const [movieInfo, setMovieInfo] = useState<MovieId[]>([]);
-  console.log(favoritesState);
 
   useEffect(() => {
     api.getDataByIds(favoritesState).then((res: any) => {
       setMovieInfo(res);
-      console.log(movieInfo);
     });
-  }, []);
+  }, [favoritesState]);
 
   if (!movieInfo.length) {
     return null;

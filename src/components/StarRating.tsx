@@ -20,6 +20,13 @@ const StarRating: React.FC<StarRatingProps> = ({
   const [starRating, setStarRating] = useState<number>(Math.round(voteAverage / 2));
   const [iconHover, setIconHover] = useState<number>(0);
 
+  if (iconRatingValue === MAX_RATE) {
+      api.setFavoritesId(movieId);
+     handleFavoritesState(movieId);
+    } else if(api.isIdInFavorites()){
+      removeMovie(movieId);
+    }
+
   return (
     <div className="star-rating">
       {[...Array(numberOfStars)].map((_, index) => {

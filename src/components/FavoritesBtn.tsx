@@ -12,7 +12,7 @@ type FavoritesBtnProps = {
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const {
     handleFavoritesState,
-    favoritesState
+    removeMovie
   }: FavoritesContextType = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(api.isIdInFavorites(movieId));
 
@@ -22,11 +22,10 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const handleSwitchFavoriteState = (): void => {
     if (isFavorite) {
       api.deleteFavoritsId(movieId);
-      handleFavoritesState();
+      removeMovie(movieId);
     } else {
-      api.setFavoritesId(movieId);
-      handleFavoritesState();
-      console.log(favoritesState);
+       handleFavoritesState(movieId);
+       console.log(movieId)
     }
     // !isFavorite ? api.setFavoritesId(movieId) : api.deleteFavoritsId(movieId);
     setIsFavorite(api.isIdInFavorites(movieId));
