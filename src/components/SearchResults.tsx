@@ -26,7 +26,6 @@ type FavoritesApiData = {
 
 interface SearchResultsMatchParams {
   title: string;
-
 }
 
 const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
