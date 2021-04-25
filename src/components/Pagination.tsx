@@ -44,25 +44,6 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     return pages;
   }
 
-  const setButtonState = ():void => {
-    const activeItem = paginationWrapper.current.querySelector('.active');
-    const index = activeItem.getAttribute('data-target') - 1;
-    const prevButton = paginationWrapper.current.querySelector('.prev-arrow');
-    const nextButton = paginationWrapper.current.querySelector('.next-arrow');
-
-    if(index === 0) {
-      prevButton.classList.add('disabled');
-    } else {
-      prevButton.classList.remove('disabled')
-    }
-
-    if(index + 1 >= totalPages) {
-      nextButton.classList.add('disabled');
-    } else {
-      nextButton.classList.remove('disabled')
-    }
-  }
-
   const getPageParam = ():number => {
     const pathname = window.location.pathname;
     return Number(pathname.slice(pathname.lastIndexOf('/') + 1));
@@ -86,6 +67,25 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }, [])
 
   useEffect(() => {
+    const setButtonState = ():void => {
+      const activeItem = paginationWrapper.current.querySelector('.active');
+      const index = activeItem.getAttribute('data-target') - 1;
+      const prevButton = paginationWrapper.current.querySelector('.prev-arrow');
+      const nextButton = paginationWrapper.current.querySelector('.next-arrow');
+
+      if(index === 0) {
+        prevButton.classList.add('disabled');
+      } else {
+        prevButton.classList.remove('disabled')
+      }
+
+      if(index + 1 >= totalPages) {
+        nextButton.classList.add('disabled');
+      } else {
+        nextButton.classList.remove('disabled')
+      }
+    }
+
     const setActiveLink = (index:number):void => {
       const activeItem = paginationWrapper.current.querySelector('.active');
 
@@ -108,7 +108,7 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
       checkSpills();
       switchPage(currentPage);
     }
-  }, [totalPages, switchPage, setButtonState, currentPage])
+  }, [totalPages, switchPage, currentPage])
 
   return (
     <div ref={paginationWrapper} className="pagination-container">
