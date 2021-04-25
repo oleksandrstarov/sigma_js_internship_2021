@@ -99,11 +99,11 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <GenreRedirection genre={genre.name} />
         </div>)}
       </div>
-      <div className="hl"></div>
+      <div className="hl"/>
       <div className="description">
         <ReadMore>{overview ?? ''}</ReadMore>
       </div>
-      <div className="hl"></div>
+      <div className="hl"/>
     </div>
   );
 };
