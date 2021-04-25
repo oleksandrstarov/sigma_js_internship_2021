@@ -66,6 +66,11 @@ const api = {
     return favorites;
   },
 
+  getFavoritesByOffset(offset:number = 0) {
+    const { favorites } = this.getStore();
+    return { favorites: favorites.slice(offset, offset ? offset * 2 : 20), total_pages: Math.ceil(favorites.length / 20) };
+  },
+
   deleteFavoritsId(id: number) {
     const store = this.getStore();
     store.favorites = store.favorites.filter((itemId: number) => itemId !== id);
