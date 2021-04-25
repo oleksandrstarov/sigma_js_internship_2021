@@ -1,56 +1,28 @@
 import '../styles/Breadcrumbs.scss';
-import { useEffect, useState } from 'react';
-import routing from '../config/routing';
-
-type CrumbsType = {
-  name: string;
-  path?: string;
-};
+import { withRouter, useHistory } from "react-router-dom";
 
 type BreadcrumbsProps = {
-  dynamic?: boolean;
-  className?: string;
-  crumbs: CrumbsType[];
+  className?: string
 };
 
-const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
-  const [prevPath, setPrevPath] = useState('');
-  const [prevPathName, setPrevPathName] = useState('');
-
-  const generateLinks = () => {
-    const items = crumbs.map((item: any, index: number) => {
-      return (
-        <a className="breadcrumb" href={item.path} key={index++}>
-          {item.name}
-        </a>
-      );
-    });
-
-    return items;
-  };
-
-  const getPrevPath = () => {
-    const { name } = routing.find(({ path }): boolean =>
-      path.includes(prevPath)
-    ) || { name: '' };
-    setPrevPathName(name);
-  };
-
-  useEffect(() => {
-    setPrevPath(`/${document.referrer.split('/')[3]}`);
-    getPrevPath();
-  });
+const Breadcrumbs = ({ className }: BreadcrumbsProps) => {
+  const history = useHistory();
+  const pathname = window.location.pathname;
+  // @ts-ignore
+  const pathnames = pathname?.split('/').filter(item => item);
+  console.log(pathnames)
 
   return (
     <div className={`breadcrumbs ${className}`}>
-      {prevPathName && dynamic && (
-        <a className="breadcrumb" href={prevPath} key={0}>
-          {prevPathName}
-        </a>
-      )}
-      {generateLinks()}
+      <a className="breadcrumb" onClick={() => history.push('/')}>Home</a>
+      { pathnames && pathnames.map((name, index) => {
+        console.log(pathnames)
+        const routeTo  = `${pathnames.slice(0, index + 1).join('/')}`
+        return <a className="breadcrumb" onClick={() => history.push(routeTo)}>${name}</a>
+      }) }
     </div>
   );
 };
 
-export default Breadcrumbs;
+// @ts-ignore
+export default withRouter(Breadcrumbs);
