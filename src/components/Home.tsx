@@ -37,7 +37,7 @@ const Home = () => {
       <Container>
         {history && <div className="wrapper-space">
           {history.length ? <><Title text={"Last seens"} />
-          (<Slider>
+            <Slider>
               {history.map((movie: MoviesType) => {
                 return (
                   <div className="slide" key={movie.poster_path}>
@@ -45,11 +45,11 @@ const Home = () => {
                   </div>
                 );
               })}
-            </Slider>) </> : null}
+            </Slider> </> : null}
         </div>}
         <div className="wrapper-space">
           <Title text={'Popular movies'} />
-          {movies.length ? (<Slider>
+          {movies.length ? <Slider>
             {movies.map((movie: MoviesType) => {
               return (
                 <div className="slide" key={movie.poster_path}>
@@ -57,7 +57,7 @@ const Home = () => {
                 </div>
               );
             })}
-          </Slider>) : null}
+          </Slider> : null}
         </div>
       </Container>
     </>
