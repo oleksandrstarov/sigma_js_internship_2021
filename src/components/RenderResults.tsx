@@ -11,9 +11,10 @@ import '../styles/RenderResults.scss';
 
 interface RenderResultsArrList {
   list: MovieCard[];
+  title?: string;
 }
 
-const RenderResults = ({ list }: RenderResultsArrList) => {
+const RenderResults = ({ list, title }: RenderResultsArrList) => {
   const [tailState, setTailState] = useState(true);
   const handlerTail = () => setTailState(!tailState);
   const isMobileView = useDeviceDetect();
@@ -31,6 +32,7 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
   return (
     <div className="delivery">
       <div className="view-toggler ">
+        <h2>{title ?? ''}</h2>
         {tailState ? (
           <img
             src={buttonImgGroup}

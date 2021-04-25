@@ -33,7 +33,7 @@ const SearchResults = ({
 
   return (
     <div className="search-wrapper">
-      {!!data && <RenderResults list={data} />}
+      {!!data && <RenderResults list={data} title={'Results'} />}
     </div>
   );
 };

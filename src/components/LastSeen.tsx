@@ -21,7 +21,7 @@ const LastSeen = () => {
     });
   }, []);
 
-  return <RenderResults list={data} />;
+  return <RenderResults list={data} title={'Last seens'} />;
 };
 
 export default LastSeen;
