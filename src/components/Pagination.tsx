@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef, ReactNode} from 'react';
 import '../styles/Pagination.scss';
-import {useLocation} from "react-router-dom";
+import useLocationHook from "../hooks/useLocationHook";
 
 type PaginationProps = {
   totalPages: number,
@@ -13,7 +13,7 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   const [hasRightSpill, setHasRightSpill] = useState(false);
   const paginationWrapper:any = useRef();
   const pageNeighbours = 1;
-  const { search } = useLocation();
+  const search = useLocationHook().search;
   const params = new URLSearchParams(search);
 
   const range = (start:number, end:number):Array<ReactNode> => {
@@ -61,7 +61,7 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }
 
   useEffect(() => {
-    setCurrentPage(Number(params.get('page')));
+    setCurrentPage(Number(new URLSearchParams(search).get('page')));
   }, [search])
 
   useEffect(() => {
