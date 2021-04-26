@@ -25,7 +25,7 @@ export const FavoritesContextProvider = ({
     api.getFavoritsIdList()
   );
 
-  const addFavoriteMovie = (movieId: number) => { // add movieId to favorites
+  const addFavoriteMovie = (movieId: number) => { 
     api.setFavoritesId(movieId)
     setFavoritesMoviesState(api.getFavoritsIdList());
   };
@@ -35,10 +35,6 @@ export const FavoritesContextProvider = ({
     setFavoritesMoviesState(api.getFavoritsIdList());
   }
 
-
-  // useEffect(() => {
-  //   handleFavoritesState();
-  // }, []);
   return (
     <FavoritesContext.Provider
       value={{ addFavoriteMovie, favoritesMoviesState, removeFavoriteMovie }}>

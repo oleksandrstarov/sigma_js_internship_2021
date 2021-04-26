@@ -35,7 +35,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     removeFavoriteMovie
   }: FavoritesContextType = useContext(FavoritesContext);
 
-  const { handleIconState }: MovieRatingContextType = useContext(
+  const { handleFavoriteIconState }: MovieRatingContextType = useContext(
     MovieRatingContext
   );
 
@@ -54,9 +54,10 @@ const StarRating: React.FC<StarRatingProps> = ({
     });
     if (iconRatingValue === MAX_RATE) {
       addFavoriteMovie(movieId);
-      handleIconState(true);
+     handleFavoriteIconState(true);
     } else if (api.isIdInFavorites(movieId)) {
       removeFavoriteMovie(movieId);
+      handleFavoriteIconState(false);
     }
     setStarRating(getMovieRatingValue());
   };
