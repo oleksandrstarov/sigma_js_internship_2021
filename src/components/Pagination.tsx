@@ -47,17 +47,13 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     return pages;
   }
 
-  const getPageParam = ():number => {
-    return Number(params.get('page'));
-  }
-
   const onHandleClick = (e:any):void => {
     const item = e.target;
     const index = Number(item.getAttribute('data-target'));
     e.preventDefault();
     window.history.pushState(null, '', getCurrentHref() + index.toString());
-    params.set('page', index.toString())
-    setCurrentPage(getPageParam());
+    params.set('page', index.toString());
+    setCurrentPage(Number(params.get('page')));
   }
 
   const getCurrentHref = ():string => {
@@ -65,8 +61,8 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }
 
   useEffect(() => {
-    setCurrentPage(getPageParam());
-  }, [getPageParam()])
+    setCurrentPage(Number(new URLSearchParams(search).get('page')));
+  }, [])
 
   useEffect(() => {
     const setButtonState = ():void => {
