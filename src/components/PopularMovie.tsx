@@ -9,6 +9,7 @@ import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import '../styles/MovieBanner.scss';
 import StarRating from './StarRating';
+import FavoritesBtn from './FavoritesBtn';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
@@ -67,7 +68,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             <StarRating
               numberOfStars={5}
               colorFilled={'#ff636d'}
-              colorUnfilled={'#c4c4c4'}
+              colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
               voteAverage={vote_average}
               movieId={Number(id)}
             />
@@ -77,6 +78,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           <span className="movie-btn-title">View details</span>
           <img src={btnIcon} alt="btn icon" className="movie-btn-icon" />
         </Link>
+        <FavoritesBtn movieId={Number(id)} />
       </div>
     </div>
   );

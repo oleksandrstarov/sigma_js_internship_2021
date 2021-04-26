@@ -1,53 +1,40 @@
 import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
+import MovieBanner from './MovieBanner';
+import PopularMovie from './PopularMovie';
 
-import MovieDetails from './MovieDetails';
-import Detail from './Detail';
-import ReadMore from './ReadMore';
-
-import api from '../service/api';
-
-const movieMockData = {
-  budget: '0',
-  genres: [
-    { id: 16, name: 'Animation' },
-    { id: 28, name: 'Action' }
-  ],
-  original_title: 'Batman: Soul of the Dragon',
-  overview:
-    'Bruce Wayne faces a deadly menace from his past, with the help of three former classmates: world-renowned martial artists Richard Dragon, Ben Turner and Lady Shiva.',
-  popularity: '255.512',
-  poster_path: '/uDhnTtSxU5a8DtZdbbin3aZmkmU.jpg',
-  production_countries: [
-    { iso_3166_1: 'US', name: 'United States of America' }
-  ],
-  release_date: '2021-01-12',
-  runtime: '83',
-  status: 'Released',
-  tagline: 'Get ready for the ultimate showdown.',
-  title: 'Batman: Soul of the Dragon',
-  vote_average: '7.1'
-};
-
-const match = {
-  params: { id: '732450' }
-};
-
-jest.mock('./Detail', () => () => 'Detail');
+const moviesMock = [
+  {
+    adult: false,
+    backdrop_path: '/z7HLq35df6ZpRxdMAE0qE3Ge4SJ.jpg',
+    genre_ids: [28, 12, 35, 14],
+    id: 615678,
+    original_language: 'en',
+    original_title: 'Thunder Force',
+    overview:
+      'In a world where supervillains are commonplace, two estranged childhood best friends reunite after one devises a treatment that gives them powers to protect their city.',
+    popularity: 2346.798,
+    poster_path: '/279yOM4OQREL36B3SECnRxoB4MZ.jpg',
+    release_date: '2021-04-09',
+    title: 'Thunder Force',
+    video: false,
+    vote_average: 5.9,
+    vote_count: 357
+  }
+];
 
 jest.mock('../service/api', () => ({
-  getFullImgLink: jest.fn(() => 'test'),
-  getDataById: () => Promise.resolve(movieMockData)
+  getPopularQueryList: () => Promise.resolve(moviesMock)
 }));
 
-jest.mock('./ReadMore', () => () => <>ReadMore</>);
+jest.mock('./PopularMovie', () => () => 'PopularMovie');
 
-describe('MovieDetails', () => {
+describe('MovieBanner', () => {
   let wrapper: ReactWrapper;
 
   beforeEach(async () => {
     await act(async () => {
-      wrapper = mount(<MovieDetails match={match} />);
+      wrapper = mount(<MovieBanner popularMovies={moviesMock} />);
     });
   });
 
@@ -61,24 +48,14 @@ describe('MovieDetails', () => {
     jest.clearAllMocks();
   });
 
-  it('should render Detail', () => {
-    wrapper.update();
-    expect(wrapper.find(Detail).exists()).toBeTruthy();
+  it('should render', () => {
+    expect(wrapper).toBeDefined();
   });
 
-  it('should call poster api with movie poster_path', () => {
+  it('should render Popular movies', () => {
     wrapper.update();
-    const spyFunc = api.getFullImgLink;
-    expect(spyFunc).toHaveBeenCalledTimes(1);
-    expect(spyFunc).toHaveBeenCalledWith(
-      '/uDhnTtSxU5a8DtZdbbin3aZmkmU.jpg',
-      'w500'
-    );
-  });
 
-  it('should render ReadMore', () => {
-    wrapper.update();
-    expect(wrapper.find(ReadMore).exists()).toBeTruthy();
-    expect(wrapper.find(ReadMore).props().children).toBeDefined();
+    expect(wrapper.find(PopularMovie).exists()).toBeTruthy();
+    expect(wrapper.find(PopularMovie).props().movie).toBe(moviesMock[0]);
   });
 });
