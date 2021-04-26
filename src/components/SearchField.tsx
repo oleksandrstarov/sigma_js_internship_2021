@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Genres } from '../models'
+import { Genres } from '../models';
 
 import '../styles/SearchField.scss';
 
@@ -35,7 +35,7 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
+  const [genreToSearch, setGenreToSearch] = useState<Genres | 'none'>();
 
   const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
@@ -147,24 +147,33 @@ const SearchField: React.FC = () => {
             <div className="dropdown-wrapper">
               <div className="date-select-wrapper">
                 <span>
-                  <button onClick={fromDateInputDecrease}>-</button>
+                  <button type="button" onClick={fromDateInputDecrease}>
+                    -
+                  </button>
                   <input
                     type="number"
                     min={lowerDateLimit}
                     value={dateRange.fromYear}
                     readOnly
                   />
-                  <button onClick={fromDateInputIncrease}>+</button>
+                  <button type="button" onClick={fromDateInputIncrease}>
+                    +
+                  </button>
                 </span>
                 <span>
-                  <button onClick={toDateInputDecrease}>-</button>
+                  <button type="button" onClick={toDateInputDecrease}>
+                    -
+                  </button>
                   <input type="number" value={dateRange.toYear} readOnly />
-                  <button onClick={toDateInputIncrease}>+</button>
+                  <button type="button" onClick={toDateInputIncrease}>
+                    +
+                  </button>
                 </span>
               </div>
               <label
-                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.favorites ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -179,8 +188,9 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
-                  }`}>
+                className={`dropdown-item ${
+                  checkboxes.history ? 'active-checkbox' : ''
+                }`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"
