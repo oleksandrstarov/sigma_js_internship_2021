@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
 import { HistoryBarContext, HistoryBarContextType } from './SettingsBarContext'
+
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
-import SmallInfoCard from './SmallInfoCard';
+import Title from './Title';
 import Container from './Container';
 import Slider from './Slider';
-import Title from './Title';
+import SmallInfoCard from './SmallInfoCard';
 
 import api from '../service/api';
 
 type MovieId = {
   id: number;
 }
-
 type MoviesType = {
   vote_count: number;
   vote_average: number;
@@ -29,12 +29,13 @@ const WrapperLasSeen = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [history, setHistory] = useState<MoviesType[]>();
 
+
   useEffect(() => {
     api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });
   }, [historyState]);
 
   return (
-    <>
+    <>{historyState ?
       <Container>
         <Title text={"Last seen"} className={`${theme ? '' : 'dark-theme'}`} />
         {history?.length && (<Slider>
@@ -47,7 +48,7 @@ const WrapperLasSeen = () => {
           })}
         </Slider>)}
       </Container>
-    </>
+      : null} </>
   )
 };
 
