@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
 import { ThemeContext, ThemeContextType } from './ThemeContext'
-import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import Container from './Container';
+import Breadcrumbs from './Breadcrumbs';
 
 import api from '../service/api';
 
@@ -13,17 +14,11 @@ import StarRating from './StarRating';
 import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieDetails.scss';
-import Container from "./Container";
-import Breadcrumbs from "./Breadcrumbs";
-import {useLocation} from "react-router-dom";
+import Preloader from "./Preloader";
 
 enum ImageWidth {
   w500
 }
-
-type MovieDetailsProps = {
-  match: { params: { id: string } };
-};
 
 type MovieInfo = {
   poster_path: string;
@@ -41,7 +36,7 @@ type MovieInfo = {
   overview: string;
 };
 
-const MovieDetails = ({ match }: MovieDetailsProps) => {
+const MovieDetails = () => {
   const [movieData, setMovieData] = useState<MovieInfo | null>(null);
   const [poster, setPoster] = useState<string>('');
   const { theme }: ThemeContextType = useContext(ThemeContext);
@@ -73,10 +68,11 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     api.getDataById(Number(urlObj.get('id'))).then((res: any) => {
       setMovieData(res);
     });
-  }, [match.params.id]);
+  }, []);
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
+      <Preloader isLoaded={Boolean(movieData && poster)}/>
       <Container>
         <Breadcrumbs/>
         <section className="movie-wrapper">
@@ -92,10 +88,10 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
                 colorFilled={'#ff636d'}
                 colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
                 voteAverage={Number(vote_average)}
-                movieId={Number(match.params.id)}
+                movieId={Number(urlObj.get('id'))}
               />}
             </span>
-              <FavoritesBtn movieId={Number(match.params.id)} />
+              <FavoritesBtn movieId={Number(urlObj.get('id'))} />
             </div>
             <div className="general-info">
               <Detail title="Original title" textContent={original_title} />
