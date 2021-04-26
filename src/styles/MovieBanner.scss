@@ -25,6 +25,10 @@
     }
   }
 
+  .dark-theme {
+    background-color: $grey;
+  }
+
   .movie-image-container {
     position: relative;
     overflow: hidden;
@@ -153,6 +157,10 @@
     max-width: 217px;
     line-height: 22px;
     color: $white;
+     .dark {
+       color: $white;
+       text-shadow: 1px 1px 1px $yellow;
+     }
 
     @media (min-width: 411px) {
       max-width: 266px;
