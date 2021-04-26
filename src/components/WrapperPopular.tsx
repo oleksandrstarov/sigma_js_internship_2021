@@ -7,14 +7,13 @@ import Slider from './Slider';
 import Title from './Title';
 
 import api from '../service/api';
+import { MovieId } from '../components/WrapperFavorites'
 
-type MovieId = {
-  id: number;
-}
+type MoviesDataType = [];
 
 const WrapperPopular = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
-  const [movies, setMovies] = useState<[]>([]);
+  const [movies, setMovies] = useState<MoviesDataType>([]);
 
   useEffect(() => {
     api.getPopularQueryList().then(res => setMovies(res.slice(0, 10)));

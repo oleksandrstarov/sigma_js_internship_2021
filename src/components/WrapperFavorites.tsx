@@ -9,7 +9,7 @@ import SmallInfoCard from './SmallInfoCard';
 
 import api from '../service/api';
 
-type MovieId = {
+export type MovieId = {
   id: number;
 };
 
