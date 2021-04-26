@@ -18,13 +18,13 @@ const Routes = [
     component: MovieDetails
   },
   {
-    path: '/favorites/:page',
+    path: '/favorites',
     name: 'Favorites',
     exact: false,
     component: Favorites
   },
   {
-    path: '/last-seen/:page',
+    path: '/last-seen',
     name: 'LastSeen',
     exact: false,
     component: LastSeen
