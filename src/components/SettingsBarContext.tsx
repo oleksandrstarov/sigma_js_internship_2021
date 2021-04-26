@@ -25,7 +25,9 @@ type SettingsBarContextProviderType = {
 }
 
 export const SettingsBarContextProvider = ({ children }: SettingsBarContextProviderType) => {
-
+  const [historyBarContext, setHistoryBarContext] = useState(api.getStore().historyBar);
+  const [favoriteContext, setFavoriteContext] = useState(api.getFavoritsIdList().length);
+  const [historyContext, setHistoryContext] = useState(api.getHistoryIdList().length);
 
   const handleSetBar = () => {
     setHistoryBarContext(api.switchHistoryBar());
