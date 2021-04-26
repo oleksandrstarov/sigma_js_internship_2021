@@ -37,7 +37,7 @@ const Header = () => {
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
         <SearchField />
-        <a href="/favorites/1" className="header-nav-link">
+        <a href="/favorites?page=1" className="header-nav-link">
           <span>Favorites</span>
           <img src={heart} alt="heart img" />
         </a>

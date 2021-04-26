@@ -163,19 +163,27 @@ const SearchField: React.FC = () => {
             <div className="dropdown-wrapper">
               <div className="date-select-wrapper">
                 <span>
-                  <button onClick={fromDateInputDecrease}>-</button>
+                  <button type="button" onClick={fromDateInputDecrease}>
+                    -
+                  </button>
                   <input
                     type="number"
                     min={lowerDateLimit}
                     value={dateRange.fromYear}
                     readOnly
                   />
-                  <button onClick={fromDateInputIncrease}>+</button>
+                  <button type="button" onClick={fromDateInputIncrease}>
+                    +
+                  </button>
                 </span>
                 <span>
-                  <button onClick={toDateInputDecrease}>-</button>
+                  <button type="button" onClick={toDateInputDecrease}>
+                    -
+                  </button>
                   <input type="number" value={dateRange.toYear} readOnly />
-                  <button onClick={toDateInputIncrease}>+</button>
+                  <button type="button" onClick={toDateInputIncrease}>
+                    +
+                  </button>
                 </span>
               </div>
               <label

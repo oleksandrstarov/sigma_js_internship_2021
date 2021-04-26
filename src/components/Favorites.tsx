@@ -25,7 +25,7 @@ const Favorites = () => {
     <div className="favorites-wrapper">
       {favoritesData && (
         <Container>
-          <RenderResults list={favoritesData} title={'Favorites'} />
+          <RenderResults list={favoritesData} />
           <Pagination totalPages={pagesAmount} switchPage={switchPage} />
         </Container>
       )}

@@ -36,8 +36,9 @@ const match = {
 jest.mock('./Detail', () => () => 'Detail');
 
 jest.mock('../service/api', () => ({
-  getFullImgLink: jest.fn(() => 'test'),
-  getDataById: () => Promise.resolve(movieMockData)
+  getFullImgLink: jest.fn(() => "test"),
+  getDataById: () => Promise.resolve(movieMockData),
+  isIdInFavorites: jest.fn(() => true),
 }));
 
 jest.mock('./ReadMore', () => () => <>ReadMore</>);

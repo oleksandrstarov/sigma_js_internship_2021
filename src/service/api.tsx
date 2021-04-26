@@ -2,19 +2,21 @@ import { API_KEY, API_IMG_URL, API_GENRE_ID } from '../constants/api';
 import axios from '../axios/url';
 import { Genres } from '../models';
 
-import { Theme, MovieCard } from '../models/index';
-import { MoviesType } from '../components/Home';
+import { Theme, MovieCard, FeatureStatus } from '../models/index';
+import { MoviesType } from '../components/Home'
+
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any };
+  store: { history: number[]; favorites: number[]; theme: Theme; historyBar: FeatureStatus };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
+    theme: Theme.light,
+    historyBar: FeatureStatus.enabled
   }
-};
+}
 
 const api = {
   getStore() {
@@ -30,10 +32,18 @@ const api = {
     data: Object = {
       history: [],
       favorites: [],
-      theme: 1
+      theme: 1,
+      historyBar: FeatureStatus.enabled
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
+  },
+
+  switchHistoryBar() {
+    const store = this.getStore();
+    store.historyBar = store.historyBar === FeatureStatus.enabled ? FeatureStatus.disabled : FeatureStatus.enabled;
+    this.setStore(store);
+    return store.historyBar;
   },
 
   switchTheme() {
@@ -139,10 +149,8 @@ const api = {
   },
 
   async getSearchList(query: string, page: number = 1) {
-    const obj = await axios.get(
-      `search/movie?${API_KEY}&query=${query}&page=${page}`
-    );
-    return obj.data.results;
+    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
+    return obj.data;
   },
 
   async getFilteredList(
@@ -152,8 +160,8 @@ const api = {
       genre?: string;
       page: number;
     } = {
-      page: 1
-    }
+        page: 1
+      }
   ) {
     function setFilteredData() {
       const { from, to } = dataFilter;
@@ -174,8 +182,7 @@ const api = {
     }
 
     const obj = await axios.get(
-      `discover/movie?sort_by=popularity.asc&page=${
-        dataFilter.page
+      `discover/movie?sort_by=popularity.asc&page=${dataFilter.page
       }${setFilteredData()}${setGenre()}&${API_KEY}`
     );
     return obj.data;
