@@ -21,29 +21,26 @@
   }
 
   .delivery__container{
-  display: flex;
-  flex-wrap: wrap;
-  
-    @media screen and(max-width: 1200px) {
-      justify-content: space-evenly;
-    }
-  }
-  
-  .delivery__container-wide{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
   
+  .delivery__container-wide{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
   .view-toggler{
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    margin-bottom: 20px;
 
     img{
       transition: 1s;
     }
+
     .delivery__toggler{
       cursor: pointer;
     }
@@ -57,6 +54,7 @@
   font-size: $font-size-24-title-mobile;
   font-weight: bold;
 }
+
 .small-card-wrapper{
   margin: 15px;
 }

@@ -23,8 +23,7 @@ const Routes = [
     component: Favorites
   },
   {
-    path:
-      '/search-results/:title?/:genre?/:fromYear?/:toYear?/:favorites?/:favorites?/:page',
+    path: '/search-results',
     name: 'Search results',
     exact: false,
     component: SearchResults

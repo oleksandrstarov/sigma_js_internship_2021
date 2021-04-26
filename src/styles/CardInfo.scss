@@ -1,6 +1,4 @@
-$blue: #1d5c9b;
-$orange:  #FCAE30;
-$white:  #ffff;
+@import "./variables.scss";
 
 %pos-absolute-left0 {
   position: absolute;
@@ -13,9 +11,9 @@ $white:  #ffff;
 }
 
 %area-card {
-  max-width: 280px;
+  max-width: 275px;
   max-height: 475px;
-  }
+}
 
 .card-info {
   background-color: $white;
@@ -27,16 +25,16 @@ $white:  #ffff;
   flex-direction: column;
   justify-content: center;
   padding: 30px 15px 15px;
-  margin: 10px 10px 45px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
+  margin: 10px 10px 45px;
 
-  @media screen and(min-width: 1080px) {
+  @media screen and(min-width: 1320px) {
     margin: 10px 40px 45px;
   }
 
   @media screen and(max-width: 1200px) {
-    margin: 10px 20px 45px;
+    margin: 10px 10px 45px;
   }
   
   @media screen and(max-width: 630px) {
@@ -107,7 +105,7 @@ $white:  #ffff;
     @extend %stretch;
     font-size: 18px;  
     font-weight: bold;
-    background-color:  $orange;
+    background-color:  $yellow;
     font-size: 24px;
     color: $white;
   }
@@ -141,11 +139,17 @@ $white:  #ffff;
   }
 }
 
-.card-info__tail {
+.dark {
+  background-color: $grey;
+  color: $bg-color-dark;
+}
+
+.card-info__tail{
   flex-direction: row-reverse;
   justify-content: space-between;
   max-width: 580px;
   width: 100%;
+  margin: 10px 10px 45px;
 
   .card-info__description {
     transform: translateY(-15px);
