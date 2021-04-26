@@ -11,7 +11,6 @@ const imageXl = '/images/logo-xl.svg';
 const imageSm = '/images/logo-sm.svg';
 const heart = '/images/heart.svg';
 
-
 const Header = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [isScrolled, setIsScrolled] = useState(false);
