@@ -1,14 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import { PopularMovieProps } from '../models/index';
 import { API_IMG_URL } from '../constants/api';
+
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import '../styles/MovieBanner.scss';
 import StarRating from './StarRating';
 import FavoritesBtn from './FavoritesBtn';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
   const mobile = useDeviceDetect();
   const {
     overview,
@@ -22,15 +26,16 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const btnIcon = '/images/btn-icon.png';
   const mobileImgPath = `${API_IMG_URL}original/${poster_path}`;
   const desktopImgPath = `${API_IMG_URL}original/${backdrop_path}`;
-
   return (
-    <div className="movie-banner-body">
+    <div className={`movie-banner-body ${theme ? '' : 'dark-theme'}`}>
       <div className="movie-image-container">
-        <img
-          src={mobile ? mobileImgPath : desktopImgPath}
-          className="movie-banner-image"
-          alt={movie.title}
-        />
+        <Link className="movie-read-more" to={`/movie-details/${id}`}>
+          <img
+            src={mobile ? mobileImgPath : desktopImgPath}
+            className="movie-banner-image"
+            alt={movie.title}
+          />
+        </Link>
         <div className="movie-image-overlay"></div>
       </div>
       <div className="movie-banner-details">
@@ -45,7 +50,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             <span>
               {overview.slice(0, 250)}
               <Link className="movie-read-more" to={`/movie-details/${id}`}>
-                <span>...Read more</span>
+                <span className={`${theme ? '' : 'dark'}`}>...Read more</span>
               </Link>
             </span>
           ) : (

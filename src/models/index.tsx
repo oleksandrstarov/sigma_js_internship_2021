@@ -19,12 +19,6 @@ export enum Theme {
   dark,
   light
 }
-export interface StarRatingProps {
-  numberOfStars: number;
-  colorFilled: string;
-  colorUnfilled: string;
-  movieId: number;
-}
 
 export enum Genres {
   Comedy = 'Comedy',
@@ -39,5 +33,6 @@ export enum Genres {
   Fantasy = 'Fantasy',
   ScienceFiction = 'Science Fiction',
   Horror = 'Horror',
-  Family = 'Family'
+  Family = 'Family',
+  Western = 'Western',
 }
