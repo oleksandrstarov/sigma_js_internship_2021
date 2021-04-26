@@ -67,7 +67,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             <StarRating
               numberOfStars={5}
               colorFilled={'#ff636d'}
-              colorUnfilled={'#c4c4c4'}
+              colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
               voteAverage={vote_average}
               movieId={Number(id)}
             />
