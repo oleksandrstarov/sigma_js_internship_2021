@@ -132,12 +132,13 @@
   .movie-title {
     top: 9px;
     right: 26px;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 29px;
     color: $black;
     font-family: "Bebas Neue", cursive;
 
     @media (min-width: 768px) {
+      font-size: 18px;
       margin-bottom: 20px;
     }
 
