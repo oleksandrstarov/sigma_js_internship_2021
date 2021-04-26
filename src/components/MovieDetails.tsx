@@ -9,6 +9,7 @@ import ReadMore from './ReadMore';
 import Detail from './Detail';
 import Title from './Title';
 import GenreRedirection from './GenreRedirection';
+import StarRating from './StarRating';
 
 import '../styles/MovieDetails.scss';
 
@@ -77,6 +78,13 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
         <div className="movie-details">
           <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
+          {vote_average && <StarRating
+            numberOfStars={5}
+            colorFilled={'#ff636d'}
+            colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
+            voteAverage={Number(vote_average)}
+            movieId={Number(match.params.id)}
+          />}
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />
@@ -99,11 +107,11 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <GenreRedirection genre={genre.name} />
         </div>)}
       </div>
-      <div className="hl"/>
+      <div className="hl" />
       <div className="description">
         <ReadMore>{overview ?? ''}</ReadMore>
       </div>
-      <div className="hl"/>
+      <div className="hl" />
     </div>
   );
 };
