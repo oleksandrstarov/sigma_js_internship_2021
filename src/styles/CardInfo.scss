@@ -2,17 +2,17 @@ $blue: #1d5c9b;
 $orange:  #FCAE30;
 $white:  #ffff;
 
-%pos-absolute-left0  {
+%pos-absolute-left0 {
   position: absolute;
   left: 0;
 }
 
-%stretch  {
+%stretch {
   width: 100%;
   height: 100%;
 }
 
-%area-card  {
+%area-card {
   max-width: 280px;
   max-height: 475px;
   }
@@ -31,15 +31,15 @@ $white:  #ffff;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   position: relative;
 
-  @media screen and(min-width: 1080px)  {
+  @media screen and(min-width: 1080px) {
     margin: 10px 40px 45px;
   }
 
-  @media screen and(max-width: 1200px)  {
+  @media screen and(max-width: 1200px) {
     margin: 10px 20px 45px;
   }
   
-  @media screen and(max-width: 630px)  {
+  @media screen and(max-width: 630px) {
     margin: 10px 0 25px;
   }
   
@@ -56,7 +56,7 @@ $white:  #ffff;
       align-items: flex-end;
     }
 
-    .info-card-activities .favorite-btn  {
+    .info-card-activities .favorite-btn {
       margin-right: 20px;
     }
     
