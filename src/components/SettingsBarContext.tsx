@@ -3,51 +3,50 @@ import { FeatureStatus } from '../models';
 
 import api from '../service/api';
 
-export type HistoryBarContextType = {
+export type SettingsBarContextType = {
   handleSetBar: () => void,
   handleUpdateFavotites: () => void,
   handleUpdateHistory: () => void,
-  historyBar: FeatureStatus,
-  favoriteContextState: number,
-  historyContextState: number,
+  historyBarContext: FeatureStatus,
+  favoriteContext: number,
+  historyContext: number,
 }
-
-export const HistoryBarContext = createContext<HistoryBarContextType>({
+export const SettingsBarContext = createContext<SettingsBarContextType>({
   handleSetBar: () => { },
   handleUpdateFavotites: () => { },
   handleUpdateHistory: () => { },
-  historyBar: FeatureStatus.disabled,
-  favoriteContextState: 0,
-  historyContextState: 0,
+  historyBarContext: FeatureStatus.disabled,
+  favoriteContext: 0,
+  historyContext: 0,
 });
 
-type HistoryBarProviderType = {
+type SettingsBarContextProviderType = {
   children?: ReactNode
 }
 
-export const HistoryBarProvider = ({ children }: HistoryBarProviderType) => {
-  const [historyBar, setHistoryBar] = useState(api.getStore().historyBar);
-  const [favoriteContextState, setFavoriteContextState] = useState(api.getFavoritsIdList().length);
-  const [historyContextState, setHistoryContextState] = useState(api.getHistoryIdList().length);
+export const SettingsBarContextProvider = ({ children }: SettingsBarContextProviderType) => {
+  const [historyBarContext, setHistoryBarContext] = useState(api.getStore().historyBar);
+  const [favoriteContext, setFavoriteContext] = useState(api.getFavoritsIdList().length);
+  const [historyContext, setHistoryContext] = useState(api.getHistoryIdList().length);
 
   const handleSetBar = () => {
-    setHistoryBar(api.switchHistoryBar());
+    setHistoryBarContext(api.switchHistoryBar());
   }
 
   const handleUpdateFavotites = () => {
-    setFavoriteContextState(api.getFavoritsIdList().length);
+    setFavoriteContext(api.getFavoritsIdList().length);
   }
 
   const handleUpdateHistory = () => {
-    setHistoryContextState(api.getHistoryIdList().length)
+    setHistoryContext(api.getHistoryIdList().length)
   }
 
   return (
-    <HistoryBarContext.Provider value={{
+    <SettingsBarContext.Provider value={{
       handleSetBar, handleUpdateFavotites, handleUpdateHistory,
-      historyBar, favoriteContextState, historyContextState,
+      historyBarContext, favoriteContext, historyContext,
     }}>
       {children}
-    </HistoryBarContext.Provider>
+    </SettingsBarContext.Provider>
   )
 }
