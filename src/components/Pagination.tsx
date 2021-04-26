@@ -61,8 +61,8 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }
 
   useEffect(() => {
-    setCurrentPage(Number(new URLSearchParams(search).get('page')));
-  }, [])
+    setCurrentPage(Number(params.get('page')));
+  }, [search])
 
   useEffect(() => {
     const setButtonState = ():void => {
