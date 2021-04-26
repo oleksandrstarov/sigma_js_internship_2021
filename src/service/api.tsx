@@ -6,19 +6,21 @@ import {
 import axios from '../axios/url';
 import { Genres } from '../models'
 
-import { Theme, MovieCard } from '../models/index';
+import { Theme, MovieCard, FeatureStatus } from '../models/index';
 import { MoviesType } from '../components/Home'
+
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: any; };
+  store: { history: number[]; favorites: number[]; theme: Theme; historyBar: FeatureStatus };
 } = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
     theme: Theme.light,
+    historyBar: FeatureStatus.enabled
   }
-};
+}
 
 const api = {
   getStore() {
@@ -35,9 +37,17 @@ const api = {
       history: [],
       favorites: [],
       theme: 1,
+      historyBar: FeatureStatus.enabled
     }
   ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
+  },
+
+  switchHistoryBar() {
+    const store = this.getStore();
+    store.historyBar = store.historyBar === FeatureStatus.enabled ? FeatureStatus.disabled : FeatureStatus.enabled;
+    this.setStore(store);
+    return store.historyBar;
   },
 
   switchTheme() {
