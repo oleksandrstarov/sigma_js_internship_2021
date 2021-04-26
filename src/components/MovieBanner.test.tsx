@@ -34,7 +34,7 @@ describe('MovieBanner', () => {
 
   beforeEach(async () => {
     await act(async () => {
-      wrapper = mount(<MovieBanner />);
+      wrapper = mount(<MovieBanner popularMovies={moviesMock} />);
     });
   });
 

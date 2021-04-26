@@ -11,13 +11,15 @@ type PopularMovies = {
 
 const MovieBanner = ({ popularMovies }: PopularMovies) => {
   const [randomMovie, setRandomMovie] = useState<Movie | null>(null);
-  
+
   useEffect(() => {
-    setRandomMovie(
-      popularMovies[Math.floor(Math.random() * popularMovies.length)]
-    );
+    if (popularMovies.length) {
+      setRandomMovie(
+        popularMovies[Math.floor(Math.random() * popularMovies.length)]
+      );
+    }
   }, [popularMovies]);
-  
+
   return (
     <section className="movie-banner">
       <Container>

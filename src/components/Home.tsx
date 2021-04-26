@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <>
-     {popularMovies.length && <MovieBanner popularMovies={popularMovies}/>}
+     <MovieBanner popularMovies={popularMovies}/>
       <div className="wrapper-space">
         <WrapperFavorites />
       </div>
