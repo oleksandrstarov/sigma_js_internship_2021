@@ -22,8 +22,6 @@ type ResponseData = {
   id?: number;
 };
 
-const posterPlaceholder = '/images/movie-placeholder.jpg';
-
 const SmallInfoCard = ({ id }: CardInfoProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [data, setData] = useState<ResponseData>();
@@ -58,11 +56,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
           <div className="small-cardInfo__filter"></div>
           <div className="small-cardInfo__img-wrapper">
             <img
-              src={
-                data.poster_path !== null
-                  ? api.getFullImgLink(data.poster_path, 'w500')
-                  : posterPlaceholder
-              }
+              src={api.getFullImgLink(data.poster_path, 'w500')}
               alt={data.title}
               className="small-cardInfo__img"
             />

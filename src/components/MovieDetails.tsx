@@ -38,8 +38,6 @@ type MovieInfo = {
   overview: string;
 };
 
-const posterPlaceholder = '/images/movie-placeholder.jpg';
-
 const MovieDetails = ({ match }: MovieDetailsProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
 
@@ -64,9 +62,6 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   useEffect(() => {
     if (movieData?.poster_path) {
       setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
-    }
-    if (movieData?.poster_path === null) {
-      setPoster(posterPlaceholder);
     }
   }, [movieData]);
 

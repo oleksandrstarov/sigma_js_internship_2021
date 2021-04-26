@@ -23,8 +23,6 @@ type CardInfoApiData = {
   id: number;
 };
 
-const posterPlaceholder = '/images/movie-placeholder.jpg';
-
 const CardInfo = ({ tailWide, number }: CardInfoProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [movieData, setMovieData] = useState<CardInfoApiData>();
@@ -83,11 +81,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
           </div>
           <div className="cars-info_container">
             <img
-              src={
-                movieData.poster_path !== null
-                  ? api.getFullImgLink(movieData.poster_path, 'w500')
-                  : posterPlaceholder
-              }
+              src={api.getFullImgLink(movieData.poster_path, 'w500')}
               alt={movieData.original_title}
               className={'card-info__img'}
             />
