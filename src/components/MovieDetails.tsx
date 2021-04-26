@@ -67,7 +67,7 @@ const MovieDetails = () => {
     api.getDataById(Number(new URLSearchParams(search).get('id'))).then((res: any) => {
       setMovieData(res);
     });
-  }, []);
+  }, [search]);
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
