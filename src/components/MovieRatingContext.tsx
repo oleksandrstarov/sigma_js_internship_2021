@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from 'react';
 
 export type MovieRatingContextType = {
-  handleIconState: (value: boolean) => void;
+  handleFavoriteIconState: (value: boolean) => void;
   isFavoritesIconChanged: boolean;
 };
 
@@ -10,7 +10,7 @@ type MovieRatingContextProviderType = {
 };
 
 export const MovieRatingContext = createContext<MovieRatingContextType>({
-  handleIconState: () => {},
+  handleFavoriteIconState: () => {},
   isFavoritesIconChanged: false
 });
 
@@ -19,12 +19,13 @@ export const MovieRatingProvider = ({
 }: MovieRatingContextProviderType) => {
   const [isFavoritesIconChanged, setIsFavoritesIconChanged] = useState(false);
 
-  const handleIconState = (value: boolean) => {
+  const handleFavoriteIconState = (value: boolean) => {
     setIsFavoritesIconChanged(value);
   };
+
   return (
     <MovieRatingContext.Provider
-      value={{ handleIconState, isFavoritesIconChanged }}>
+      value={{ handleFavoriteIconState, isFavoritesIconChanged }}>
       {children}
     </MovieRatingContext.Provider>
   );

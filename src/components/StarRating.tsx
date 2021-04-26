@@ -3,12 +3,13 @@ import { FaStar } from 'react-icons/fa';
 
 import api from 'src/service/api';
 import ratingData from '../service/rating';
-
-import '../styles/StarRating.scss';
+import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
 import {
   MovieRatingContext,
   MovieRatingContextType
 } from './MovieRatingContext';
+
+import '../styles/StarRating.scss';
 
 type StarRatingProps = {
   numberOfStars: number;
@@ -29,11 +30,15 @@ const StarRating: React.FC<StarRatingProps> = ({
 }) => {
   const [starRating, setStarRating] = useState<number>(getMovieRatingValue());
   const [iconHover, setIconHover] = useState<number>(0);
+  const {
+    addFavoriteMovie,
+    removeFavoriteMovie
+  }: FavoritesContextType = useContext(FavoritesContext);
 
-  const { handleIconState }: MovieRatingContextType = useContext(
+  const { handleFavoriteIconState }: MovieRatingContextType = useContext(
     MovieRatingContext
   );
- 
+
   function getMovieRatingValue(): number {
     if (!ratingData.getMovieRatingFromStorage().length)
       return Math.round(voteAverage / 2);
@@ -48,8 +53,11 @@ const StarRating: React.FC<StarRatingProps> = ({
       movieRate: iconRatingValue
     });
     if (iconRatingValue === MAX_RATE) {
-      api.setFavoritesId(movieId);
-      handleIconState(true);
+      addFavoriteMovie(movieId);
+     handleFavoriteIconState(true);
+    } else if (api.isIdInFavorites(movieId)) {
+      removeFavoriteMovie(movieId);
+      handleFavoriteIconState(false);
     }
     setStarRating(getMovieRatingValue());
   };
