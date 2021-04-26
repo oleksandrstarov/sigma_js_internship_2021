@@ -13,6 +13,9 @@ import StarRating from './StarRating';
 import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieDetails.scss';
+import Container from "./Container";
+import Breadcrumbs from "./Breadcrumbs";
+import {useLocation} from "react-router-dom";
 
 enum ImageWidth {
   w500
@@ -39,10 +42,11 @@ type MovieInfo = {
 };
 
 const MovieDetails = ({ match }: MovieDetailsProps) => {
-  const { theme }: ThemeContextType = useContext(ThemeContext);
-
   const [movieData, setMovieData] = useState<MovieInfo | null>(null);
   const [poster, setPoster] = useState<string>('');
+  const { theme }: ThemeContextType = useContext(ThemeContext);
+  const { search } = useLocation();
+  const urlObj = new URLSearchParams(search);
 
   const {
     original_title,
@@ -66,20 +70,22 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   }, [movieData])
 
   useEffect(() => {
-    api.getDataById(Number(match.params.id)).then((res: any) => {
+    api.getDataById(Number(urlObj.get('id'))).then((res: any) => {
       setMovieData(res);
     });
   }, [match.params.id]);
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
-      <section className="movie-wrapper">
-        <div className="movie-img">
-          <img src={poster} alt="poster" />
-        </div>
-        <div className="movie-details">
-          <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
-          <div className="fav-raiting">
+      <Container>
+        <Breadcrumbs/>
+        <section className="movie-wrapper">
+          <div className="movie-img">
+            <img src={poster} alt="poster" />
+          </div>
+          <div className="movie-details">
+            <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
+            <div className="fav-raiting">
             <span>
               {vote_average && <StarRating
                 numberOfStars={5}
@@ -89,35 +95,34 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
                 movieId={Number(match.params.id)}
               />}
             </span>
-            <FavoritesBtn movieId={Number(match.params.id)} />
+              <FavoritesBtn movieId={Number(match.params.id)} />
+            </div>
+            <div className="general-info">
+              <Detail title="Original title" textContent={original_title} />
+              <Detail title="Tagline" textContent={tagline} />
+              <Detail title="release_date" textContent={release_date} />
+              <Detail title="Status" textContent={status} />
+              <Detail title="Budget" textContent={budget} />
+              <Detail
+                title="Country"
+                textContent={production_countries?.map(({ name }) => name)
+                  .join(', ')}
+              />
+              <Detail title="Duration" textContent={runtime} />
+              <Detail title="IMDB" textContent={vote_average} />
+              <Detail title="Popularity" textContent={popularity} />
+            </div>
           </div>
-          <div className="general-info">
-            <Detail title="Original title" textContent={original_title} />
-            <Detail title="Tagline" textContent={tagline} />
-            <Detail title="release_date" textContent={release_date} />
-            <Detail title="Status" textContent={status} />
-            <Detail title="Budget" textContent={budget} />
-            <Detail
-              title="Country"
-              textContent={production_countries?.map(({ name }) => name)
-                .join(', ')}
-            />
-            <Detail title="Duration" textContent={runtime} />
-            <Detail title="IMDB" textContent={vote_average} />
-            <Detail title="Popularity" textContent={popularity} />
-          </div>
+        </section>
+        <div className="genres">
+          {genres?.map(genre => <div key={genre.id}>
+            <GenreRedirection genre={genre.name} />
+          </div>)}
         </div>
-      </section>
-      <div className="genres">
-        {genres?.map(genre => <div key={genre.id}>
-          <GenreRedirection genre={genre.name} />
-        </div>)}
-      </div>
-      <div className="hl" />
-      <div className="description">
-        <ReadMore>{overview ?? ''}</ReadMore>
-      </div>
-      <div className="hl" />
+        <div className="description">
+          <ReadMore>{overview ?? ''}</ReadMore>
+        </div>
+      </Container>
     </div>
   );
 };
