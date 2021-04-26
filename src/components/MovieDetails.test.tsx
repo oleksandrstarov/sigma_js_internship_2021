@@ -31,7 +31,8 @@ jest.mock('./Detail', () => () => 'Detail');
 
 jest.mock('../service/api', () => ({
   getFullImgLink: jest.fn(() => "test"),
-  getDataById: () => Promise.resolve(movieMockData)
+  getDataById: () => Promise.resolve(movieMockData),
+  isIdInFavorites: jest.fn(() => true),
 }));
 
 jest.mock('./ReadMore', () => () => <>ReadMore</>);

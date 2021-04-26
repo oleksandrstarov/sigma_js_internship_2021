@@ -19,6 +19,12 @@ export enum Theme {
   dark,
   light
 }
+
+export enum FeatureStatus {
+  disabled,
+  enabled
+}
+
 export interface StarRatingProps {
   numberOfStars: number;
   colorFilled: string;

@@ -17,14 +17,13 @@ const Routes = [
     component: MovieDetails
   },
   {
-    path: '/favorites/:page',
+    path: '/favorites',
     name: 'Favorites',
     exact: false,
     component: Favorites
   },
   {
-    path:
-      '/search-results/:title?/:genre?/:fromYear?/:toYear?/:favorites?/:favorites?/:page',
+    path: '/search-results',
     name: 'Search results',
     exact: false,
     component: SearchResults

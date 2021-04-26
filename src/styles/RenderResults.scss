@@ -21,9 +21,13 @@
   }
 
   .delivery__container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+    @media screen and(max-width: 1200px) {
+      justify-content: space-evenly;
+    }
   }
   
   .delivery__container-wide{
@@ -33,14 +37,15 @@
   }
   
   .view-toggler{
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    margin-bottom: 20px;
 
     img{
       transition: 1s;
     }
+
     .delivery__toggler{
       cursor: pointer;
     }
@@ -54,6 +59,7 @@
   font-size: $font-size-24-title-mobile;
   font-weight: bold;
 }
+
 .small-card-wrapper{
   margin: 15px;
 }
