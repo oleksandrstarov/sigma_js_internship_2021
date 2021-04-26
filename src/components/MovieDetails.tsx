@@ -14,7 +14,7 @@ import StarRating from './StarRating';
 import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieDetails.scss';
-import Preloader from "./Preloader";
+import Preloader from './Preloader';
 
 enum ImageWidth {
   w500
