@@ -1,6 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
-
-import { ThemeContext, ThemeContextType } from './ThemeContext';
+import { useState, useEffect } from 'react';
 
 import Title from './Title';
 import Container from './Container';
@@ -14,7 +12,6 @@ type MovieId = {
 }
 
 const WrapperFavorites = () => {
-  const { theme }: ThemeContextType = useContext(ThemeContext);
   const [movieInfo, setMovieInfo] = useState<MovieId[]>([]);
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const WrapperFavorites = () => {
   return (
     <>
       <Container>
-        <Title text={'Favorite movies'} className={`${theme ? '' : 'dark-theme'}`} />
+        <Title text="Favorite movies" />
         {movieInfo.length && (<Slider>
           {movieInfo.map(({ id }: MovieId) => {
             return (

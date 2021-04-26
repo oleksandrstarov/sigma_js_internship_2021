@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Genres } from '../models';
+
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import '../styles/SearchField.scss';
 
@@ -9,6 +11,7 @@ const checkedImg = '/images/searchFieldIcons/checked.svg';
 const uncheckedImg = '/images/searchFieldIcons/unchecked.svg';
 
 const SearchField: React.FC = () => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
   const history = useHistory();
 
   const [inputValue, setInputValue] = useState<string>('');
@@ -178,7 +181,7 @@ const SearchField: React.FC = () => {
               <label
                 className={`dropdown-item ${
                   checkboxes.favorites ? 'active-checkbox' : ''
-                }`}>
+                } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -195,7 +198,7 @@ const SearchField: React.FC = () => {
               <label
                 className={`dropdown-item ${
                   checkboxes.history ? 'active-checkbox' : ''
-                }`}>
+                } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"
