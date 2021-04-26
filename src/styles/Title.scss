@@ -1,6 +1,13 @@
+@import '../styles/variables.scss';
+
 .default-title {
   font-family: $title;
   font-size: 24px;
   line-height: 29px;
   color: $black;
+}
+
+.dark-title {
+  color: $white;
+  text-shadow: 1px 1px 2px $black;
 }

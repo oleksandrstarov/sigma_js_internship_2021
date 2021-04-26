@@ -1,8 +1,6 @@
 @import "../styles/variables.scss";
 
 .movie-banner {
-  margin-top: 20px;
-
   .movie-banner-body {
     position: relative;
     max-width: 327px;
@@ -11,11 +9,9 @@
     border-radius: 10px;
     padding: 39px 18px 13px 18px;
     margin: 0 auto;
-    height: 85vh;
-    max-height: 566px;
 
     @media (min-width: 411px) {
-      max-width: 327px;
+      max-width: 330px;
     }
 
     @media (min-width: 768px) {
@@ -26,10 +22,11 @@
     @media (min-width: 992px) {
       max-width: 100%;
       padding: 18px;
-      max-height: 482px;
-      display: grid;
-      grid-template-columns: 1.5fr .5fr;
     }
+  }
+
+  .dark-theme {
+    background-color: $grey;
   }
 
   .movie-image-container {
@@ -37,19 +34,51 @@
     overflow: hidden;
     cursor: pointer;
     border-radius: 15px;
-    height: 100%;
+
+    @media (min-width: 1200px) {
+      flex: 1;
+      height: 100%;
+    }
   }
 
   .movie-banner-image {
+    max-width: 100%;
+    height: auto;
     display: block;
     border-radius: 15px;
     transition: all .3s ease-in-out;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
 
     &:hover {
       transform: scale(1.1);
+    }
+
+    @media (min-width: 411px) {
+      height: 440px;
+    }
+
+    @media (min-width: 768px) {
+      height: 400px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 992px) {
+      height: 330px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1450px) {
+      height: 450px;
+    }
+
+    @media (min-width: 1650px) {
+      height: 500px;
+    }
+
+    @media (min-width: 1750px) {
+      height: 600px;
     }
   }
 
@@ -73,16 +102,18 @@
     @media (min-width: 768px) {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: flex-start;
       margin-left: 26px;
     }
 
-    @media screen and(min-width: 992px) {
-      justify-content: center;
+    @media (min-width: 1200px) {
+      width: 340px;
     }
 
     @media (min-width: 1450px) {
       margin-left: 46px;
+      width: 370px;
     }
   }
 
@@ -126,24 +157,24 @@
     max-width: 217px;
     line-height: 22px;
     color: $white;
+     .dark {
+       color: $white;
+       text-shadow: 1px 1px 1px $yellow;
+     }
 
     @media (min-width: 411px) {
-      max-width: 265px;
+      max-width: 266px;
       margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
-      color: #000000;
+      color: $black;
       max-width: 320px;
     }
 
     @media (min-width: 992px) {
       font-size: 16px;
       max-width: 380px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 6;
-      overflow: hidden;
     }
 
     @media (min-width: 1200px) {
@@ -252,5 +283,11 @@
       width: 24px;
       height: 24px;
     }
+  }
+
+  .movie-read-more {
+    color: $yellow;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
   }
 }

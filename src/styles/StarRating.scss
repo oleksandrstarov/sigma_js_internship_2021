@@ -1,0 +1,10 @@
+.star-rating {
+  display: flex;
+  .input-radio{
+    display: none;
+  }
+  .star-rating-icon {
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+  }
+}

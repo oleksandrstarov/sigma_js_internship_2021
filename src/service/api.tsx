@@ -1,56 +1,74 @@
 import {
   API_KEY,
-  API_IMG_URL
+  API_IMG_URL,
+  API_GENRE_ID
 } from '../constants/api';
 import axios from '../axios/url';
+import { Genres } from '../models'
 
-import { Theme } from '../models/index';
-
-const apiService: { storeKey: string, store: { history: number[], favorites: number[], theme: any }, } = {
+import { Theme, MovieCard } from '../models/index';
+import { MoviesType } from '../components/Home'
+const apiService: {
+  storeKey: string;
+  store: { history: number[]; favorites: number[]; theme: any; };
+} = {
   storeKey: 'service',
   store: {
     history: [],
     favorites: [],
-    theme: Theme.light
-  },
-}
+    theme: Theme.light,
+  }
+};
 
 const api = {
   getStore() {
     const serviceStore: any = localStorage.getItem(apiService.storeKey);
-    serviceStore !== null
-      ? apiService.store = JSON.parse(serviceStore)
-      : this.setStore();
+    if (serviceStore !== null) {
+      return JSON.parse(serviceStore);
+    }
+    this.setStore();
     return apiService.store;
   },
 
-  setStore(data: Object = {
-    history: [],
-    favorites: [],
-    theme: 1
-  }) {
+  setStore(
+    data: Object = {
+      history: [],
+      favorites: [],
+      theme: 1,
+    }
+  ) {
     localStorage.setItem(apiService.storeKey, JSON.stringify(data));
   },
 
   switchTheme() {
     const store = this.getStore();
-    store.theme = (store.theme === Theme.light) ? Theme.dark : Theme.light;
+    store.theme = store.theme === Theme.light ? Theme.dark : Theme.light;
     this.setStore(store);
     return store.theme;
   },
 
   setFavoritesId(id: number) {
     const store = this.getStore();
-    const isThereAnId = store.favorites.includes(id);
-    if (isThereAnId) {
-      store.favorites.push(id)
-    };
+    const isNewId = store.favorites.includes(id);
+    if (!isNewId) {
+      store.favorites.push(id);
+    }
     this.setStore(store);
+  },
+
+  isIdInFavorites(id: number) {
+    const store = api.getFavoritsIdList();
+    return store.includes(id);
   },
 
   getFavoritsIdList() {
     const { favorites } = this.getStore();
     return favorites;
+  },
+
+  getFavoritesByOffset(offset:number = 0) {
+    const { favorites } = this.getStore();
+    return { favorites: favorites.slice(offset, offset ? offset * 2 : 20), total_pages: Math.ceil(favorites.length / 20) };
   },
 
   deleteFavoritsId(id: number) {
@@ -67,11 +85,16 @@ const api = {
 
   setHistoryId(id: number) {
     const store = this.getStore();
-    const isThereAnId = store.history.includes(id);
-    if (isThereAnId) {
-      store.history.push(id)
-    };
+    const isNewId = store.history.includes(id);
+    if (!isNewId) {
+      store.history.push(id);
+    }
     this.setStore(store);
+  },
+
+  isIdInHistory(id: number) {
+    const store = api.getHistoryIdList();
+    return store.includes(id);
   },
 
   getHistoryIdList() {
@@ -93,32 +116,76 @@ const api = {
   getDataByIds(ids: number[]) {
     const urls = ids.map((id: number) => `movie/${id}?${API_KEY}`);
     const requests = urls.map(
-      async (url: any) => await axios.get(url).then((res: { data: any; }) => res.data)
+      async (url: string) =>
+        await axios.get(url).then((res: { data: MoviesType }) => res.data)
     );
-    return Promise.all(requests)
+    return Promise.all(requests);
   },
 
   async getDataById(id: number) {
     const obj = await axios.get(`movie/${id}?${API_KEY}`);
+    return obj.data;
+  },
+
+  async getPopularQueryList(page: number = 1) {
+    const obj = await axios.get(`movie/popular?${API_KEY}&page=${page}`);
     return obj.data.results;
   },
 
-  async getPopularQueryList() {
-    const obj = await axios.get(`movie/popular?${API_KEY}&query`);
+  async getTopRatedList(page: number = 1) {
+    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US&page=${page}`);
     return obj.data.results;
   },
 
-  async getTopRatedList() {
-    const obj = await axios.get(`movie/top_rated?translations&${API_KEY}&region=US`);
+  async getSearchList(query: string, page: number = 1) {
+    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
     return obj.data.results;
   },
 
-  async getSearchList(query: string) {
-    let obj = await axios.get(`search/movie?${API_KEY}&query=${query}`);
-    return obj.data.results;
+  async getFilteredList(dataFilter:
+    {
+      from?: number,
+      to?: number,
+      genre?: string,
+      page: number
+    } = {
+      page: 1,
+    }
+  ) {
+
+    function setFilteredData() {
+      const { from, to } = dataFilter
+      if (!!from) {
+        if (from !== to) return `&primary_release_date.gte=${from}-01-01&primary_release_date.lte=${to}-01-01`
+        return `&primary_release_date.gte=${from}-01-01`
+      }
+      return '';
+    }
+
+    function setGenre() {
+      const { genre } = dataFilter;
+      if (!!genre) {
+        return `&with_genres=${API_GENRE_ID[genre as Genres]}`
+      }
+      return '';
+    }
+
+    const obj = await axios.get(`discover/movie?sort_by=popularity.asc&page=${dataFilter.page}${setFilteredData()}${setGenre()}&${API_KEY}`);
+    return obj.data;
   },
 
-  changeImgLinks(url: string, size: string) {
+  getFilterMatchesList(arr: MovieCard[], idsList: number[]): MovieCard[] {
+    const conformityIds = arr.filter((item: MovieCard) => idsList.includes(item.id));
+    return conformityIds;
+  },
+
+  changeListByPagination(arr: Array<MovieCard>, page: number = 1): Array<MovieCard> {
+    return arr.length < 6
+      ? arr
+      : arr.slice(6 * (page - 1), 6 * page);
+  },
+
+  getFullImgLink(url: string, size: string = 'w500') {
     return `${API_IMG_URL}${size}${url}`;
   },
 }

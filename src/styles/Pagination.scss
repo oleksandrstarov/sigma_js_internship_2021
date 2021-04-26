@@ -1,0 +1,38 @@
+@import "variables";
+
+.pagination {
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.prev-arrow {
+  transform: rotate(180deg);
+}
+
+.prev-arrow, .next-arrow {
+  cursor: pointer;
+  img {
+    pointer-events: none;
+  }
+
+  &.disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+
+.pagination-nav {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-nav-item {
+  color: $black;
+  margin: 0 15px;
+  cursor: pointer;
+  &.active {
+    color: $yellow;
+    pointer-events: none;
+  }
+}
