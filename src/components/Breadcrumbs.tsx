@@ -1,6 +1,6 @@
 import '../styles/Breadcrumbs.scss';
 import { useHistory, useLocation } from 'react-router';
-import {SyntheticEvent, useEffect, useState} from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 
 const Breadcrumbs = () => {
   const [pathnames, setPathnames] = useState<Array<string>|null>(null)
