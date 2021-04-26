@@ -4,17 +4,17 @@ import { FeatureStatus } from '../models';
 import api from '../service/api';
 
 export type SettingsBarContextType = {
-  handleSetBar: () => void,
-  handleUpdateFavotites: () => void,
-  handleUpdateHistory: () => void,
+  handleHistoryBarContext: () => void,
+  handleFavoriteContext: () => void,
+  handleHistoryContext: () => void,
   historyBarContext: FeatureStatus,
   favoriteContext: number,
   historyContext: number,
 }
 export const SettingsBarContext = createContext<SettingsBarContextType>({
-  handleSetBar: () => { },
-  handleUpdateFavotites: () => { },
-  handleUpdateHistory: () => { },
+  handleHistoryBarContext: () => { },
+  handleFavoriteContext: () => { },
+  handleHistoryContext: () => { },
   historyBarContext: FeatureStatus.disabled,
   favoriteContext: 0,
   historyContext: 0,
@@ -29,21 +29,21 @@ export const SettingsBarContextProvider = ({ children }: SettingsBarContextProvi
   const [favoriteContext, setFavoriteContext] = useState(api.getFavoritsIdList().length);
   const [historyContext, setHistoryContext] = useState(api.getHistoryIdList().length);
 
-  const handleSetBar = () => {
+  const handleHistoryBarContext = () => {
     setHistoryBarContext(api.switchHistoryBar());
   }
 
-  const handleUpdateFavotites = () => {
+  const handleFavoriteContext = () => {
     setFavoriteContext(api.getFavoritsIdList().length);
   }
 
-  const handleUpdateHistory = () => {
+  const handleHistoryContext = () => {
     setHistoryContext(api.getHistoryIdList().length)
   }
 
   return (
     <SettingsBarContext.Provider value={{
-      handleSetBar, handleUpdateFavotites, handleUpdateHistory,
+      handleHistoryBarContext, handleFavoriteContext, handleHistoryContext,
       historyBarContext, favoriteContext, historyContext,
     }}>
       {children}
