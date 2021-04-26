@@ -41,7 +41,6 @@ const MovieDetails = () => {
   const [poster, setPoster] = useState<string>('');
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const { search } = useLocation();
-  const urlObj = new URLSearchParams(search);
 
   const {
     original_title,
@@ -65,7 +64,7 @@ const MovieDetails = () => {
   }, [movieData])
 
   useEffect(() => {
-    api.getDataById(Number(urlObj.get('id'))).then((res: any) => {
+    api.getDataById(Number(new URLSearchParams(search).get('id'))).then((res: any) => {
       setMovieData(res);
     });
   }, []);
@@ -88,10 +87,10 @@ const MovieDetails = () => {
                 colorFilled={'#ff636d'}
                 colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
                 voteAverage={Number(vote_average)}
-                movieId={Number(urlObj.get('id'))}
+                movieId={Number(new URLSearchParams(search).get('id'))}
               />}
             </span>
-              <FavoritesBtn movieId={Number(urlObj.get('id'))} />
+              <FavoritesBtn movieId={Number(new URLSearchParams(search).get('id'))} />
             </div>
             <div className="general-info">
               <Detail title="Original title" textContent={original_title} />
