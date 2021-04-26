@@ -9,6 +9,8 @@ import ReadMore from './ReadMore';
 import Detail from './Detail';
 import Title from './Title';
 import GenreRedirection from './GenreRedirection';
+import StarRating from './StarRating';
+import FavoritesBtn from './FavoritesBtn';
 
 import '../styles/MovieDetails.scss';
 
@@ -76,10 +78,19 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <Title
-            text={title ?? ''}
-            className={`${theme ? '' : 'dark-theme'}`}
-          />
+          <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
+          <div className="fav-raiting">
+            <span>
+              {vote_average && <StarRating
+                numberOfStars={5}
+                colorFilled={'#ff636d'}
+                colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
+                voteAverage={Number(vote_average)}
+                movieId={Number(match.params.id)}
+              />}
+            </span>
+            <FavoritesBtn movieId={Number(match.params.id)} />
+          </div>
           <div className="general-info">
             <Detail title="Original title" textContent={original_title} />
             <Detail title="Tagline" textContent={tagline} />

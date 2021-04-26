@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, ReactNode } from 'react';
 import '../styles/Pagination.scss';
+import useLocationHook from "../hooks/useLocationHook";
 
 type PaginationProps = {
   totalPages: number;
@@ -12,6 +13,8 @@ const Pagination = ({ totalPages = 0, switchPage }: PaginationProps) => {
   const [hasRightSpill, setHasRightSpill] = useState(false);
   const paginationWrapper: any = useRef();
   const pageNeighbours = 1;
+  const search = useLocationHook().search;
+  const params = new URLSearchParams(search);
 
   const range = (start: number, end: number): Array<ReactNode> => {
     return new Array(end - start + 1).fill(null).map((item, index) => (
@@ -55,27 +58,22 @@ const Pagination = ({ totalPages = 0, switchPage }: PaginationProps) => {
     return pages;
   };
 
-  const getPageParam = (): number => {
-    const pathname = window.location.pathname;
-    return Number(pathname.slice(pathname.lastIndexOf('/') + 1));
-  };
-
   const onHandleClick = (e: any): void => {
     const item = e.target;
     const index = Number(item.getAttribute('data-target'));
     e.preventDefault();
-    window.history.pushState(null, '', index.toString());
-    setCurrentPage(getPageParam());
-  };
+    window.history.pushState(null, '', getCurrentHref() + index.toString());
+    params.set('page', index.toString());
+    setCurrentPage(Number(params.get('page')));
+  }
 
   const getCurrentHref = (): string => {
-    const pathname = window.location.pathname;
-    return pathname.slice(0, pathname.lastIndexOf('/') + 1);
-  };
+    return window.location.pathname + search.slice(0, search.length - 1);
+  }
 
   useEffect(() => {
-    setCurrentPage(getPageParam());
-  }, []);
+    setCurrentPage(Number(new URLSearchParams(search).get('page')));
+  }, [search])
 
   useEffect(() => {
     const setButtonState = (): void => {
@@ -116,12 +114,11 @@ const Pagination = ({ totalPages = 0, switchPage }: PaginationProps) => {
     };
 
     if (totalPages && switchPage) {
-      setCurrentPage(getPageParam());
       setActiveLink(currentPage);
       checkSpills();
       switchPage(currentPage);
     }
-  }, [totalPages, switchPage, currentPage]);
+  })
 
   return (
     <div ref={paginationWrapper} className="pagination-container">
