@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import WrapperFavorites from "./WrapperFavorites";
-import SmallInfoCard from "./SmallInfoCard";
-import MovieBanner from "./MovieBanner";
-import Container from "./Container";
-import Slider from "./Slider";
-import Title from "./Title";
+import WrapperFavorites from './WrapperFavorites';
+import SmallInfoCard from './SmallInfoCard';
+import MovieBanner from './MovieBanner';
+import Container from './Container';
+import Slider from './Slider';
+import Title from './Title';
 
 import api from "src/service/api";
 
