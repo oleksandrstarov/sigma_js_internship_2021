@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 import { useContext } from 'react';
 
 import api from '../service/api';
@@ -38,6 +38,8 @@ type MovieInfo = {
   overview: string;
 };
 
+const posterPlaceholder = '/images/movie-placeholder.jpg';
+
 const MovieDetails = ({ match }: MovieDetailsProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
 
@@ -63,7 +65,10 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
     if (movieData?.poster_path) {
       setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
     }
-  }, [movieData])
+    if (movieData?.poster_path === null) {
+      setPoster(posterPlaceholder);
+    }
+  }, [movieData]);
 
   useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
@@ -78,16 +83,21 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
           <img src={poster} alt="poster" />
         </div>
         <div className="movie-details">
-          <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
+          <Title
+            text={title ?? ''}
+            className={`${theme ? '' : 'dark-theme'}`}
+          />
           <div className="fav-raiting">
             <span>
-              {vote_average && <StarRating
-                numberOfStars={5}
-                colorFilled={'#ff636d'}
-                colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
-                voteAverage={Number(vote_average)}
-                movieId={Number(match.params.id)}
-              />}
+              {vote_average && (
+                <StarRating
+                  numberOfStars={5}
+                  colorFilled={'#ff636d'}
+                  colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
+                  voteAverage={Number(vote_average)}
+                  movieId={Number(match.params.id)}
+                />
+              )}
             </span>
             <FavoritesBtn movieId={Number(match.params.id)} />
           </div>
@@ -99,7 +109,8 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
             <Detail title="Budget" textContent={budget} />
             <Detail
               title="Country"
-              textContent={production_countries?.map(({ name }) => name)
+              textContent={production_countries
+                ?.map(({ name }) => name)
                 .join(', ')}
             />
             <Detail title="Duration" textContent={runtime} />
@@ -109,9 +120,11 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
         </div>
       </section>
       <div className="genres">
-        {genres?.map(genre => <div key={genre.id}>
-          <GenreRedirection genre={genre.name} />
-        </div>)}
+        {genres?.map(genre => (
+          <div key={genre.id}>
+            <GenreRedirection genre={genre.name} />
+          </div>
+        ))}
       </div>
       <div className="hl" />
       <div className="description">

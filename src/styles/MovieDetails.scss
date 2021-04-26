@@ -9,9 +9,12 @@
     
   .movie-wrapper {
     .movie-img {
+      margin:auto;
+      max-width: 470px;
       img {
-        object-fit:fill;
-        height: 100%;
+        @include for-mobile {
+          width: 100%;
+        }
         border-radius: 10px;
       }
     }
@@ -69,14 +72,12 @@
   .movie-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    
     .movie-img {
       margin: auto;
-      max-width: 470px;
       height: 600px;
-      width: 100%;
+      max-width: 470px;
       img {
-        object-fit: contain;
+        height:100%;
       }
     }
   }
