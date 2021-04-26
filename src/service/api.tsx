@@ -149,7 +149,7 @@ const api = {
 
   async getSearchList(query: string, page: number = 1) {
     const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
-    return obj.data.results;
+    return obj.data;
   },
 
   async getFilteredList(dataFilter:
