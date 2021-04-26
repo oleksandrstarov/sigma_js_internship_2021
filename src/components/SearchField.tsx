@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
-import { Genres } from '../models'
+import { Genres } from '../models';
 
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
@@ -38,7 +38,7 @@ const SearchField: React.FC = () => {
     history: false
   });
 
-  const [genreToSearch, setGenreToSearch] = useState<Genres | undefined>();
+  const [genreToSearch, setGenreToSearch] = useState<Genres | 'none'>('none');
 
   const [isDateInvalid, setIsDateInvalid] = useState<boolean>(false);
 
@@ -48,12 +48,24 @@ const SearchField: React.FC = () => {
     setInputValue(event.target.value);
   };
 
-  const submitSearchRequest = (event: React.SyntheticEvent) => {
+  const submitSearchRequest = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const queryString = new URLSearchParams({
+      title: inputValue,
+      genre: genreToSearch,
+      fromYear: dateRange.fromYear.toString(),
+      toYear: dateRange.toYear.toString(),
+      favorites: checkboxes.favorites.toString(),
+      history: checkboxes.history.toString(),
+      page: '1'
+    });
+
     if (inputValue.trim()) {
-      history.push(
-        `/search-results/${inputValue}/${genreToSearch}/${dateRange.fromYear}/${dateRange.toYear}/${checkboxes.favorites}/${checkboxes.history}/1`
-      );
+      history.push({
+        pathname: '/search-results',
+        search: queryString.toString()
+      });
     }
   };
 
@@ -125,6 +137,7 @@ const SearchField: React.FC = () => {
   const selectGenreHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
+    setInputValue('by-genre');
     setGenreToSearch(event.target.value as Genres);
   };
 
@@ -166,8 +179,9 @@ const SearchField: React.FC = () => {
                 </span>
               </div>
               <label
-                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
-                  } ${theme ? '' : 'dark-text'}`}>
+                className={`dropdown-item ${
+                  checkboxes.favorites ? 'active-checkbox' : ''
+                } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -182,8 +196,9 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
-                  } ${theme ? '' : 'dark-text'}`}>
+                className={`dropdown-item ${
+                  checkboxes.history ? 'active-checkbox' : ''
+                } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"
@@ -200,7 +215,7 @@ const SearchField: React.FC = () => {
               <select value={genreToSearch} onChange={selectGenreHandler}>
                 <option value="none">Select genre</option>
                 {Object.entries(Genres).map(([key, value]) => (
-                  <option value={key} key={key}>
+                  <option value={value} key={key}>
                     {value}
                   </option>
                 ))}
