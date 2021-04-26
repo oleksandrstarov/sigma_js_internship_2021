@@ -2,12 +2,14 @@ import { useContext, useState } from 'react';
 
 import api from '../service/api';
 
-import '../styles/FavoritesBtn.scss';
+import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
 
 import {
   MovieRatingContext,
   MovieRatingContextType
 } from './MovieRatingContext';
+
+import '../styles/FavoritesBtn.scss';
 
 type FavoritesBtnProps = {
   movieId: number;
@@ -15,8 +17,12 @@ type FavoritesBtnProps = {
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const {
+    addFavoriteMovie,
+    removeFavoriteMovie
+  }: FavoritesContextType = useContext(FavoritesContext);
+  const {
     isFavoritesIconChanged,
-    handleIconState
+    handleFavoriteIconState
   }: MovieRatingContextType = useContext(MovieRatingContext);
 
   const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(
@@ -28,11 +34,11 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
 
   const handleSwitchFavoriteState = (): void => {
     if (isMovieIdInFavorites) {
-      api.deleteFavoritsId(movieId);
-      handleIconState(false);
+      removeFavoriteMovie(movieId);
+      handleFavoriteIconState(false);
     } else {
-      api.setFavoritesId(movieId);
-      handleIconState(true);
+      addFavoriteMovie(movieId);
+      handleFavoriteIconState(true);
     }
     setIsMovieIdInFavorites(!isMovieIdInFavorites);
   };
