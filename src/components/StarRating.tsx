@@ -33,7 +33,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   const { handleIconState }: MovieRatingContextType = useContext(
     MovieRatingContext
   );
- 
+
   function getMovieRatingValue(): number {
     if (!ratingData.getMovieRatingFromStorage().length)
       return Math.round(voteAverage / 2);
