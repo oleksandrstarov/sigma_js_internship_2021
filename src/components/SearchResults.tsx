@@ -46,7 +46,6 @@ const SearchResults = () => {
           page: currentPage
         })
         .then(({ results }) => {
-          console.log('test', results)
           setData(results);
         });
     } else {
