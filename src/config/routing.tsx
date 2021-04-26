@@ -25,7 +25,7 @@ const Routes = [
   },
   {
     path: '/last-seen',
-    name: 'LastSeen',
+    name: 'Last seen',
     exact: false,
     component: LastSeen
   },
