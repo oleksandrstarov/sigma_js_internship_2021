@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { HistoryBarContext, HistoryBarContextType } from './SettingsBarContext'
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext'
 
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
@@ -24,7 +24,7 @@ type MoviesType = {
 }
 
 const WrapperLasSeen = () => {
-  const { historyState }: HistoryBarContextType = useContext(HistoryBarContext);
+  const { historyContext }: SettingsBarContextType = useContext(SettingsBarContext);
 
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [history, setHistory] = useState<MoviesType[]>();
@@ -32,10 +32,10 @@ const WrapperLasSeen = () => {
 
   useEffect(() => {
     api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });
-  }, [historyState]);
+  }, [historyContext]);
 
   return (
-    <>{historyState ?
+    <>{historyContext ?
       <Container>
         <Title text={"Last seen"} className={`${theme ? '' : 'dark-theme'}`} />
         {history?.length && (<Slider>
