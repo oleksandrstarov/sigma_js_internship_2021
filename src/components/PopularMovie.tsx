@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import { PopularMovieProps } from '../models/index';
 import { API_IMG_URL } from '../constants/api';
 
+import { ThemeContext, ThemeContextType } from './ThemeContext';
+
 import '../styles/MovieBanner.scss';
 import StarRating from './StarRating';
 
 const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
+  const { theme }: ThemeContextType = useContext(ThemeContext);
   const mobile = useDeviceDetect();
   const {
     overview,
@@ -21,9 +25,8 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   const btnIcon = '/images/btn-icon.png';
   const mobileImgPath = `${API_IMG_URL}original/${poster_path}`;
   const desktopImgPath = `${API_IMG_URL}original/${backdrop_path}`;
-
   return (
-    <div className="movie-banner-body">
+    <div className={`movie-banner-body ${theme ? '' : 'dark-theme'}`}>
       <div className="movie-image-container">
         <Link className="movie-read-more" to={`/movie-details/${id}`}>
           <img
@@ -39,14 +42,13 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           <h3 className="movie-title">{title}</h3>
         </div>
         <p
-          className={`movie-description ${
-            window.innerWidth < 767 ? 'text-overlow' : ''
-          }`}>
+          className={`movie-description ${window.innerWidth < 767 ? 'text-overlow' : ''
+            }`}>
           {overview.length >= 250 ? (
             <span>
               {overview.slice(0, 250)}
               <Link className="movie-read-more" to={`/movie-details/${id}`}>
-                <span>...Read more</span>
+                <span className={`${theme ? '' : 'dark'}`}>...Read more</span>
               </Link>
             </span>
           ) : (
@@ -66,6 +68,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
               colorFilled={'#ff636d'}
               colorUnfilled={'#c4c4c4'}
               voteAverage={vote_average}
+              movieId={Number(id)}
             />
           </div>
         </div>
