@@ -20,7 +20,6 @@ export enum Theme {
   light
 }
 
-
 export enum Genres {
   Comedy = 'Comedy',
   Drama = 'Drama',
