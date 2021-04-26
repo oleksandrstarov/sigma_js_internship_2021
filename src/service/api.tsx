@@ -11,7 +11,7 @@ import { MoviesType } from '../components/Home'
 
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: number; historyBar: number };
+  store: { history: number[]; favorites: number[]; theme: Theme; historyBar: FeatureStatus };
 } = {
   storeKey: 'service',
   store: {
