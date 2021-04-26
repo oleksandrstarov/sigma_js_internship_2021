@@ -17,7 +17,7 @@ const Routes = [
     component: MovieDetails
   },
   {
-    path: '/favorites/:page',
+    path: '/favorites',
     name: 'Favorites',
     exact: false,
     component: Favorites

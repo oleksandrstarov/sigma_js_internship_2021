@@ -20,6 +20,17 @@ export enum Theme {
   light
 }
 
+export enum FeatureStatus {
+  disabled,
+  enabled
+}
+
+export interface StarRatingProps {
+  numberOfStars: number;
+  colorFilled: string;
+  colorUnfilled: string;
+}
+
 export enum Genres {
   Comedy = 'Comedy',
   Drama = 'Drama',

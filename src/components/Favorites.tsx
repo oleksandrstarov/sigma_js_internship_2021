@@ -9,12 +9,12 @@ const Favorites = () => {
   const [pagesAmount, setPagesAmount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const switchPage = (index:number):void => {
+  const switchPage = (index: number): void => {
     setCurrentPage(index);
   }
 
   useEffect(() => {
-    const data = api.getFavoritesByOffset( 20 * (currentPage - 1));
+    const data = api.getFavoritesByOffset(20 * (currentPage - 1));
     setPagesAmount(data.total_pages);
     api.getDataByIds(data.favorites).then((res: any) => {
       setData(res);
@@ -26,7 +26,7 @@ const Favorites = () => {
       {favoritesData && (
         <Container>
           <RenderResults list={favoritesData} />
-          <Pagination totalPages={pagesAmount} switchPage={switchPage}/>
+          <Pagination totalPages={pagesAmount} switchPage={switchPage} />
         </Container>
       )}
     </div>

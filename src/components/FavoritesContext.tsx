@@ -13,8 +13,8 @@ type FavoritesContextProviderType = {
 };
 
 export const FavoritesContext = createContext<FavoritesContextType>({
-  addFavoriteMovie: () => {},
-  removeFavoriteMovie: () => {},
+  addFavoriteMovie: () => { },
+  removeFavoriteMovie: () => { },
   favoritesMoviesState: []
 });
 
@@ -25,11 +25,11 @@ export const FavoritesContextProvider = ({
     api.getFavoritsIdList()
   );
 
-  const addFavoriteMovie = (movieId: number) => { 
+  const addFavoriteMovie = (movieId: number) => {
     api.setFavoritesId(movieId)
     setFavoritesMoviesState(api.getFavoritsIdList());
   };
-  
+
   const removeFavoriteMovie = (movieId: number) => {
     api.deleteFavoritsId(movieId);
     setFavoritesMoviesState(api.getFavoritsIdList());
