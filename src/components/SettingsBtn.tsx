@@ -26,7 +26,7 @@ const SettingsBtn = () => {
         <img src={settings} alt="settings img" className={isSettingsBarActive ? "settings-img-button-active" : "settings-img-button"} />
       </div>
       <div ref={ref} className={isSettingsBarActive ? "settings-bar-active" : "settings-bar"}>
-        <SettingsBar />
+        {isSettingsBarActive && <SettingsBar />}
       </div>
     </div>
   );
