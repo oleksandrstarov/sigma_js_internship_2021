@@ -1,7 +1,6 @@
-$blue: #1d5c9b;
+@import "./variables";
 
 .read-or-hide{
-  color: $blue;
+  color: $yellow;
   cursor: pointer;
-  text-decoration: underline;
 } 
