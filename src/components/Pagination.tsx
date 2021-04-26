@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef, ReactNode} from 'react';
 import '../styles/Pagination.scss';
+import {useLocation} from "react-router-dom";
 
 type PaginationProps = {
   totalPages: number,
@@ -12,6 +13,8 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   const [hasRightSpill, setHasRightSpill] = useState(false);
   const paginationWrapper:any = useRef();
   const pageNeighbours = 1;
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
 
   const range = (start:number, end:number):Array<ReactNode> => {
     return new Array(end - start + 1).fill(null).map((item, index) => (<a className="pagination-nav-item" href={`${getCurrentHref()}${index + start}`} data-target={index + start} onClick={(e) => {onHandleClick(e)}} key={index + start}>{index + start}</a>))
@@ -45,21 +48,20 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }
 
   const getPageParam = ():number => {
-    const pathname = window.location.pathname;
-    return Number(pathname.slice(pathname.lastIndexOf('/') + 1));
+    return Number(params.get('page'));
   }
 
   const onHandleClick = (e:any):void => {
     const item = e.target;
     const index = Number(item.getAttribute('data-target'));
     e.preventDefault();
-    window.history.pushState(null, '', index.toString());
+    window.history.pushState(null, '', getCurrentHref() + index.toString());
+    params.set('page', index.toString())
     setCurrentPage(getPageParam());
   }
 
   const getCurrentHref = ():string => {
-    const pathname = window.location.pathname;
-    return pathname.slice(0, pathname.lastIndexOf('/') + 1);
+    return window.location.pathname + search.slice(0, search.length - 1);
   }
 
   useEffect(() => {
@@ -103,12 +105,11 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     }
 
     if(totalPages && switchPage) {
-      setCurrentPage(getPageParam());
       setActiveLink(currentPage);
       checkSpills();
       switchPage(currentPage);
     }
-  }, [totalPages, switchPage, currentPage])
+  })
 
   return (
     <div ref={paginationWrapper} className="pagination-container">

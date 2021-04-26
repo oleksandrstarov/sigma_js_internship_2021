@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import RenderResults from './RenderResults';
 
@@ -16,7 +16,7 @@ type MovieType = {
   overview: string;
   backdrop_path: string;
   id: number;
-}
+};
 
 type FavoritesApiData = {
   page: number,
@@ -24,25 +24,38 @@ type FavoritesApiData = {
   total_pages: number
 }
 
-interface SearchResultsMatchParams {
-  title: string;
-}
-
-const SearchResults = ({ match }: RouteComponentProps<SearchResultsMatchParams>) => {
+const SearchResults = () => {
   const [data, setData] = useState<Array<MovieType>>();
   const [pagesAmount, setPagesAmount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1);
+  const { search } = useLocation();
+  const urlObj = new URLSearchParams(search);
+  const params = Object.fromEntries(urlObj.entries());
 
   const switchPage = (index:number):void => {
     setCurrentPage(index)
   }
 
   useEffect(() => {
-    api.getSearchList(match.params.title, currentPage).then((res: FavoritesApiData) => {
-      setData(res.results)
-      setPagesAmount(res.total_pages);
-    });
-  }, [match.params, currentPage])
+    if (params.title === 'by-genre') {
+      api
+        .getFilteredList({
+          from: Number(params.fromYear),
+          to: Number(params.toYear),
+          genre: params.genre || '',
+          page: currentPage
+        })
+        .then(({ results }) => {
+          console.log('test', results)
+          setData(results);
+        });
+    } else {
+      api.getSearchList(params.title, currentPage).then((res: FavoritesApiData) => {
+        setData(res.results)
+        setPagesAmount(res.total_pages);
+      });
+    }
+  }, [currentPage, params.title, params.toYear, params.fromYear, params.genre, params.page])
 
   return (
     <div className="search-wrapper">
