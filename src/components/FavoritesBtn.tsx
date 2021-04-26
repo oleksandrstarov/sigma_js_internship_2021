@@ -19,8 +19,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(
     api.isIdInFavorites(movieId)
   );
-  const [isFavoritesIconChanged, setIsFavoritesIconChanged] = useState(false);
-
+ 
   const heartUnfilledIcon = '/images/favoriteBtn/heartFilled.svg';
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
@@ -29,7 +28,6 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
       ? removeFavoriteMovie(movieId)
       : addFavoriteMovie(movieId);
     setIsMovieIdInFavorites(!isMovieIdInFavorites);
-    setIsFavoritesIconChanged(!isFavoritesIconChanged)
   };
 
   return (
@@ -37,7 +35,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
       <img
         className="favorite-icon"
         src={
-          isMovieIdInFavorites || isFavoritesIconChanged
+          isMovieIdInFavorites 
             ? heartUnfilledIcon
             : heartFilledIcon
         }
