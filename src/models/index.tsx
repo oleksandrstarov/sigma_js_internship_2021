@@ -31,6 +31,16 @@ export interface StarRatingProps {
   colorUnfilled: string;
 }
 
+export type MoviesType = {
+  vote_count: number;
+  vote_average: number;
+  original_title: string;
+  poster_path: string;
+  overview: string;
+  title: string;
+  id: number;
+}
+
 export enum Genres {
   Comedy = 'Comedy',
   Drama = 'Drama',

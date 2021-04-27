@@ -3,7 +3,7 @@ import axios from '../axios/url';
 import { Genres } from '../models';
 
 import { Theme, MovieCard, FeatureStatus } from '../models/index';
-import { MoviesType } from '../components/Home';
+import { MoviesType } from '../models';
 
 const apiService: {
   storeKey: string;
