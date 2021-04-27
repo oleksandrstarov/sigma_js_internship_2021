@@ -39,7 +39,7 @@ const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
       <img
         className="favorite-icon"
         src={
-          isMovieIdInFavorites
+          api.isIdInFavorites(movieId)
             ? heartUnfilledIcon
             : heartFilledIcon
         }
