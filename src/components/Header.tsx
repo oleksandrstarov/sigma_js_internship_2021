@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-
 import { ThemeContext, ThemeContextType } from './ThemeContext'
 
 import ThemeToggler from './ThemeToggle';
 import SearchField from './SearchField';
+import SettingsBtn from './SettingsBtn';
 
 import '../styles/Header.scss';
 
@@ -38,6 +38,7 @@ const Header = () => {
           <span>Favorites</span>
           <img src={heart} alt="heart img" />
         </a>
+        <SettingsBtn />
         <ThemeToggler />
       </div>
     </header>

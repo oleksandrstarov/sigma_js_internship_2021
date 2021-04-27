@@ -37,8 +37,9 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     <>
       {movieData ? (
         <div
-          className={`card-info ${tailWide ? 'card-info__tail' : ''} ${theme ? '' : 'dark'
-            }`}>
+          className={`card-info ${tailWide ? 'card-info__tail' : ''} ${
+            theme ? '' : 'dark'
+          }`}>
           <div className="card-info__wrapper">
             {!tailWide ? (
               <div className="titleComponent card-info__title">
@@ -68,7 +69,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
                 {movieData.overview.length >= 250 ? (
                   <p>
                     {movieData.overview.slice(0, 250)}
-                    <NavLink to={`/movie-details/${number} `}>
+                    <NavLink to={`/movie-details?id=${number}`}>
                       <span>...Read more</span>
                     </NavLink>
                   </p>
@@ -84,7 +85,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
               alt={movieData.original_title}
               className={'card-info__img'}
             />
-            <NavLink to={`/movie-details/${number}`}>
+            <NavLink to={`/movie-details?id=${number}`}>
               <div className="card-info__gradient" />
             </NavLink>
             <div className="info-card__rate">
@@ -95,7 +96,7 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
                 Voters {movieData.vote_count}
               </div>
             </div>
-            <NavLink to={`/movie-details/${number}`}>
+            <NavLink to={`/movie-details?id=${number}`}>
               <button type="button" className={'card-info__button'}>
                 <div className={'card-info__button-view'}>
                   <p> {'VIEW DETAILS'}</p>
