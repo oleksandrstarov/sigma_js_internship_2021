@@ -32,7 +32,7 @@ const SearchResults = () => {
   const urlObj = new URLSearchParams(search);
   const params = Object.fromEntries(urlObj.entries());
 
-  const switchPage = (index:number):void => {
+  const switchPage = (index: number): void => {
     setCurrentPage(index)
   }
 
@@ -61,7 +61,7 @@ const SearchResults = () => {
       {!!data && (
         <Container>
           <RenderResults list={data} />
-          <Pagination totalPages={pagesAmount} switchPage={switchPage}/>
+          <Pagination totalPages={pagesAmount} switchPage={switchPage} />
         </Container>
       )}
     </div>

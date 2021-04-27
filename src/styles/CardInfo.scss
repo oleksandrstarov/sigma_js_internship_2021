@@ -1,13 +1,13 @@
 @import "./variables.scss";
 
-%pos-absolute-left0 {
-  position: absolute;
-  left: 0;
-}
-
 %stretch {
   width: 100%;
   height: 100%;
+}
+
+%pos-absolute-left0 {
+  position: absolute;
+  left: 0;
 }
 
 %area-card {
@@ -18,7 +18,7 @@
 .card-info {
   background-color: $white;
   border-radius: 10px;
-  max-width: 320px;
+  max-width: 306px;
   width: 100%;
   height: 505px;
   display: flex;
@@ -30,10 +30,10 @@
   margin: 10px 30px 45px;
 
   @media screen and(min-width: 1350px) {
-    margin: 10px 35px 45px;
+    margin: 10px 40px 45px;
   }
 
-  @media screen and(max-width: 1280px) {
+  @media screen and(max-width: 1220px) {
     margin: 10px 20px 45px;
   }
   
@@ -87,6 +87,40 @@
     @extend %area-card;
     @extend %stretch;
   }
+}
+
+ .card-info__title {
+  @extend %pos-absolute-left0;
+  top: -36px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 18px;
+  @extend %stretch;
+ }
+ 
+ .cars-info_container {
+  position: relative;
+  @extend %area-card;
+  @extend %stretch;
+  border-radius: 10px;
+  overflow: hidden;  
+ }
+
+ .card-info__gradient {
+  @extend %pos-absolute-left0;
+  top: 0;
+  background: linear-gradient(#ffffff10 56%, #fdfbf9cc 76%);
+  @extend %area-card;
+  @extend %stretch;
+ }
+
+ .card-info__img {
+  @extend %pos-absolute-left0;
+  left: 0;
+  @extend %area-card;
+  @extend %stretch;
+  border-radius: 10px;
+ }
 
   .card-info__img {
     @extend %pos-absolute-left0;
@@ -137,7 +171,8 @@
       margin: 6px 0;
     }
   }
-}
+
+
 
 .dark {
   background-color: $grey;
@@ -161,6 +196,7 @@
       color: $blue;
     }
   }
+
 
   .card-info__title-tail {
     text-align: center;

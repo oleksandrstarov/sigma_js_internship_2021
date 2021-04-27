@@ -55,5 +55,5 @@ export enum Genres {
   ScienceFiction = 'Science Fiction',
   Horror = 'Horror',
   Family = 'Family',
-  Western = 'Western',
+  Western = 'Western'
 }

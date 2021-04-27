@@ -12,7 +12,7 @@ const ThemeImage = {
 };
 
 const ThemeToggler = () => {
-  const { handleTheme, theme }: ThemeContextType = useContext(ThemeContext)
+  const { handleTheme, theme }: ThemeContextType = useContext(ThemeContext);
 
   return (
     <>

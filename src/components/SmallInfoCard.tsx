@@ -34,7 +34,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
 
   return <>{data && (
     <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
-      <Link to={`/movie-details/${data.id}`}>
+      <Link to={`/movie-details?id=${data.id}`}>
         <div className="small-cardInfo__title">
           <Title text={data.title} />
         </div>
@@ -59,7 +59,7 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
           className="small-cardInfo__img"
         />
       </div>
-      <Link to={`/movie-details/${data.id}`}>
+      <Link to={`/movie-details?id=${data.id}`}>
         <button className="small-cardInfo__button">
           <p className="small-cardInfo__button-text">VIEW DETAILS</p>
           <img

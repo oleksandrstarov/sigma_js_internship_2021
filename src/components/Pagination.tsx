@@ -1,53 +1,64 @@
-import {useState, useEffect, useRef, ReactNode} from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import '../styles/Pagination.scss';
 import useLocationHook from "../hooks/useLocationHook";
 
 type PaginationProps = {
-  totalPages: number,
-  switchPage: (index: number) => void
-}
+  totalPages: number;
+  switchPage: (index: number) => void;
+};
 
-const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
+const Pagination = ({ totalPages = 0, switchPage }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasLeftSpill, setHasLeftSpill] = useState(false);
   const [hasRightSpill, setHasRightSpill] = useState(false);
-  const paginationWrapper:any = useRef();
+  const paginationWrapper: any = useRef();
   const pageNeighbours = 1;
   const search = useLocationHook().search;
   const params = new URLSearchParams(search);
 
-  const range = (start:number, end:number):Array<ReactNode> => {
-    return new Array(end - start + 1).fill(null).map((item, index) => (<a className="pagination-nav-item" href={`${getCurrentHref()}${index + start}`} data-target={index + start} onClick={(e) => {onHandleClick(e)}} key={index + start}>{index + start}</a>))
-  }
+  const range = (start: number, end: number): Array<ReactNode> => {
+    return new Array(end - start + 1).fill(null).map((item, index) => (
+      <a
+        className="pagination-nav-item"
+        href={`${getCurrentHref()}${index + start}`}
+        data-target={index + start}
+        onClick={e => {
+          onHandleClick(e);
+        }}
+        key={index + start}>
+        {index + start}
+      </a>
+    ));
+  };
 
-  const renderNavigation = ():Array<ReactNode> => {
+  const renderNavigation = (): Array<ReactNode> => {
     let pages = range(currentPage, totalPages);
 
     switch (true) {
-      case (!hasLeftSpill && hasRightSpill):
-        if(currentPage > 2) {
+      case !hasLeftSpill && hasRightSpill:
+        if (currentPage > 2) {
           pages = range(currentPage - 2, currentPage + 1);
-        }  else if(currentPage === 2) {
+        } else if (currentPage === 2) {
           pages = range(currentPage - 1, currentPage + 1);
         } else {
           pages = range(currentPage, currentPage + 1);
         }
         break;
-      case (hasLeftSpill && hasRightSpill):
-        pages = range(currentPage - 1, currentPage + 1)
+      case hasLeftSpill && hasRightSpill:
+        pages = range(currentPage - 1, currentPage + 1);
         break;
-      case (hasLeftSpill && !hasRightSpill):
+      case hasLeftSpill && !hasRightSpill:
         pages = range(currentPage - 1, totalPages);
         break;
-      case (!hasRightSpill && !hasLeftSpill):
-        pages = range(1, totalPages)
+      case !hasRightSpill && !hasLeftSpill:
+        pages = range(1, totalPages);
         break;
     }
 
     return pages;
-  }
+  };
 
-  const onHandleClick = (e:any):void => {
+  const onHandleClick = (e: any): void => {
     const item = e.target;
     const index = Number(item.getAttribute('data-target'));
     e.preventDefault();
@@ -56,7 +67,7 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     setCurrentPage(Number(params.get('page')));
   }
 
-  const getCurrentHref = ():string => {
+  const getCurrentHref = (): string => {
     return window.location.pathname + search.slice(0, search.length - 1);
   }
 
@@ -65,42 +76,44 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
   }, [search])
 
   useEffect(() => {
-    const setButtonState = ():void => {
+    const setButtonState = (): void => {
       const activeItem = paginationWrapper.current.querySelector('.active');
       const index = activeItem.getAttribute('data-target') - 1;
       const prevButton = paginationWrapper.current.querySelector('.prev-arrow');
       const nextButton = paginationWrapper.current.querySelector('.next-arrow');
 
-      if(index === 0) {
+      if (index === 0) {
         prevButton.classList.add('disabled');
       } else {
-        prevButton.classList.remove('disabled')
+        prevButton.classList.remove('disabled');
       }
 
-      if(index + 1 >= totalPages) {
+      if (index + 1 >= totalPages) {
         nextButton.classList.add('disabled');
       } else {
-        nextButton.classList.remove('disabled')
+        nextButton.classList.remove('disabled');
       }
-    }
+    };
 
-    const setActiveLink = (index:number):void => {
+    const setActiveLink = (index: number): void => {
       const activeItem = paginationWrapper.current.querySelector('.active');
 
-      if(activeItem) {
+      if (activeItem) {
         activeItem.classList.remove('active');
       }
 
-      paginationWrapper.current.querySelector(`.pagination-nav-item[data-target="${index}"]`).classList.add('active');
+      paginationWrapper.current
+        .querySelector(`.pagination-nav-item[data-target="${index}"]`)
+        .classList.add('active');
       setButtonState();
-    }
+    };
 
-    const checkSpills = ():void => {
-      setHasLeftSpill(currentPage > (pageNeighbours + 2));
-      setHasRightSpill((totalPages - currentPage) > 2);
-    }
+    const checkSpills = (): void => {
+      setHasLeftSpill(currentPage > pageNeighbours + 2);
+      setHasRightSpill(totalPages - currentPage > 2);
+    };
 
-    if(totalPages && switchPage) {
+    if (totalPages && switchPage) {
       setActiveLink(currentPage);
       checkSpills();
       switchPage(currentPage);
@@ -111,31 +124,61 @@ const Pagination = ({ totalPages = 0, switchPage}:PaginationProps) => {
     <div ref={paginationWrapper} className="pagination-container">
       {totalPages > 0 && (
         <div className="pagination">
-          <a href={`${getCurrentHref()}${currentPage - 1}`} data-target={currentPage - 1} onClick={(e) => {onHandleClick(e)}} className="prev-arrow">
-            <img src="/images/pagination-arrow.svg" alt="prev"/>
+          <a
+            href={`${getCurrentHref()}${currentPage - 1}`}
+            data-target={currentPage - 1}
+            onClick={e => {
+              onHandleClick(e);
+            }}
+            className="prev-arrow">
+            <img src="/images/pagination-arrow.svg" alt="prev" />
           </a>
           <div className="pagination-nav">
-            { hasLeftSpill && (
+            {hasLeftSpill && (
               <div className="first-page">
-                <a href={`${getCurrentHref()}1`} className='pagination-nav-item' data-target={1} onClick={(e) => {onHandleClick(e)}} key={1}>1</a>
+                <a
+                  href={`${getCurrentHref()}1`}
+                  className="pagination-nav-item"
+                  data-target={1}
+                  onClick={e => {
+                    onHandleClick(e);
+                  }}
+                  key={1}>
+                  1
+                </a>
                 <span>...</span>
               </div>
             )}
-            { renderNavigation() }
-            { hasRightSpill && (
+            {renderNavigation()}
+            {hasRightSpill && (
               <div className="last-page">
                 <span>...</span>
-                <a href={`${getCurrentHref()}${totalPages}`} className='pagination-nav-item' data-target={totalPages} onClick={(e) => {onHandleClick(e)}} key={totalPages}>{totalPages}</a>
+                <a
+                  href={`${getCurrentHref()}${totalPages}`}
+                  className="pagination-nav-item"
+                  data-target={totalPages}
+                  onClick={e => {
+                    onHandleClick(e);
+                  }}
+                  key={totalPages}>
+                  {totalPages}
+                </a>
               </div>
             )}
           </div>
-          <a href={`${getCurrentHref()}${currentPage + 1}`} data-target={currentPage + 1} onClick={(e) => {onHandleClick(e)}} className="next-arrow">
-            <img src="/images/pagination-arrow.svg" alt="next"/>
+          <a
+            href={`${getCurrentHref()}${currentPage + 1}`}
+            data-target={currentPage + 1}
+            onClick={e => {
+              onHandleClick(e);
+            }}
+            className="next-arrow">
+            <img src="/images/pagination-arrow.svg" alt="next" />
           </a>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default Pagination;

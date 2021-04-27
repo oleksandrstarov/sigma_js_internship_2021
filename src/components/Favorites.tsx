@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import api from 'src/service/api';
 import RenderResults from './RenderResults';
-import Container from "./Container";
-import Pagination from "./Pagination";
+import Container from './Container';
+import Pagination from './Pagination';
 
 const Favorites = () => {
   const [favoritesData, setData] = useState([]);
@@ -11,7 +11,7 @@ const Favorites = () => {
 
   const switchPage = (index: number): void => {
     setCurrentPage(index);
-  }
+  };
 
   useEffect(() => {
     const data = api.getFavoritesByOffset(20 * (currentPage - 1));
@@ -19,7 +19,7 @@ const Favorites = () => {
     api.getDataByIds(data.favorites).then((res: any) => {
       setData(res);
     });
-  }, [currentPage])
+  }, [currentPage]);
 
   return (
     <div className="favorites-wrapper">

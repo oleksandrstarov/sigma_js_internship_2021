@@ -35,8 +35,7 @@ const Slider = ({ className, children }: SliderProps) => {
 
   useEffect(() => {
     const setProgress = () => {
-      const length =
-        sliderRef.current.querySelectorAll('.slide').length;
+      const length = sliderRef.current.querySelectorAll('.slide').length;
       progressRef.current.style.width = `${(activeSlides / length) * 100}%`;
     };
 
