@@ -20,6 +20,7 @@ const LastSeen = () => {
       setData(res);
     });
   }, []);
+  console.log(data);
 
   return <RenderResults list={data} title={'Last seens'} />;
 };

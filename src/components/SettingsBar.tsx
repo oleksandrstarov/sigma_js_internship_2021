@@ -14,7 +14,7 @@ const SettingsBar = () => {
       <div className="bar-items-container">
         <div className="bar-item">
           <div className="bar-item-wrapper">
-            <NavLink to={`/favorites/1`} title="to favorites page">
+            <NavLink to={`/favorites?page=1`} title="to favorites page">
               <div className="bar-item-btn">
                 <p className="bar-title">Favorites</p>
                 <img src={heart} alt="heart" className="bar-img" />
@@ -34,7 +34,7 @@ const SettingsBar = () => {
         <hr />
         <div className="bar-item">
           <div className="bar-item-wrapper">
-            <NavLink to={`/history/1`} title="to history page">
+            <NavLink to={`/last-seen?page=1`} title="to history page">
               <div className="bar-item-btn">
                 <p className="bar-title">Last seens</p>
                 <img src={historyImg} alt="historyImg" className="bar-img" />

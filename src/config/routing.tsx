@@ -31,7 +31,7 @@ const Routes = [
   },
   {
     path:
-      '/search-results/:title?/:genre?/:fromYear?/:toYear?/:favorites?/:favorites?/:page',
+      '/search-results',
     name: 'Search results',
     exact: false,
     component: SearchResults
