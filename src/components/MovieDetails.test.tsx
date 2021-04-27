@@ -1,5 +1,8 @@
 import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
+
 
 import MovieDetails from './MovieDetails';
 import Detail from './Detail';
@@ -27,17 +30,21 @@ const movieMockData = {
   tagline: 'Get ready for the ultimate showdown.',
   title: 'Batman: Soul of the Dragon',
   vote_average: '7.1'
+<<<<<<< HEAD
 };
 
 const match = {
   params: { id: '732450' }
+=======
+>>>>>>> b624b2d5e972f0680c174f1eff72dd11cf78a7ea
 };
 
 jest.mock('./Detail', () => () => 'Detail');
 
 jest.mock('../service/api', () => ({
-  getFullImgLink: jest.fn(() => 'test'),
-  getDataById: () => Promise.resolve(movieMockData)
+  getFullImgLink: jest.fn(() => "test"),
+  getDataById: () => Promise.resolve(movieMockData),
+  isIdInFavorites: jest.fn(() => true),
 }));
 
 jest.mock('./ReadMore', () => () => <>ReadMore</>);
@@ -45,11 +52,14 @@ jest.mock('./GenreRedirection', () => () => <>GenreRedirection</>);
 
 describe('MovieDetails', () => {
   let wrapper: ReactWrapper;
+  let history = null;
 
   beforeEach(async () => {
     await act(async () => {
-      wrapper = mount(<MovieDetails match={match} />);
-    });
+      history = createMemoryHistory()
+      history.push('/movie-details?id=412656')
+      wrapper = mount(<Router history={history}><MovieDetails /></Router>);
+    })
   });
 
   afterEach(() => {

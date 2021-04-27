@@ -1,54 +1,28 @@
 import '../styles/Breadcrumbs.scss';
-import { useEffect, useState } from 'react';
-import routing from '../config/routing';
+import { useHistory, useLocation } from 'react-router';
+import { SyntheticEvent, useEffect, useState } from 'react';
 
-type CrumbsType = {
-  name: string;
-  path?: string;
-};
+const Breadcrumbs = () => {
+  const [pathnames, setPathnames] = useState<Array<string>|null>(null)
+  const history = useHistory();
+  const pathname = useLocation().pathname;
 
-type BreadcrumbsProps = {
-  dynamic?: boolean;
-  className?: string;
-  crumbs: CrumbsType[];
-};
-
-const Breadcrumbs = ({ className, crumbs, dynamic }: BreadcrumbsProps) => {
-  const [prevPath, setPrevPath] = useState('');
-  const [prevPathName, setPrevPathName] = useState('');
-
-  const generateLinks = () => {
-    const items = crumbs.map((item: any, index: number) => {
-      return (
-        <a className="breadcrumb" href={item.path} key={index++}>
-          {item.name}
-        </a>
-      );
-    });
-
-    return items;
-  };
-
-  const getPrevPath = () => {
-    const { name } = routing.find(({ path }): boolean =>
-      path.includes(prevPath)
-    ) || { name: '' };
-    setPrevPathName(name);
-  };
+  const handleClick = (e:SyntheticEvent, path:string):void => {
+    e.preventDefault();
+    history.push(path);
+  }
 
   useEffect(() => {
-    setPrevPath(`/${document.referrer.split('/')[3]}`);
-    getPrevPath();
-  });
+    setPathnames(pathname.split('/').filter(item => item));
+  }, [pathname])
 
   return (
-    <div className={`breadcrumbs ${className}`}>
-      {prevPathName && dynamic && (
-        <a className="breadcrumb" href={prevPath} key={0}>
-          {prevPathName}
-        </a>
-      )}
-      {generateLinks()}
+    <div className="breadcrumbs">
+      <button className="breadcrumb" onClick={(e) => handleClick(e, '/')}>Home</button>
+      { pathnames?.map((name, index) => {
+        const routeTo = `/${pathnames?.slice(0, index + 1).join('/')}`;
+        return <button className="breadcrumb" onClick={(e) => handleClick(e, routeTo)}>{name.split('-').join(' ')}</button>
+      }) }
     </div>
   );
 };

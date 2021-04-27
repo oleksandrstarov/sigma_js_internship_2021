@@ -19,10 +19,26 @@ export enum Theme {
   dark,
   light
 }
+
+export enum FeatureStatus {
+  disabled,
+  enabled
+}
+
 export interface StarRatingProps {
   numberOfStars: number;
   colorFilled: string;
   colorUnfilled: string;
+}
+
+export type MoviesType = {
+  vote_count: number;
+  vote_average: number;
+  original_title: string;
+  poster_path: string;
+  overview: string;
+  title: string;
+  id: number;
 }
 
 export enum Genres {

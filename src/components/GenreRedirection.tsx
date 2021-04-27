@@ -1,15 +1,20 @@
-import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
 
 type GenreProps = {
   genre: string;
 };
 
 const GenreRedirection = ({ genre }: GenreProps) => {
+  const history = useHistory();
   return (
-    <Link to={`/search-results?title=by-genre&genre=${genre}&page=1`}>
+    <a
+      onClick={() =>
+        history.push(`/search-results?title=by-genre&genre=${genre}&page=1`)
+      }
+      href="#!">
       {genre}
-    </Link>
+    </a>
   );
-};
+}
 
 export default GenreRedirection;

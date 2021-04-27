@@ -9,6 +9,13 @@
     box-sizing: border-box;
 }
 
+hr {
+    height: 2px;
+    background-color: #ff9800;
+    opacity: 0.1;
+    margin: 14px 0 7px;
+}
+
 body {
     background-color: $bg-color-light;
     -ms-user-select: none;
