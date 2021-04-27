@@ -32,45 +32,49 @@ const SmallInfoCard = ({ id }: CardInfoProps) => {
     });
   }, [id]);
 
-  return <>{data && (
-    <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
-      <Link to={`/movie-details/${data.id}`}>
-        <div className="small-cardInfo__title">
-          <Title text={data.title} />
+  return (
+    <>
+      {data && (
+        <div className={`small-cardInfo ${theme ? '' : 'dark'}`}>
+          <Link to={`/movie-details/${data.id}`}>
+            <div className="small-cardInfo__title">
+              <Title text={data.title} />
+            </div>
+          </Link>
+          <div className="small-cardInfo__rate">
+            <div className="small-cardInfo__rate-voters">
+              Voters
+              <br />
+              {data.vote_count}
+            </div>
+            <div className="small-cardInfo__rate-imdb">
+              IMDB
+              <br />
+              {data.vote_average}
+            </div>
+          </div>
+          <div className="small-cardInfo__filter"></div>
+          <div className="small-cardInfo__img-wrapper">
+            <img
+              src={api.getFullImgLink(data.poster_path, 'w500')}
+              alt={data.title}
+              className="small-cardInfo__img"
+            />
+          </div>
+          <Link to={`/movie-details/${data.id}`}>
+            <button className="small-cardInfo__button">
+              <p className="small-cardInfo__button-text">VIEW DETAILS</p>
+              <img
+                src={buttonImgSrc}
+                alt="button Img"
+                className="small-cardInfo__button-img"
+              />
+            </button>
+          </Link>
         </div>
-      </Link>
-      <div className="small-cardInfo__rate">
-        <div className="small-cardInfo__rate-voters">
-          Voters
-          <br />
-          {data.vote_count}
-        </div>
-        <div className="small-cardInfo__rate-imdb">
-          IMDB
-          <br />
-          {data.vote_average}
-        </div>
-      </div>
-      <div className="small-cardInfo__filter"></div>
-      <div className="small-cardInfo__img-wrapper">
-        <img
-          src={api.getFullImgLink(data.poster_path, 'w185')}
-          alt={data.title}
-          className="small-cardInfo__img"
-        />
-      </div>
-      <Link to={`/movie-details/${data.id}`}>
-        <button className="small-cardInfo__button">
-          <p className="small-cardInfo__button-text">VIEW DETAILS</p>
-          <img
-            src={buttonImgSrc}
-            alt="button Img"
-            className="small-cardInfo__button-img"
-          />
-        </button>
-      </Link>
-    </div>
-  )}</>;
+      )}
+    </>
+  );
 };
 
 export default SmallInfoCard;

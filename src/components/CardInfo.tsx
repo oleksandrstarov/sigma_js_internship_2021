@@ -37,8 +37,9 @@ const CardInfo = ({ tailWide, number }: CardInfoProps) => {
     <>
       {movieData ? (
         <div
-          className={`card-info ${tailWide ? 'card-info__tail' : ''} ${theme ? '' : 'dark'
-            }`}>
+          className={`card-info ${tailWide ? 'card-info__tail' : ''} ${
+            theme ? '' : 'dark'
+          }`}>
           <div className="card-info__wrapper">
             {!tailWide ? (
               <div className="titleComponent card-info__title">
