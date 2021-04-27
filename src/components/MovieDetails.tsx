@@ -1,6 +1,8 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { ThemeContext, ThemeContextType } from './ThemeContext'
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
+
 import { useLocation } from 'react-router-dom';
 import Container from './Container';
 import Breadcrumbs from './Breadcrumbs';
@@ -40,6 +42,7 @@ type MovieInfo = {
 const MovieDetails = () => {
   const [movieData, setMovieData] = useState<MovieInfo | null>(null);
   const [poster, setPoster] = useState<string>('');
+  const { handleHistoryContext }: SettingsBarContextType = useContext(SettingsBarContext);
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const { search } = useLocation();
 
@@ -69,6 +72,11 @@ const MovieDetails = () => {
       setMovieData(res);
     });
   }, [search]);
+
+  if (api.getStore().historyBar) {
+    api.setHistoryId(Number(new URLSearchParams(search).get('id')));
+    handleHistoryContext()
+  }
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>

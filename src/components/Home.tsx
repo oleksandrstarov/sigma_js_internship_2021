@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 import WrapperFavorites from './WrapperFavorites';
 import WrapperLastSeen from './WrapperLastSeen';
@@ -19,8 +19,8 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <Preloader isLoaded={!!movies.length} />
+    <div>
+      <Preloader isLoaded={movies.length > 0} />
       <MovieBanner popularMovies={movies.slice(0, 10)} />
       <div className="wrapper-space">
         <WrapperFavorites />
@@ -31,7 +31,7 @@ const Home = () => {
       <div className="wrapper-space">
         <WrapperPopular movies={movies} />
       </div>
-    </>
+    </div>
   );
 };
 

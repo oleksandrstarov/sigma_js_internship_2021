@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 
 import ratingData from '../service/rating';
 import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
 
 import '../styles/StarRating.scss';
 
@@ -24,6 +25,8 @@ const StarRating: React.FC<StarRatingProps> = ({
   voteAverage
 }) => {
   const [starRating, setStarRating] = useState<number>(getMovieRatingValue());
+  const { handleFavoriteContext }: SettingsBarContextType = useContext(SettingsBarContext);
+
   const [iconHover, setIconHover] = useState<number>(0);
   const {
     addFavoriteMovie,
@@ -44,6 +47,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     });
     if (iconRatingValue === MAX_RATE) {
       addFavoriteMovie(movieId);
+      handleFavoriteContext()
     }
     setStarRating(getMovieRatingValue());
   };

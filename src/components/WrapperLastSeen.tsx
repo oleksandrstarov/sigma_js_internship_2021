@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext'
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
 
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
@@ -28,7 +28,6 @@ const WrapperLasSeen = () => {
 
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [history, setHistory] = useState<MoviesType[]>();
-
 
   useEffect(() => {
     api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });

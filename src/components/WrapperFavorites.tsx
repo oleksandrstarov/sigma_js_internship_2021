@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
 
 import Title from './Title';
 import Container from './Container';
@@ -13,6 +14,7 @@ export type MovieId = {
 };
 
 const WrapperFavorites = () => {
+  const { favoriteContext }: SettingsBarContextType = useContext(SettingsBarContext);
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const { favoritesMoviesState }: FavoritesContextType = useContext(
     FavoritesContext
@@ -29,7 +31,7 @@ const WrapperFavorites = () => {
     return null;
   }
   return (
-    <>
+    <>{favoriteContext ?
       <Container>
         <Title
           text={'Favorite movies'}
@@ -47,7 +49,7 @@ const WrapperFavorites = () => {
           </Slider>
         )}
       </Container>
-    </>
+      : null}</>
   );
 };
 
