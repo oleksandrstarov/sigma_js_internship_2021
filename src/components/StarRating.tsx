@@ -1,13 +1,8 @@
 import { useContext, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
-import api from 'src/service/api';
 import ratingData from '../service/rating';
 import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
-import {
-  MovieRatingContext,
-  MovieRatingContextType
-} from './MovieRatingContext';
 
 import '../styles/StarRating.scss';
 
@@ -32,12 +27,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   const [iconHover, setIconHover] = useState<number>(0);
   const {
     addFavoriteMovie,
-    removeFavoriteMovie
   }: FavoritesContextType = useContext(FavoritesContext);
-
-  const { handleFavoriteIconState }: MovieRatingContextType = useContext(
-    MovieRatingContext
-  );
 
   function getMovieRatingValue(): number {
     if (!ratingData.getMovieRatingFromStorage().length)
@@ -54,10 +44,6 @@ const StarRating: React.FC<StarRatingProps> = ({
     });
     if (iconRatingValue === MAX_RATE) {
       addFavoriteMovie(movieId);
-      handleFavoriteIconState(true);
-    } else if (api.isIdInFavorites(movieId)) {
-      removeFavoriteMovie(movieId);
-      handleFavoriteIconState(false);
     }
     setStarRating(getMovieRatingValue());
   };

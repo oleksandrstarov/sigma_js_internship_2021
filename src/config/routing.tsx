@@ -2,6 +2,7 @@ import Home from '../components/Home';
 import MovieDetails from '../components/MovieDetails';
 import Favorites from '../components/Favorites';
 import SearchResults from '../components/SearchResults';
+import LastSeen from 'src/components/LastSeen';
 
 const Routes = [
   {
@@ -11,7 +12,7 @@ const Routes = [
     component: Home
   },
   {
-    path: '/movie-details/:id',
+    path: '/movie-details',
     name: 'Movie details',
     exact: false,
     component: MovieDetails
@@ -23,7 +24,14 @@ const Routes = [
     component: Favorites
   },
   {
-    path: '/search-results',
+    path: '/last-seen',
+    name: 'Last seen',
+    exact: false,
+    component: LastSeen
+  },
+  {
+    path:
+      '/search-results',
     name: 'Search results',
     exact: false,
     component: SearchResults

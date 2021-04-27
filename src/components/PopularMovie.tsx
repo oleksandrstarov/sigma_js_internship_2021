@@ -28,7 +28,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
   return (
     <div className={`movie-banner-body ${theme ? '' : 'dark-theme'}`}>
       <div className="movie-image-container">
-        <Link className="movie-read-more" to={`/movie-details/${id}`}>
+        <Link className="movie-read-more" to={`/movie-details?id=${id}`}>
           <img
             src={mobile ? mobileImgPath : desktopImgPath}
             className="movie-banner-image"
@@ -47,7 +47,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           {overview.length >= 250 ? (
             <span>
               {overview.slice(0, 250)}
-              <Link className="movie-read-more" to={`/movie-details/${id}`}>
+              <Link className="movie-read-more" to={`/movie-details?id=${id}`}>
                 <span className={`${theme ? '' : 'dark'}`}>...Read more</span>
               </Link>
             </span>
@@ -72,7 +72,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             />
           </div>
         </div>
-        <Link to={{ pathname: `movie-details/${id}` }} className="movie-btn">
+        <Link className="movie-btn" to={`/movie-details?id=${id}`}>
           <span className="movie-btn-title">View details</span>
           <img src={btnIcon} alt="btn icon" className="movie-btn-icon" />
         </Link>

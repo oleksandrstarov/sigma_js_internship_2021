@@ -8,7 +8,7 @@ import api from '../service/api';
 import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
-type MovieId = {
+export type MovieId = {
   id: number;
 };
 
