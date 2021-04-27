@@ -5,7 +5,7 @@ import '../styles/ReadMore.scss';
 
 type ChildProps = {
   children: ReactText;
-}
+};
 
 const ReadMore = ({ children }: ChildProps) => {
   const text = String(children);
@@ -16,14 +16,20 @@ const ReadMore = ({ children }: ChildProps) => {
   if (!text) {
     return null;
   }
-  return <>{text.length < 250 ? text : (
-    <p>
-      {isReadMore ? text.slice(0, 250) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
-        {isReadMore ? " ...Read more" : " Show less"}
-      </span>
-    </p>
-  )}</>
+  return (
+    <>
+      {text.length < 250 ? (
+        text
+      ) : (
+        <p>
+          {isReadMore ? text.slice(0, 250) : text}
+          <span onClick={toggleReadMore} className="read-or-hide">
+            {isReadMore ? ' ...Read more' : ' Show less'}
+          </span>
+        </p>
+      )}
+    </>
+  );
 };
 
 export default ReadMore;

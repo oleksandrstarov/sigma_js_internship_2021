@@ -172,8 +172,8 @@ const api = {
       genre?: string;
       page: number;
     } = {
-      page: 1
-    }
+        page: 1
+      }
   ) {
     function setFilteredData() {
       const { from, to } = dataFilter;
@@ -194,8 +194,7 @@ const api = {
     }
 
     const obj = await axios.get(
-      `discover/movie?sort_by=popularity.asc&page=${
-        dataFilter.page
+      `discover/movie?sort_by=popularity.asc&page=${dataFilter.page
       }${setFilteredData()}${setGenre()}&${API_KEY}`
     );
     return obj.data;

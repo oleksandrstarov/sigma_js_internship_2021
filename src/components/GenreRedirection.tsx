@@ -1,8 +1,8 @@
 import { useHistory } from "react-router";
 
 type GenreProps = {
-  genre: string
-}
+  genre: string;
+};
 
 const GenreRedirection = ({ genre }: GenreProps) => {
   const history = useHistory();

@@ -11,9 +11,10 @@ import '../styles/RenderResults.scss';
 
 interface RenderResultsArrList {
   list: MovieCard[];
+  title?: string;
 }
 
-const RenderResults = ({ list }: RenderResultsArrList) => {
+const RenderResults = ({ list, title }: RenderResultsArrList) => {
   const [tailState, setTailState] = useState(true);
   const handlerTail = () => setTailState(!tailState);
   const isMobileView = useDeviceDetect();
@@ -25,12 +26,13 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
           <h3>Oops no results here ;)</h3>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="delivery">
-      <div className="view-toggler">
+      <div className="view-toggler ">
+        <h2>{title ?? ''}</h2>
         {tailState ? (
           <img
             src={buttonImgGroup}
@@ -55,7 +57,11 @@ const RenderResults = ({ list }: RenderResultsArrList) => {
             if (tailState) {
               return <CardInfo tailWide={false} number={item.id} />;
             }
-            return <div className="small-card-wrapper"><SmallInfoCard id={item.id} /></div>
+            return (
+              <div className="small-card-wrapper">
+                <SmallInfoCard id={item.id} />
+              </div>
+            );
           }
         })}
       </div>

@@ -72,9 +72,9 @@ const MovieDetails = () => {
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
-      <Preloader isLoaded={Boolean(movieData && poster)}/>
+      <Preloader isLoaded={Boolean(movieData && poster)} />
       <Container>
-        <Breadcrumbs/>
+        <Breadcrumbs />
         <section className="movie-wrapper">
           <div className="movie-img">
             <img src={poster} alt="poster" />
@@ -82,15 +82,15 @@ const MovieDetails = () => {
           <div className="movie-details">
             <Title text={title ?? ""} className={`${theme ? '' : 'dark-theme'}`} />
             <div className="fav-raiting">
-            <span>
-              {vote_average && <StarRating
-                numberOfStars={5}
-                colorFilled={'#ff636d'}
-                colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
-                voteAverage={Number(vote_average)}
-                movieId={Number(new URLSearchParams(search).get('id'))}
-              />}
-            </span>
+              <span>
+                {vote_average && <StarRating
+                  numberOfStars={5}
+                  colorFilled={'#ff636d'}
+                  colorUnfilled={theme ? '#c4c4c4' : '#ffffff'}
+                  voteAverage={Number(vote_average)}
+                  movieId={Number(new URLSearchParams(search).get('id'))}
+                />}
+              </span>
               <FavoritesBtn movieId={Number(new URLSearchParams(search).get('id'))} />
             </div>
             <div className="general-info">
@@ -120,7 +120,7 @@ const MovieDetails = () => {
           <ReadMore>{overview ?? ''}</ReadMore>
         </div>
       </Container>
-    </div>
+    </div >
   );
 };
 

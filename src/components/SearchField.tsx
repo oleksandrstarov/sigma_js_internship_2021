@@ -187,9 +187,8 @@ const SearchField: React.FC = () => {
                 </span>
               </div>
               <label
-                className={`dropdown-item ${
-                  checkboxes.favorites ? 'active-checkbox' : ''
-                } ${theme ? '' : 'dark-text'}`}>
+                className={`dropdown-item ${checkboxes.favorites ? 'active-checkbox' : ''
+                  } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={favoritesCheckboxHandler}
                   type="checkbox"
@@ -204,9 +203,8 @@ const SearchField: React.FC = () => {
                 />
               </label>
               <label
-                className={`dropdown-item ${
-                  checkboxes.history ? 'active-checkbox' : ''
-                } ${theme ? '' : 'dark-text'}`}>
+                className={`dropdown-item ${checkboxes.history ? 'active-checkbox' : ''
+                  } ${theme ? '' : 'dark-text'}`}>
                 <input
                   onChange={historyCheckboxHandler}
                   type="checkbox"

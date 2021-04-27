@@ -24,7 +24,7 @@ const Home = () => {
   const [movies, setMovies] = useState<[]>([]);
   const [history, setHistory] = useState<MoviesType[]>();
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
- 
+
   useEffect(() => {
     api.getPopularQueryList().then(res => {
       setMovies(res.slice(0, 10));

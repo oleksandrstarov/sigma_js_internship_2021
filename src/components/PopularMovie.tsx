@@ -42,9 +42,8 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
           <h3 className="movie-title">{title}</h3>
         </div>
         <p
-          className={`movie-description ${
-            window.innerWidth < 767 ? 'text-overlow' : ''
-          }`}>
+          className={`movie-description ${window.innerWidth < 767 ? 'text-overlow' : ''
+            }`}>
           {overview.length >= 250 ? (
             <span>
               {overview.slice(0, 250)}
@@ -73,7 +72,7 @@ const PopularMovie: React.FC<PopularMovieProps> = ({ movie }) => {
             />
           </div>
         </div>
-        <Link to={{ pathname: `movie-details?id=${id}` }} className="movie-btn">
+        <Link className="movie-btn" to={`/movie-details?id=${id}`}>
           <span className="movie-btn-title">View details</span>
           <img src={btnIcon} alt="btn icon" className="movie-btn-icon" />
         </Link>
