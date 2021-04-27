@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { ThemeContext, ThemeContextType } from './ThemeContext';
-
 import Title from './Title';
 import Container from './Container';
 import Slider from './Slider';
 import SmallInfoCard from './SmallInfoCard';
-
 import api from '../service/api';
+import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 export type MovieId = {
   id: number;
@@ -15,13 +14,16 @@ export type MovieId = {
 
 const WrapperFavorites = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
+  const { favoritesMoviesState }: FavoritesContextType = useContext(
+    FavoritesContext
+  );
   const [movieInfo, setMovieInfo] = useState<MovieId[]>([]);
 
   useEffect(() => {
-    api.getDataByIds(api.getFavoritsIdList()).then((res: any) => {
+    api.getDataByIds(favoritesMoviesState).then((res: any) => {
       setMovieInfo(res);
     });
-  }, []);
+  }, [favoritesMoviesState]);
 
   if (!movieInfo.length) {
     return null;

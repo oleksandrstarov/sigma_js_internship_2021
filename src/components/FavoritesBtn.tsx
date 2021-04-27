@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import api from '../service/api';
+
+import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
 
 import '../styles/FavoritesBtn.scss';
 
@@ -9,21 +11,34 @@ type FavoritesBtnProps = {
 };
 
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
-  const [isFavorite, setIsFavorite] = useState(api.isIdInFavorites(movieId));
-
+  const {
+    addFavoriteMovie,
+    removeFavoriteMovie
+  }: FavoritesContextType = useContext(FavoritesContext);
+  
+  const [isMovieIdInFavorites, setIsMovieIdInFavorites] = useState(
+    api.isIdInFavorites(movieId)
+  );
+ 
   const heartUnfilledIcon = '/images/favoriteBtn/heartFilled.svg';
   const heartFilledIcon = '/images/favoriteBtn/heartUnfilled.svg';
 
   const handleSwitchFavoriteState = (): void => {
-    !isFavorite ? api.setFavoritesId(movieId) : api.deleteFavoritsId(movieId);
-    setIsFavorite(api.isIdInFavorites(movieId));
+    isMovieIdInFavorites
+      ? removeFavoriteMovie(movieId)
+      : addFavoriteMovie(movieId);
+    setIsMovieIdInFavorites(!isMovieIdInFavorites);
   };
 
   return (
     <button className="favorite-btn" onClick={handleSwitchFavoriteState}>
       <img
         className="favorite-icon"
-        src={!isFavorite ? heartFilledIcon : heartUnfilledIcon}
+        src={
+          isMovieIdInFavorites 
+            ? heartUnfilledIcon
+            : heartFilledIcon
+        }
         alt="favorite icon"
       />
     </button>

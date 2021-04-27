@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import ThemeToggler from './ThemeToggle';
 import SearchField from './SearchField';
+import SettingsBtn from './SettingsBtn';
 
 import '../styles/Header.scss';
 
@@ -29,18 +29,18 @@ const Header = () => {
 
   return (
     <header
-      className={`${isScrolled ? 'active' : ''} ${
-        !theme && !isScrolled ? 'dark-theme' : ''
-      }`}>
+      className={`${isScrolled ? 'active' : ''} ${!theme && !isScrolled ? 'dark-theme' : ''
+        }`}>
       <div className="container">
         <a href="/" className="header-logo">
           <img src={window.innerWidth < 992 ? imageSm : imageXl} alt="logo" />
         </a>
         <SearchField />
-        <a href="/favorites/1" className="header-nav-link">
+        <a href="/favorites?page=1" className="header-nav-link">
           <span>Favorites</span>
           <img src={heart} alt="heart img" />
         </a>
+        <SettingsBtn />
         <ThemeToggler />
       </div>
     </header>

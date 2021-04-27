@@ -6,6 +6,7 @@ import MovieBanner from './MovieBanner';
 import Container from './Container';
 import Slider from './Slider';
 import Title from './Title';
+import { Movie } from '../models/index';
 
 import api from 'src/service/api';
 
@@ -22,9 +23,13 @@ export type MoviesType = {
 const Home = () => {
   const [movies, setMovies] = useState<[]>([]);
   const [history, setHistory] = useState<MoviesType[]>();
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    api.getPopularQueryList().then(res => setMovies(res.slice(0, 10)));
+    api.getPopularQueryList().then(res => {
+      setMovies(res.slice(0, 10));
+      setPopularMovies(res);
+    });
     api.getDataByIds(api.getHistoryIdList()).then(res => {
       setHistory(res);
     });
@@ -32,7 +37,7 @@ const Home = () => {
 
   return (
     <>
-      <MovieBanner />
+      <MovieBanner popularMovies={popularMovies} />
       <div className="wrapper-space">
         <WrapperFavorites />
       </div>
@@ -41,7 +46,7 @@ const Home = () => {
           <div className="wrapper-space">
             {history.length ? (
               <>
-                <Title text={"Last seens"} />
+                <Title text={'Last seens'} />
                 <Slider>
                   {history.map((movie: MoviesType) => {
                     return (
@@ -50,13 +55,13 @@ const Home = () => {
                       </div>
                     );
                   })}
-                </Slider>{" "}
+                </Slider>{' '}
               </>
             ) : null}
           </div>
         )}
         <div className="wrapper-space">
-          <Title text={"Popular movies"} />
+          <Title text={'Popular movies'} />
           {movies.length ? (
             <Slider>
               {movies.map((movie: MoviesType) => {
