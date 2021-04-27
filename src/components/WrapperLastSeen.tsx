@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext'
+import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
 
 import { ThemeContext, ThemeContextType } from './ThemeContext';
 

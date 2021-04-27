@@ -2,8 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
-import { ThemeContext, ThemeContextType } from './ThemeContext'
-
+import { ThemeContext, ThemeContextType } from './ThemeContext';
 
 import '../styles/Header.scss';
 import '../styles/SettingsBar.scss';
