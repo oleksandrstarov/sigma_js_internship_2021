@@ -1,8 +1,7 @@
 @import "./variables.scss";
 
 .details-container {
-  width: 90%;
-  margin: auto;
+  width: 100%;
   background-color: $bg-color-light;
   position: relative;
   z-index: 3;
@@ -12,54 +11,56 @@
       margin:auto;
       max-width: 470px;
       img {
-        @include for-mobile {
-          width: 100%;
-        }
+        width: 100%;
         border-radius: 10px;
       }
     }
     .movie-details {
+      display: flex;
+      flex-direction: column;
+
       h1 {
         font-family: $title;
         font-size: 26px;
         font-weight: bolder;
         margin-bottom: 5px;
+        order: 1;
       }
       .fav-raiting {
         display: flex;
         justify-content: flex-end;
-        height: 25px;
+        align-items: center;
+        padding: 15px 0;
         span {
           margin-right: 15px;
         }
       }
-    .general-info{
-      margin-top: 20px;
+      .general-info{
+        margin-top: 20px;
+        order: 2;
+      }
     }
-    }
-  }
-
-  .hl {
-    width: 100%;
-    border-top: 2px solid $grey;
   }
 
   .genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px 10px;
     div {
       display: inline-block;
       border: 1px solid $yellow;
       background-color: $white;
       color: $black;
-      padding: 5px;
-      padding-left: 8px;
-      padding-right: 8px;
+      padding: 5px 8px;
       margin: 10px;
       border-radius: 17px;
       text-transform: lowercase;
     }
   }
   .description {
-    padding: 5px;
+    padding: 10px 0;
+    border-top: 2px solid $grey;
+    border-bottom: 2px solid $grey;
   }
 }
 
@@ -72,13 +73,29 @@
   .movie-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+    position: relative;
+    align-items: center;
+    margin-bottom: 7px;
+    
     .movie-img {
       margin: auto;
-      height: 600px;
       max-width: 470px;
       img {
-        height:100%;
+        object-fit: contain;
+        max-height: 600px;
+        width: unset !important;
       }
     }
+  }
+
+  .detail-body {
+    grid-template-columns: .4fr 1fr;
+    grid-column-gap: 30px;
+  }
+
+  .fav-raiting {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
