@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useContext } from 'react';
 import { ThemeContext, ThemeContextType } from './ThemeContext'
 import { useLocation } from 'react-router-dom';
@@ -58,10 +59,10 @@ const MovieDetails = () => {
   } = movieData || {};
 
   useEffect(() => {
-    if (movieData?.poster_path) {
+    if (movieData) {
       setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
     }
-  }, [movieData])
+  }, [movieData]);
 
   useEffect(() => {
     api.getDataById(Number(new URLSearchParams(search).get('id'))).then((res: any) => {
@@ -110,9 +111,10 @@ const MovieDetails = () => {
           </div>
         </section>
         <div className="genres">
-          {genres?.map(genre => <div key={genre.id}>
-            <GenreRedirection genre={genre.name} />
-          </div>)}
+          {genres?.map(genre =>
+            <div key={genre.id}>
+              <GenreRedirection genre={genre.name} />
+            </div>)}
         </div>
         <div className="description">
           <ReadMore>{overview ?? ''}</ReadMore>

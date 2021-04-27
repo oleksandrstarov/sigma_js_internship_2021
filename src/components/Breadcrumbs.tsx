@@ -14,14 +14,14 @@ const Breadcrumbs = () => {
 
   useEffect(() => {
     setPathnames(pathname.split('/').filter(item => item));
-  }, [])
+  }, [pathname])
 
   return (
     <div className="breadcrumbs">
-      <a href="#" className="breadcrumb" onClick={(e) => handleClick(e, '/')}>Home</a>
+      <button className="breadcrumb" onClick={(e) => handleClick(e, '/')}>Home</button>
       { pathnames?.map((name, index) => {
         const routeTo = `/${pathnames?.slice(0, index + 1).join('/')}`;
-        return <a href="#" className="breadcrumb" onClick={(e) => handleClick(e, routeTo)}>{name.split('-').join(' ')}</a>
+        return <button className="breadcrumb" onClick={(e) => handleClick(e, routeTo)}>{name.split('-').join(' ')}</button>
       }) }
     </div>
   );
