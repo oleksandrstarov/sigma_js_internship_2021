@@ -33,3 +33,8 @@ $font-size-36-desktop: 36px;
     @content;
   }
 }
+@mixin for-mobile {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}

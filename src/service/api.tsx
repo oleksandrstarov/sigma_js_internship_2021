@@ -3,11 +3,16 @@ import axios from '../axios/url';
 import { Genres } from '../models';
 
 import { Theme, MovieCard, FeatureStatus } from '../models/index';
-import { MoviesType } from '../components/Home'
+import { MoviesType } from '../components/Home';
 
 const apiService: {
   storeKey: string;
-  store: { history: number[]; favorites: number[]; theme: Theme; historyBar: FeatureStatus };
+  store: {
+    history: number[];
+    favorites: number[];
+    theme: Theme;
+    historyBar: FeatureStatus;
+  };
 } = {
   storeKey: 'service',
   store: {
@@ -16,7 +21,9 @@ const apiService: {
     theme: Theme.light,
     historyBar: FeatureStatus.enabled
   }
-}
+};
+
+const posterPlaceholder = '/images/movie-placeholder.jpg';
 
 const api = {
   getStore() {
@@ -41,7 +48,10 @@ const api = {
 
   switchHistoryBar() {
     const store = this.getStore();
-    store.historyBar = store.historyBar === FeatureStatus.enabled ? FeatureStatus.disabled : FeatureStatus.enabled;
+    store.historyBar =
+      store.historyBar === FeatureStatus.enabled
+        ? FeatureStatus.disabled
+        : FeatureStatus.enabled;
     this.setStore(store);
     return store.historyBar;
   },
@@ -149,7 +159,9 @@ const api = {
   },
 
   async getSearchList(query: string, page: number = 1) {
-    const obj = await axios.get(`search/movie?${API_KEY}&query=${query}&page=${page}`);
+    const obj = await axios.get(
+      `search/movie?${API_KEY}&query=${query}&page=${page}`
+    );
     return obj.data;
   },
 
@@ -203,7 +215,7 @@ const api = {
   },
 
   getFullImgLink(url: string, size: string = 'w500') {
-    return `${API_IMG_URL}${size}${url}`;
+    return url ? `${API_IMG_URL}${size}${url}` : posterPlaceholder;
   }
 };
 
