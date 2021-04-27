@@ -5,7 +5,6 @@ import ratingData from '../service/rating';
 import { FavoritesContext, FavoritesContextType } from './FavoritesContext';
 import { SettingsBarContext, SettingsBarContextType } from './SettingsBarContext';
 
-
 import '../styles/StarRating.scss';
 
 type StarRatingProps = {

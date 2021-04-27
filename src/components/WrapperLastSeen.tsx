@@ -29,7 +29,6 @@ const WrapperLasSeen = () => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
   const [history, setHistory] = useState<MoviesType[]>();
 
-
   useEffect(() => {
     api.getDataByIds(api.getHistoryIdList()).then((res) => { setHistory(res) });
   }, [historyContext]);

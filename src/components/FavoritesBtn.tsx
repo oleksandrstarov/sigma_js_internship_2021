@@ -14,7 +14,6 @@ type FavoritesBtnProps = {
 const FavoritesBtn: React.FC<FavoritesBtnProps> = ({ movieId }) => {
   const { handleFavoriteContext }: SettingsBarContextType = useContext(SettingsBarContext);
 
-
   const {
     addFavoriteMovie,
     removeFavoriteMovie
