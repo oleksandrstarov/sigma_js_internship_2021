@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import routing from './config/routing';
-import { MovieRatingProvider } from './components/MovieRatingContext';
 import { ThemeContextProvider } from './components/ThemeContext';
 import { FavoritesContextProvider } from './components/FavoritesContext';
 
@@ -13,7 +12,6 @@ function App() {
       <Router>
         <ThemeContextProvider>
           <FavoritesContextProvider>
-            <MovieRatingProvider>
               <Layout>
                 <Switch>
                   {routing.map((item, i) => {
@@ -28,7 +26,6 @@ function App() {
                   })}
                 </Switch>
               </Layout>
-            </MovieRatingProvider>
           </FavoritesContextProvider>
         </ThemeContextProvider>
       </Router>
