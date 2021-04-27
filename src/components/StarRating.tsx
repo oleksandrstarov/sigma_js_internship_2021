@@ -44,7 +44,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     });
     if (iconRatingValue === MAX_RATE) {
       addFavoriteMovie(movieId);
-    } 
+    }
     setStarRating(getMovieRatingValue());
   };
 
