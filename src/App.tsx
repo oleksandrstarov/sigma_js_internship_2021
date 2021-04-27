@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import routing from './config/routing';
 import { ThemeContextProvider } from './components/ThemeContext';
+import { SettingsBarContextProvider } from './components/SettingsBarContext';
 import { FavoritesContextProvider } from './components/FavoritesContext';
 
 import './App.scss';
@@ -10,8 +11,9 @@ function App() {
   return (
     <>
       <Router>
-        <ThemeContextProvider>
+        <SettingsBarContextProvider>
           <FavoritesContextProvider>
+            <ThemeContextProvider>
               <Layout>
                 <Switch>
                   {routing.map((item, i) => {
@@ -26,8 +28,9 @@ function App() {
                   })}
                 </Switch>
               </Layout>
+            </ThemeContextProvider>
           </FavoritesContextProvider>
-        </ThemeContextProvider>
+        </SettingsBarContextProvider>
       </Router>
     </>
   );
