@@ -38,8 +38,6 @@ type MovieInfo = {
   overview: string;
 };
 
-const posterPlaceholder = '/images/movie-placeholder.jpg';
-
 const MovieDetails = ({ match }: MovieDetailsProps) => {
   const { theme }: ThemeContextType = useContext(ThemeContext);
 
@@ -62,16 +60,16 @@ const MovieDetails = ({ match }: MovieDetailsProps) => {
   } = movieData || {};
 
   useEffect(() => {
+    if (movieData) {
+      setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
+    }
+  }, [movieData]);
+
+  useEffect(() => {
     api.getDataById(Number(match.params.id)).then((res: any) => {
       setMovieData(res);
     });
-    if (movieData?.poster_path) {
-      setPoster(api.getFullImgLink(movieData.poster_path, ImageWidth[0]));
-    }
-    if (movieData?.poster_path === null || undefined) {
-      setPoster(posterPlaceholder);
-    }
-  }, [match.params.id, movieData]);
+  }, [match.params.id]);
 
   return (
     <div className={`details-container ${theme ? '' : 'dark-theme'}`}>
